@@ -3,13 +3,18 @@ import ReactDOM from "react-dom";
 
 import App from "@components/app";
 
+import mock from "./mock";
+
 
 const root = document.querySelector(`#root`);
 
+const {currentFilmGenres, releaseDate, filmList} = mock;
+
 ReactDOM.render(
     <App
-      ganre={`Drama`}
-      releaseDate={2014}
+      currentFilmGenres={currentFilmGenres}
+      releaseDate={releaseDate}
+      filmList={filmList}
     />,
     root
 );
