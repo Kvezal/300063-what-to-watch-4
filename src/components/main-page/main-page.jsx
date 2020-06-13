@@ -101,7 +101,7 @@ const MainPage = (props) => {
 
         <div className="catalog__movies-list">
           {filmList.map((film) =>
-            <article key={film.title} className="small-movie-card catalog__movies-card">
+            <article key={film.id} className="small-movie-card catalog__movies-card">
               <div className="small-movie-card__image">
                 <img src={`img/${film.picture}`} alt={film.title} width="280" height="175"/>
               </div>

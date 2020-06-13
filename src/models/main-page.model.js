@@ -5,6 +5,7 @@ const mainPageModel = {
   releaseDate: PropTypes.number.isRequired,
   filmList: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.number.isRequired,
         picture: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
       })
