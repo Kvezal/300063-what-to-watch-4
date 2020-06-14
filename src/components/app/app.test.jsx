@@ -21,7 +21,6 @@ describe(`App`, () => {
             currentFilmGenres={currentFilmGenres}
             releaseDate={releaseDate}
             filmList={filmList}
-            onMainTitleClick={() => {}}
           />
       )
       .toJSON();
