@@ -1,10 +1,9 @@
 import React from "react";
-
-import Models from "@models";
+import PropTypes from "prop-types";
 
 
 const MainPage = (props) => {
-  const {currentFilmGenres, releaseDate, filmList} = props;
+  const {currentFilmGenres, releaseDate, filmList, onMainTitleClick} = props;
 
   return <React.Fragment>
     <section className="movie-card">
@@ -106,7 +105,11 @@ const MainPage = (props) => {
                 <img src={`img/${film.picture}`} alt={film.title} width="280" height="175"/>
               </div>
               <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">{film.title}</a>
+                <a
+                  className="small-movie-card__link"
+                  href="movie-page.html"
+                  onClick={onMainTitleClick}
+                >{film.title}</a>
               </h3>
             </article>
           )}
@@ -134,6 +137,17 @@ const MainPage = (props) => {
   </React.Fragment>;
 };
 
-MainPage.propTypes = Models.mainPageModel;
+MainPage.propTypes = {
+  currentFilmGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  releaseDate: PropTypes.number.isRequired,
+  onMainTitleClick: PropTypes.func.isRequired,
+  filmList: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        picture: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+      })
+  ).isRequired,
+};
 
 export default MainPage;
