@@ -29,7 +29,7 @@ describe(`MainPageComponent`, () => {
         />
     );
     const mainTitleList = mainPage.find(`a.small-movie-card__link`);
-    mainTitleList.forEach((mainTitle) => mainTitle.props().onClick());
-    expect(onMainTitleClick.mock.calls.length).toBe(mainTitleList.length);
+    mainTitleList.forEach((mainTitle) => mainTitle.simulate(`click`));
+    expect(onMainTitleClick).toHaveBeenCalledTimes(mainTitleList.length);
   });
 });
