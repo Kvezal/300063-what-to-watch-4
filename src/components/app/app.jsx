@@ -1,16 +1,19 @@
 import React from "react";
 
 import MainPage from "@components/main-page";
+import Models from "@models";
 
 
 const App = (props) => {
-  // eslint-disable-next-line react/prop-types
-  const {ganre, releaseDate} = props;
+  const {currentFilmGenres, releaseDate, filmList} = props;
 
   return <MainPage
-    ganre={ganre}
+    currentFilmGenres={currentFilmGenres}
     releaseDate={releaseDate}
+    filmList={filmList}
   />;
 };
+
+App.propTypes = Models.mainPageModel;
 
 export default App;
