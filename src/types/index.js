@@ -1,6 +1,8 @@
-import film from "./film";
+import filmType from "./film";
+import filmListType from "./film-list";
 
 
 export default {
-  film,
+  filmType,
+  filmListType,
 };

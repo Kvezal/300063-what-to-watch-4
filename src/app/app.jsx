@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import MainPage from "@app/main-page";
-import fileType from "@types/film";
+import filmListType from "@types/film-list";
 
 
 const App = (props) => {
@@ -12,14 +12,13 @@ const App = (props) => {
     currentFilmGenres={currentFilmGenres}
     releaseDate={releaseDate}
     filmList={filmList}
-    onMainTitleClick={() => {}}
   />;
 };
 
 App.propTypes = {
   currentFilmGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
   releaseDate: PropTypes.number.isRequired,
-  filmList: PropTypes.arrayOf(fileType).isRequired,
+  filmList: filmListType.isRequired,
 };
 
 export default App;

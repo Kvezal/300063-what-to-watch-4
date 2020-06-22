@@ -46,4 +46,22 @@ describe(`FilmCardComponent`, () => {
     const filmLink = filmCardComponent.find(`.small-movie-card__image img`).props().src;
     expect(filmLink.includes(film.picture)).toBeTruthy();
   });
+
+  test(`should change isHovered state when mouse enter in card`, () => {
+    const filmCardComponent = shallow(<FilmCard info={film} />);
+    const card = filmCardComponent.find(`article.small-movie-card`);
+    expect(filmCardComponent.state().isHovered).toBeFalsy();
+    card.simulate(`mouseenter`);
+    expect(filmCardComponent.state().isHovered).toBeTruthy();
+  });
+
+  test(`should change isHovered state when mouse leave from card`, () => {
+    const filmCardComponent = shallow(<FilmCard info={film} />);
+    const card = filmCardComponent.find(`article.small-movie-card`);
+    expect(filmCardComponent.state().isHovered).toBeFalsy();
+    card.simulate(`mouseenter`);
+    expect(filmCardComponent.state().isHovered).toBeTruthy();
+    card.simulate(`mouseleave`);
+    expect(filmCardComponent.state().isHovered).toBeFalsy();
+  });
 });
