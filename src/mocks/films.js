@@ -1,7 +1,3 @@
-const currentFilmGenres = [`Drama`];
-
-const releaseDate = 2014;
-
 const filmList = [
   {id: 1, picture: `fantastic-beasts-the-crimes-of-grindelwald.jpg`, title: `Fantastic Beasts: The Crimes of Grindelwald`},
   {id: 2, picture: `bohemian-rhapsody.jpg`, title: `Bohemian Rhapsody`},
@@ -25,8 +21,4 @@ const filmList = [
   {id: 20, picture: `midnight-special.jpg`, title: `Midnight Special`},
 ];
 
-export default {
-  currentFilmGenres,
-  releaseDate,
-  filmList,
-};
+export default filmList;
