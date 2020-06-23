@@ -19,6 +19,7 @@ describe(`FilmOverview`, () => {
   ];
 
   const overviewFilm = {
+    id: 1,
     name: `The Grand Budapest Hotel`,
     picture: {
       cover: `the-grand-budapest-hotel-poster.jpg`,
