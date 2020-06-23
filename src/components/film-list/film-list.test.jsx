@@ -23,18 +23,18 @@ describe(`FilmListComponent`, () => {
   ];
 
   test(`should render component`, () => {
-    const tree = render.create(<FilmList list={filmList} />).toJSON();
+    const tree = render.create(<FilmList list={filmList} onCardClick={() => {}}/>).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test(`should create component`, () => {
-    const filmListComponent = mount(<FilmList list={filmList} />);
+    const filmListComponent = mount(<FilmList list={filmList} onCardClick={() => {}}/>);
     const list = filmListComponent.find(`div.catalog__movies-list`);
     expect(list).toHaveLength(1);
   });
 
   test(`should have film cards`, () => {
-    const filmListComponent = mount(<FilmList list={filmList} />);
+    const filmListComponent = mount(<FilmList list={filmList} onCardClick={() => {}}/>);
     const cards = filmListComponent.find(`article.small-movie-card`);
     expect(cards).toHaveLength(filmList.length);
   });

@@ -3,6 +3,7 @@ const currentFilmGenres = [`Drama`];
 const releaseDate = 2014;
 
 const overviewFilm = {
+  id: 1,
   name: `The Grand Budapest Hotel`,
   picture: {
     poster: `the-grand-budapest-hotel-poster.jpg`,

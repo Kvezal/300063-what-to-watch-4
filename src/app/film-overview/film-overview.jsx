@@ -8,7 +8,7 @@ import Footer from "@components/footer";
 
 
 const FilmOverview = (props) => {
-  const {likedFilms, info, avatar} = props;
+  const {likedFilms, info, avatar, onCardClick} = props;
   const {name, genres, releaseDate, picture, rating, descriptions, director, starring} = info;
 
   return <Fragment>
@@ -94,7 +94,7 @@ const FilmOverview = (props) => {
     <div className="page-content">
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
-        <FilmList list={likedFilms}/>
+        <FilmList list={likedFilms} onCardClick={onCardClick}/>
       </section>
       <Footer/>
     </div>
@@ -103,8 +103,10 @@ const FilmOverview = (props) => {
 
 FilmOverview.propTypes = {
   likedFilms: filmListType.isRequired,
+  onCardClick: PropTypes.func.isRequired,
   avatar: PropTypes.string.isRequired,
   info: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     genres: PropTypes.arrayOf(
         PropTypes.string.isRequired

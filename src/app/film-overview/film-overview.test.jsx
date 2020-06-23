@@ -5,6 +5,7 @@ import FilmOverview from "./film-overview";
 
 
 describe(`FileOverviewComponent`, () => {
+  const avatar = `avatar.jpg`;
   const likedFilms = [
     {id: 1, href: `movie-page.html`, picture: `fantastic-beasts-the-crimes-of-grindelwald.jpg`, title: `Fantastic Beasts: The Crimes of Grindelwald`},
     {id: 2, href: `movie-page.html`, picture: `bohemian-rhapsody.jpg`, title: `Bohemian Rhapsody`},
@@ -43,6 +44,8 @@ and other`,
           <FilmOverview
             likedFilms={likedFilms}
             info={overviewFilm}
+            avatar={avatar}
+            onCardClick={() => {}}
           />
       )
       .toJSON();
