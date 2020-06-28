@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 import FilmListType from "@types/film-list";
 import FilmCard from "@components/film-card";
-import withActiveFlag from "@hocs/with-active-flag";
+import {withActiveFlag, withVideoPlayer} from "@hocs";
 
-const FilmCardWrapper = withActiveFlag(FilmCard);
+const FilmCardWrapper = withActiveFlag(withVideoPlayer(FilmCard));
 
 
 const FilmList = (props) => {

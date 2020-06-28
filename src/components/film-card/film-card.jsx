@@ -2,13 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import FileType from "@types/film";
-import VideoPlayer from "@components/video-player/video-player";
 
 
 const VIDEO_PLAYING_DELAY = 1000;
 
 const FilmCard = (props) => {
-  const {onCardClick, info, isActive, onActiveChange} = props;
+  const {onCardClick, info, isActive, onActiveChange, renderPlayer} = props;
   const {id, preview, poster, title, href} = info;
 
   let timer = 0;
@@ -28,6 +27,13 @@ const FilmCard = (props) => {
     }
   };
 
+  const playerParams = {
+    preview,
+    poster,
+    isActive,
+    muted: true,
+  };
+
   return <article
     className="small-movie-card catalog__movies-card"
     onClick={() => onCardClick(id)}
@@ -35,11 +41,7 @@ const FilmCard = (props) => {
     onMouseLeave={handleCardMouseLeave}
   >
     <div className="small-movie-card__image">
-      <VideoPlayer
-        source={preview}
-        poster={poster}
-        isPlaying={isActive}
-        muted={true}/>
+      {renderPlayer(playerParams)}
     </div>
     <h3 className="small-movie-card__title">
       <a className="small-movie-card__link" href={href}>{title}</a>
@@ -52,6 +54,7 @@ FilmCard.propTypes = {
   onCardClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
   onActiveChange: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
 };
 
 export default FilmCard;

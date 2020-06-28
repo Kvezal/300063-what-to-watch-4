@@ -276,6 +276,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href="movie-page.html"
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -299,6 +300,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href="movie-page.html"
             >
               Bohemian Rhapsody
             </a>
@@ -322,6 +324,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href="movie-page.html"
             >
               Macbeth
             </a>
@@ -345,6 +348,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href="movie-page.html"
             >
               Aviator
             </a>

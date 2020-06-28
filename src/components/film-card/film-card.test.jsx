@@ -27,6 +27,7 @@ describe(`FilmCardComponent`, () => {
             onCardClick={() => {}}
             isActive={false}
             onActiveChange={() => {}}
+            renderPlayer={() => {}}
           />, {
             createNodeMock: () => ({}),
           }
@@ -42,6 +43,7 @@ describe(`FilmCardComponent`, () => {
           onCardClick={() => {}}
           isActive={false}
           onActiveChange={() => {}}
+          renderPlayer={() => {}}
         />
     );
     const card = filmCardComponent.find(`article.small-movie-card`);
@@ -55,6 +57,7 @@ describe(`FilmCardComponent`, () => {
           onCardClick={() => {}}
           isActive={false}
           onActiveChange={() => {}}
+          renderPlayer={() => {}}
         />
     );
     const filmName = filmCardComponent.find(`.small-movie-card__title .small-movie-card__link`).text();
@@ -68,6 +71,7 @@ describe(`FilmCardComponent`, () => {
           onCardClick={() => {}}
           isActive={false}
           onActiveChange={() => {}}
+          renderPlayer={() => {}}
         />
     );
     const filmLink = filmCardComponent.find(`.small-movie-card__title .small-movie-card__link`).props().href;
@@ -82,6 +86,7 @@ describe(`FilmCardComponent`, () => {
           onCardClick={handleCardClickMock}
           isActive={false}
           onActiveChange={() => {}}
+          renderPlayer={() => {}}
         />
     );
     const filmCard = filmCardComponent.find(`article.small-movie-card`);
