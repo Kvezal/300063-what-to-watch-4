@@ -29,7 +29,7 @@ class App extends PureComponent {
             filmList={filmList}
             avatar="avatar.jpg"
             onCardClick={this._handleCardClick}
-          />;
+          />
         </Route>
         <Route exact path="/films">
           <FilmOverview

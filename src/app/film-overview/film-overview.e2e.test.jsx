@@ -12,10 +12,34 @@ Enzyme.configure({
 describe(`FilmOverview`, () => {
   const avatar = `avatar.jpg`;
   const likedFilms = [
-    {id: 1, href: `movie-page.html`, picture: `fantastic-beasts-the-crimes-of-grindelwald.jpg`, title: `Fantastic Beasts: The Crimes of Grindelwald`},
-    {id: 2, href: `movie-page.html`, picture: `bohemian-rhapsody.jpg`, title: `Bohemian Rhapsody`},
-    {id: 3, href: `movie-page.html`, picture: `macbeth.jpg`, title: `Macbeth`},
-    {id: 4, href: `movie-page.html`, picture: `aviator.jpg`, title: `Aviator`},
+    {
+      id: 1,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      href: `movie-page.html`,
+      poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+      title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    },
+    {
+      id: 2,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      href: `movie-page.html`,
+      poster: `img/bohemian-rhapsody.jpg`,
+      title: `Bohemian Rhapsody`,
+    },
+    {
+      id: 3,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      href: `movie-page.html`,
+      poster: `img/macbeth.jpg`,
+      title: `Macbeth`,
+    },
+    {
+      id: 4,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      href: `movie-page.html`,
+      poster: `img/aviator.jpg`,
+      title: `Aviator`,
+    },
   ];
 
   const overviewFilm = {

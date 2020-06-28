@@ -13,9 +13,10 @@ Enzyme.configure({
 describe(`FilmCardComponent`, () => {
   const film = {
     id: 1,
-    picture: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     href: `movie-page.html`,
+    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    title: `Fantastic Beasts: The Crimes of Grindelwald`
   };
 
   test(`should render component`, () => {
@@ -24,7 +25,11 @@ describe(`FilmCardComponent`, () => {
           <FilmCard
             info={film}
             onCardClick={() => {}}
-          />
+            isActive={false}
+            onActiveChange={() => {}}
+          />, {
+            createNodeMock: () => ({}),
+          }
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
@@ -35,6 +40,8 @@ describe(`FilmCardComponent`, () => {
         <FilmCard
           info={film}
           onCardClick={() => {}}
+          isActive={false}
+          onActiveChange={() => {}}
         />
     );
     const card = filmCardComponent.find(`article.small-movie-card`);
@@ -46,6 +53,8 @@ describe(`FilmCardComponent`, () => {
         <FilmCard
           info={film}
           onCardClick={() => {}}
+          isActive={false}
+          onActiveChange={() => {}}
         />
     );
     const filmName = filmCardComponent.find(`.small-movie-card__title .small-movie-card__link`).text();
@@ -57,49 +66,12 @@ describe(`FilmCardComponent`, () => {
         <FilmCard
           info={film}
           onCardClick={() => {}}
+          isActive={false}
+          onActiveChange={() => {}}
         />
     );
     const filmLink = filmCardComponent.find(`.small-movie-card__title .small-movie-card__link`).props().href;
     expect(filmLink.includes(film.href)).toBeTruthy();
-  });
-
-  test(`picture src should match`, () => {
-    const filmCardComponent = shallow(
-        <FilmCard
-          info={film}
-          onCardClick={() => {}}
-        />
-    );
-    const filmLink = filmCardComponent.find(`.small-movie-card__image img`).props().src;
-    expect(filmLink.includes(film.picture)).toBeTruthy();
-  });
-
-  test(`should change isHovered state when mouse enter in card`, () => {
-    const filmCardComponent = shallow(
-        <FilmCard
-          info={film}
-          onCardClick={() => {}}
-        />
-    );
-    const card = filmCardComponent.find(`article.small-movie-card`);
-    expect(filmCardComponent.state().isHovered).toBeFalsy();
-    card.simulate(`mouseenter`);
-    expect(filmCardComponent.state().isHovered).toBeTruthy();
-  });
-
-  test(`should change isHovered state when mouse leave from card`, () => {
-    const filmCardComponent = shallow(
-        <FilmCard
-          info={film}
-          onCardClick={() => {}}
-        />
-    );
-    const card = filmCardComponent.find(`article.small-movie-card`);
-    expect(filmCardComponent.state().isHovered).toBeFalsy();
-    card.simulate(`mouseenter`);
-    expect(filmCardComponent.state().isHovered).toBeTruthy();
-    card.simulate(`mouseleave`);
-    expect(filmCardComponent.state().isHovered).toBeFalsy();
   });
 
   test(`should be pressed`, () => {
@@ -108,6 +80,8 @@ describe(`FilmCardComponent`, () => {
         <FilmCard
           info={film}
           onCardClick={handleCardClickMock}
+          isActive={false}
+          onActiveChange={() => {}}
         />
     );
     const filmCard = filmCardComponent.find(`article.small-movie-card`);

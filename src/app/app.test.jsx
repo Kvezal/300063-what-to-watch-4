@@ -21,7 +21,8 @@ describe(`App`, () => {
             currentFilmGenres={currentFilmGenres}
             releaseDate={releaseDate}
             filmList={filmList}
-          />
+          />,
+          {createNodeMock: () => ({})}
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
