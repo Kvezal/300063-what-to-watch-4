@@ -1,4 +1,5 @@
 import React from "react";
+import render from "react-test-renderer";
 import Enzyme, {mount, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
@@ -24,6 +25,20 @@ describe(`OverviewComponent`, () => {
   ];
   const director = `Wes Andreson`;
   const starring = [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `and other`];
+
+  test(`should render component`, () => {
+    const tree = render
+      .create(
+          <Overview
+            rating={rating}
+            descriptions={descriptions}
+            director={director}
+            starring={starring}
+          />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 
   test(`should create component`, () => {
     const overviewComponent = shallow(

@@ -7,6 +7,7 @@ import FilmList from "@components/film-list";
 import Footer from "@components/footer";
 
 import Overview from "./overview";
+import Details from "./details";
 
 
 const FilmOverviewTabsEnum = {
@@ -32,8 +33,21 @@ const getOverviewTab = (info) => {
   />;
 };
 
+const getDetailsTab = (info) => {
+  const {genres, runTime, releaseDate, director, starring} = info;
+
+  return <Details
+    genres={genres}
+    runTime={runTime}
+    releaseDate={releaseDate}
+    director={director}
+    starring={starring}
+  />;
+};
+
 const tabMap = new Map([
-  [FilmOverviewTabsEnum.OVERVIEW, getOverviewTab]
+  [FilmOverviewTabsEnum.OVERVIEW, getOverviewTab],
+  [FilmOverviewTabsEnum.DETAILS, getDetailsTab]
 ]);
 
 
@@ -119,6 +133,7 @@ FilmDescription.propTypes = {
     genres: PropTypes.arrayOf(
         PropTypes.string.isRequired
     ),
+    runTime: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
     picture: PropTypes.shape({
       cover: PropTypes.string.isRequired,
