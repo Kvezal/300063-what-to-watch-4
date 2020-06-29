@@ -71,6 +71,8 @@ and other`,
             info={overviewFilm}
             avatar={avatar}
             onCardClick={() => {}}
+            renderTabs={() => {}}
+            activeTab={`test`}
           />,
           {createNodeMock: () => ({})}
       )

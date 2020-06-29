@@ -7,8 +7,14 @@ import FilmList from "@components/film-list";
 import Footer from "@components/footer";
 
 
+const tabList = [
+  {name: `Overview`, href: `overview`},
+  {name: `Details`, href: `details`},
+  {name: `Reviews`, href: `reviews`},
+];
+
 const FilmOverview = (props) => {
-  const {likedFilms, info, avatar, onCardClick} = props;
+  const {likedFilms, info, avatar, onCardClick, renderTabs} = props;
   const {name, genres, releaseDate, picture, rating, descriptions, director, starring} = info;
 
   return <Fragment>
@@ -16,7 +22,7 @@ const FilmOverview = (props) => {
       <div className="movie-card__hero">
         <div className="movie-card__bg">
           <img src={`img/${picture.cover}`} alt={name}/>
-        </div>
+        </div>1
 
         <Header avatar={avatar}/>
 
@@ -59,19 +65,8 @@ const FilmOverview = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <nav className="movie-nav movie-card__nav">
-              <ul className="movie-nav__list">
-                <li className="movie-nav__item movie-nav__item--active">
-                  <a href="#" className="movie-nav__link">Overview</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Details</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Reviews</a>
-                </li>
-              </ul>
-            </nav>
+            {renderTabs(tabList)}
+
 
             <div className="movie-rating">
               <div className="movie-rating__score">{rating.score}</div>
@@ -105,6 +100,8 @@ FilmOverview.propTypes = {
   likedFilms: filmListType.isRequired,
   onCardClick: PropTypes.func.isRequired,
   avatar: PropTypes.string.isRequired,
+  renderTabs: PropTypes.func.isRequired,
+  activeTab: PropTypes.string.isRequired,
   info: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,

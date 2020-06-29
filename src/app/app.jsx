@@ -2,10 +2,13 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
-import MainPage from "@app/main-page";
-import filmListType from "@types/film-list";
-import FilmOverview from "@app/film-overview";
 import filmMockData from "@mocks/film-page-data";
+import filmListType from "@types/film-list";
+import MainPage from "@app/main-page";
+import FilmOverview from "@app/film-overview";
+import {withTabs} from "@hocs";
+
+const FilmOverviewWrapper = withTabs(FilmOverview);
 
 
 class App extends PureComponent {
@@ -32,11 +35,12 @@ class App extends PureComponent {
           />
         </Route>
         <Route exact path="/films">
-          <FilmOverview
+          <FilmOverviewWrapper
             info={overviewFilm}
             likedFilms={filmList.slice(0, 4)}
             avatar="avatar.jpg"
             onCardClick={this._handleCardClick}
+            baseTab="overview"
           />
         </Route>
       </Switch>

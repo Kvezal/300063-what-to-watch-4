@@ -75,6 +75,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const filmOverview = filmOverviewComponent.find(`section.movie-card--full`);
@@ -88,6 +90,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const filmCards = filmOverviewComponent.find(`article.small-movie-card`);
@@ -101,6 +105,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const filmName = filmOverviewComponent.find(`h2.movie-card__title`).text();
@@ -114,6 +120,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const genres = filmOverviewComponent.find(`.movie-card__genre`).text();
@@ -127,6 +135,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const releaseDate = filmOverviewComponent.find(`.movie-card__year`).text();
@@ -140,6 +150,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const ratingScore = filmOverviewComponent.find(`.movie-rating__score`).text();
@@ -153,6 +165,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const ratingLevel = filmOverviewComponent.find(`.movie-rating__level`).text();
@@ -166,6 +180,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const ratingCount = filmOverviewComponent.find(`.movie-rating__count`).text();
@@ -179,6 +195,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const director = filmOverviewComponent.find(`.movie-card__director`).text();
@@ -192,6 +210,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const starring = filmOverviewComponent.find(`.movie-card__starring`).text();
@@ -205,6 +225,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const poster = filmOverviewComponent.find(`.movie-card__poster img`).props().src;
@@ -218,6 +240,8 @@ and other`,
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
+          renderTabs={() => {}}
+          activeTab={`test`}
         />
     );
     const cover = filmOverviewComponent.find(`.movie-card__bg img`).props().src;
