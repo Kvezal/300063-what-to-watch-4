@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FileOverviewComponent should render component 1`] = `
+exports[`FilmDescriptionComponent should render component 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -204,8 +204,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
             >
               <strong>
                 Starring: 
-                Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-and other
+                Bill Murray, Edward Norton, Jude Law, Willem Dafoe, and other and other
               </strong>
             </p>
           </div>

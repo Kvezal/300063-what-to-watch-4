@@ -22,7 +22,7 @@ describe(`TabsComponent`, () => {
       .create(
           <Tabs
             list={tabList}
-            activeTab={`Overview`}
+            activeTab={`overview`}
             onTabClick={() => {}}
           />
       )
@@ -34,7 +34,7 @@ describe(`TabsComponent`, () => {
     const tabsComponent = shallow(
         <Tabs
           list={tabList}
-          activeTab={`Overview`}
+          activeTab={`overview`}
           onTabClick={() => {}}
         />
     );
@@ -46,7 +46,7 @@ describe(`TabsComponent`, () => {
     const tabsComponent = shallow(
         <Tabs
           list={tabList}
-          activeTab={`Overview`}
+          activeTab={`overview`}
           onTabClick={() => {}}
         />
     );
@@ -58,7 +58,7 @@ describe(`TabsComponent`, () => {
     const tabsComponent = shallow(
         <Tabs
           list={tabList}
-          activeTab={`Overview`}
+          activeTab={`overview`}
           onTabClick={() => {}}
         />
     );
@@ -66,5 +66,48 @@ describe(`TabsComponent`, () => {
     tabList.forEach((item, index) => {
       expect(tabItems.at(index).text()).toBe(item.name);
     });
+  });
+
+  test(`should have active tab`, () => {
+    const activeTabIndex = 1;
+
+    const tabsComponent = shallow(
+        <Tabs
+          list={tabList}
+          activeTab={tabList[activeTabIndex].href}
+          onTabClick={() => {}}
+        />
+    );
+    const activeTabText = tabsComponent.find(`.movie-nav__item--active .movie-nav__link`).text();
+    expect(activeTabText).toBe(tabList[activeTabIndex].name);
+  });
+
+  test(`tab should be pressed`, () => {
+    const onTabClick = jest.fn();
+    const tabsComponent = shallow(
+        <Tabs
+          list={tabList}
+          activeTab={`overview`}
+          onTabClick={onTabClick}
+        />
+    );
+    const tabItems = tabsComponent.find(`a.movie-nav__link`);
+    tabItems.forEach((tab) => tab.simulate(`click`));
+    expect(onTabClick).toHaveBeenCalledTimes(tabList.length);
+  });
+
+  test(`onTabClick should have param`, () => {
+    const clickedTabIndex = 2;
+    const onTabClick = jest.fn();
+    const tabsComponent = shallow(
+        <Tabs
+          list={tabList}
+          activeTab={`overview`}
+          onTabClick={onTabClick}
+        />
+    );
+    const tabItems = tabsComponent.find(`a.movie-nav__link`);
+    tabItems.at(clickedTabIndex).simulate(`click`);
+    expect(onTabClick).toBeCalledWith(tabList[clickedTabIndex].href);
   });
 });

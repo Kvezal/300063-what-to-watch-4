@@ -1,4 +1,4 @@
-import FilmOverview from "./film-overview";
+import FilmDescription from "./film-description";
 
 
-export default FilmOverview;
+export default FilmDescription;

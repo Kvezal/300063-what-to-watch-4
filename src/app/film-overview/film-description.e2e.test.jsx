@@ -2,14 +2,14 @@ import React from "react";
 import Enzyme, {shallow, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import FilmOverview from "./film-overview";
+import FilmDescription from "./film-description";
 
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
-describe(`FilmOverview`, () => {
+describe(`FilmDescription`, () => {
   const avatar = `avatar.jpg`;
   const likedFilms = [
     {
@@ -64,19 +64,18 @@ sexual needs of the many elderly women who stay there. When one of Gustave's lov
 Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`
     ],
     director: `Wes Andreson`,
-    starring: `Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-and other`,
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `and other`],
   };
 
   test(`should create component`, () => {
     const filmOverviewComponent = shallow(
-        <FilmOverview
+        <FilmDescription
           likedFilms={likedFilms}
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
-          activeTab={`test`}
+          activeTab={`overview`}
         />
     );
     const filmOverview = filmOverviewComponent.find(`section.movie-card--full`);
@@ -85,13 +84,13 @@ and other`,
 
   test(`should have liked films`, () => {
     const filmOverviewComponent = mount(
-        <FilmOverview
+        <FilmDescription
           likedFilms={likedFilms}
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
-          activeTab={`test`}
+          activeTab={`overview`}
         />
     );
     const filmCards = filmOverviewComponent.find(`article.small-movie-card`);
@@ -100,13 +99,13 @@ and other`,
 
   test(`should have film name`, () => {
     const filmOverviewComponent = shallow(
-        <FilmOverview
+        <FilmDescription
           likedFilms={likedFilms}
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
-          activeTab={`test`}
+          activeTab={`overview`}
         />
     );
     const filmName = filmOverviewComponent.find(`h2.movie-card__title`).text();
@@ -115,13 +114,13 @@ and other`,
 
   test(`should have genres`, () => {
     const filmOverviewComponent = shallow(
-        <FilmOverview
+        <FilmDescription
           likedFilms={likedFilms}
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
-          activeTab={`test`}
+          activeTab={`overview`}
         />
     );
     const genres = filmOverviewComponent.find(`.movie-card__genre`).text();
@@ -130,103 +129,28 @@ and other`,
 
   test(`should have release date`, () => {
     const filmOverviewComponent = shallow(
-        <FilmOverview
+        <FilmDescription
           likedFilms={likedFilms}
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
-          activeTab={`test`}
+          activeTab={`overview`}
         />
     );
     const releaseDate = filmOverviewComponent.find(`.movie-card__year`).text();
     expect(releaseDate).toBe(`${overviewFilm.releaseDate}`);
   });
 
-  test(`should have rating score`, () => {
-    const filmOverviewComponent = shallow(
-        <FilmOverview
-          likedFilms={likedFilms}
-          info={overviewFilm}
-          avatar={avatar}
-          onCardClick={() => {}}
-          renderTabs={() => {}}
-          activeTab={`test`}
-        />
-    );
-    const ratingScore = filmOverviewComponent.find(`.movie-rating__score`).text();
-    expect(ratingScore).toBe(`${overviewFilm.rating.score}`);
-  });
-
-  test(`should have rating level`, () => {
-    const filmOverviewComponent = shallow(
-        <FilmOverview
-          likedFilms={likedFilms}
-          info={overviewFilm}
-          avatar={avatar}
-          onCardClick={() => {}}
-          renderTabs={() => {}}
-          activeTab={`test`}
-        />
-    );
-    const ratingLevel = filmOverviewComponent.find(`.movie-rating__level`).text();
-    expect(ratingLevel).toBe(`${overviewFilm.rating.level}`);
-  });
-
-  test(`should have rating count`, () => {
-    const filmOverviewComponent = shallow(
-        <FilmOverview
-          likedFilms={likedFilms}
-          info={overviewFilm}
-          avatar={avatar}
-          onCardClick={() => {}}
-          renderTabs={() => {}}
-          activeTab={`test`}
-        />
-    );
-    const ratingCount = filmOverviewComponent.find(`.movie-rating__count`).text();
-    expect(ratingCount.includes(overviewFilm.rating.count)).toBeTruthy();
-  });
-
-  test(`should have director`, () => {
-    const filmOverviewComponent = shallow(
-        <FilmOverview
-          likedFilms={likedFilms}
-          info={overviewFilm}
-          avatar={avatar}
-          onCardClick={() => {}}
-          renderTabs={() => {}}
-          activeTab={`test`}
-        />
-    );
-    const director = filmOverviewComponent.find(`.movie-card__director`).text();
-    expect(director.includes(overviewFilm.director)).toBeTruthy();
-  });
-
-  test(`should have starring`, () => {
-    const filmOverviewComponent = shallow(
-        <FilmOverview
-          likedFilms={likedFilms}
-          info={overviewFilm}
-          avatar={avatar}
-          onCardClick={() => {}}
-          renderTabs={() => {}}
-          activeTab={`test`}
-        />
-    );
-    const starring = filmOverviewComponent.find(`.movie-card__starring`).text();
-    expect(starring.includes(overviewFilm.starring)).toBeTruthy();
-  });
-
   test(`should have poster`, () => {
     const filmOverviewComponent = shallow(
-        <FilmOverview
+        <FilmDescription
           likedFilms={likedFilms}
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
-          activeTab={`test`}
+          activeTab={`overview`}
         />
     );
     const poster = filmOverviewComponent.find(`.movie-card__poster img`).props().src;
@@ -235,13 +159,13 @@ and other`,
 
   test(`should have cover`, () => {
     const filmOverviewComponent = shallow(
-        <FilmOverview
+        <FilmDescription
           likedFilms={likedFilms}
           info={overviewFilm}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
-          activeTab={`test`}
+          activeTab={`overview`}
         />
     );
     const cover = filmOverviewComponent.find(`.movie-card__bg img`).props().src;

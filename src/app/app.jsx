@@ -5,10 +5,10 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import filmMockData from "@mocks/film-page-data";
 import filmListType from "@types/film-list";
 import MainPage from "@app/main-page";
-import FilmOverview from "@app/film-overview";
+import FilmDescription from "@app/film-overview";
 import {withTabs} from "@hocs";
 
-const FilmOverviewWrapper = withTabs(FilmOverview);
+const FilmDescriptionWrapper = withTabs(FilmDescription);
 
 
 class App extends PureComponent {
@@ -35,7 +35,7 @@ class App extends PureComponent {
           />
         </Route>
         <Route exact path="/films">
-          <FilmOverviewWrapper
+          <FilmDescriptionWrapper
             info={overviewFilm}
             likedFilms={filmList.slice(0, 4)}
             avatar="avatar.jpg"

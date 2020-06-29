@@ -1,10 +1,10 @@
 import React from "react";
 import render from "react-test-renderer";
 
-import FilmOverview from "./film-overview";
+import FilmDescription from "./film-description";
 
 
-describe(`FileOverviewComponent`, () => {
+describe(`FilmDescriptionComponent`, () => {
   const avatar = `avatar.jpg`;
   const likedFilms = [
     {
@@ -59,20 +59,19 @@ sexual needs of the many elderly women who stay there. When one of Gustave's lov
 Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`
     ],
     director: `Wes Andreson`,
-    starring: `Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-and other`,
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `and other`],
   };
 
   test(`should render component`, () => {
     const tree = render
       .create(
-          <FilmOverview
+          <FilmDescription
             likedFilms={likedFilms}
             info={overviewFilm}
             avatar={avatar}
             onCardClick={() => {}}
             renderTabs={() => {}}
-            activeTab={`test`}
+            activeTab={`overview`}
           />,
           {createNodeMock: () => ({})}
       )

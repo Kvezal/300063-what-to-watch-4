@@ -24,8 +24,7 @@ sexual needs of the many elderly women who stay there. When one of Gustave's lov
 Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`
   ],
   director: `Wes Andreson`,
-  starring: `Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-and other`,
+  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `and other`],
 };
 
 export default {

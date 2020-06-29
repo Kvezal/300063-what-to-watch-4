@@ -6,16 +6,40 @@ import Header from "@components/header";
 import FilmList from "@components/film-list";
 import Footer from "@components/footer";
 
+import Overview from "./overview";
+
+
+const FilmOverviewTabsEnum = {
+  OVERVIEW: `overview`,
+  DETAILS: `details`,
+  REVIEWS: `reviews`,
+};
 
 const tabList = [
-  {name: `Overview`, href: `overview`},
-  {name: `Details`, href: `details`},
-  {name: `Reviews`, href: `reviews`},
+  {name: `Overview`, href: FilmOverviewTabsEnum.OVERVIEW},
+  {name: `Details`, href: FilmOverviewTabsEnum.DETAILS},
+  {name: `Reviews`, href: FilmOverviewTabsEnum.REVIEWS},
 ];
 
-const FilmOverview = (props) => {
-  const {likedFilms, info, avatar, onCardClick, renderTabs} = props;
-  const {name, genres, releaseDate, picture, rating, descriptions, director, starring} = info;
+const getOverviewTab = (info) => {
+  const {rating, descriptions, director, starring} = info;
+
+  return <Overview
+    rating={rating}
+    descriptions={descriptions}
+    director={director}
+    starring={starring}
+  />;
+};
+
+const tabMap = new Map([
+  [FilmOverviewTabsEnum.OVERVIEW, getOverviewTab]
+]);
+
+
+const FilmDescription = (props) => {
+  const {likedFilms, info, avatar, onCardClick, renderTabs, activeTab} = props;
+  const {name, genres, releaseDate, picture} = info;
 
   return <Fragment>
     <section className="movie-card movie-card--full">
@@ -67,20 +91,7 @@ const FilmOverview = (props) => {
           <div className="movie-card__desc">
             {renderTabs(tabList)}
 
-
-            <div className="movie-rating">
-              <div className="movie-rating__score">{rating.score}</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">{rating.level}</span>
-                <span className="movie-rating__count">{rating.count} ratings</span>
-              </p>
-            </div>
-
-            <div className="movie-card__text">
-              {descriptions.map((item, index) => <p key={index}>{item}</p>)}
-              <p className="movie-card__director"><strong>Director: {director}</strong></p>
-              <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
-            </div>
+            {tabMap.get(activeTab)(info)}
           </div>
         </div>
       </div>
@@ -96,7 +107,7 @@ const FilmOverview = (props) => {
   </Fragment>;
 };
 
-FilmOverview.propTypes = {
+FilmDescription.propTypes = {
   likedFilms: filmListType.isRequired,
   onCardClick: PropTypes.func.isRequired,
   avatar: PropTypes.string.isRequired,
@@ -120,10 +131,12 @@ FilmOverview.propTypes = {
     }).isRequired,
     director: PropTypes.string.isRequired,
     descriptions: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ),
-    starring: PropTypes.string.isRequired,
+        PropTypes.string
+    ).isRequired,
+    starring: PropTypes.arrayOf(
+        PropTypes.string
+    ).isRequired,
   }).isRequired,
 };
 
-export default FilmOverview;
+export default FilmDescription;
