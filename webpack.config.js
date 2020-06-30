@@ -30,7 +30,10 @@ module.exports = {
   },
   resolve: {
     alias: {
+      '@app': path.resolve(__dirname, `src/app/`),
       '@components': path.resolve(__dirname, `src/components/`),
+      '@types': path.resolve(__dirname, `src/types/`),
+      '@mocks': path.resolve(__dirname, `src/mocks/`),
     },
     extensions: [`.js`, `.jsx`],
   },

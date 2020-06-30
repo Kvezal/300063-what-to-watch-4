@@ -7,11 +7,14 @@
     "test": "npm run eslint && npm run test.jest",
     "eslint": "eslint --ext .jsx --ext .js src/",
     "test.jest": "jest",
+    "test.jest::dev": "jest --watch",
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
   },
   "jest": {
     "moduleNameMapper": {
+      "@app(.*)$": "<rootDir>/src/app/$1",
+      "@types(.*)$": "<rootDir>/src/types/$1",
       "@components(.*)$": "<rootDir>/src/components/$1"
     }
   },
