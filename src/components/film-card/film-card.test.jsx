@@ -19,36 +19,68 @@ describe(`FilmCardComponent`, () => {
   };
 
   test(`should render component`, () => {
-    const tree = render.create(<FilmCard info={film} />).toJSON();
+    const tree = render
+      .create(
+          <FilmCard
+            info={film}
+            onCardClick={() => {}}
+          />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test(`should create component`, () => {
-    const filmCardComponent = shallow(<FilmCard info={film} />);
+    const filmCardComponent = shallow(
+        <FilmCard
+          info={film}
+          onCardClick={() => {}}
+        />
+    );
     const card = filmCardComponent.find(`article.small-movie-card`);
     expect(card).toHaveLength(1);
   });
 
   test(`film name should match`, () => {
-    const filmCardComponent = shallow(<FilmCard info={film} />);
+    const filmCardComponent = shallow(
+        <FilmCard
+          info={film}
+          onCardClick={() => {}}
+        />
+    );
     const filmName = filmCardComponent.find(`.small-movie-card__title .small-movie-card__link`).text();
     expect(filmName.includes(film.title)).toBeTruthy();
   });
 
   test(`link href should match`, () => {
-    const filmCardComponent = shallow(<FilmCard info={film} />);
+    const filmCardComponent = shallow(
+        <FilmCard
+          info={film}
+          onCardClick={() => {}}
+        />
+    );
     const filmLink = filmCardComponent.find(`.small-movie-card__title .small-movie-card__link`).props().href;
     expect(filmLink.includes(film.href)).toBeTruthy();
   });
 
   test(`picture src should match`, () => {
-    const filmCardComponent = shallow(<FilmCard info={film} />);
+    const filmCardComponent = shallow(
+        <FilmCard
+          info={film}
+          onCardClick={() => {}}
+        />
+    );
     const filmLink = filmCardComponent.find(`.small-movie-card__image img`).props().src;
     expect(filmLink.includes(film.picture)).toBeTruthy();
   });
 
   test(`should change isHovered state when mouse enter in card`, () => {
-    const filmCardComponent = shallow(<FilmCard info={film} />);
+    const filmCardComponent = shallow(
+        <FilmCard
+          info={film}
+          onCardClick={() => {}}
+        />
+    );
     const card = filmCardComponent.find(`article.small-movie-card`);
     expect(filmCardComponent.state().isHovered).toBeFalsy();
     card.simulate(`mouseenter`);
@@ -56,12 +88,30 @@ describe(`FilmCardComponent`, () => {
   });
 
   test(`should change isHovered state when mouse leave from card`, () => {
-    const filmCardComponent = shallow(<FilmCard info={film} />);
+    const filmCardComponent = shallow(
+        <FilmCard
+          info={film}
+          onCardClick={() => {}}
+        />
+    );
     const card = filmCardComponent.find(`article.small-movie-card`);
     expect(filmCardComponent.state().isHovered).toBeFalsy();
     card.simulate(`mouseenter`);
     expect(filmCardComponent.state().isHovered).toBeTruthy();
     card.simulate(`mouseleave`);
     expect(filmCardComponent.state().isHovered).toBeFalsy();
+  });
+
+  test(`should be pressed`, () => {
+    const handleCardClickMock = jest.fn();
+    const filmCardComponent = shallow(
+        <FilmCard
+          info={film}
+          onCardClick={handleCardClickMock}
+        />
+    );
+    const filmCard = filmCardComponent.find(`article.small-movie-card`);
+    filmCard.simulate(`click`);
+    expect(handleCardClickMock).toHaveBeenCalled();
   });
 });

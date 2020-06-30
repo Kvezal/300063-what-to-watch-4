@@ -7,7 +7,6 @@ import FileType from "@types/film";
 class FilmCard extends PureComponent {
   constructor(props) {
     super(props);
-    this._handleCardClick = this._handleCardClick.bind(this);
     this._handleCardMouseEnter = this._handleCardMouseEnter.bind(this);
     this._handleCardMouseLeave = this._handleCardMouseLeave.bind(this);
 
@@ -17,11 +16,12 @@ class FilmCard extends PureComponent {
   }
 
   render() {
-    const {picture, title, href} = this.props.info;
+    const {onCardClick, info} = this.props;
+    const {id, picture, title, href} = info;
 
     return <article
       className="small-movie-card catalog__movies-card"
-      onClick={this._handleCardClick}
+      onClick={() => onCardClick(id)}
       onMouseEnter={this._handleCardMouseEnter}
       onMouseLeave={this._handleCardMouseLeave}
     >
@@ -32,9 +32,6 @@ class FilmCard extends PureComponent {
         <a className="small-movie-card__link" href={href}>{title}</a>
       </h3>
     </article>;
-  }
-
-  _handleCardClick() {
   }
 
   _handleCardMouseEnter() {
@@ -48,6 +45,7 @@ class FilmCard extends PureComponent {
 
 FilmCard.propTypes = {
   info: PropTypes.shape(FileType).isRequired,
+  onCardClick: PropTypes.func.isRequired,
 };
 
 export default FilmCard;

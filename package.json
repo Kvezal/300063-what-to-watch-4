@@ -15,7 +15,8 @@
     "moduleNameMapper": {
       "@app(.*)$": "<rootDir>/src/app/$1",
       "@types(.*)$": "<rootDir>/src/types/$1",
-      "@components(.*)$": "<rootDir>/src/components/$1"
+      "@components(.*)$": "<rootDir>/src/components/$1",
+      "@mocks(.*)$": "<rootDir>/src/mocks/$1"
     }
   },
   "husky": {
@@ -47,6 +48,7 @@
   "dependencies": {
     "prop-types": "15.7.2",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-router-dom": "5.2.0"
   }
 }

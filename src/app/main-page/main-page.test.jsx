@@ -5,6 +5,7 @@ import MainPage from "./main-page";
 
 
 describe(`MainPage`, () => {
+  const avatar = `avatar.jpg`;
   const currentFilmGenres = [`Drama`];
   const releaseDate = 1984;
   const filmList = [
@@ -21,7 +22,8 @@ describe(`MainPage`, () => {
             currentFilmGenres={currentFilmGenres}
             releaseDate={releaseDate}
             filmList={filmList}
-            onMainTitleClick={() => {}}
+            avatar={avatar}
+            onCardClick={() => {}}
           />
       )
       .toJSON();
