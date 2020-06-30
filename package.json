@@ -17,7 +17,8 @@
       "@types(.*)$": "<rootDir>/src/types/$1",
       "@components(.*)$": "<rootDir>/src/components/$1",
       "@mocks(.*)$": "<rootDir>/src/mocks/$1",
-      "@hocs(.*)$": "<rootDir>/src/hocs/$1"
+      "@hocs(.*)$": "<rootDir>/src/hocs/$1",
+      "@utils(.*)$": "<rootDir>/src/utils/$1"
     }
   },
   "husky": {

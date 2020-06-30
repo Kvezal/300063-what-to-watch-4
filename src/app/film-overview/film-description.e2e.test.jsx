@@ -56,6 +56,7 @@ describe(`FilmDescription`, () => {
       level: `Very good`,
       count: 240,
     },
+    runTime: `1h 39m`,
     descriptions: [
       `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge
 Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
@@ -76,6 +77,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           onCardClick={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
+          reviews={[]}
         />
     );
     const filmOverview = filmOverviewComponent.find(`section.movie-card--full`);
@@ -91,6 +93,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           onCardClick={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
+          reviews={[]}
         />
     );
     const filmCards = filmOverviewComponent.find(`article.small-movie-card`);
@@ -106,6 +109,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           onCardClick={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
+          reviews={[]}
         />
     );
     const filmName = filmOverviewComponent.find(`h2.movie-card__title`).text();
@@ -121,6 +125,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           onCardClick={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
+          reviews={[]}
         />
     );
     const genres = filmOverviewComponent.find(`.movie-card__genre`).text();
@@ -136,6 +141,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           onCardClick={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
+          reviews={[]}
         />
     );
     const releaseDate = filmOverviewComponent.find(`.movie-card__year`).text();
@@ -151,6 +157,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           onCardClick={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
+          reviews={[]}
         />
     );
     const poster = filmOverviewComponent.find(`.movie-card__poster img`).props().src;
@@ -166,6 +173,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           onCardClick={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
+          reviews={[]}
         />
     );
     const cover = filmOverviewComponent.find(`.movie-card__bg img`).props().src;

@@ -8,6 +8,8 @@ import Footer from "@components/footer";
 
 import Overview from "./overview";
 import Details from "./details";
+import Reviews from "./reviews";
+import reviewType from "@types/review";
 
 
 const FilmOverviewTabsEnum = {
@@ -24,7 +26,6 @@ const tabList = [
 
 const getOverviewTab = (info) => {
   const {rating, descriptions, director, starring} = info;
-
   return <Overview
     rating={rating}
     descriptions={descriptions}
@@ -35,7 +36,6 @@ const getOverviewTab = (info) => {
 
 const getDetailsTab = (info) => {
   const {genres, runTime, releaseDate, director, starring} = info;
-
   return <Details
     genres={genres}
     runTime={runTime}
@@ -45,15 +45,22 @@ const getDetailsTab = (info) => {
   />;
 };
 
+const getReviewTab = (reviews) => {
+  return <Reviews list={reviews}/>;
+};
+
 const tabMap = new Map([
   [FilmOverviewTabsEnum.OVERVIEW, getOverviewTab],
-  [FilmOverviewTabsEnum.DETAILS, getDetailsTab]
+  [FilmOverviewTabsEnum.DETAILS, getDetailsTab],
+  [FilmOverviewTabsEnum.REVIEWS, getReviewTab]
 ]);
 
 
 const FilmDescription = (props) => {
-  const {likedFilms, info, avatar, onCardClick, renderTabs, activeTab} = props;
+  const {likedFilms, info, avatar, onCardClick, renderTabs, activeTab, reviews} = props;
   const {name, genres, releaseDate, picture} = info;
+
+  const params = activeTab !== FilmOverviewTabsEnum.REVIEWS ? info : reviews;
 
   return <Fragment>
     <section className="movie-card movie-card--full">
@@ -104,8 +111,7 @@ const FilmDescription = (props) => {
 
           <div className="movie-card__desc">
             {renderTabs(tabList)}
-
-            {tabMap.get(activeTab)(info)}
+            {tabMap.get(activeTab)(params)}
           </div>
         </div>
       </div>
@@ -152,6 +158,9 @@ FilmDescription.propTypes = {
         PropTypes.string
     ).isRequired,
   }).isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape(reviewType)
+  ).isRequired,
 };
 
 export default FilmDescription;

@@ -7,6 +7,7 @@ import filmListType from "@types/film-list";
 import MainPage from "@app/main-page";
 import FilmDescription from "@app/film-overview";
 import {withTabs} from "@hocs";
+import reviews from "@mocks/reviews";
 
 const FilmDescriptionWrapper = withTabs(FilmDescription);
 
@@ -41,6 +42,7 @@ class App extends PureComponent {
             avatar="avatar.jpg"
             onCardClick={this._handleCardClick}
             baseTab="overview"
+            reviews={reviews}
           />
         </Route>
       </Switch>
