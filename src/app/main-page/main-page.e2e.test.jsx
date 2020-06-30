@@ -50,7 +50,7 @@ describe(`MainPageComponent`, () => {
         <MainPage
           currentFilmGenres={currentFilmGenres}
           releaseDate={releaseDate}
-          filmList={filmList}
+          films={filmList}
           avatar={avatar}
           onCardClick={onCardClick}
         />

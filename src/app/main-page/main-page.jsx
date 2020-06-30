@@ -8,7 +8,7 @@ import Footer from "@components/footer";
 
 
 const MainPage = (props) => {
-  const {currentFilmGenres, releaseDate, filmList, avatar, onCardClick} = props;
+  const {currentFilmGenres, releaseDate, films, avatar, onCardClick} = props;
 
   return <React.Fragment>
     <section className="movie-card">
@@ -87,7 +87,7 @@ const MainPage = (props) => {
           </li>
         </ul>
 
-        <FilmList list={filmList} onCardClick={onCardClick}/>
+        <FilmList list={films} onCardClick={onCardClick}/>
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -102,7 +102,7 @@ const MainPage = (props) => {
 MainPage.propTypes = {
   currentFilmGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
   releaseDate: PropTypes.number.isRequired,
-  filmList: filmListType.isRequired,
+  films: filmListType.isRequired,
   avatar: PropTypes.string.isRequired,
   onCardClick: PropTypes.func.isRequired,
 };

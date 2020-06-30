@@ -3,6 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import Review from "./review";
+import render from "react-test-renderer";
 
 
 Enzyme.configure({
@@ -15,6 +16,19 @@ describe(`ReviewComponent`, () => {
   const author = `Kate Muir`;
   const date = `December 24, 2016`;
 
+  test(`should render component`, () => {
+    const tree = render
+      .create(
+          <Review
+            text={text}
+            ratingScore={ratingScore}
+            author={author}
+            date={date}
+          />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 
   test(`should create component`, () => {
     const reviewsComponent = shallow(

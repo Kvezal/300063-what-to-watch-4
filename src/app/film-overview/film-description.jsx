@@ -25,10 +25,10 @@ const tabList = [
 ];
 
 const getOverviewTab = (info) => {
-  const {rating, descriptions, director, starring} = info;
+  const {rating, description, director, starring} = info;
   return <Overview
     rating={rating}
-    descriptions={descriptions}
+    description={description}
     director={director}
     starring={starring}
   />;
@@ -67,7 +67,7 @@ const FilmDescription = (props) => {
       <div className="movie-card__hero">
         <div className="movie-card__bg">
           <img src={`img/${picture.cover}`} alt={name}/>
-        </div>1
+        </div>
 
         <Header avatar={avatar}/>
 
@@ -151,9 +151,7 @@ FilmDescription.propTypes = {
       score: PropTypes.number.isRequired,
     }).isRequired,
     director: PropTypes.string.isRequired,
-    descriptions: PropTypes.arrayOf(
-        PropTypes.string
-    ).isRequired,
+    description: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(
         PropTypes.string
     ).isRequired,

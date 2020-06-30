@@ -11,7 +11,7 @@ Enzyme.configure({
 });
 
 describe(`FilmListComponent`, () => {
-  const filmList = [
+  const films = [
     {
       id: 1,
       preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
@@ -46,7 +46,7 @@ describe(`FilmListComponent`, () => {
     const tree = render
       .create(
           <FilmList
-            list={filmList}
+            list={films}
             onCardClick={() => {}}
           />,
           {createNodeMock: () => ({})}
@@ -56,14 +56,14 @@ describe(`FilmListComponent`, () => {
   });
 
   test(`should create component`, () => {
-    const filmListComponent = mount(<FilmList list={filmList} onCardClick={() => {}}/>);
+    const filmListComponent = mount(<FilmList list={films} onCardClick={() => {}}/>);
     const list = filmListComponent.find(`div.catalog__movies-list`);
     expect(list).toHaveLength(1);
   });
 
   test(`should have film cards`, () => {
-    const filmListComponent = mount(<FilmList list={filmList} onCardClick={() => {}}/>);
+    const filmListComponent = mount(<FilmList list={films} onCardClick={() => {}}/>);
     const cards = filmListComponent.find(`article.small-movie-card`);
-    expect(cards).toHaveLength(filmList.length);
+    expect(cards).toHaveLength(films.length);
   });
 });

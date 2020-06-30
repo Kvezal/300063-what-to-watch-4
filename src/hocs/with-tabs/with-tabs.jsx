@@ -25,11 +25,11 @@ const withTabs = (Component) => {
       />;
     }
 
-    _renderTabs(tabList) {
+    _renderTabs(tabs) {
       const {activeTab} = this.state;
 
       return <Tabs
-        list={tabList}
+        list={tabs}
         activeTab={activeTab}
         onTabClick={this._handleTabClick}
       />;

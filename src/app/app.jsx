@@ -21,7 +21,7 @@ class App extends PureComponent {
     };
   }
   render() {
-    const {currentFilmGenres, releaseDate, filmList} = this.props;
+    const {currentFilmGenres, releaseDate, films} = this.props;
     const {overviewFilm} = filmMockData;
 
     return <BrowserRouter>
@@ -30,7 +30,7 @@ class App extends PureComponent {
           <MainPage
             currentFilmGenres={currentFilmGenres}
             releaseDate={releaseDate}
-            filmList={filmList}
+            films={films}
             avatar="avatar.jpg"
             onCardClick={this._handleCardClick}
           />
@@ -38,7 +38,7 @@ class App extends PureComponent {
         <Route exact path="/films">
           <FilmDescriptionWrapper
             info={overviewFilm}
-            likedFilms={filmList.slice(0, 4)}
+            likedFilms={films.slice(0, 4)}
             avatar="avatar.jpg"
             onCardClick={this._handleCardClick}
             baseTab="overview"
@@ -57,7 +57,7 @@ class App extends PureComponent {
 App.propTypes = {
   currentFilmGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
   releaseDate: PropTypes.number.isRequired,
-  filmList: filmListType.isRequired,
+  films: filmListType.isRequired,
 };
 
 export default App;
