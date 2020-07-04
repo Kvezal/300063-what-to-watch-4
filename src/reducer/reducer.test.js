@@ -26,6 +26,15 @@ describe(`Reducer`, () => {
       });
   });
 
+  test(`choose film action should return correct object`, () => {
+    const filmId = 1;
+    expect(ActionCreator.chooseFilm(filmId))
+      .toEqual({
+        type: ActionType.CHOOSE_FILM,
+        payload: filmId,
+      });
+  });
+
   test(`should return base state if action type is incorrect`, () => {
     const baseState = {
       genre: `test`
@@ -50,10 +59,11 @@ describe(`Reducer`, () => {
     });
   });
 
-  test.each([GenreEnum.DRAMAS, GenreEnum.HORROR, GenreEnum.CRIME])(`should filter films by %p genre`, (genre) => {
+  test.each([GenreEnum.DRAMA, GenreEnum.HORROR, GenreEnum.CRIME])(`should filter films by %p genre`, (genre) => {
     const baseState = {
       genre,
       films,
+      filteredFilms: films
     };
     const action = {
       type: ActionType.UPDATE_FILM_LIST,
@@ -63,7 +73,21 @@ describe(`Reducer`, () => {
 
     expect(reducer(baseState, action)).toEqual({
       genre,
-      films: filteredFilms,
+      films,
+      filteredFilms,
+    });
+  });
+
+  test(`should set filmId`, () => {
+    const baseState = {
+      filmId: null,
+    };
+    const action = {
+      type: ActionType.CHOOSE_FILM,
+      payload: 1,
+    };
+    expect(reducer(baseState, action)).toEqual({
+      filmId: 1,
     });
   });
 });

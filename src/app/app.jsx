@@ -1,63 +1,71 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {connect} from "react-redux";
 
 import filmMockData from "@mocks/film-page-data";
-import filmListType from "@types/film-list";
-import MainPage from "@app/main-page";
-import FilmDescription from "@app/film-overview";
-import {withTabs} from "@hocs";
 import reviews from "@mocks/reviews";
+import promoFilm from "@mocks/promo-film";
+import {withTabs} from "@hocs";
+import MainPage from "@app/main-page";
+import FilmDescription from "@app/film-description";
+import {filmListType} from "@types";
+import {ActionCreator} from "@reducer";
 
 const FilmDescriptionWrapper = withTabs(FilmDescription);
 
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this._handleCardClick = this._handleCardClick.bind(this);
-    this.state = {
-      filmId: null,
-    };
-  }
-  render() {
-    const {currentFilmGenres, releaseDate, films} = this.props;
-    const {overviewFilm} = filmMockData;
+const App = (props) => {
+  const {films, onFilmChoose, genre, onGenreChoose} = props;
+  const {overviewFilm} = filmMockData;
 
-    return <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <MainPage
-            currentFilmGenres={currentFilmGenres}
-            releaseDate={releaseDate}
-            films={films}
-            avatar="avatar.jpg"
-            onCardClick={this._handleCardClick}
-          />
-        </Route>
-        <Route exact path="/films">
-          <FilmDescriptionWrapper
-            info={overviewFilm}
-            likedFilms={films.slice(0, 4)}
-            avatar="avatar.jpg"
-            onCardClick={this._handleCardClick}
-            baseTab="overview"
-            reviews={reviews}
-          />
-        </Route>
-      </Switch>
-    </BrowserRouter>;
-  }
-
-  _handleCardClick(filmId) {
-    this.setState({filmId});
-  }
-}
-
-App.propTypes = {
-  currentFilmGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  releaseDate: PropTypes.number.isRequired,
-  films: filmListType.isRequired,
+  return <BrowserRouter>
+    <Switch>
+      <Route exact path="/">
+        <MainPage
+          promoFilm={promoFilm}
+          films={films}
+          avatar="avatar.jpg"
+          genre={genre}
+          onCardClick={onFilmChoose}
+          onFilterClick={onGenreChoose}
+        />
+      </Route>
+      <Route exact path="/films">
+        <FilmDescriptionWrapper
+          info={overviewFilm}
+          likedFilms={films.slice(0, 4)}
+          avatar="avatar.jpg"
+          onCardClick={onFilmChoose}
+          baseTab="overview"
+          reviews={reviews}
+        />
+      </Route>
+    </Switch>
+  </BrowserRouter>;
 };
 
-export default App;
+App.propTypes = {
+  films: filmListType.isRequired,
+  onFilmChoose: PropTypes.func.isRequired,
+  onGenreChoose: PropTypes.func.isRequired,
+  genre: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  films: state.filteredFilms,
+  genre: state.genre,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFilmChoose: (filmId) => {
+    dispatch(ActionCreator.chooseFilm(filmId));
+  },
+  onGenreChoose: (genre) => {
+    dispatch(ActionCreator.changeFilteredGenre(genre));
+    dispatch(ActionCreator.updateFilmList());
+  }
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

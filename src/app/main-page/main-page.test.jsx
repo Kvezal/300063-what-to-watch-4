@@ -6,8 +6,6 @@ import MainPage from "./main-page";
 
 describe(`MainPage`, () => {
   const avatar = `avatar.jpg`;
-  const currentFilmGenres = [`Drama`];
-  const releaseDate = 1984;
   const films = [
     {
       id: 1,
@@ -15,6 +13,7 @@ describe(`MainPage`, () => {
       href: `movie-page.html`,
       poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
       title: `Fantastic Beasts: The Crimes of Grindelwald`,
+      genre: `test`,
     },
     {
       id: 2,
@@ -22,6 +21,7 @@ describe(`MainPage`, () => {
       href: `movie-page.html`,
       poster: `img/bohemian-rhapsody.jpg`,
       title: `Bohemian Rhapsody`,
+      genre: `test`,
     },
     {
       id: 3,
@@ -29,6 +29,7 @@ describe(`MainPage`, () => {
       href: `movie-page.html`,
       poster: `img/macbeth.jpg`,
       title: `Macbeth`,
+      genre: `test`,
     },
     {
       id: 4,
@@ -36,19 +37,34 @@ describe(`MainPage`, () => {
       href: `movie-page.html`,
       poster: `img/aviator.jpg`,
       title: `Aviator`,
+      genre: `test`,
     },
   ];
+
+  const promoFilm = {
+    id: 1,
+    name: `The Grand Budapest Hotel`,
+    picture: {
+      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      cover: `img/bg-the-grand-budapest-hotel.jpg`,
+    },
+    genres: [`Drama`],
+    runTime: `1h 39m`,
+    releaseDate: 2014,
+  };
 
   it(`should match to snapshot`, () => {
     const tree = renderer
       .create(
           <MainPage
-            currentFilmGenres={currentFilmGenres}
-            releaseDate={releaseDate}
+            promoFilm={promoFilm}
+            genre=""
+            onFilterClick={() => {}}
             films={films}
             avatar={avatar}
             onCardClick={() => {}}
-          />,
+          />
+          ,
           {createNodeMock: () => ({})}
       )
       .toJSON();

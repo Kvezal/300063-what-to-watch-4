@@ -18,6 +18,7 @@ describe(`FilmDescription`, () => {
       href: `movie-page.html`,
       poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
       title: `Fantastic Beasts: The Crimes of Grindelwald`,
+      genre: `test`,
     },
     {
       id: 2,
@@ -25,6 +26,7 @@ describe(`FilmDescription`, () => {
       href: `movie-page.html`,
       poster: `img/bohemian-rhapsody.jpg`,
       title: `Bohemian Rhapsody`,
+      genre: `test`,
     },
     {
       id: 3,
@@ -32,6 +34,7 @@ describe(`FilmDescription`, () => {
       href: `movie-page.html`,
       poster: `img/macbeth.jpg`,
       title: `Macbeth`,
+      genre: `test`,
     },
     {
       id: 4,
@@ -39,6 +42,7 @@ describe(`FilmDescription`, () => {
       href: `movie-page.html`,
       poster: `img/aviator.jpg`,
       title: `Aviator`,
+      genre: `test`,
     },
   ];
 

@@ -1,4 +1,4 @@
-import reducer from "./reducer";
+import {ActionType, ActionCreator, reducer} from "./reducer";
 
 
-export default reducer;
+export {ActionType, ActionCreator, reducer};
