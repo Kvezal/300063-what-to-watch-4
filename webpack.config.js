@@ -38,6 +38,7 @@ module.exports = {
       '@hocs': path.resolve(__dirname, `src/hocs/`),
       '@utils': path.resolve(__dirname, `src/utils/`),
       '@enums': path.resolve(__dirname, `src/enums/`),
+      '@reducer': path.resolve(__dirname, `src/reducer/`),
     },
     extensions: [`.js`, `.jsx`],
   },

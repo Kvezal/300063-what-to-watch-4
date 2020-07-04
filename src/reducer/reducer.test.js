@@ -1,4 +1,5 @@
 import {GenreEnum} from "@enums";
+
 import {ActionType, ActionCreator, reducer} from "./reducer";
 
 const films = [
