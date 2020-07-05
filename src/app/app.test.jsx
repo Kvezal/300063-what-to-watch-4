@@ -7,7 +7,7 @@ import App from "./app";
 describe(`App`, () => {
   const currentFilmGenres = [`Drama`];
   const releaseDate = 1984;
-  const filmList = [
+  const films = [
     {
       id: 1,
       preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
@@ -44,7 +44,7 @@ describe(`App`, () => {
           <App
             currentFilmGenres={currentFilmGenres}
             releaseDate={releaseDate}
-            filmList={filmList}
+            films={films}
           />,
           {createNodeMock: () => ({})}
       )

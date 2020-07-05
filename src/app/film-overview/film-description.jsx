@@ -6,10 +6,61 @@ import Header from "@components/header";
 import FilmList from "@components/film-list";
 import Footer from "@components/footer";
 
+import Overview from "./overview";
+import Details from "./details";
+import Reviews from "./reviews";
+import reviewType from "@types/review";
 
-const FilmOverview = (props) => {
-  const {likedFilms, info, avatar, onCardClick} = props;
-  const {name, genres, releaseDate, picture, rating, descriptions, director, starring} = info;
+
+const FilmOverviewTabsEnum = {
+  OVERVIEW: `overview`,
+  DETAILS: `details`,
+  REVIEWS: `reviews`,
+};
+
+const tabList = [
+  {name: `Overview`, href: FilmOverviewTabsEnum.OVERVIEW},
+  {name: `Details`, href: FilmOverviewTabsEnum.DETAILS},
+  {name: `Reviews`, href: FilmOverviewTabsEnum.REVIEWS},
+];
+
+const getOverviewTab = (info) => {
+  const {rating, description, director, starring} = info;
+  return <Overview
+    rating={rating}
+    description={description}
+    director={director}
+    starring={starring}
+  />;
+};
+
+const getDetailsTab = (info) => {
+  const {genres, runTime, releaseDate, director, starring} = info;
+  return <Details
+    genres={genres}
+    runTime={runTime}
+    releaseDate={releaseDate}
+    director={director}
+    starring={starring}
+  />;
+};
+
+const getReviewTab = (reviews) => {
+  return <Reviews list={reviews}/>;
+};
+
+const tabMap = new Map([
+  [FilmOverviewTabsEnum.OVERVIEW, getOverviewTab],
+  [FilmOverviewTabsEnum.DETAILS, getDetailsTab],
+  [FilmOverviewTabsEnum.REVIEWS, getReviewTab]
+]);
+
+
+const FilmDescription = (props) => {
+  const {likedFilms, info, avatar, onCardClick, renderTabs, activeTab, reviews} = props;
+  const {name, genres, releaseDate, picture} = info;
+
+  const params = activeTab !== FilmOverviewTabsEnum.REVIEWS ? info : reviews;
 
   return <Fragment>
     <section className="movie-card movie-card--full">
@@ -59,33 +110,8 @@ const FilmOverview = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <nav className="movie-nav movie-card__nav">
-              <ul className="movie-nav__list">
-                <li className="movie-nav__item movie-nav__item--active">
-                  <a href="#" className="movie-nav__link">Overview</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Details</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Reviews</a>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="movie-rating">
-              <div className="movie-rating__score">{rating.score}</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">{rating.level}</span>
-                <span className="movie-rating__count">{rating.count} ratings</span>
-              </p>
-            </div>
-
-            <div className="movie-card__text">
-              {descriptions.map((item, index) => <p key={index}>{item}</p>)}
-              <p className="movie-card__director"><strong>Director: {director}</strong></p>
-              <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
-            </div>
+            {renderTabs(tabList)}
+            {tabMap.get(activeTab)(params)}
           </div>
         </div>
       </div>
@@ -101,16 +127,19 @@ const FilmOverview = (props) => {
   </Fragment>;
 };
 
-FilmOverview.propTypes = {
+FilmDescription.propTypes = {
   likedFilms: filmListType.isRequired,
   onCardClick: PropTypes.func.isRequired,
   avatar: PropTypes.string.isRequired,
+  renderTabs: PropTypes.func.isRequired,
+  activeTab: PropTypes.string.isRequired,
   info: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     genres: PropTypes.arrayOf(
         PropTypes.string.isRequired
     ),
+    runTime: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
     picture: PropTypes.shape({
       cover: PropTypes.string.isRequired,
@@ -122,11 +151,14 @@ FilmOverview.propTypes = {
       score: PropTypes.number.isRequired,
     }).isRequired,
     director: PropTypes.string.isRequired,
-    descriptions: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ),
-    starring: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(
+        PropTypes.string
+    ).isRequired,
   }).isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape(reviewType)
+  ).isRequired,
 };
 
-export default FilmOverview;
+export default FilmDescription;

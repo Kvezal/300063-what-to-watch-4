@@ -11,13 +11,13 @@ Enzyme.configure({
 });
 
 const TestComponent = (props) => {
-  const {renderPlayer} = props;
+  const {renderPlayer, isActive} = props;
 
   const videoPlayerParams = {
     preview: `path_to_preview`,
     poster: `path_to_poster`,
-    isActive: false,
     muted: false,
+    isActive,
   };
   return <div>
     {renderPlayer(videoPlayerParams)}

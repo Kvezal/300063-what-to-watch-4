@@ -14,7 +14,7 @@ ReactDOM.render(
     <App
       currentFilmGenres={currentFilmGenres}
       releaseDate={releaseDate}
-      filmList={films}
+      films={films}
     />,
     root
 );
