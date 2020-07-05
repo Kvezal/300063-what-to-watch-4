@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoPlayerComponent should render component 1`] = `
+<video
+  width="100%"
+/>
+`;

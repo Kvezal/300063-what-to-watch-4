@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 
 const filmType = {
   id: PropTypes.number.isRequired,
-  picture: PropTypes.string.isRequired,
+  preview: PropTypes.string.isRequired,
+  href: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 

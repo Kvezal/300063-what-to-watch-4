@@ -273,11 +273,8 @@ and other
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
+            <video
+              width="100%"
             />
           </div>
           <h3
@@ -300,11 +297,8 @@ and other
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Bohemian Rhapsody"
-              height="175"
-              src="img/bohemian-rhapsody.jpg"
-              width="280"
+            <video
+              width="100%"
             />
           </div>
           <h3
@@ -327,11 +321,8 @@ and other
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Macbeth"
-              height="175"
-              src="img/macbeth.jpg"
-              width="280"
+            <video
+              width="100%"
             />
           </div>
           <h3
@@ -354,11 +345,8 @@ and other
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Aviator"
-              height="175"
-              src="img/aviator.jpg"
-              width="280"
+            <video
+              width="100%"
             />
           </div>
           <h3
