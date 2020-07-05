@@ -68,6 +68,8 @@ describe(`MainPageComponent`, () => {
           films={films}
           avatar={avatar}
           onCardClick={onCardClick}
+          onStepChange={() => {}}
+          step={1}
         />
     );
     const mainTitleList = mainPage.find(`a.small-movie-card__link`);

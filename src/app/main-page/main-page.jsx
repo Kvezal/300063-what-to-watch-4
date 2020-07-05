@@ -6,6 +6,10 @@ import Header from "@components/header";
 import FilmList from "@components/film-list";
 import Footer from "@components/footer";
 import FilmFilter from "@components/film-filter";
+import ButtonMore from "@components/button-more";
+
+
+const FILM_COUNT_IN_ONE_STEP = 8;
 
 const filmFilters = [
   {name: `All genres`, value: `All genres`},
@@ -21,7 +25,7 @@ const filmFilters = [
 ];
 
 const MainPage = (props) => {
-  const {promoFilm, films, avatar, genre, onCardClick, onFilterClick} = props;
+  const {promoFilm, films, avatar, genre, onCardClick, onFilterClick, onStepChange, step} = props;
   const {genres, releaseDate, name, picture} = promoFilm;
 
   return <React.Fragment>
@@ -74,11 +78,19 @@ const MainPage = (props) => {
           activeItem={genre}
         />
 
-        <FilmList list={films} onCardClick={onCardClick}/>
+        <FilmList
+          list={films}
+          onCardClick={onCardClick}
+          pack={FILM_COUNT_IN_ONE_STEP}
+          step={step}
+        />
 
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
+        <ButtonMore
+          hide={films.length <= FILM_COUNT_IN_ONE_STEP * step}
+          onButtonClick={onStepChange}
+        >
+          Show more
+        </ButtonMore>
       </section>
 
       <Footer/>
@@ -93,6 +105,8 @@ MainPage.propTypes = {
   onCardClick: PropTypes.func.isRequired,
   genre: PropTypes.string.isRequired,
   onFilterClick: PropTypes.func.isRequired,
+  onStepChange: PropTypes.func.isRequired,
+  step: PropTypes.number.isRequired,
 };
 
 export default MainPage;

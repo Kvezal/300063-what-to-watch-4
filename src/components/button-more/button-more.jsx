@@ -26,7 +26,7 @@ ButtonMore.defaultProps = {
 ButtonMore.propTypes = {
   hide: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default ButtonMore;
