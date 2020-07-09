@@ -12,9 +12,9 @@ Enzyme.configure({
 
 describe(`FilmFilterComponent`, () => {
   const filterList = [
-    {name: `Documentary`, value: `Documentary`},
-    {name: `Dramas`, value: `Drama`},
-    {name: `Horror`, value: `Horror`}
+    {name: `Documentary`, id: `Documentary`},
+    {name: `Dramas`, id: `Drama`},
+    {name: `Horror`, id: `Horror`}
   ];
 
   test(`should render component`, () => {
@@ -23,7 +23,7 @@ describe(`FilmFilterComponent`, () => {
           <FilmFilter
             list={filterList}
             onItemClick={() => {}}
-            activeItem={filterList[0].value}
+            activeItem={filterList[0].id}
           />
       )
       .toJSON();
@@ -68,7 +68,7 @@ describe(`FilmFilterComponent`, () => {
     expect(onItemClick).toBeCalledTimes(filterItems.length);
   });
 
-  test(`filter item should return value after click`, () => {
+  test(`filter item should return id after click`, () => {
     const onItemClick = jest.fn();
     const FilmFilterComponent = shallow(
         <FilmFilter
@@ -80,7 +80,7 @@ describe(`FilmFilterComponent`, () => {
     const filterItems = FilmFilterComponent.find(`li.catalog__genres-item`);
     filterList.forEach((filter, index) => {
       filterItems.at(index).simulate(`click`);
-      expect(onItemClick).toBeCalledWith(filter.value);
+      expect(onItemClick).toBeCalledWith(filter.id);
     });
   });
 
@@ -89,7 +89,7 @@ describe(`FilmFilterComponent`, () => {
         <FilmFilter
           list={filterList}
           onItemClick={() => {}}
-          activeItem={filterList[0].value}
+          activeItem={filterList[0].id}
         />
     );
     const filmFilter = FilmFilterComponent.find(`li.catalog__genres-item.catalog__genres-item--active`);

@@ -2,6 +2,7 @@ import React from "react";
 import render from "react-test-renderer";
 
 import FilmDescription from "./film-description";
+import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
 
 
 describe(`FilmDescriptionComponent`, () => {
@@ -64,17 +65,25 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `and other`],
   };
 
+  const tabList = [
+    {name: `Overview`, id: FilmOverviewTabsEnum.OVERVIEW},
+    {name: `Details`, id: FilmOverviewTabsEnum.DETAILS},
+    {name: `Reviews`, id: FilmOverviewTabsEnum.REVIEWS},
+  ];
+
   test(`should render component`, () => {
     const tree = render
       .create(
           <FilmDescription
             likedFilms={likedFilms}
+            onActiveTabChange={() => {}}
             info={overviewFilm}
             avatar={avatar}
             onCardClick={() => {}}
             renderTabs={() => {}}
             activeTab={`overview`}
             reviews={[]}
+            tabList={tabList}
           />,
           {createNodeMock: () => ({})}
       )

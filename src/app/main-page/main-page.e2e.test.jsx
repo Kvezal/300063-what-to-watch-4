@@ -58,7 +58,13 @@ describe(`MainPageComponent`, () => {
     releaseDate: 2014,
   };
 
-  it(`card titles should be pressed`, () => {
+  const filmFilters = [
+    {name: `All genres`, id: `All genres`},
+    {name: `Comedies`, id: `Comedy`},
+    {name: `Crime`, id: `Crime`}
+  ];
+
+  test(`card titles should be pressed`, () => {
     const onCardClick = jest.fn();
     const mainPage = shallow(
         <MainPage
@@ -70,6 +76,9 @@ describe(`MainPageComponent`, () => {
           onCardClick={onCardClick}
           onStepChange={() => {}}
           step={1}
+          tabList={filmFilters}
+          activeTab={filmFilters[0].id}
+          onActiveTabChange={() => {}}
         />
     );
     const mainTitleList = mainPage.find(`a.small-movie-card__link`);

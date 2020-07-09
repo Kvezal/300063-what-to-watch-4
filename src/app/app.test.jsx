@@ -45,8 +45,7 @@ describe(`App`, () => {
       .create(
           <App
             onFilmChoose={() => {}}
-            onGenreChoose={() => {}}
-            genre=""
+            chooseFilmsWithGenre={() => {}}
             films={films}
           />,
           {createNodeMock: () => ({})}

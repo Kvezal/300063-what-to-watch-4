@@ -12,9 +12,9 @@ Enzyme.configure({
 
 describe(`TabsComponent`, () => {
   const tabList = [
-    {name: `Overview`, href: `overview`},
-    {name: `Details`, href: `details`},
-    {name: `Reviews`, href: `reviews`},
+    {name: `Overview`, id: `overview`},
+    {name: `Details`, id: `details`},
+    {name: `Reviews`, id: `reviews`},
   ];
 
   test(`should render component`, () => {
@@ -23,7 +23,7 @@ describe(`TabsComponent`, () => {
           <Tabs
             list={tabList}
             activeTab={`overview`}
-            onTabClick={() => {}}
+            onActiveTabChange={() => {}}
           />
       )
       .toJSON();
@@ -35,7 +35,7 @@ describe(`TabsComponent`, () => {
         <Tabs
           list={tabList}
           activeTab={`overview`}
-          onTabClick={() => {}}
+          onActiveTabChange={() => {}}
         />
     );
     const tabsContainer = tabsComponent.find(`nav.movie-nav`);
@@ -47,7 +47,7 @@ describe(`TabsComponent`, () => {
         <Tabs
           list={tabList}
           activeTab={`overview`}
-          onTabClick={() => {}}
+          onActiveTabChange={() => {}}
         />
     );
     const tabItems = tabsComponent.find(`a.movie-nav__link`);
@@ -59,7 +59,7 @@ describe(`TabsComponent`, () => {
         <Tabs
           list={tabList}
           activeTab={`overview`}
-          onTabClick={() => {}}
+          onActiveTabChange={() => {}}
         />
     );
     const tabItems = tabsComponent.find(`a.movie-nav__link`);
@@ -74,8 +74,8 @@ describe(`TabsComponent`, () => {
     const tabsComponent = shallow(
         <Tabs
           list={tabList}
-          activeTab={tabList[activeTabIndex].href}
-          onTabClick={() => {}}
+          activeTab={tabList[activeTabIndex].id}
+          onActiveTabChange={() => {}}
         />
     );
     const activeTabText = tabsComponent.find(`.movie-nav__item--active .movie-nav__link`).text();
@@ -83,31 +83,31 @@ describe(`TabsComponent`, () => {
   });
 
   test(`tab should be pressed`, () => {
-    const onTabClick = jest.fn();
+    const onActiveTabChange = jest.fn();
     const tabsComponent = shallow(
         <Tabs
           list={tabList}
           activeTab={`overview`}
-          onTabClick={onTabClick}
+          onActiveTabChange={onActiveTabChange}
         />
     );
     const tabItems = tabsComponent.find(`a.movie-nav__link`);
     tabItems.forEach((tab) => tab.simulate(`click`));
-    expect(onTabClick).toHaveBeenCalledTimes(tabList.length);
+    expect(onActiveTabChange).toHaveBeenCalledTimes(tabList.length);
   });
 
-  test(`onTabClick should have param`, () => {
+  test(`onActiveTabChange should have param`, () => {
     const clickedTabIndex = 2;
-    const onTabClick = jest.fn();
+    const onActiveTabChange = jest.fn();
     const tabsComponent = shallow(
         <Tabs
           list={tabList}
           activeTab={`overview`}
-          onTabClick={onTabClick}
+          onActiveTabChange={onActiveTabChange}
         />
     );
     const tabItems = tabsComponent.find(`a.movie-nav__link`);
     tabItems.at(clickedTabIndex).simulate(`click`);
-    expect(onTabClick).toBeCalledWith(tabList[clickedTabIndex].href);
+    expect(onActiveTabChange).toBeCalledWith(tabList[clickedTabIndex].id);
   });
 });

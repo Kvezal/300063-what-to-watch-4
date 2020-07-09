@@ -3,6 +3,7 @@ import Enzyme, {shallow, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import FilmDescription from "./film-description";
+import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
 
 
 Enzyme.configure({
@@ -69,6 +70,12 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `and other`],
   };
 
+  const tabList = [
+    {name: `Overview`, id: FilmOverviewTabsEnum.OVERVIEW},
+    {name: `Details`, id: FilmOverviewTabsEnum.DETAILS},
+    {name: `Reviews`, id: FilmOverviewTabsEnum.REVIEWS},
+  ];
+
   test(`should create component`, () => {
     const filmOverviewComponent = shallow(
         <FilmDescription
@@ -79,6 +86,8 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
         />
     );
     const filmOverview = filmOverviewComponent.find(`section.movie-card--full`);
@@ -95,6 +104,8 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
         />
     );
     const filmCards = filmOverviewComponent.find(`article.small-movie-card`);
@@ -111,6 +122,8 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
         />
     );
     const filmName = filmOverviewComponent.find(`h2.movie-card__title`).text();
@@ -127,6 +140,8 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
         />
     );
     const genres = filmOverviewComponent.find(`.movie-card__genre`).text();
@@ -143,6 +158,8 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
         />
     );
     const releaseDate = filmOverviewComponent.find(`.movie-card__year`).text();
@@ -159,6 +176,8 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
         />
     );
     const poster = filmOverviewComponent.find(`.movie-card__poster img`).props().src;
@@ -175,6 +194,8 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
         />
     );
     const cover = filmOverviewComponent.find(`.movie-card__bg img`).props().src;

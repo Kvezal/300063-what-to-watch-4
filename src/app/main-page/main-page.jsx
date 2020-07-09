@@ -11,21 +11,8 @@ import ButtonMore from "@components/button-more";
 
 const FILM_COUNT_IN_ONE_STEP = 8;
 
-const filmFilters = [
-  {name: `All genres`, value: `All genres`},
-  {name: `Comedies`, value: `Comedy`},
-  {name: `Crime`, value: `Crime`},
-  {name: `Documentary`, value: `Documentary`},
-  {name: `Dramas`, value: `Drama`},
-  {name: `Horror`, value: `Horror`},
-  {name: `Kids & Family`, value: `Kids & Family`},
-  {name: `Romance`, value: `Romance`},
-  {name: `Sci-Fi`, value: `Sci-Fi`},
-  {name: `Thrillers`, value: `Thriller`}
-];
-
 const MainPage = (props) => {
-  const {promoFilm, films, avatar, genre, onCardClick, onFilterClick, onStepChange, step} = props;
+  const {promoFilm, films, avatar, onCardClick, onStepChange, step, tabList, activeTab, onActiveTabChange} = props;
   const {genres, releaseDate, name, picture} = promoFilm;
 
   return <React.Fragment>
@@ -73,9 +60,9 @@ const MainPage = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <FilmFilter
-          list={filmFilters}
-          onItemClick={onFilterClick}
-          activeItem={genre}
+          list={tabList}
+          onItemClick={onActiveTabChange}
+          activeItem={activeTab}
         />
 
         <FilmList
@@ -103,10 +90,16 @@ MainPage.propTypes = {
   films: filmListType.isRequired,
   avatar: PropTypes.string.isRequired,
   onCardClick: PropTypes.func.isRequired,
-  genre: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired,
   onStepChange: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
+  tabList: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        id: PropTypes.string,
+      })
+  ).isRequired,
+  activeTab: PropTypes.string.isRequired,
+  onActiveTabChange: PropTypes.func.isRequired,
 };
 
 export default MainPage;
