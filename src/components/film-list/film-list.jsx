@@ -17,6 +17,8 @@ const FilmList = (props) => {
     {displayedList.map((film) => <FilmCardWrapper
       key={film.id}
       info={film}
+      canStop={false}
+      muted={true}
       onCardClick={onCardClick}
     />)}
   </div>;

@@ -18,6 +18,7 @@ describe(`FullScreenPlayerComponent`, () => {
           time={0}
           duration={0}
           onActiveChange={() => {}}
+          onFullScreenOpen={() => {}}
         />,
         {createNodeMock: () => ({})}
     );
@@ -33,6 +34,7 @@ describe(`FullScreenPlayerComponent`, () => {
           time={0}
           duration={0}
           onActiveChange={() => {}}
+          onFullScreenOpen={() => {}}
         />
     );
     const playButton = fullScreenPlayerComponent.find(`.player__play use[xlinkHref="#play-s"]`);
@@ -47,6 +49,7 @@ describe(`FullScreenPlayerComponent`, () => {
           time={0}
           duration={0}
           onActiveChange={() => {}}
+          onFullScreenOpen={() => {}}
         />
     );
     const playButton = fullScreenPlayerComponent.find(`.player__play use[xlinkHref="#pause"]`);
@@ -62,6 +65,7 @@ describe(`FullScreenPlayerComponent`, () => {
           time={0}
           duration={0}
           onActiveChange={onPlayerButtonClick}
+          onFullScreenOpen={() => {}}
         />
     );
     fullScreenPlayerComponent.find(`.player__play`).simulate(`click`);
@@ -76,9 +80,26 @@ describe(`FullScreenPlayerComponent`, () => {
           time={10}
           duration={3700}
           onActiveChange={() => {}}
+          onFullScreenOpen={() => {}}
         />
     );
     const filmDuration = fullScreenPlayerComponent.find(`.player__time-value`).text();
     expect(filmDuration).toBe(`01:01:30`);
+  });
+
+  test(`should be pressed full screen button`, () => {
+    const onFullScreenOpenClick = jest.fn();
+    const fullScreenPlayerComponent = shallow(
+        <FullScreenPlayer
+          renderPlayer={() => {}}
+          isActive={true}
+          time={0}
+          duration={0}
+          onActiveChange={() => {}}
+          onFullScreenOpen={onFullScreenOpenClick}
+        />
+    );
+    fullScreenPlayerComponent.find(`.player__full-screen`).simulate(`click`);
+    expect(onFullScreenOpenClick).toBeCalled();
   });
 });

@@ -1,22 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
 import getTime from "@utils/get-time";
 
 
+const PERCENTS_IN_ONE = 100;
+
 const FullScreenPlayer = (props) => {
-  const {renderPlayer, isActive, onActiveChange, duration, time} = props;
+  const {renderPlayer, onFullScreenOpen, isActive, onActiveChange, duration, time} = props;
+  const progress = time / duration * PERCENTS_IN_ONE;
 
   return <div className="player">
     {renderPlayer()}
 
-    <button type="button" className="player__exit">Exit</button>
+    <Link
+      className="player__exit"
+      to="/"
+      style={{"text-decoration": `none`}}
+    >
+      Exit
+    </Link>
 
     <div className="player__controls">
       <div className="player__controls-row">
         <div className="player__time">
-          <progress className="player__progress" value="30" max="100"/>
-          <div className="player__toggler" style="left: 30%;">Toggler</div>
+          <progress className="player__progress" value={progress} max="100"/>
+          <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
         </div>
         <div className="player__time-value">{getTime(duration - time)}</div>
       </div>
@@ -34,7 +44,7 @@ const FullScreenPlayer = (props) => {
         </button>
         <div className="player__name">Transpotting</div>
 
-        <button type="button" className="player__full-screen">
+        <button type="button" className="player__full-screen" onClick={onFullScreenOpen}>
           <svg viewBox="0 0 27 27" width="27" height="27">
             <use xlinkHref="#full-screen"/>
           </svg>
@@ -51,6 +61,7 @@ FullScreenPlayer.propTypes = {
   onActiveChange: PropTypes.func.isRequired,
   time: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
+  onFullScreenOpen: PropTypes.func.isRequired,
 };
 
 export default FullScreenPlayer;

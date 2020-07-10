@@ -7,8 +7,8 @@ import FileType from "@types/film";
 const VIDEO_PLAYING_DELAY = 1000;
 
 const FilmCard = (props) => {
-  const {onCardClick, info, isActive, onActiveChange, renderPlayer} = props;
-  const {id, preview, poster, title, href} = info;
+  const {onCardClick, info, onActiveChange, renderPlayer} = props;
+  const {id, title, href} = info;
 
   let timer = 0;
 
@@ -27,13 +27,6 @@ const FilmCard = (props) => {
     }
   };
 
-  const playerParams = {
-    preview,
-    poster,
-    isActive,
-    muted: true,
-  };
-
   return <article
     className="small-movie-card catalog__movies-card"
     onClick={() => onCardClick(id)}
@@ -41,7 +34,7 @@ const FilmCard = (props) => {
     onMouseLeave={handleCardMouseLeave}
   >
     <div className="small-movie-card__image">
-      {renderPlayer(playerParams)}
+      {renderPlayer()}
     </div>
     <h3 className="small-movie-card__title">
       <a className="small-movie-card__link" href={href}>{title}</a>
