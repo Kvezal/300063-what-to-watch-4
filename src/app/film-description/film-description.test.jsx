@@ -1,5 +1,6 @@
 import React from "react";
 import render from "react-test-renderer";
+import {MemoryRouter} from "react-router-dom";
 
 import FilmDescription from "./film-description";
 import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
@@ -74,17 +75,19 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
   test(`should render component`, () => {
     const tree = render
       .create(
-          <FilmDescription
-            likedFilms={likedFilms}
-            onActiveTabChange={() => {}}
-            info={overviewFilm}
-            avatar={avatar}
-            onCardClick={() => {}}
-            renderTabs={() => {}}
-            activeTab={`overview`}
-            reviews={[]}
-            tabList={tabList}
-          />,
+          <MemoryRouter>
+            <FilmDescription
+              likedFilms={likedFilms}
+              onActiveTabChange={() => {}}
+              info={overviewFilm}
+              avatar={avatar}
+              onCardClick={() => {}}
+              renderTabs={() => {}}
+              activeTab={`overview`}
+              reviews={[]}
+              tabList={tabList}
+            />
+          </MemoryRouter>,
           {createNodeMock: () => ({})}
       )
       .toJSON();
