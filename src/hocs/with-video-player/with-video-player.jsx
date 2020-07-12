@@ -1,6 +1,5 @@
 import React, {createRef, PureComponent} from "react";
 import PropTypes from "prop-types";
-import filmType from "@types/film";
 
 
 const withVideoPlayer = (Component) => {
@@ -49,13 +48,12 @@ const withVideoPlayer = (Component) => {
     }
 
     componentDidMount() {
-      const {info, muted, canStop} = this.props;
-      const {preview, poster} = info;
+      const {source, poster, muted, canStop} = this.props;
       const video = this._videoRef.current;
 
       video.poster = poster;
       video.muted = muted;
-      video.src = preview;
+      video.src = source;
 
       video.oncanplaythrough = () => this.setState({
         isLoading: false,
@@ -70,7 +68,7 @@ const withVideoPlayer = (Component) => {
       video.onpause = () => {
         if (!canStop) {
           video.src = ``;
-          video.src = preview;
+          video.src = source;
         }
         this.setState({
           isPlaying: false,
@@ -106,8 +104,9 @@ const withVideoPlayer = (Component) => {
   };
 
   WithVideoPlayer.propTypes = {
+    source: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
     isActive: PropTypes.bool.isRequired,
-    info: PropTypes.shape(filmType),
     muted: PropTypes.bool.isRequired,
     canStop: PropTypes.bool.isRequired,
   };

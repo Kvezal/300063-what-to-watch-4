@@ -16,60 +16,117 @@ describe(`FilmDescription`, () => {
   const likedFilms = [
     {
       id: 1,
-      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      href: `movie-page.html`,
-      poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-      title: `Fantastic Beasts: The Crimes of Grindelwald`,
-      genre: `test`,
+      name: `name 1`,
+      genre: `Crime`,
+      runTime: `3h 49m`,
+      releaseDate: 1984,
+      description: `description 1`,
+      director: `director 1`,
+      rating: {
+        score: 9.9,
+        count: 276395,
+        assessment: `Very good`,
+      },
+      source: {
+        video: `video1`,
+        previewVideo: `previewVideo1`,
+      },
+      picture: {
+        poster: `poster1`,
+        cover: `cover1`,
+        color: `color1`,
+      },
+      starring: [
+        `Robert De Niro`,
+        `James Woods`,
+        `Elizabeth McGovern`
+      ],
     },
     {
       id: 2,
-      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      href: `movie-page.html`,
-      poster: `img/bohemian-rhapsody.jpg`,
-      title: `Bohemian Rhapsody`,
-      genre: `test`,
+      name: `name 2`,
+      genre: `Crime`,
+      runTime: `3h 49m`,
+      releaseDate: 1984,
+      description: `description 2`,
+      director: `director 2`,
+      rating: {
+        score: 9.9,
+        count: 276395,
+        assessment: `Very good`,
+      },
+      source: {
+        video: `video2`,
+        previewVideo: `previewVideo2`,
+      },
+      picture: {
+        poster: `poster2`,
+        cover: `cover2`,
+        color: `color2`,
+      },
+      starring: [
+        `Robert De Niro`,
+        `James Woods`,
+        `Elizabeth McGovern`
+      ],
     },
     {
       id: 3,
-      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      href: `movie-page.html`,
-      poster: `img/macbeth.jpg`,
-      title: `Macbeth`,
-      genre: `test`,
+      name: `name 3`,
+      genre: `Crime`,
+      runTime: `3h 49m`,
+      releaseDate: 1984,
+      description: `description 3`,
+      director: `director 3`,
+      rating: {
+        score: 9.9,
+        count: 276395,
+        assessment: `Very good`,
+      },
+      source: {
+        video: `video3`,
+        previewVideo: `previewVideo3`,
+      },
+      picture: {
+        poster: `poster3`,
+        cover: `cover3`,
+        color: `color3`,
+      },
+      starring: [
+        `Robert De Niro`,
+        `James Woods`,
+        `Elizabeth McGovern`
+      ],
     },
     {
       id: 4,
-      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      href: `movie-page.html`,
-      poster: `img/aviator.jpg`,
-      title: `Aviator`,
-      genre: `test`,
+      name: `name 4`,
+      genre: `Crime`,
+      runTime: `3h 49m`,
+      releaseDate: 1984,
+      description: `description 4`,
+      director: `director 4`,
+      rating: {
+        score: 9.9,
+        count: 276395,
+        assessment: `Very good`,
+      },
+      source: {
+        video: `video4`,
+        previewVideo: `previewVideo4`,
+      },
+      picture: {
+        poster: `poster4`,
+        cover: `cover4`,
+        color: `color4`,
+      },
+      starring: [
+        `Robert De Niro`,
+        `James Woods`,
+        `Elizabeth McGovern`
+      ],
     },
   ];
-
-  const overviewFilm = {
-    id: 1,
-    name: `The Grand Budapest Hotel`,
-    picture: {
-      cover: `the-grand-budapest-hotel-poster.jpg`,
-      poster: `bg-the-grand-budapest-hotel.jpg`,
-    },
-    genres: [`drama`],
-    releaseDate: 2014,
-    rating: {
-      score: 8.9,
-      level: `Very good`,
-      count: 240,
-    },
-    runTime: `1h 39m`,
-    description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge
-Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the
-sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously,
-Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
-    director: `Wes Andreson`,
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `and other`],
-  };
 
   const tabList = [
     {name: `Overview`, id: FilmOverviewTabsEnum.OVERVIEW},
@@ -81,7 +138,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
     const filmOverviewComponent = shallow(
         <FilmDescription
           likedFilms={likedFilms}
-          info={overviewFilm}
+          info={likedFilms[0]}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
@@ -100,7 +157,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
         <MemoryRouter>
           <FilmDescription
             likedFilms={likedFilms}
-            info={overviewFilm}
+            info={likedFilms[0]}
             avatar={avatar}
             onCardClick={() => {}}
             renderTabs={() => {}}
@@ -119,7 +176,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
     const filmOverviewComponent = shallow(
         <FilmDescription
           likedFilms={likedFilms}
-          info={overviewFilm}
+          info={likedFilms[0]}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
@@ -130,14 +187,14 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
         />
     );
     const filmName = filmOverviewComponent.find(`h2.movie-card__title`).text();
-    expect(filmName).toBe(overviewFilm.name);
+    expect(filmName).toBe(likedFilms[0].name);
   });
 
   test(`should have genres`, () => {
     const filmOverviewComponent = shallow(
         <FilmDescription
           likedFilms={likedFilms}
-          info={overviewFilm}
+          info={likedFilms[0]}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
@@ -148,14 +205,14 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
         />
     );
     const genres = filmOverviewComponent.find(`.movie-card__genre`).text();
-    expect(genres.includes(overviewFilm.genres[0])).toBeTruthy();
+    expect(genres.includes(likedFilms[0].genre)).toBeTruthy();
   });
 
   test(`should have release date`, () => {
     const filmOverviewComponent = shallow(
         <FilmDescription
           likedFilms={likedFilms}
-          info={overviewFilm}
+          info={likedFilms[0]}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
@@ -166,14 +223,14 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
         />
     );
     const releaseDate = filmOverviewComponent.find(`.movie-card__year`).text();
-    expect(releaseDate).toBe(`${overviewFilm.releaseDate}`);
+    expect(releaseDate).toBe(`${likedFilms[0].releaseDate}`);
   });
 
   test(`should have poster`, () => {
     const filmOverviewComponent = shallow(
         <FilmDescription
           likedFilms={likedFilms}
-          info={overviewFilm}
+          info={likedFilms[0]}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
@@ -184,14 +241,14 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
         />
     );
     const poster = filmOverviewComponent.find(`.movie-card__poster img`).props().src;
-    expect(poster.includes(overviewFilm.picture.poster)).toBeTruthy();
+    expect(poster.includes(likedFilms[0].picture.poster)).toBeTruthy();
   });
 
   test(`should have cover`, () => {
     const filmOverviewComponent = shallow(
         <FilmDescription
           likedFilms={likedFilms}
-          info={overviewFilm}
+          info={likedFilms[0]}
           avatar={avatar}
           onCardClick={() => {}}
           renderTabs={() => {}}
@@ -202,6 +259,6 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
         />
     );
     const cover = filmOverviewComponent.find(`.movie-card__bg img`).props().src;
-    expect(cover.includes(overviewFilm.picture.cover)).toBeTruthy();
+    expect(cover.includes(likedFilms[0].picture.cover)).toBeTruthy();
   });
 });

@@ -27,20 +27,15 @@ TestComponent.propTypes = {
 const TestComponentWithHOC = withVideoPlayer(TestComponent);
 
 describe(`withVideoPlayerHOC`, () => {
-  const film = {
-    id: 1,
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    genre: `Drama`,
-    href: `movie-page.html`,
-    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    title: `Fantastic Beasts: The Crimes of Grindelwald`,
-  };
+  const source = `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`;
+  const poster = `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`;
 
   test(`should render component`, () => {
     const tree = render
       .create(
           <TestComponentWithHOC
-            info={film}
+            source={source}
+            poster={poster}
             isActive={false}
           />,
           {createNodeMock: () => ({})}
@@ -52,7 +47,8 @@ describe(`withVideoPlayerHOC`, () => {
   test(`should have video`, () => {
     const wrapper = mount(
         <TestComponentWithHOC
-          info={film}
+          source={source}
+          poster={poster}
           isActive={false}
         />
     );
@@ -63,7 +59,8 @@ describe(`withVideoPlayerHOC`, () => {
   test(`Check HOC's callback turn on video "play"`, () => {
     const wrapper = mount(
         <TestComponentWithHOC
-          info={film}
+          source={source}
+          poster={poster}
           isActive={true}
         />
     );
@@ -76,7 +73,8 @@ describe(`withVideoPlayerHOC`, () => {
   test(`Check HOC's callback turn off video "pause"`, () => {
     const wrapper = mount(
         <TestComponentWithHOC
-          info={film}
+          source={source}
+          poster={poster}
           isActive={false}
         />
     );

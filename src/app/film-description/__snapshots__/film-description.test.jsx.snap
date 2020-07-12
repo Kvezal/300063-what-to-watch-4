@@ -12,8 +12,8 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="The Grand Budapest Hotel"
-          src="img/the-grand-budapest-hotel-poster.jpg"
+          alt="name 1"
+          src="cover1"
         />
       </div>
       <h1
@@ -72,7 +72,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            The Grand Budapest Hotel
+            name 1
           </h2>
           <p
             className="movie-card__meta"
@@ -80,12 +80,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              drama
+              Crime
             </span>
             <span
               className="movie-card__year"
             >
-              2014
+              1984
             </span>
           </p>
           <div
@@ -149,7 +149,7 @@ Array [
           <img
             alt="The Grand Budapest Hotel poster"
             height="327"
-            src="img/bg-the-grand-budapest-hotel.jpg"
+            src="poster1"
             width="218"
           />
         </div>
@@ -200,7 +200,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              8.9
+              9.9
             </div>
             <p
               className="movie-rating__meta"
@@ -213,7 +213,7 @@ Array [
               <span
                 className="movie-rating__count"
               >
-                240
+                276395
                  ratings
               </span>
             </p>
@@ -222,17 +222,14 @@ Array [
             className="movie-card__text"
           >
             <p>
-              In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge
-Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the
-sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously,
-Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
+              description 1
             </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                Wes Andreson
+                director 1
               </strong>
             </p>
             <p
@@ -240,7 +237,7 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
             >
               <strong>
                 Starring: 
-                Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other
+                Robert De Niro, James Woods, Elizabeth McGovern
               </strong>
             </p>
           </div>
@@ -280,9 +277,8 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Fantastic Beasts: The Crimes of Grindelwald
+              name 1
             </a>
           </h3>
         </article>
@@ -304,9 +300,8 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Bohemian Rhapsody
+              name 2
             </a>
           </h3>
         </article>
@@ -328,9 +323,8 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Macbeth
+              name 3
             </a>
           </h3>
         </article>
@@ -352,9 +346,8 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Aviator
+              name 4
             </a>
           </h3>
         </article>

@@ -1,21 +1,21 @@
 import padStart from "@utils/pad-start";
+import getTimeParams from "@utils/get-time-params";
 
 
-const TimeMeasure = {
-  SECONDS_IN_MINUTE: 60,
-  SECONDS_IN_HOUR: 3600,
-};
+const getTime = (allSeconds, pattern = `hh:mm:ss`) => {
+  const timeParams = getTimeParams(allSeconds);
+  switch (pattern) {
+    case `hh:mm:ss`:
+      Object.keys(timeParams).forEach((param) => {
+        timeParams[param] = padStart(2, `${timeParams[param]}`, 0);
+      });
+      return `${timeParams.hours}:${timeParams.minutes}:${timeParams.seconds}`;
+    case `h mm`:
+      return `${timeParams.hours}h ${timeParams.minutes}m`;
 
-const getTwoNumber = (number) => {
-  const roundedNumber = Math.floor(number);
-  return padStart(2, `${roundedNumber}`, 0);
-};
-
-const getTime = (allSeconds) => {
-  const seconds = getTwoNumber(allSeconds % TimeMeasure.SECONDS_IN_MINUTE);
-  const minutes = getTwoNumber(allSeconds / TimeMeasure.SECONDS_IN_MINUTE % TimeMeasure.SECONDS_IN_MINUTE);
-  const hours = getTwoNumber(allSeconds / TimeMeasure.SECONDS_IN_HOUR);
-  return `${hours}:${minutes}:${seconds}`;
+    default:
+      return `${pattern} pattern isn't exist`;
+  }
 };
 
 export default getTime;

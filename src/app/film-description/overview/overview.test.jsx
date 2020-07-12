@@ -13,7 +13,7 @@ Enzyme.configure({
 describe(`OverviewComponent`, () => {
   const rating = {
     score: 8.9,
-    level: `Very good`,
+    assessment: `Very good`,
     count: 240,
   };
   const description = `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge
@@ -65,7 +65,7 @@ describe(`OverviewComponent`, () => {
     expect(movieRatingScore).toBe(`${rating.score}`);
   });
 
-  test(`should have rating level`, () => {
+  test(`should have rating assessment`, () => {
     const filmOverviewComponent = mount(
         <Overview
           rating={rating}
@@ -74,8 +74,8 @@ describe(`OverviewComponent`, () => {
           starring={starring}
         />
     );
-    const movieRatingLevel = filmOverviewComponent.find(`.movie-rating__level`).text();
-    expect(movieRatingLevel).toBe(`${rating.level}`);
+    const movieRatingAssessment = filmOverviewComponent.find(`.movie-rating__level`).text();
+    expect(movieRatingAssessment).toBe(`${rating.assessment}`);
   });
 
   test(`should have rating count`, () => {

@@ -1,8 +1,8 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 
-const MAX_STARRING_COUNT = 4;
 
+const MAX_STARRING_COUNT = 4;
 
 const Overview = (props) => {
   const {rating, director, description, starring} = props;
@@ -16,7 +16,7 @@ const Overview = (props) => {
     <div className="movie-rating">
       <div className="movie-rating__score">{rating.score}</div>
       <p className="movie-rating__meta">
-        <span className="movie-rating__level">{rating.level}</span>
+        <span className="movie-rating__level">{rating.assessment}</span>
         <span className="movie-rating__count">{rating.count} ratings</span>
       </p>
     </div>
@@ -32,7 +32,7 @@ const Overview = (props) => {
 Overview.propTypes = {
   rating: PropTypes.shape({
     count: PropTypes.number.isRequired,
-    level: PropTypes.string.isRequired,
+    assessment: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
   }).isRequired,
   director: PropTypes.string.isRequired,

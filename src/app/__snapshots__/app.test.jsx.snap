@@ -9,8 +9,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="name 1"
+        src="cover1"
       />
     </div>
     <h1
@@ -70,9 +70,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel"
+            alt="name 1"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="poster1"
             width="218"
           />
         </div>
@@ -82,7 +82,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            The Grand Budapest Hotel
+            name 1
           </h2>
           <p
             className="movie-card__meta"
@@ -90,12 +90,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Drama
+              Crime
             </span>
             <span
               className="movie-card__year"
             >
-              2014
+              1984
             </span>
           </p>
           <div
@@ -278,9 +278,8 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Fantastic Beasts: The Crimes of Grindelwald
+              name 1
             </a>
           </h3>
         </article>
@@ -302,9 +301,8 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Bohemian Rhapsody
+              name 2
             </a>
           </h3>
         </article>
@@ -326,9 +324,8 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Macbeth
+              name 3
             </a>
           </h3>
         </article>
@@ -350,9 +347,8 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
-              Aviator
+              name 4
             </a>
           </h3>
         </article>

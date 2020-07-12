@@ -2,7 +2,6 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
-import filmListType from "@types/film-list";
 import reviewType from "@types/review";
 import Header from "@components/header";
 import FilmList from "@components/film-list";
@@ -13,6 +12,7 @@ import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
 import Overview from "./overview";
 import Details from "./details";
 import Reviews from "./reviews";
+import filmType from "@types/film";
 
 
 const getTab = (activeTab, info, reviews) => {
@@ -41,13 +41,13 @@ const getTab = (activeTab, info, reviews) => {
 
 const FilmDescription = (props) => {
   const {likedFilms, info, avatar, onCardClick, activeTab, tabList, reviews, onActiveTabChange} = props;
-  const {name, genres, releaseDate, picture} = info;
+  const {name, genre, releaseDate, picture} = info;
 
   return <Fragment>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <div className="movie-card__bg">
-          <img src={`img/${picture.cover}`} alt={name}/>
+          <img src={picture.cover} alt={name}/>
         </div>
 
         <Header avatar={avatar}/>
@@ -56,7 +56,7 @@ const FilmDescription = (props) => {
           <div className="movie-card__desc">
             <h2 className="movie-card__title">{name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{genres}</span>
+              <span className="movie-card__genre">{genre}</span>
               <span className="movie-card__year">{releaseDate}</span>
             </p>
 
@@ -83,7 +83,7 @@ const FilmDescription = (props) => {
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
             <img
-              src={`img/${picture.poster}`}
+              src={picture.poster}
               alt="The Grand Budapest Hotel poster"
               width="218"
               height="327"
@@ -113,7 +113,10 @@ const FilmDescription = (props) => {
 };
 
 FilmDescription.propTypes = {
-  likedFilms: filmListType.isRequired,
+  info: PropTypes.shape(filmType).isRequired,
+  likedFilms: PropTypes.arrayOf(
+      PropTypes.shape(filmType)
+  ).isRequired,
   onCardClick: PropTypes.func.isRequired,
   avatar: PropTypes.string.isRequired,
   tabList: PropTypes.arrayOf(
@@ -124,29 +127,6 @@ FilmDescription.propTypes = {
   ).isRequired,
   activeTab: PropTypes.string.isRequired,
   onActiveTabChange: PropTypes.func.isRequired,
-  info: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    genres: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ),
-    runTime: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    picture: PropTypes.shape({
-      cover: PropTypes.string.isRequired,
-      poster: PropTypes.string.isRequired,
-    }).isRequired,
-    rating: PropTypes.shape({
-      count: PropTypes.number.isRequired,
-      level: PropTypes.string.isRequired,
-      score: PropTypes.number.isRequired,
-    }).isRequired,
-    director: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(
-        PropTypes.string
-    ).isRequired,
-  }).isRequired,
   reviews: PropTypes.arrayOf(
       PropTypes.shape(reviewType)
   ).isRequired,

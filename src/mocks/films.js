@@ -1,24 +1,32 @@
 const films = [
-  {id: 1, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Drama`, href: `movie-page.html`, poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`, title: `Fantastic Beasts: The Crimes of Grindelwald`},
-  {id: 2, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Horror`, href: `movie-page.html`, poster: `img/bohemian-rhapsody.jpg`, title: `Bohemian Rhapsody`},
-  {id: 3, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Drama`, href: `movie-page.html`, poster: `img/macbeth.jpg`, title: `Macbeth`},
-  {id: 4, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Crime`, href: `movie-page.html`, poster: `img/aviator.jpg`, title: `Aviator`},
-  {id: 5, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Thriller`, href: `movie-page.html`, poster: `img/we-need-to-talk-about-kevin.jpg`, title: `We need to talk about Kevin`},
-  {id: 6, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Crime`, href: `movie-page.html`, poster: `img/what-we-do-in-the-shadows.jpg`, title: `What We Do in the Shadows`},
-  {id: 7, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Romance`, href: `movie-page.html`, poster: `img/revenant.jpg`, title: `Revenant`},
-  {id: 8, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Drama`, href: `movie-page.html`, poster: `img/johnny-english.jpg`, title: `Johnny English`},
-  {id: 9, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Romance`, href: `movie-page.html`, poster: `img/shutter-island.jpg`, title: `Shutter Island`},
-  {id: 10, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Crime`, href: `movie-page.html`, poster: `img/pulp-fiction.jpg`, title: `Pulp Fiction`},
-  {id: 11, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Romance`, href: `movie-page.html`, poster: `img/no-country-for-old-men.jpg`, title: `No Country for Old Men`},
-  {id: 12, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Drama`, href: `movie-page.html`, poster: `img/snatch.jpg`, title: `Snatch`},
-  {id: 13, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Horror`, href: `movie-page.html`, poster: `img/moonrise-kingdom.jpg`, title: `Moonrise Kingdom`},
-  {id: 14, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Thriller`, href: `movie-page.html`, poster: `img/seven-years-in-tibet.jpg`, title: `Seven Years in Tibet`},
-  {id: 15, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Romance`, href: `movie-page.html`, poster: `img/midnight-special.jpg`, title: `Midnight Special`},
-  {id: 16, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Drama`, href: `movie-page.html`, poster: `img/war-of-the-worlds.jpg`, title: `War of the Worlds`},
-  {id: 17, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Crime`, href: `movie-page.html`, poster: `img/dardjeeling-limited.jpg`, title: `Dardjeeling Limited`},
-  {id: 18, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Horror`, href: `movie-page.html`, poster: `img/orlando.jpg`, title: `Orlando`},
-  {id: 19, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Thriller`, href: `movie-page.html`, poster: `img/mindhunter.jpg`, title: `Mindhunter`},
-  {id: 20, preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`, genre: `Drama`, href: `movie-page.html`, poster: `img/midnight-special.jpg`, title: `Midnight Special`},
+  {
+    id: 1,
+    name: `Once Upon a Time in America`,
+    genre: `Crime`,
+    runTime: `1h 49m`,
+    releaseDate: 1984,
+    description: `A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.`,
+    director: `Sergio Leone`,
+    rating: {
+      score: 9.9,
+      count: 276395,
+      assessment: `Very well`,
+    },
+    source: {
+      video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
+      previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    },
+    picture: {
+      poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/ones_upon_a_time_in_america.jpg`,
+      cover: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/Once_Upon_a_Time_in_America.jpg`,
+      color: `#CBAC79`,
+    },
+    starring: [
+      `Robert De Niro`,
+      `James Woods`,
+      `Elizabeth McGovern`
+    ],
+  }
 ];
 
 export default films;

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
-import filmListType from "@types/film-list";
+import filmType from "@types/film";
 import Header from "@components/header";
 import FilmList from "@components/film-list";
 import Footer from "@components/footer";
@@ -14,7 +14,7 @@ const FILM_COUNT_IN_ONE_STEP = 8;
 
 const MainPage = (props) => {
   const {promoFilm, films, avatar, onCardClick, onStepChange, step, tabList, activeTab, onActiveTabChange} = props;
-  const {genres, releaseDate, name, picture} = promoFilm;
+  const {genre, releaseDate, name, picture} = promoFilm;
 
   return <React.Fragment>
     <section className="movie-card">
@@ -33,7 +33,7 @@ const MainPage = (props) => {
           <div className="movie-card__desc">
             <h2 className="movie-card__title">{name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{genres}</span>
+              <span className="movie-card__genre">{genre}</span>
               <span className="movie-card__year">{releaseDate}</span>
             </p>
 
@@ -87,8 +87,10 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  promoFilm: PropTypes.shape().isRequired,
-  films: filmListType.isRequired,
+  promoFilm: PropTypes.shape(filmType).isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape(filmType)
+  ).isRequired,
   avatar: PropTypes.string.isRequired,
   onCardClick: PropTypes.func.isRequired,
   onStepChange: PropTypes.func.isRequired,

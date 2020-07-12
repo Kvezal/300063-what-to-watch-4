@@ -3,14 +3,12 @@ import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {connect} from "react-redux";
 
-import filmMockData from "@mocks/film-page-data";
 import reviews from "@mocks/reviews";
-import promoFilm from "@mocks/promo-film";
 import {withActiveFlag, withActiveTab, withStep, withVideoPlayer} from "@hocs";
 import MainPage from "@app/main-page";
 import FilmDescription from "@app/film-description";
 import FullScreenPlayer from "@app/full-screen-player";
-import {filmListType} from "@types";
+import filmType from "@types/film";
 import {ActionCreator} from "@reducer";
 import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
 
@@ -20,7 +18,6 @@ const FullScreenPlayerWrapper = withActiveFlag(withVideoPlayer(FullScreenPlayer)
 
 const App = (props) => {
   const {films, onFilmChoose, chooseFilmsWithGenre} = props;
-  const {overviewFilm} = filmMockData;
 
   const filmDescriptionTabList = [
     {name: `Overview`, id: FilmOverviewTabsEnum.OVERVIEW},
@@ -45,7 +42,7 @@ const App = (props) => {
     <Switch>
       <Route exact path="/">
         <MainPageWrapper
-          promoFilm={promoFilm}
+          promoFilm={films[0]}
           films={films}
           avatar="avatar.jpg"
           onCardClick={onFilmChoose}
@@ -56,7 +53,7 @@ const App = (props) => {
       </Route>
       <Route exact path="/films">
         <FilmDescriptionWrapper
-          info={overviewFilm}
+          info={films[0]}
           likedFilms={films.slice(0, 4)}
           avatar="avatar.jpg"
           onCardClick={onFilmChoose}
@@ -68,7 +65,8 @@ const App = (props) => {
       </Route>
       <Route exact path="/player">
         <FullScreenPlayerWrapper
-          info={films[0]}
+          source={films[0].source.video}
+          poster={films[0].picture.poster}
           muted={false}
         />
       </Route>
@@ -77,7 +75,9 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  films: filmListType.isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape(filmType)
+  ).isRequired,
   onFilmChoose: PropTypes.func.isRequired,
   chooseFilmsWithGenre: PropTypes.func.isRequired,
 };

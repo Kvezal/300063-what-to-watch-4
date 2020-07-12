@@ -17,7 +17,7 @@ const FullScreenPlayer = (props) => {
     <Link
       className="player__exit"
       to="/"
-      style={{"text-decoration": `none`}}
+      style={{textDecoration: `none`}}
     >
       Exit
     </Link>
@@ -25,7 +25,7 @@ const FullScreenPlayer = (props) => {
     <div className="player__controls">
       <div className="player__controls-row">
         <div className="player__time">
-          <progress className="player__progress" value={progress} max="100"/>
+          <progress className="player__progress" value={`${progress}`} max="100"/>
           <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
         </div>
         <div className="player__time-value">{getTime(duration - time)}</div>
