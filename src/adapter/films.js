@@ -1,6 +1,6 @@
 import {getTime, getAssessment} from "@utils";
 
-const createFilm = (film) => {
+const adaptFilm = (film) => {
   return {
     id: film.id,
     genre: film.genre,
@@ -27,4 +27,4 @@ const createFilm = (film) => {
 };
 
 
-export default createFilm;
+export default adaptFilm;
