@@ -5,15 +5,13 @@ import GenreEnum from "@enums/genres";
 const initialState = {
   genre: GenreEnum.ALL,
   films: [],
-  filteredFilms: [],
-  currentFilm: null,
+  currentFilmId: null,
 };
 
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
-  FILTER_FILMS: `FILTER_FILMS`,
   CHOOSE_GENRE: `CHOOSE_GENRE`,
-  CHOOSE_FILM: `CHOOSE_FILM`,
+  CHOOSE_FILM_ID: `CHOOSE_FILM_ID`,
 };
 
 const ActionCreator = {
@@ -25,12 +23,8 @@ const ActionCreator = {
     type: ActionType.LOAD_FILMS,
     payload: films,
   }),
-  filterFilms: () => ({
-    type: ActionType.FILTER_FILMS,
-    payload: null,
-  }),
-  chooseFilm: (filmId) => ({
-    type: ActionType.CHOOSE_FILM,
+  chooseFilmId: (filmId) => ({
+    type: ActionType.CHOOSE_FILM_ID,
     payload: filmId,
   }),
 };
@@ -41,7 +35,6 @@ const Operation = {
       .get(`/films`)
       .then((response) => {
         dispatch(ActionCreator.loadFilms(response.date));
-        dispatch(ActionCreator.filterFilms());
       });
   }
 };
@@ -50,19 +43,15 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHOOSE_GENRE:
       return extend(state, {
-        genre: action.payload
+        genre: action.payload,
       });
     case ActionType.LOAD_FILMS:
       return extend(state, {
-        films: action.payload
+        films: action.payload,
       });
-    case ActionType.FILTER_FILMS:
+    case ActionType.CHOOSE_FILM_ID:
       return extend(state, {
-        filteredFilms: state.films.filter((film) => film.genre === state.genre)
-      });
-    case ActionType.CHOOSE_FILM:
-      return extend(state, {
-        currentFilm: state.films.find((film) => film.id === action.payload)
+        currentFilmId: action.payload,
       });
     default:
       return state;

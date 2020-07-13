@@ -6,8 +6,7 @@ import extend from "@utils/extend";
 const initialState = {
   genre: GenreEnum.ALL,
   films: [],
-  filteredFilms: [],
-  currentFilm: null,
+  currentFilmId: null,
 };
 
 const films = [
@@ -143,19 +142,11 @@ describe(`DataReducer`, () => {
       });
   });
 
-  test(`filter films action should return correct object`, () => {
-    expect(ActionCreator.filterFilms())
-      .toEqual({
-        type: ActionType.FILTER_FILMS,
-        payload: null,
-      });
-  });
-
   test(`choose film action should return correct object`, () => {
     const filmId = 10;
-    expect(ActionCreator.chooseFilm(filmId))
+    expect(ActionCreator.chooseFilmId(filmId))
       .toEqual({
-        type: ActionType.CHOOSE_FILM,
+        type: ActionType.CHOOSE_FILM_ID,
         payload: filmId,
       });
   });
@@ -191,34 +182,18 @@ describe(`DataReducer`, () => {
       }));
   });
 
-  test(`should set filteredFilms`, () => {
-    const genre = GenreEnum.DRAMA;
-    const state = extend(initialState, {
-      films,
-      genre,
-    });
-    const filterFilmAction = {
-      type: ActionType.FILTER_FILMS,
-      payload: null,
-    };
-    expect(reducer(state, filterFilmAction))
-      .toEqual(extend(state, {
-        filteredFilms: films.filter((film) => film.genre === genre),
-      }));
-  });
-
-  test(`should set currentFilm`, () => {
+  test(`should set currentFilmId`, () => {
     const filmId = 2;
     const state = extend(initialState, {
       films,
     });
     const chooseFilmAction = {
-      type: ActionType.CHOOSE_FILM,
+      type: ActionType.CHOOSE_FILM_ID,
       payload: filmId,
     };
     expect(reducer(state, chooseFilmAction))
       .toEqual(extend(state, {
-        currentFilm: films.find((film) => film.id === filmId),
+        currentFilmId: filmId,
       }));
   });
 });
