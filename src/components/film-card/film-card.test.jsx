@@ -16,7 +16,8 @@ describe(`FilmCardComponent`, () => {
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     href: `movie-page.html`,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    title: `Fantastic Beasts: The Crimes of Grindelwald`
+    title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    genre: `test`,
   };
 
   test(`should render component`, () => {

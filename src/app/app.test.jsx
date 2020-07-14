@@ -1,12 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import App from "./app";
+import {App} from "./app";
 
 
 describe(`App`, () => {
-  const currentFilmGenres = [`Drama`];
-  const releaseDate = 1984;
   const films = [
     {
       id: 1,
@@ -14,6 +12,7 @@ describe(`App`, () => {
       href: `movie-page.html`,
       poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
       title: `Fantastic Beasts: The Crimes of Grindelwald`,
+      genre: `test`,
     },
     {
       id: 2,
@@ -21,6 +20,7 @@ describe(`App`, () => {
       href: `movie-page.html`,
       poster: `img/bohemian-rhapsody.jpg`,
       title: `Bohemian Rhapsody`,
+      genre: `test`,
     },
     {
       id: 3,
@@ -28,6 +28,7 @@ describe(`App`, () => {
       href: `movie-page.html`,
       poster: `img/macbeth.jpg`,
       title: `Macbeth`,
+      genre: `test`,
     },
     {
       id: 4,
@@ -35,6 +36,7 @@ describe(`App`, () => {
       href: `movie-page.html`,
       poster: `img/aviator.jpg`,
       title: `Aviator`,
+      genre: `test`,
     },
   ];
 
@@ -42,8 +44,9 @@ describe(`App`, () => {
     const tree = renderer
       .create(
           <App
-            currentFilmGenres={currentFilmGenres}
-            releaseDate={releaseDate}
+            onFilmChoose={() => {}}
+            onGenreChoose={() => {}}
+            genre=""
             films={films}
           />,
           {createNodeMock: () => ({})}

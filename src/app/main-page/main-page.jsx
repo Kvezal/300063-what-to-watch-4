@@ -5,15 +5,29 @@ import filmListType from "@types/film-list";
 import Header from "@components/header";
 import FilmList from "@components/film-list";
 import Footer from "@components/footer";
+import FilmFilter from "@components/film-filter";
 
+const filmFilters = [
+  {name: `All genres`, value: `All genres`},
+  {name: `Comedies`, value: `Comedy`},
+  {name: `Crime`, value: `Crime`},
+  {name: `Documentary`, value: `Documentary`},
+  {name: `Dramas`, value: `Drama`},
+  {name: `Horror`, value: `Horror`},
+  {name: `Kids & Family`, value: `Kids & Family`},
+  {name: `Romance`, value: `Romance`},
+  {name: `Sci-Fi`, value: `Sci-Fi`},
+  {name: `Thrillers`, value: `Thriller`}
+];
 
 const MainPage = (props) => {
-  const {currentFilmGenres, releaseDate, films, avatar, onCardClick} = props;
+  const {promoFilm, films, avatar, genre, onCardClick, onFilterClick} = props;
+  const {genres, releaseDate, name, picture} = promoFilm;
 
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+        <img src={picture.cover} alt={name}/>
       </div>
 
       <Header avatar={avatar}/>
@@ -21,13 +35,13 @@ const MainPage = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
+            <img src={picture.poster} alt={name} width="218" height="327"/>
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+            <h2 className="movie-card__title">{name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{currentFilmGenres.join(` , `)}</span>
+              <span className="movie-card__genre">{genres}</span>
               <span className="movie-card__year">{releaseDate}</span>
             </p>
 
@@ -54,38 +68,11 @@ const MainPage = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <ul className="catalog__genres-list">
-          <li className="catalog__genres-item catalog__genres-item--active">
-            <a href="#" className="catalog__genres-link">All genres</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Comedies</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Crime</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Documentary</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Dramas</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Horror</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Kids & Family</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Romance</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Sci-Fi</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Thrillers</a>
-          </li>
-        </ul>
+        <FilmFilter
+          list={filmFilters}
+          onItemClick={onFilterClick}
+          activeItem={genre}
+        />
 
         <FilmList list={films} onCardClick={onCardClick}/>
 
@@ -100,11 +87,12 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  currentFilmGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  releaseDate: PropTypes.number.isRequired,
+  promoFilm: PropTypes.shape().isRequired,
   films: filmListType.isRequired,
   avatar: PropTypes.string.isRequired,
   onCardClick: PropTypes.func.isRequired,
+  genre: PropTypes.string.isRequired,
+  onFilterClick: PropTypes.func.isRequired,
 };
 
 export default MainPage;
