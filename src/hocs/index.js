@@ -1,10 +1,12 @@
 import withActiveFlag from "./with-active-flag";
-import withVideoPlayer from "./with-video-player";
+import withStep from "./with-step";
 import withTabs from "./with-tabs";
+import withVideoPlayer from "./with-video-player";
 
 
 export {
   withActiveFlag,
-  withVideoPlayer,
+  withStep,
   withTabs,
+  withVideoPlayer,
 };

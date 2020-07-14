@@ -49,10 +49,7 @@ describe(`FilmListComponent`, () => {
   test(`should render component`, () => {
     const tree = render
       .create(
-          <FilmList
-            list={films}
-            onCardClick={() => {}}
-          />,
+          <FilmList list={films} onCardClick={() => {}}/>,
           {createNodeMock: () => ({})}
       )
       .toJSON();
@@ -69,5 +66,33 @@ describe(`FilmListComponent`, () => {
     const filmListComponent = mount(<FilmList list={films} onCardClick={() => {}}/>);
     const cards = filmListComponent.find(`article.small-movie-card`);
     expect(cards).toHaveLength(films.length);
+  });
+
+  test(`should have cards limit`, () => {
+    const pack = 2;
+    const filmListComponent = mount(
+        <FilmList
+          list={films}
+          onCardClick={() => {}}
+          pack={pack}
+        />
+    );
+    const cards = filmListComponent.find(`article.small-movie-card`);
+    expect(cards).toHaveLength(pack);
+  });
+
+  test(`should have cards limit`, () => {
+    const pack = 2;
+    const step = 2;
+    const filmListComponent = mount(
+        <FilmList
+          list={films}
+          onCardClick={() => {}}
+          pack={pack}
+          step={step}
+        />
+    );
+    const cards = filmListComponent.find(`article.small-movie-card`);
+    expect(cards).toHaveLength(pack * step);
   });
 });

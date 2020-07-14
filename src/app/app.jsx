@@ -6,14 +6,15 @@ import {connect} from "react-redux";
 import filmMockData from "@mocks/film-page-data";
 import reviews from "@mocks/reviews";
 import promoFilm from "@mocks/promo-film";
-import {withTabs} from "@hocs";
+import {withTabs, withStep} from "@hocs";
 import MainPage from "@app/main-page";
 import FilmDescription from "@app/film-description";
 import {filmListType} from "@types";
 import {ActionCreator} from "@reducer";
 
-const FilmDescriptionWrapper = withTabs(FilmDescription);
 
+const FilmDescriptionWrapper = withTabs(FilmDescription);
+const MainPageWrapper = withStep(MainPage);
 
 const App = (props) => {
   const {films, onFilmChoose, genre, onGenreChoose} = props;
@@ -22,7 +23,7 @@ const App = (props) => {
   return <BrowserRouter>
     <Switch>
       <Route exact path="/">
-        <MainPage
+        <MainPageWrapper
           promoFilm={promoFilm}
           films={films}
           avatar="avatar.jpg"

@@ -63,6 +63,8 @@ describe(`MainPage`, () => {
             films={films}
             avatar={avatar}
             onCardClick={() => {}}
+            onStepChange={() => {}}
+            step={1}
           />
           ,
           {createNodeMock: () => ({})}
