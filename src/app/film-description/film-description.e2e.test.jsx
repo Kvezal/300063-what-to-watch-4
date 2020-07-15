@@ -4,7 +4,7 @@ import Enzyme, {shallow, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import FilmDescription from "./film-description";
-import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
+import {FilmOverviewTabsEnum} from "@common/enums";
 
 
 Enzyme.configure({

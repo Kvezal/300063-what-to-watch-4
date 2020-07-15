@@ -4,6 +4,11 @@ exports[`FilmDescriptionComponent should render component 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
+    style={
+      Object {
+        "backgroundColor": undefined,
+      }
+    }
   >
     <div
       className="movie-card__hero"
@@ -29,7 +34,8 @@ Array [
         >
           <a
             className="logo__link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -77,6 +83,7 @@ Array [
           <p
             className="movie-card__meta"
           >
+            1
             <span
               className="movie-card__genre"
             >
@@ -269,7 +276,7 @@ Array [
             className="small-movie-card__image"
           >
             <video
-              width="100%"
+              className="player__video"
             />
           </div>
           <h3
@@ -292,7 +299,7 @@ Array [
             className="small-movie-card__image"
           >
             <video
-              width="100%"
+              className="player__video"
             />
           </div>
           <h3
@@ -315,7 +322,7 @@ Array [
             className="small-movie-card__image"
           >
             <video
-              width="100%"
+              className="player__video"
             />
           </div>
           <h3
@@ -338,7 +345,7 @@ Array [
             className="small-movie-card__image"
           >
             <video
-              width="100%"
+              className="player__video"
             />
           </div>
           <h3
@@ -361,7 +368,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"

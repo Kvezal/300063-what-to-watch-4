@@ -14,7 +14,7 @@ exports[`FilmListComponent should render component 1`] = `
       className="small-movie-card__image"
     >
       <video
-        width="100%"
+        className="player__video"
       />
     </div>
     <h3
@@ -37,7 +37,7 @@ exports[`FilmListComponent should render component 1`] = `
       className="small-movie-card__image"
     >
       <video
-        width="100%"
+        className="player__video"
       />
     </div>
     <h3
@@ -60,7 +60,7 @@ exports[`FilmListComponent should render component 1`] = `
       className="small-movie-card__image"
     >
       <video
-        width="100%"
+        className="player__video"
       />
     </div>
     <h3
@@ -83,7 +83,7 @@ exports[`FilmListComponent should render component 1`] = `
       className="small-movie-card__image"
     >
       <video
-        width="100%"
+        className="player__video"
       />
     </div>
     <h3

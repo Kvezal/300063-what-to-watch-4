@@ -2,8 +2,9 @@ import React from "react";
 import render from "react-test-renderer";
 import {MemoryRouter} from "react-router-dom";
 
+import {FilmOverviewTabsEnum} from "@common/enums";
+
 import FilmDescription from "./film-description";
-import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
 
 
 describe(`FilmDescriptionComponent`, () => {

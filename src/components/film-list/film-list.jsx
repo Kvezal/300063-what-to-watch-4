@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import filmType from "@types/film";
-import FilmCard from "@components/film-card";
-import {withActiveFlag, withVideoPlayer} from "@hocs";
+import FilmCard from "@components/film-card/film-card";
+import {withActiveFlag, withVideoPlayer} from "@common/hocs";
+import {filmType} from "@common/types";
+
 
 const FilmCardWrapper = withActiveFlag(withVideoPlayer(FilmCard));
-
 
 const FilmList = (props) => {
   const {onCardClick, list, pack, step} = props;

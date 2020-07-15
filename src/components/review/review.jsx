@@ -1,6 +1,6 @@
 import React from "react";
 
-import reviewType from "@types/review";
+import {reviewType} from "@common/types";
 
 
 const Review = (props) => {

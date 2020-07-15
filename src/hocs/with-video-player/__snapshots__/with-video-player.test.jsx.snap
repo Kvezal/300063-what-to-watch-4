@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`withVideoPlayerHOC should render component 1`] = `
-<div>
-  <video
-    width="100%"
-  />
-</div>
-`;

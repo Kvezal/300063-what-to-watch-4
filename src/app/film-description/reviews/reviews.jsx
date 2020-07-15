@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Review from "@components/review";
-import reviewType from "@types/review";
-import splitListIntoTwoColumn from "@utils/split-list-into-two-column";
+import Review from "@components/review/review";
+import {reviewType} from "@common/types";
+import {splitListIntoTwoColumn} from "@common/utils";
 
 
 const Reviews = (props) => {

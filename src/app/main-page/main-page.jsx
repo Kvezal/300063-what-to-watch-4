@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
-import filmType from "@types/film";
-import Header from "@components/header";
-import FilmList from "@components/film-list";
-import Footer from "@components/footer";
-import FilmFilter from "@components/film-filter";
-import ButtonMore from "@components/button-more";
+import Header from "@components/header/header";
+import FilmList from "@components/film-list/film-list";
+import Footer from "@components/footer/footer";
+import FilmFilter from "@components/film-filter/film-filter";
+import ButtonMore from "@components/button-more/button-more";
+import {filmType} from "@common/types";
 
 
 const FILM_COUNT_IN_ONE_STEP = 8;

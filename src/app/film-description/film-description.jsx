@@ -2,17 +2,16 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
-import reviewType from "@types/review";
-import Header from "@components/header";
-import FilmList from "@components/film-list";
-import Footer from "@components/footer";
-import Tabs from "@components/tabs";
-import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
+import FilmList from "@components/film-list/film-list";
+import Footer from "@components/footer/footer";
+import Header from "@components/header/header";
+import Tabs from "@components/tabs/tabs";
+import {FilmOverviewTabsEnum} from "@common/enums";
+import {filmType, reviewType} from "@common/types";
 
-import Overview from "./overview";
-import Details from "./details";
-import Reviews from "./reviews";
-import filmType from "@types/film";
+import Details from "./details/details";
+import Overview from "./overview/overview";
+import Reviews from "./reviews/reviews";
 
 
 const getTab = (activeTab, info, reviews) => {
@@ -42,12 +41,11 @@ const getTab = (activeTab, info, reviews) => {
 const FilmDescription = (props) => {
   const {likedFilms, info, avatar, onCardClick, activeTab, tabList, reviews, onActiveTabChange} = props;
   const {name, genre, releaseDate, picture} = info;
-
   return <Fragment>
-    <section className="movie-card movie-card--full">
+    <section className="movie-card movie-card--full" style={{backgroundColor: picture.backgroundColor}}>
       <div className="movie-card__hero">
         <div className="movie-card__bg">
-          <img src={picture.cover} alt={name}/>
+          <img src={picture && picture.cover} alt={name}/>
         </div>
 
         <Header avatar={avatar}/>
@@ -55,7 +53,7 @@ const FilmDescription = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
             <h2 className="movie-card__title">{name}</h2>
-            <p className="movie-card__meta">
+            <p className="movie-card__meta">1
               <span className="movie-card__genre">{genre}</span>
               <span className="movie-card__year">{releaseDate}</span>
             </p>
@@ -83,7 +81,7 @@ const FilmDescription = (props) => {
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
             <img
-              src={picture.poster}
+              src={picture && picture.poster}
               alt="The Grand Budapest Hotel poster"
               width="218"
               height="327"

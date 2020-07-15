@@ -27,7 +27,7 @@ describe(`App`, () => {
       picture: {
         poster: `poster1`,
         cover: `cover1`,
-        color: `color1`,
+        backgroundColor: `color1`,
       },
       starring: [
         `Robert De Niro`,
@@ -55,7 +55,7 @@ describe(`App`, () => {
       picture: {
         poster: `poster2`,
         cover: `cover2`,
-        color: `color2`,
+        backgroundColor: `color2`,
       },
       starring: [
         `Robert De Niro`,
@@ -83,7 +83,7 @@ describe(`App`, () => {
       picture: {
         poster: `poster3`,
         cover: `cover3`,
-        color: `color3`,
+        backgroundColor: `color3`,
       },
       starring: [
         `Robert De Niro`,
@@ -121,6 +121,27 @@ describe(`App`, () => {
     },
   ];
 
+  const reviews = [
+    {
+      text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+      ratingScore: 8.9,
+      author: `Kate Muir`,
+      date: `December 24, 2016`,
+    },
+    {
+      text: `Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight. "The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
+      ratingScore: 8.0,
+      author: `Bill Goodykoontz`,
+      date: `November 18, 2015`,
+    },
+    {
+      text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+      ratingScore: 8.0,
+      author: `Amanda Greever`,
+      date: `November 18, 2015`,
+    }
+  ];
+
   it(`should match to snapshot`, () => {
     const tree = renderer
       .create(
@@ -129,6 +150,9 @@ describe(`App`, () => {
               onFilmChoose={() => {}}
               chooseFilmsWithGenre={() => {}}
               films={films}
+              reviews={reviews}
+              promoFilm={films[0]}
+              currentFilm={films[0]}
             />
           </MemoryRouter>,
           {createNodeMock: () => ({})}
