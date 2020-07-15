@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {connect} from "react-redux";
 
-import MainPage from "@app/main-page/main-page";
-import FilmDescription from "@app/film-description/film-description";
-import Player from "@app/player/player";
+import MainPage from "@pages/main-page/main-page";
+import FilmDescription from "@pages/film-description/film-description";
+import Player from "@pages/player/player";
 import {FilmOverviewTabsEnum} from "@common/enums";
 import {withActiveFlag, withActiveTab, withStep, withVideoPlayer} from "@common/hocs";
 import {filmType, reviewType} from "@common/types";
@@ -96,8 +96,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  currentFilm: PropTypes.shape(filmType).isRequired,
-  promoFilm: PropTypes.shape(filmType).isRequired,
+  currentFilm: PropTypes.shape(filmType),
+  promoFilm: PropTypes.shape(filmType),
   films: PropTypes.arrayOf(
       PropTypes.shape(filmType)
   ).isRequired,
