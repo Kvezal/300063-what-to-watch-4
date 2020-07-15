@@ -27,6 +27,7 @@ describe(`MainPage`, () => {
       },
       picture: {
         poster: `poster1`,
+        preview: `preview1`,
         cover: `cover1`,
         color: `color1`,
       },
@@ -55,6 +56,7 @@ describe(`MainPage`, () => {
       },
       picture: {
         poster: `poster2`,
+        preview: `preview2`,
         cover: `cover2`,
         color: `color2`,
       },
@@ -83,6 +85,7 @@ describe(`MainPage`, () => {
       },
       picture: {
         poster: `poster3`,
+        preview: `preview3`,
         cover: `cover3`,
         color: `color3`,
       },
@@ -111,6 +114,7 @@ describe(`MainPage`, () => {
       },
       picture: {
         poster: `poster4`,
+        preview: `preview4`,
         cover: `cover4`,
         color: `color4`,
       },
