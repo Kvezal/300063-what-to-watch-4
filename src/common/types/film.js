@@ -19,6 +19,7 @@ const filmType = {
   }),
   picture: PropTypes.shape({
     poster: PropTypes.string,
+    preview: PropTypes.string,
     cover: PropTypes.string,
     color: PropTypes.string,
   }),

@@ -6,10 +6,10 @@ import {getFilmId} from "./selectors";
 
 
 const initialState = {
-  genre: GenreEnum.ALL,
-  promoFilm: {},
   films: [],
+  genre: GenreEnum.ALL,
   currentFilmId: 1,
+  promoFilm: {},
   filmReviews: [],
 };
 

@@ -19,7 +19,7 @@ const FilmList = (props) => {
       filmId={film.id}
       filmName={film.name}
       source={film.source.previewVideo}
-      poster={film.picture.poster}
+      poster={film.picture.preview}
       canStop={false}
       muted={true}
       onCardClick={onCardClick}
