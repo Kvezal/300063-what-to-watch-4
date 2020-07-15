@@ -12,9 +12,13 @@ import {filmType} from "@common/types";
 
 const FILM_COUNT_IN_ONE_STEP = 8;
 
-const MainPage = (props) => {
-  const {promoFilm, films, avatar, onCardClick, onStepChange, step, tabList, activeTab, onActiveTabChange} = props;
+const Main = (props) => {
+  const {promoFilm, films, avatar, onFilmChoose, onStepChange, step, tabList, activeTab, onActiveTabChange, chooseFilmsWithGenre} = props;
   const {genre, releaseDate, name, picture} = promoFilm;
+  const hasPromoParams = genre && releaseDate && name && picture;
+  if (!hasPromoParams) {
+    return null;
+  }
 
   return <React.Fragment>
     <section className="movie-card">
@@ -62,13 +66,16 @@ const MainPage = (props) => {
 
         <FilmFilter
           list={tabList}
-          onItemClick={onActiveTabChange}
+          onItemClick={(id) => {
+            onActiveTabChange(id);
+            chooseFilmsWithGenre(id);
+          }}
           activeItem={activeTab}
         />
 
         <FilmList
           list={films}
-          onCardClick={onCardClick}
+          onCardClick={onFilmChoose}
           pack={FILM_COUNT_IN_ONE_STEP}
           step={step}
         />
@@ -86,13 +93,12 @@ const MainPage = (props) => {
   </React.Fragment>;
 };
 
-MainPage.propTypes = {
+Main.propTypes = {
   promoFilm: PropTypes.shape(filmType).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape(filmType)
   ).isRequired,
   avatar: PropTypes.string.isRequired,
-  onCardClick: PropTypes.func.isRequired,
   onStepChange: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
   tabList: PropTypes.arrayOf(
@@ -103,6 +109,8 @@ MainPage.propTypes = {
   ).isRequired,
   activeTab: PropTypes.string.isRequired,
   onActiveTabChange: PropTypes.func.isRequired,
+  onFilmChoose: PropTypes.func.isRequired,
+  chooseFilmsWithGenre: PropTypes.func.isRequired,
 };
 
-export default MainPage;
+export default Main;

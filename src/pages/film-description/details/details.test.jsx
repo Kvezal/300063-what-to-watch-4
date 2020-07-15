@@ -11,7 +11,7 @@ Enzyme.configure({
 });
 
 describe(`DetailsComponent`, () => {
-  const genres = [`Comedy`];
+  const genre = `Comedy`;
   const runTime = `1h 39m`;
   const releaseDate = 2014;
   const director = `Wes Andreson`;
@@ -21,7 +21,7 @@ describe(`DetailsComponent`, () => {
     const tree = render
       .create(
           <Details
-            genres={genres}
+            genre={genre}
             runTime={runTime}
             releaseDate={releaseDate}
             director={director}
@@ -35,7 +35,7 @@ describe(`DetailsComponent`, () => {
   test(`should create component`, () => {
     const detailsComponent = shallow(
         <Details
-          genres={genres}
+          genre={genre}
           runTime={runTime}
           releaseDate={releaseDate}
           director={director}

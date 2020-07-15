@@ -1,24 +1,18 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import {connect} from "react-redux";
 
-import MainPage from "@pages/main-page/main-page";
-import FilmDescription from "@pages/film-description/film-description";
-import Player from "@pages/player/player";
+import Main from "@containers/main";
+import FilmDescription from "@containers/film-description";
+import Player from "@containers/player";
 import {FilmOverviewTabsEnum} from "@common/enums";
-import {withActiveFlag, withActiveTab, withStep, withVideoPlayer} from "@common/hocs";
-import {filmType, reviewType} from "@common/types";
-import {DataActionCreator, getFilmById, getFilteredFilmsByGenre, getPromoFilm, getReviews} from "@store";
+import {withActiveFlag, withActiveTab, withStep} from "@common/hocs";
 
 
+const MainWrapper = withActiveTab(withStep(Main));
 const FilmDescriptionWrapper = withActiveTab(FilmDescription);
-const MainPageWrapper = withActiveTab(withStep(MainPage));
-const PlayerWrapper = withActiveFlag(withVideoPlayer(Player));
+const PlayerWrapper = withActiveFlag(Player);
 
-const App = (props) => {
-  const {films, promoFilm, currentFilm, reviews, onFilmChoose, chooseFilmsWithGenre} = props;
-
+const App = () => {
   const filmDescriptionTabList = [
     {name: `Overview`, id: FilmOverviewTabsEnum.OVERVIEW},
     {name: `Details`, id: FilmOverviewTabsEnum.DETAILS},
@@ -38,92 +32,30 @@ const App = (props) => {
     {name: `Thrillers`, id: `Thriller`}
   ];
 
-  const getMainPage = () => {
-    if (!promoFilm) {
-      return <Fragment/>;
-    }
-    return <MainPageWrapper
-      promoFilm={promoFilm}
-      films={films}
-      avatar="avatar.jpg"
-      onCardClick={onFilmChoose}
-      tabList={filmFilters}
-      activeTab={filmFilters[0].id}
-      onActiveTabChange={(id) => chooseFilmsWithGenre(id)}
-    />;
-  };
-
-  const getFilmDescriptionPage = () => {
-    if (!currentFilm) {
-      return <Fragment/>;
-    }
-    return <FilmDescriptionWrapper
-      info={currentFilm}
-      likedFilms={films.slice(0, 4)}
-      avatar="avatar.jpg"
-      onCardClick={onFilmChoose}
-      baseTab="overview"
-      reviews={reviews}
-      tabList={filmDescriptionTabList}
-      activeTab={filmDescriptionTabList[0].id}
-    />;
-  };
-
-  const getPlayerPage = () => {
-    if (!currentFilm) {
-      return <Fragment/>;
-    }
-    return <PlayerWrapper
-      source={currentFilm.source.video}
-      poster={currentFilm.picture.poster}
-      muted={false}
-    />;
-  };
-
   return <BrowserRouter>
     <Switch>
       <Route exact path="/">
-        {getMainPage()}
+        <MainWrapper
+          avatar="avatar.jpg"
+          tabList={filmFilters}
+          activeTab={filmFilters[0].id}
+        />
       </Route>
       <Route exact path="/films">
-        {getFilmDescriptionPage()}
+        <FilmDescriptionWrapper
+          avatar="avatar.jpg"
+          baseTab="overview"
+          tabList={filmDescriptionTabList}
+          activeTab={filmDescriptionTabList[0].id}
+        />
       </Route>
       <Route exact path="/player">
-        {getPlayerPage()}
+        <PlayerWrapper
+          muted={false}
+        />
       </Route>
     </Switch>
   </BrowserRouter>;
 };
 
-App.propTypes = {
-  currentFilm: PropTypes.shape(filmType),
-  promoFilm: PropTypes.shape(filmType),
-  films: PropTypes.arrayOf(
-      PropTypes.shape(filmType)
-  ).isRequired,
-  onFilmChoose: PropTypes.func.isRequired,
-  chooseFilmsWithGenre: PropTypes.func.isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape(reviewType)
-  ).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  films: getFilteredFilmsByGenre(state),
-  currentFilm: getFilmById(state),
-  promoFilm: getPromoFilm(state),
-  reviews: getReviews(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onFilmChoose: (filmId) => {
-    dispatch(DataActionCreator.chooseFilmId(filmId));
-  },
-
-  chooseFilmsWithGenre: (genre) => {
-    dispatch(DataActionCreator.chooseGenre(genre));
-  }
-});
-
-export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

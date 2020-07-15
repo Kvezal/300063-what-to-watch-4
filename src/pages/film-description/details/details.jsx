@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 
 const Details = (props) => {
-  const {director, starring, runTime, genres, releaseDate} = props;
+  const {director, starring, runTime, genre, releaseDate} = props;
   const maxStarringIndex = starring && starring.length - 1;
   return <div className="movie-card__text movie-card__row">
     <div className="movie-card__text-col">
@@ -30,7 +30,7 @@ const Details = (props) => {
       </p>
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Genre</strong>
-        <span className="movie-card__details-value">{genres}</span>
+        <span className="movie-card__details-value">{genre}</span>
       </p>
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Released</strong>
@@ -46,9 +46,7 @@ Details.propTypes = {
       PropTypes.string
   ).isRequired,
   runTime: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(
-      PropTypes.string
-  ),
+  genre: PropTypes.string,
   releaseDate: PropTypes.number.isRequired,
 };
 

@@ -86,14 +86,20 @@ const withVideoPlayer = (Component) => {
       }));
     }
 
-    componentDidUpdate() {
-      const {isActive: isPlaying} = this.props;
+    componentDidUpdate(prevProps) {
+      const {isActive: isPlaying, source, poster} = this.props;
       const video = this._videoRef.current;
 
       if (isPlaying) {
         video.play();
       } else {
         video.pause();
+      }
+
+      const isChangeVideoProps = prevProps && (prevProps.source !== source || prevProps.poster !== poster);
+      if (isChangeVideoProps) {
+        video.poster = poster;
+        video.src = source;
       }
     }
   }

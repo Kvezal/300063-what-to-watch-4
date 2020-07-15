@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {MemoryRouter} from "react-router-dom";
 
-import MainPage from "./main-page";
+import Main from "./main";
 
 
 describe(`MainPage`, () => {
@@ -132,13 +132,14 @@ describe(`MainPage`, () => {
     const tree = renderer
       .create(
           <MemoryRouter>
-            <MainPage
+            <Main
               promoFilm={films[0]}
               genre=""
               onFilterClick={() => {}}
               films={films}
               avatar={avatar}
-              onCardClick={() => {}}
+              onFilmChoose={() => {}}
+              chooseFilmsWithGenre={() => {}}
               onStepChange={() => {}}
               step={1}
               tabList={filmFilters}

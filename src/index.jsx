@@ -6,9 +6,9 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 
 import App from "@app/app";
-import {reducer, DataOperation} from "@store";
-
-import createAPI from "./api";
+import {createAPI} from "@services";
+import reducer from "@store/reducer";
+import {Operation as DataOperation} from "@store/data/data";
 
 
 const api = createAPI(() => {});

@@ -1,17 +1,11 @@
 import React from "react";
-import {Provider} from "react-redux";
-import renderer from "react-test-renderer";
-import {MemoryRouter} from "react-router-dom";
-import configureStore from 'redux-mock-store';
+import Enzyme, {shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 
-import {GenreEnum} from "@common/enums";
-import NameSpace from "@store/name-space";
-
-import App from "./app";
+import Main from "./main";
 
 
-const mockStore = configureStore([]);
-
+const avatar = `avatar.jpg`;
 const films = [
   {
     id: 1,
@@ -33,7 +27,7 @@ const films = [
     picture: {
       poster: `poster1`,
       cover: `cover1`,
-      backgroundColor: `color1`,
+      color: `color1`,
     },
     starring: [
       `Robert De Niro`,
@@ -61,7 +55,7 @@ const films = [
     picture: {
       poster: `poster2`,
       cover: `cover2`,
-      backgroundColor: `color2`,
+      color: `color2`,
     },
     starring: [
       `Robert De Niro`,
@@ -89,7 +83,7 @@ const films = [
     picture: {
       poster: `poster3`,
       cover: `cover3`,
-      backgroundColor: `color3`,
+      color: `color3`,
     },
     starring: [
       `Robert De Niro`,
@@ -127,53 +121,37 @@ const films = [
   },
 ];
 
-const reviews = [
-  {
-    text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
-    ratingScore: 8.9,
-    author: `Kate Muir`,
-    date: `December 24, 2016`,
-  },
-  {
-    text: `Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight. "The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
-    ratingScore: 8.0,
-    author: `Bill Goodykoontz`,
-    date: `November 18, 2015`,
-  },
-  {
-    text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
-    ratingScore: 8.0,
-    author: `Amanda Greever`,
-    date: `November 18, 2015`,
-  }
+const filmFilters = [
+  {name: `All genres`, id: `All genres`},
+  {name: `Comedies`, id: `Comedy`},
+  {name: `Crime`, id: `Crime`}
 ];
 
-describe(`App`, () => {
-  let store;
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
-  beforeEach(() => {
-    store = mockStore({
-      [NameSpace.DATA]: {
-        genre: GenreEnum.All,
-        films,
-        promoFilm: films[0],
-        currentFilmId: 1,
-        reviews,
-      }
-    });
-  });
-
-  it(`should match to snapshot`, () => {
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <MemoryRouter>
-              <App/>
-            </MemoryRouter>
-          </Provider>,
-          {createNodeMock: () => ({})}
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+describe(`MainPage`, () => {
+  test(`card titles should be pressed`, () => {
+    const onFilmChoose = jest.fn();
+    const mainPage = shallow(
+        <Main
+          promoFilm={films[0]}
+          genre=""
+          onFilterClick={() => {}}
+          films={films}
+          avatar={avatar}
+          onFilmChoose={onFilmChoose}
+          chooseFilmsWithGenre={() => {}}
+          onStepChange={() => {}}
+          step={1}
+          tabList={filmFilters}
+          activeTab={filmFilters[0].id}
+          onActiveTabChange={() => {}}
+        />
+    );
+    const mainTitleList = mainPage.find(`a.small-movie-card__link`);
+    mainTitleList.forEach((mainTitle) => mainTitle.simulate(`click`));
+    expect(onFilmChoose).toHaveBeenCalledTimes(mainTitleList.length);
   });
 });

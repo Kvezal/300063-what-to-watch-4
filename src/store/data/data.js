@@ -7,7 +7,7 @@ import {getFilmId} from "./selectors";
 
 const initialState = {
   genre: GenreEnum.ALL,
-  promoFilm: null,
+  promoFilm: {},
   films: [],
   currentFilmId: 1,
   filmReviews: [],

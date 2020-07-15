@@ -9,7 +9,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-describe(`PlayerComponent`, () => {
+describe(`PlayerPage`, () => {
   test(`should create component`, () => {
     const fullScreenPlayerComponent = shallow(
         <Player

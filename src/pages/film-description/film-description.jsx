@@ -15,11 +15,11 @@ import Reviews from "./reviews/reviews";
 
 
 const getTab = (activeTab, info, reviews) => {
-  const {rating, description, director, starring, genres, runTime, releaseDate} = info;
+  const {rating, description, director, starring, genre, runTime, releaseDate} = info;
   switch (activeTab) {
     case FilmOverviewTabsEnum.DETAILS:
       return <Details
-        genres={genres}
+        genre={genre}
         runTime={runTime}
         releaseDate={releaseDate}
         director={director}
@@ -39,7 +39,10 @@ const getTab = (activeTab, info, reviews) => {
 };
 
 const FilmDescription = (props) => {
-  const {likedFilms, info, avatar, onCardClick, activeTab, tabList, reviews, onActiveTabChange} = props;
+  const {likedFilms, info, avatar, onFilmChoose, activeTab, tabList, reviews, onActiveTabChange} = props;
+  if (!info) {
+    return null;
+  }
   const {name, genre, releaseDate, picture} = info;
   return <Fragment>
     <section className="movie-card movie-card--full" style={{backgroundColor: picture.backgroundColor}}>
@@ -103,7 +106,7 @@ const FilmDescription = (props) => {
     <div className="page-content">
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
-        <FilmList list={likedFilms} onCardClick={onCardClick}/>
+        <FilmList list={likedFilms} onCardClick={onFilmChoose}/>
       </section>
       <Footer/>
     </div>
@@ -111,11 +114,10 @@ const FilmDescription = (props) => {
 };
 
 FilmDescription.propTypes = {
-  info: PropTypes.shape(filmType).isRequired,
+  info: PropTypes.shape(filmType),
   likedFilms: PropTypes.arrayOf(
       PropTypes.shape(filmType)
   ).isRequired,
-  onCardClick: PropTypes.func.isRequired,
   avatar: PropTypes.string.isRequired,
   tabList: PropTypes.arrayOf(
       PropTypes.shape({
@@ -128,6 +130,7 @@ FilmDescription.propTypes = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape(reviewType)
   ).isRequired,
+  onFilmChoose: PropTypes.func.isRequired,
 };
 
 export default FilmDescription;

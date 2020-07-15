@@ -140,7 +140,7 @@ describe(`FilmDescription`, () => {
           likedFilms={likedFilms}
           info={likedFilms[0]}
           avatar={avatar}
-          onCardClick={() => {}}
+          onFilmChoose={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
@@ -159,7 +159,7 @@ describe(`FilmDescription`, () => {
             likedFilms={likedFilms}
             info={likedFilms[0]}
             avatar={avatar}
-            onCardClick={() => {}}
+            onFilmChoose={() => {}}
             renderTabs={() => {}}
             activeTab={`overview`}
             reviews={[]}
@@ -178,7 +178,7 @@ describe(`FilmDescription`, () => {
           likedFilms={likedFilms}
           info={likedFilms[0]}
           avatar={avatar}
-          onCardClick={() => {}}
+          onFilmChoose={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
@@ -196,7 +196,7 @@ describe(`FilmDescription`, () => {
           likedFilms={likedFilms}
           info={likedFilms[0]}
           avatar={avatar}
-          onCardClick={() => {}}
+          onFilmChoose={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
@@ -214,7 +214,7 @@ describe(`FilmDescription`, () => {
           likedFilms={likedFilms}
           info={likedFilms[0]}
           avatar={avatar}
-          onCardClick={() => {}}
+          onFilmChoose={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
@@ -232,7 +232,7 @@ describe(`FilmDescription`, () => {
           likedFilms={likedFilms}
           info={likedFilms[0]}
           avatar={avatar}
-          onCardClick={() => {}}
+          onFilmChoose={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
@@ -250,7 +250,7 @@ describe(`FilmDescription`, () => {
           likedFilms={likedFilms}
           info={likedFilms[0]}
           avatar={avatar}
-          onCardClick={() => {}}
+          onFilmChoose={() => {}}
           renderTabs={() => {}}
           activeTab={`overview`}
           reviews={[]}
