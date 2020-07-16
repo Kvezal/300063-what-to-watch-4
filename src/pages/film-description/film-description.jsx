@@ -56,7 +56,7 @@ const FilmDescription = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
             <h2 className="movie-card__title">{name}</h2>
-            <p className="movie-card__meta">1
+            <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
               <span className="movie-card__year">{releaseDate}</span>
             </p>

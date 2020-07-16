@@ -83,7 +83,6 @@ Array [
           <p
             className="movie-card__meta"
           >
-            1
             <span
               className="movie-card__genre"
             >

@@ -21,6 +21,16 @@ const getFilmById = (state) => {
     .find((film) => film.id === state[NAME_SPACE].currentFilmId);
 };
 
+const getLikedFilms = (state) => {
+  const currentFilm = getFilmById(state);
+  if (!currentFilm) {
+    return [];
+  }
+  return state[NAME_SPACE].films
+    .filter((film) => film.genre === currentFilm.genre)
+    .slice(0, 4);
+};
+
 const getReviews = (state) => {
   return state[NAME_SPACE].filmReviews;
 };
@@ -33,4 +43,12 @@ const getNotifications = (state) => {
   return state[NAME_SPACE].notifications;
 };
 
-export {getPromoFilm, getFilteredFilmsByGenre, getFilmById, getReviews, getFilmId, getNotifications};
+export {
+  getPromoFilm,
+  getFilteredFilmsByGenre,
+  getLikedFilms,
+  getFilmById,
+  getReviews,
+  getFilmId,
+  getNotifications,
+};

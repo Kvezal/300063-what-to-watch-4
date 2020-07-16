@@ -2,12 +2,12 @@ import {connect} from "react-redux";
 
 import FilmDescription from "@pages/film-description/film-description";
 import {chooseFilmId} from "@store/data/action-creator";
-import {getFilmById, getFilteredFilmsByGenre, getReviews} from "@store/data/selectors";
+import {getFilmById, getFilteredFilmsByGenre, getLikedFilms, getReviews} from "@store/data/selectors";
 
 
 const mapStateToProps = (state) => ({
   films: getFilteredFilmsByGenre(state),
-  likedFilms: getFilteredFilmsByGenre(state),
+  likedFilms: getLikedFilms(state),
   reviews: getReviews(state),
   info: getFilmById(state),
 });
