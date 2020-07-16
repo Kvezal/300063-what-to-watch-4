@@ -1,3 +1,5 @@
+import {nanoid} from 'nanoid';
+
 import {adaptFilm, adaptReview} from "@common/adapter";
 import {GenreEnum} from "@common/enums";
 import {extend} from "@common/utils";
@@ -5,12 +7,47 @@ import {extend} from "@common/utils";
 import {getFilmId} from "./selectors";
 
 
+const ID_LENGTH = 10;
+
 const initialState = {
   films: [],
   genre: GenreEnum.ALL,
   currentFilmId: 1,
   promoFilm: {},
   filmReviews: [],
+  notifications: [
+    {
+      id: `test-id-1`,
+      type: `error`,
+      title: `title 1`,
+      text: `text 1`,
+      httpCode: 500,
+    }, {
+      id: `test-id-2`,
+      type: `error`,
+      title: `title 2`,
+      text: `text 2`,
+      httpCode: 500,
+    }, {
+      id: `test-id-3`,
+      type: `error`,
+      title: `title 3`,
+      text: `text 3`,
+      httpCode: 500,
+    }, {
+      id: `test-id-4`,
+      type: `error`,
+      title: `title 4`,
+      text: `text 4`,
+      httpCode: 500,
+    }, {
+      id: `test-id-5`,
+      type: `error`,
+      title: `title 5`,
+      text: `text 5`,
+      httpCode: 500,
+    }
+  ],
 };
 
 const ActionType = {
@@ -19,6 +56,8 @@ const ActionType = {
   CHOOSE_FILM_ID: `CHOOSE_FILM_ID`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_FILM_REVIEWS: `LOAD_FILM_REVIEWS`,
+  ADD_ERROR_NOTIFICATION: `ADD_ERROR_NOTIFICATION`,
+  REMOVE_NOTIFICATION: `REMOVE_NOTIFICATION`,
 };
 
 const ActionCreator = {
@@ -42,7 +81,23 @@ const ActionCreator = {
     type: ActionType.LOAD_FILM_REVIEWS,
     payload: reviews,
   }),
+  addErrorNotification: (error) => ({
+    type: ActionType.ADD_ERROR_NOTIFICATION,
+    payload: error,
+  }),
+  removeNotification: (notificationId) => ({
+    type: ActionType.REMOVE_NOTIFICATION,
+    payload: notificationId,
+  }),
 };
+
+const convertError = (error, title) => ({
+  id: nanoid(ID_LENGTH),
+  type: `error`,
+  title,
+  text: `Try to reload page`,
+  httpCode: error.response.status,
+});
 
 const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
@@ -51,6 +106,11 @@ const Operation = {
       .then((response) => response.data.map((film) => adaptFilm(film)))
       .then((films) => {
         dispatch(ActionCreator.loadFilms(films));
+      })
+      .catch((error) => {
+        dispatch(ActionCreator.addErrorNotification(
+            convertError(error, `Load films error`)
+        ));
       });
   },
   loadPromoFilm: () => (dispatch, getState, api) => {
@@ -59,6 +119,11 @@ const Operation = {
       .then((response) => adaptFilm(response.data))
       .then((film) => {
         dispatch(ActionCreator.loadPromoFilm(film));
+      })
+      .catch((error) => {
+        dispatch(ActionCreator.addErrorNotification(
+            convertError(error, `Load promo film error`)
+        ));
       });
   },
   loadFilmReviews: () => (dispatch, getState, api) => {
@@ -67,6 +132,11 @@ const Operation = {
       .then((response) => response.data.map((reviews) => adaptReview(reviews)))
       .then((reviews) => {
         dispatch(ActionCreator.loadFilmReviews(reviews));
+      })
+      .catch((error) => {
+        dispatch(ActionCreator.addErrorNotification(
+            convertError(error, `Load film reviews error`)
+        ));
       });
   }
 };
@@ -92,6 +162,18 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FILM_REVIEWS:
       return extend(state, {
         filmReviews: action.payload,
+      });
+    case ActionType.ADD_ERROR_NOTIFICATION:
+      const notifications = state.notifications.slice();
+      notifications.push(action.payload);
+      return extend(state, {
+        notifications,
+      });
+    case ActionType.REMOVE_NOTIFICATION:
+      const filteredNotifications = state.notifications.slice()
+        .filter((notification) => notification.id !== action.payload);
+      return extend(state, {
+        notifications: filteredNotifications,
       });
     default:
       return state;

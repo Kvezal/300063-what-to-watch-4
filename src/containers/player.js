@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
   return {
     films: getFilteredFilmsByGenre(state),
     source: film ? film.source.video : ``,
-    poster: film ? film.picture.poster : ``,
+    poster: film ? film.picture.cover : ``,
   };
 };
 

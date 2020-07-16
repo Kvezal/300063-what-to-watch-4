@@ -16,6 +16,7 @@ const initialState = {
   films: [],
   promoFilm: null,
   currentFilmId: 1,
+  notifications: [],
 };
 
 const filmFromServer = {
@@ -280,6 +281,30 @@ describe(`DataReducer`, () => {
       });
   });
 
+  test(`add server error action should return correct object`, () => {
+    const error = {
+      id: `test-id`,
+      type: `error`,
+      title: `title`,
+      text: `text`,
+      httpCode: 500,
+    };
+    expect(ActionCreator.addErrorNotification(error))
+      .toEqual({
+        type: ActionType.ADD_ERROR_NOTIFICATION,
+        payload: error,
+      });
+  });
+
+  test(`remove notification action should return correct object`, () => {
+    const notificationId = `test-id`;
+    expect(ActionCreator.removeNotification(notificationId))
+      .toEqual({
+        type: ActionType.REMOVE_NOTIFICATION,
+        payload: notificationId,
+      });
+  });
+
   test(`should return base state if action type is incorrect`, () => {
     const incorrectAction = {
       type: `test`,
@@ -337,6 +362,47 @@ describe(`DataReducer`, () => {
     expect(reducer(state, loadFilmReviewsAction))
       .toEqual(extend(state, {
         filmReviews: reviews,
+      }));
+  });
+
+  test(`should add new notification`, () => {
+    const notification = {
+      id: `test-id-1`,
+      type: `error`,
+      title: `title 1`,
+      text: `text 1`,
+      httpCode: 500,
+    };
+    const addErrorNotificationAction = {
+      type: ActionType.ADD_ERROR_NOTIFICATION,
+      payload: notification,
+    };
+    expect(reducer(initialState, addErrorNotificationAction))
+      .toEqual(extend(initialState, {
+        notifications: [notification],
+      }));
+  });
+
+  test(`should remove notification`, () => {
+    const notificationId = `test-id-1`;
+    const state = extend(initialState, {
+      notifications: [
+        {
+          id: notificationId,
+          type: `error`,
+          title: `title 1`,
+          text: `text 1`,
+          httpCode: 500,
+        }
+      ],
+    });
+    const removeNotificationAction = {
+      type: ActionType.REMOVE_NOTIFICATION,
+      payload: notificationId,
+    };
+    expect(reducer(state, removeNotificationAction))
+      .toEqual(extend(state, {
+        notifications: [],
       }));
   });
 

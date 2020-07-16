@@ -1,8 +1,9 @@
 import React from "react";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
-import Main from "@containers/main";
 import FilmDescription from "@containers/film-description";
+import Main from "@containers/main";
+import NotificationList from "@containers/notification-list";
 import Player from "@containers/player";
 import {FilmOverviewTabsEnum} from "@common/enums";
 import {withActiveFlag, withActiveTab, withStep} from "@common/hocs";
@@ -52,9 +53,11 @@ const App = () => {
       <Route exact path="/player">
         <PlayerWrapper
           muted={false}
+          isActive={true}
         />
       </Route>
     </Switch>
+    <NotificationList/>
   </BrowserRouter>;
 };
 

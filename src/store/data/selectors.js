@@ -29,4 +29,8 @@ const getFilmId = (state) => {
   return state[NAME_SPACE].currentFilmId;
 };
 
-export {getPromoFilm, getFilteredFilmsByGenre, getFilmById, getReviews, getFilmId};
+const getNotifications = (state) => {
+  return state[NAME_SPACE].notifications;
+};
+
+export {getPromoFilm, getFilteredFilmsByGenre, getFilmById, getReviews, getFilmId, getNotifications};

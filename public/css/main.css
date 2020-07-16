@@ -1392,3 +1392,68 @@ main {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%); }
+
+.notification-list {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 1;
+  width: 272px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.notification-list__item {
+  position: relative;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.notification-list__item--error {
+  color: rgba(238, 229, 181, .8);
+  background-color: rgba(220, 20, 60, .7);
+  border: 1px solid rgb(220, 20, 60);
+  border-radius: 8px;
+}
+
+.notification-list__button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  font-size: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.notification-list__button::before,
+.notification-list__button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 2px;
+  background-color: rgba(238, 229, 181, .8);
+}
+
+.notification-list__button::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.notification-list__button::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.notification-list__title {
+  margin: 0;
+  font-weight: 500;
+}
+
+.notification-list__text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 20px;
+}

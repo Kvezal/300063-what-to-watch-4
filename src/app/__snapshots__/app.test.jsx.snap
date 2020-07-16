@@ -299,5 +299,8 @@ Array [
       </div>
     </footer>
   </div>,
+  <ul
+    className="notification-list"
+  />,
 ]
 `;

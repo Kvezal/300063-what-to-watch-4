@@ -159,6 +159,7 @@ describe(`App`, () => {
         promoFilm: films[0],
         currentFilmId: 1,
         reviews,
+        notifications: [],
       }
     });
   });
