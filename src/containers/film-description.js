@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 
 import FilmDescription from "@pages/film-description/film-description";
-import {ActionCreator as DataActionCreator} from "@store/data/data";
+import {chooseFilmId} from "@store/data/action-creator";
 import {getFilmById, getFilteredFilmsByGenre, getReviews} from "@store/data/selectors";
 
 
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onFilmChoose: (filmId) => {
-    dispatch(DataActionCreator.chooseFilmId(filmId));
+    dispatch(chooseFilmId(filmId));
   },
 });
 

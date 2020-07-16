@@ -8,7 +8,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import App from "@app/app";
 import {createAPI} from "@services";
 import reducer from "@store/reducer";
-import {Operation as DataOperation} from "@store/data/data";
+import {loadFilms, loadPromoFilm, loadFilmReviews} from "@store/data/operation";
 
 
 const api = createAPI(() => {});
@@ -20,9 +20,9 @@ const store = createStore(
     )
 );
 
-store.dispatch(DataOperation.loadFilms());
-store.dispatch(DataOperation.loadPromoFilm());
-store.dispatch(DataOperation.loadFilmReviews());
+store.dispatch(loadFilms());
+store.dispatch(loadPromoFilm());
+store.dispatch(loadFilmReviews());
 
 ReactDOM.render(
     <Provider store={store}>

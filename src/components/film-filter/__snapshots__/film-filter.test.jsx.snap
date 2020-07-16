@@ -15,7 +15,7 @@ exports[`FilmFilterComponent should render component 1`] = `
     </a>
   </li>
   <li
-    className="catalog__genres-item "
+    className="catalog__genres-item"
     onClick={[Function]}
   >
     <a
@@ -25,7 +25,7 @@ exports[`FilmFilterComponent should render component 1`] = `
     </a>
   </li>
   <li
-    className="catalog__genres-item "
+    className="catalog__genres-item"
     onClick={[Function]}
   >
     <a

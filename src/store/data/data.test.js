@@ -6,7 +6,10 @@ import {GenreEnum} from "@common/enums";
 import createAPI from "@services/api";
 import NameSpace from "@store/name-space";
 
-import {ActionType, ActionCreator, reducer, Operation} from "./data";
+import ActionType from "./action-type";
+import * as ActionCreator from "./action-creator";
+import reducer from "./reducer";
+import * as Operation from "./operation";
 
 
 const api = createAPI(() => {});

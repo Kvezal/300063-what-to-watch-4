@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
@@ -20,7 +20,7 @@ const Main = (props) => {
     return null;
   }
 
-  return <React.Fragment>
+  return <Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
         <img src={picture.cover} alt={name}/>
@@ -90,7 +90,7 @@ const Main = (props) => {
 
       <Footer/>
     </div>
-  </React.Fragment>;
+  </Fragment>;
 };
 
 Main.propTypes = {

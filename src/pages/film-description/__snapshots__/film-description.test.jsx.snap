@@ -180,7 +180,7 @@ Array [
                 </a>
               </li>
               <li
-                className="movie-nav__item "
+                className="movie-nav__item"
               >
                 <a
                   className="movie-nav__link"
@@ -190,7 +190,7 @@ Array [
                 </a>
               </li>
               <li
-                className="movie-nav__item "
+                className="movie-nav__item"
               >
                 <a
                   className="movie-nav__link"

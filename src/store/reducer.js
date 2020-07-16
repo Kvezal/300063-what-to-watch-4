@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
 
-import {reducer as data} from "./data/data";
+import data from "./data/reducer";
 import NameSpace from "./name-space";
 
 

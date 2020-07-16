@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 
@@ -6,7 +6,7 @@ const ButtonMore = (props) => {
   const {hide, children, onButtonClick} = props;
 
   if (hide) {
-    return <Fragment/>;
+    return null;
   }
   return <div className="catalog__more">
     <button

@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 
 import NotificationList from "@components/notification-list/notification-list";
-import {ActionCreator as DataActionCreator} from "@store/data/data";
+import {removeNotification} from "@store/data/action-creator";
 import {getNotifications} from "@store/data/selectors";
 
 
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onCloseNotification: (notificationId) => {
-    dispatch(DataActionCreator.removeNotification(notificationId));
+    dispatch(removeNotification(notificationId));
   },
 });
 

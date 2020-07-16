@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 
 const FilmFilter = (props) => {
@@ -7,9 +8,13 @@ const FilmFilter = (props) => {
   return <ul className="catalog__genres-list">
     {list.map((item) => {
       const {name, id} = item;
+      const className = classNames({
+        "catalog__genres-item": true,
+        "catalog__genres-item--active": id === activeItem,
+      });
       return <li
         key={name}
-        className={`catalog__genres-item ${id === activeItem ? `catalog__genres-item--active` : ``}`}
+        className={className}
         onClick={() => onItemClick(id)}
       >
         <a className="catalog__genres-link">{name}</a>

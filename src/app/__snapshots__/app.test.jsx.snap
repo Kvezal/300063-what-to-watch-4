@@ -168,7 +168,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -178,7 +178,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -188,7 +188,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -198,7 +198,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -208,7 +208,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -218,7 +218,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -228,7 +228,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -238,7 +238,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -248,7 +248,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
