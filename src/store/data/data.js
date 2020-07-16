@@ -15,39 +15,7 @@ const initialState = {
   currentFilmId: 1,
   promoFilm: {},
   filmReviews: [],
-  notifications: [
-    {
-      id: `test-id-1`,
-      type: `error`,
-      title: `title 1`,
-      text: `text 1`,
-      httpCode: 500,
-    }, {
-      id: `test-id-2`,
-      type: `error`,
-      title: `title 2`,
-      text: `text 2`,
-      httpCode: 500,
-    }, {
-      id: `test-id-3`,
-      type: `error`,
-      title: `title 3`,
-      text: `text 3`,
-      httpCode: 500,
-    }, {
-      id: `test-id-4`,
-      type: `error`,
-      title: `title 4`,
-      text: `text 4`,
-      httpCode: 500,
-    }, {
-      id: `test-id-5`,
-      type: `error`,
-      title: `title 5`,
-      text: `text 5`,
-      httpCode: 500,
-    }
-  ],
+  notifications: [],
 };
 
 const ActionType = {
