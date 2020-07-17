@@ -6,6 +6,7 @@ import configureStore from 'redux-mock-store';
 
 import {GenreEnum} from "@common/enums";
 import NameSpace from "@store/name-space";
+import {AuthorizationStatus} from "@store/user/const";
 
 import App from "./app";
 
@@ -160,6 +161,9 @@ describe(`App`, () => {
         currentFilmId: 1,
         reviews,
         notifications: [],
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
       }
     });
   });

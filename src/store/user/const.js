@@ -3,6 +3,12 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+const ErrorType = {
+  NONE: `NONE`,
+  EMAIL: `EMAIL`,
+};
+
 export {
-  AuthorizationStatus
+  AuthorizationStatus,
+  ErrorType,
 };

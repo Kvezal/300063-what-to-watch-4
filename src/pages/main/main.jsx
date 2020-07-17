@@ -2,18 +2,19 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
-import Header from "@components/header/header";
+import ButtonMore from "@components/button-more/button-more";
+import FilmFilter from "@components/film-filter/film-filter";
 import FilmList from "@components/film-list/film-list";
 import Footer from "@components/footer/footer";
-import FilmFilter from "@components/film-filter/film-filter";
-import ButtonMore from "@components/button-more/button-more";
+import Logo from "@components/logo/logo";
 import {filmType} from "@common/types";
+import User from "@components/user/user";
 
 
 const FILM_COUNT_IN_ONE_STEP = 8;
 
 const Main = (props) => {
-  const {promoFilm, films, avatar, onFilmChoose, onStepChange, step, tabList, activeTab, onActiveTabChange, chooseFilmsWithGenre} = props;
+  const {promoFilm, films, avatar, onFilmChoose, onStepChange, step, tabList, activeTab, onActiveTabChange, chooseFilmsWithGenre, isAuthorized} = props;
   const {genre, releaseDate, name, picture} = promoFilm;
   const hasPromoParams = genre && releaseDate && name && picture;
   if (!hasPromoParams) {
@@ -26,7 +27,11 @@ const Main = (props) => {
         <img src={picture.cover} alt={name}/>
       </div>
 
-      <Header avatar={avatar}/>
+      <h1 className="visually-hidden">WTW</h1>
+      <header className="page-header movie-card__head">
+        <Logo/>
+        <User avatar={avatar} isAuthorized={isAuthorized}/>
+      </header>
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -111,6 +116,7 @@ Main.propTypes = {
   onActiveTabChange: PropTypes.func.isRequired,
   onFilmChoose: PropTypes.func.isRequired,
   chooseFilmsWithGenre: PropTypes.func.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
 };
 
 export default Main;

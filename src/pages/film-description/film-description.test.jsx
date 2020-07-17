@@ -148,6 +148,7 @@ describe(`FilmDescriptionPage`, () => {
               activeTab={`overview`}
               reviews={[]}
               tabList={tabList}
+              isAuthorized={true}
             />
           </MemoryRouter>,
           {createNodeMock: () => ({})}

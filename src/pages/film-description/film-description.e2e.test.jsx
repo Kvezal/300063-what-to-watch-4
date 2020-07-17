@@ -150,6 +150,7 @@ describe(`FilmDescription`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
+          isAuthorized={true}
         />
     );
     const filmOverview = filmOverviewComponent.find(`section.movie-card--full`);
@@ -169,6 +170,7 @@ describe(`FilmDescription`, () => {
             reviews={[]}
             tabList={tabList}
             onActiveTabChange={() => {}}
+            isAuthorized={true}
           />
         </MemoryRouter>
     );
@@ -188,6 +190,7 @@ describe(`FilmDescription`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
+          isAuthorized={true}
         />
     );
     const filmName = filmOverviewComponent.find(`h2.movie-card__title`).text();
@@ -206,6 +209,7 @@ describe(`FilmDescription`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
+          isAuthorized={true}
         />
     );
     const genres = filmOverviewComponent.find(`.movie-card__genre`).text();
@@ -224,6 +228,7 @@ describe(`FilmDescription`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
+          isAuthorized={true}
         />
     );
     const releaseDate = filmOverviewComponent.find(`.movie-card__year`).text();
@@ -242,6 +247,7 @@ describe(`FilmDescription`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
+          isAuthorized={true}
         />
     );
     const poster = filmOverviewComponent.find(`.movie-card__poster img`).props().src;
@@ -260,6 +266,7 @@ describe(`FilmDescription`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
+          isAuthorized={true}
         />
     );
     const cover = filmOverviewComponent.find(`.movie-card__bg img`).props().src;

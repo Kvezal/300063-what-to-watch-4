@@ -1,5 +1,6 @@
-import {setAuthorizationStatus} from "./action-creator";
-import {AuthorizationStatus} from "@store/user/const";
+import {AuthorizationStatus, ErrorType} from "@store/user/const";
+
+import {addAuthorizationError, setAuthorizationStatus} from "./action-creator";
 
 
 const checkAuth = () => (dispatch, getState, api) => {
@@ -15,7 +16,12 @@ const login = (authData) => (dispatch, getState, api) => {
     password: authData.password,
   })
     .then(() => {
+      window.location.href = `/`;
       dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
+    })
+    .catch((error) => {
+      dispatch(addAuthorizationError(ErrorType.EMAIL));
+      throw error;
     });
 };
 

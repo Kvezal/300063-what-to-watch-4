@@ -152,6 +152,7 @@ describe(`MainPage`, () => {
           tabList={filmFilters}
           activeTab={filmFilters[0].id}
           onActiveTabChange={() => {}}
+          isAuthorized={true}
         />
     );
     const mainTitleList = mainPage.find(`a.small-movie-card__link`);

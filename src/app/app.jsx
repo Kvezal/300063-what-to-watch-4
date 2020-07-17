@@ -5,6 +5,7 @@ import FilmDescription from "@containers/film-description";
 import Main from "@containers/main";
 import NotificationList from "@containers/notification-list";
 import Player from "@containers/player";
+import SignIn from "@containers/sign-in";
 import {FilmOverviewTabsEnum} from "@common/enums";
 import {withActiveFlag, withActiveTab, withStep} from "@common/hocs";
 
@@ -55,6 +56,9 @@ const App = () => {
           muted={false}
           isActive={true}
         />
+      </Route>
+      <Route exact path="/login">
+        <SignIn/>
       </Route>
     </Switch>
     <NotificationList/>

@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {MemoryRouter} from "react-router-dom";
 
 import Main from "./main";
+import PropTypes from "prop-types";
 
 
 describe(`MainPage`, () => {
@@ -149,6 +150,7 @@ describe(`MainPage`, () => {
               tabList={filmFilters}
               activeTab={filmFilters[0].id}
               onActiveTabChange={() => {}}
+              isAuthorized={true}
             />
           </MemoryRouter>,
           {createNodeMock: () => ({})}

@@ -1,6 +1,6 @@
 import {setAuthorizationStatus} from "./action-creator";
 import ActionType from "./action-type";
-import {AuthorizationStatus} from "./const";
+import {AuthorizationStatus, ErrorType} from "./const";
 import reducer from "./reducer";
 
 
@@ -74,6 +74,7 @@ describe(`UserReducer`, () => {
   test(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(undefined, {})).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
+      error: ErrorType.NONE,
     });
   });
 });
