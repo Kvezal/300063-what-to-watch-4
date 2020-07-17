@@ -2,65 +2,45 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 
 import filmListType from "@types/film-list";
+import reviewType from "@types/review";
 import Header from "@components/header";
 import FilmList from "@components/film-list";
 import Footer from "@components/footer";
+import Tabs from "@components/tabs";
+import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
 
 import Overview from "./overview";
 import Details from "./details";
 import Reviews from "./reviews";
-import reviewType from "@types/review";
 
 
-const FilmOverviewTabsEnum = {
-  OVERVIEW: `overview`,
-  DETAILS: `details`,
-  REVIEWS: `reviews`,
+const getTab = (activeTab, info, reviews) => {
+  const {rating, description, director, starring, genres, runTime, releaseDate} = info;
+  switch (activeTab) {
+    case FilmOverviewTabsEnum.DETAILS:
+      return <Details
+        genres={genres}
+        runTime={runTime}
+        releaseDate={releaseDate}
+        director={director}
+        starring={starring}
+      />;
+    case FilmOverviewTabsEnum.REVIEWS:
+      return <Reviews list={reviews}/>;
+    case FilmOverviewTabsEnum.OVERVIEW:
+    default:
+      return <Overview
+        rating={rating}
+        description={description}
+        director={director}
+        starring={starring}
+      />;
+  }
 };
-
-const tabList = [
-  {name: `Overview`, href: FilmOverviewTabsEnum.OVERVIEW},
-  {name: `Details`, href: FilmOverviewTabsEnum.DETAILS},
-  {name: `Reviews`, href: FilmOverviewTabsEnum.REVIEWS},
-];
-
-const getOverviewTab = (info) => {
-  const {rating, description, director, starring} = info;
-  return <Overview
-    rating={rating}
-    description={description}
-    director={director}
-    starring={starring}
-  />;
-};
-
-const getDetailsTab = (info) => {
-  const {genres, runTime, releaseDate, director, starring} = info;
-  return <Details
-    genres={genres}
-    runTime={runTime}
-    releaseDate={releaseDate}
-    director={director}
-    starring={starring}
-  />;
-};
-
-const getReviewTab = (reviews) => {
-  return <Reviews list={reviews}/>;
-};
-
-const tabMap = new Map([
-  [FilmOverviewTabsEnum.OVERVIEW, getOverviewTab],
-  [FilmOverviewTabsEnum.DETAILS, getDetailsTab],
-  [FilmOverviewTabsEnum.REVIEWS, getReviewTab]
-]);
-
 
 const FilmDescription = (props) => {
-  const {likedFilms, info, avatar, onCardClick, renderTabs, activeTab, reviews} = props;
+  const {likedFilms, info, avatar, onCardClick, activeTab, tabList, reviews, onActiveTabChange} = props;
   const {name, genres, releaseDate, picture} = info;
-
-  const params = activeTab !== FilmOverviewTabsEnum.REVIEWS ? info : reviews;
 
   return <Fragment>
     <section className="movie-card movie-card--full">
@@ -110,8 +90,12 @@ const FilmDescription = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            {renderTabs(tabList)}
-            {tabMap.get(activeTab)(params)}
+            <Tabs
+              list={tabList}
+              activeTab={activeTab}
+              onActiveTabChange={onActiveTabChange}
+            />
+            {getTab(activeTab, info, reviews)}
           </div>
         </div>
       </div>
@@ -131,8 +115,14 @@ FilmDescription.propTypes = {
   likedFilms: filmListType.isRequired,
   onCardClick: PropTypes.func.isRequired,
   avatar: PropTypes.string.isRequired,
-  renderTabs: PropTypes.func.isRequired,
+  tabList: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        id: PropTypes.string,
+      })
+  ).isRequired,
   activeTab: PropTypes.string.isRequired,
+  onActiveTabChange: PropTypes.func.isRequired,
   info: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,

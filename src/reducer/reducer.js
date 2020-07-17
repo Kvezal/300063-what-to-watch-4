@@ -12,20 +12,14 @@ const initialState = {
 };
 
 const ActionType = {
-  CHANGE_FILTERED_GENRE: `CHANGE_FILTERED_GENRE`,
-  UPDATE_FILM_LIST: `UPDATE_FILM_LIST`,
   CHOOSE_FILM: `CHOOSE_FILM`,
+  CHOOSE_FILM_WITH_GENRE: `CHOOSE_FILM_WITH_GENRE`,
 };
 
 const ActionCreator = {
-  changeFilteredGenre: (genre) => ({
-    type: ActionType.CHANGE_FILTERED_GENRE,
+  chooseFilmsWithGenre: (genre) => ({
+    type: ActionType.CHOOSE_FILM_WITH_GENRE,
     payload: genre,
-  }),
-
-  updateFilmList: () => ({
-    type: ActionType.UPDATE_FILM_LIST,
-    payload: null,
   }),
 
   chooseFilm: (filmId) => ({
@@ -44,17 +38,13 @@ const filterFilms = (baseFilms, genre) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHANGE_FILTERED_GENRE:
-      return extend(state, {
-        genre: action.payload,
-      });
-    case ActionType.UPDATE_FILM_LIST:
-      return extend(state, {
-        filteredFilms: filterFilms(state.films, state.genre),
-      });
     case ActionType.CHOOSE_FILM:
       return extend(state, {
         filmId: action.payload,
+      });
+    case ActionType.CHOOSE_FILM_WITH_GENRE:
+      return extend(state, {
+        filteredFilms: filterFilms(state.films, action.payload),
       });
   }
 

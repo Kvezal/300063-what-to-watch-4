@@ -53,7 +53,13 @@ describe(`MainPage`, () => {
     releaseDate: 2014,
   };
 
-  it(`should match to snapshot`, () => {
+  const filmFilters = [
+    {name: `All genres`, id: `All genres`},
+    {name: `Comedies`, id: `Comedy`},
+    {name: `Crime`, id: `Crime`}
+  ];
+
+  test(`should match to snapshot`, () => {
     const tree = renderer
       .create(
           <MainPage
@@ -65,6 +71,9 @@ describe(`MainPage`, () => {
             onCardClick={() => {}}
             onStepChange={() => {}}
             step={1}
+            tabList={filmFilters}
+            activeTab={filmFilters[0].id}
+            onActiveTabChange={() => {}}
           />
           ,
           {createNodeMock: () => ({})}

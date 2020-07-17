@@ -6,19 +6,39 @@ import {connect} from "react-redux";
 import filmMockData from "@mocks/film-page-data";
 import reviews from "@mocks/reviews";
 import promoFilm from "@mocks/promo-film";
-import {withTabs, withStep} from "@hocs";
+import {withActiveTab, withStep} from "@hocs";
 import MainPage from "@app/main-page";
 import FilmDescription from "@app/film-description";
 import {filmListType} from "@types";
 import {ActionCreator} from "@reducer";
+import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
 
 
-const FilmDescriptionWrapper = withTabs(FilmDescription);
-const MainPageWrapper = withStep(MainPage);
+const FilmDescriptionWrapper = withActiveTab(FilmDescription);
+const MainPageWrapper = withActiveTab(withStep(MainPage));
 
 const App = (props) => {
-  const {films, onFilmChoose, genre, onGenreChoose} = props;
+  const {films, onFilmChoose, chooseFilmsWithGenre} = props;
   const {overviewFilm} = filmMockData;
+
+  const filmDescriptionTabList = [
+    {name: `Overview`, id: FilmOverviewTabsEnum.OVERVIEW},
+    {name: `Details`, id: FilmOverviewTabsEnum.DETAILS},
+    {name: `Reviews`, id: FilmOverviewTabsEnum.REVIEWS},
+  ];
+
+  const filmFilters = [
+    {name: `All genres`, id: `All genres`},
+    {name: `Comedies`, id: `Comedy`},
+    {name: `Crime`, id: `Crime`},
+    {name: `Documentary`, id: `Documentary`},
+    {name: `Dramas`, id: `Drama`},
+    {name: `Horror`, id: `Horror`},
+    {name: `Kids & Family`, id: `Kids & Family`},
+    {name: `Romance`, id: `Romance`},
+    {name: `Sci-Fi`, id: `Sci-Fi`},
+    {name: `Thrillers`, id: `Thriller`}
+  ];
 
   return <BrowserRouter>
     <Switch>
@@ -27,9 +47,10 @@ const App = (props) => {
           promoFilm={promoFilm}
           films={films}
           avatar="avatar.jpg"
-          genre={genre}
           onCardClick={onFilmChoose}
-          onFilterClick={onGenreChoose}
+          tabList={filmFilters}
+          activeTab={filmFilters[0].id}
+          onActiveTabChange={(id) => chooseFilmsWithGenre(id)}
         />
       </Route>
       <Route exact path="/films">
@@ -40,6 +61,8 @@ const App = (props) => {
           onCardClick={onFilmChoose}
           baseTab="overview"
           reviews={reviews}
+          tabList={filmDescriptionTabList}
+          activeTab={filmDescriptionTabList[0].id}
         />
       </Route>
     </Switch>
@@ -49,22 +72,19 @@ const App = (props) => {
 App.propTypes = {
   films: filmListType.isRequired,
   onFilmChoose: PropTypes.func.isRequired,
-  onGenreChoose: PropTypes.func.isRequired,
-  genre: PropTypes.string.isRequired,
+  chooseFilmsWithGenre: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   films: state.filteredFilms,
-  genre: state.genre,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onFilmChoose: (filmId) => {
     dispatch(ActionCreator.chooseFilm(filmId));
   },
-  onGenreChoose: (genre) => {
-    dispatch(ActionCreator.changeFilteredGenre(genre));
-    dispatch(ActionCreator.updateFilmList());
+  chooseFilmsWithGenre: (genre) => {
+    dispatch(ActionCreator.chooseFilmsWithGenre(genre));
   }
 });
 

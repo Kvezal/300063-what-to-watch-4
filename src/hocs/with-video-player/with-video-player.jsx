@@ -1,7 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-import VideoPlayer from "@components/video-player";
+import withVideo from "@hocs/with-video";
+import Player from "@components/player";
+
+const VideoPlayer = withVideo(Player);
 
 
 const withVideoPlayer = (Component) => {
