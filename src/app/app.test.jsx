@@ -118,7 +118,7 @@ const films = [
     picture: {
       poster: `poster4`,
       cover: `cover4`,
-      color: `color4`,
+      backgroundColor: `color4`,
     },
     starring: [
       `Robert De Niro`,

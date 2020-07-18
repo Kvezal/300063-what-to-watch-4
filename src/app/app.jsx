@@ -1,6 +1,7 @@
 import React from "react";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
+import AddReview from "@containers/add-review";
 import FilmDescription from "@containers/film-description";
 import Main from "@containers/main";
 import NotificationList from "@containers/notification-list";
@@ -59,6 +60,9 @@ const App = () => {
       </Route>
       <Route exact path="/login">
         <SignIn/>
+      </Route>
+      <Route exact path="/dev-review">
+        <AddReview/>
       </Route>
     </Switch>
     <NotificationList/>

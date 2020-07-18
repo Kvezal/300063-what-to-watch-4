@@ -74,7 +74,7 @@ const promoFilm = {
     poster: `poster3`,
     preview: `preview3`,
     cover: `cover3`,
-    color: `color3`,
+    backgroundColor: `color3`,
   },
   starring: [
     `Robert De Niro`,
@@ -105,7 +105,7 @@ const films = [
       poster: `poster1`,
       preview: `preview1`,
       cover: `cover1`,
-      color: `color1`,
+      backgroundColor: `color1`,
     },
     starring: [
       `Robert De Niro`,
@@ -134,7 +134,7 @@ const films = [
       poster: `poster2`,
       preview: `preview2`,
       cover: `cover2`,
-      color: `color2`,
+      backgroundColor: `color2`,
     },
     starring: [
       `Robert De Niro`,
@@ -163,7 +163,7 @@ const films = [
       poster: `poster3`,
       preview: `preview3`,
       cover: `cover3`,
-      color: `color3`,
+      backgroundColor: `color3`,
     },
     starring: [
       `Robert De Niro`,
@@ -192,7 +192,7 @@ const films = [
       poster: `poster4`,
       preview: `preview4`,
       cover: `cover4`,
-      color: `color4`,
+      backgroundColor: `color4`,
     },
     starring: [
       `Robert De Niro`,

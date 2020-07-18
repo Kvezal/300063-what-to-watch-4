@@ -7,7 +7,7 @@ import ActionType from "./action-type";
 const initialState = {
   films: [],
   genre: GenreEnum.ALL,
-  currentFilmId: 1,
+  currentFilmId: 5,
   promoFilm: {},
   filmReviews: [],
   notifications: [],
