@@ -7,11 +7,11 @@ import * as ActionCreator from "./action-creator";
 
 const ID_LENGTH = 10;
 
-const convertError = (error, title) => ({
+const convertError = (error, title, text) => ({
   id: nanoid(ID_LENGTH),
   type: `error`,
   title,
-  text: `Try to reload page`,
+  text,
   httpCode: error.response.status,
 });
 
@@ -24,7 +24,7 @@ const loadFilms = () => (dispatch, getState, api) => {
     })
     .catch((error) => {
       dispatch(ActionCreator.addErrorNotification(
-          convertError(error, `Load films error`)
+          convertError(error, `Load films error`, `Try to reload page`)
       ));
     });
 };
@@ -38,7 +38,7 @@ const loadPromoFilm = () => (dispatch, getState, api) => {
     })
     .catch((error) => {
       dispatch(ActionCreator.addErrorNotification(
-          convertError(error, `Load promo film error`)
+          convertError(error, `Load promo film error`, `Try to reload page`)
       ));
     });
 };
@@ -52,7 +52,20 @@ const loadFilmReviews = () => (dispatch, getState, api) => {
     })
     .catch((error) => {
       dispatch(ActionCreator.addErrorNotification(
-          convertError(error, `Load film reviews error`)
+          convertError(error, `Load film reviews error`, `Try to reload page`)
+      ));
+    });
+};
+
+const postReview = (commentData) => (dispatch, getState, api) => {
+  const filmId = getFilmId(getState());
+  return api.post(`/comments/${filmId}`, commentData)
+    .then(() => {
+      window.location.href = `/films/${filmId}`;
+    })
+    .catch((error) => {
+      dispatch(ActionCreator.addErrorNotification(
+          convertError(error, `Post film comment error`, `Try to send comment again`)
       ));
     });
 };
@@ -61,4 +74,5 @@ export {
   loadFilms,
   loadPromoFilm,
   loadFilmReviews,
+  postReview,
 };

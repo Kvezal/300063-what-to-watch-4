@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import AddReview from "@pages/add-review/add-review";
 import {getAuthorizedFlag} from "@store/user/selector";
 import {getFilmById} from "@store/data/selectors";
+import {postReview} from "@store/data/operation";
 
 
 const mapStateToProps = (state) => ({
@@ -11,4 +12,13 @@ const mapStateToProps = (state) => ({
   film: getFilmById(state),
 });
 
-export default connect(mapStateToProps)(AddReview);
+const mapDispatchToProps = (dispatch) => ({
+  onSubmitForm: (commentData) => {
+    dispatch(postReview({
+      rating: commentData.rating,
+      comment: commentData.comment,
+    }));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview);

@@ -49,6 +49,7 @@ describe(`AddReviewPage`, () => {
             avatar="test-avatar"
             isAuthorized={true}
             film={film}
+            onSubmitForm={() => {}}
           />
         </MemoryRouter>
     )
@@ -62,9 +63,72 @@ describe(`AddReviewPage`, () => {
           avatar="test-avatar"
           isAuthorized={true}
           film={film}
+          onSubmitForm={() => {}}
         />
     );
     const addReview = addReviewComponent.find(`.add-review`);
     expect(addReview).toHaveLength(1);
+  });
+
+  test(`should disabled button`, () => {
+    const addReviewComponent = shallow(
+      <AddReview
+        avatar="test-avatar"
+        isAuthorized={true}
+        film={film}
+        onSubmitForm={() => {}}
+      />
+    );
+    const buttonRef = addReviewComponent.instance()._buttonRef = {
+      current: {
+        disabled: false,
+      }
+    };
+    addReviewComponent.find(`.add-review__textarea`).simulate(`change`, {
+      target: {
+        value: new Array(49).fill(0).join(``),
+      },
+    });
+    expect(buttonRef.current.disabled).toBeTruthy();
+
+    addReviewComponent.find(`.add-review__textarea`).simulate(`change`, {
+      target: {
+        value: new Array(50).fill(0).join(``),
+      },
+    });
+    expect(buttonRef.current.disabled).toBeFalsy();
+
+    addReviewComponent.find(`.add-review__textarea`).simulate(`change`, {
+      target: {
+        value: new Array(400).fill(0).join(``),
+      },
+    });
+    expect(buttonRef.current.disabled).toBeFalsy();
+
+    addReviewComponent.find(`.add-review__textarea`).simulate(`change`, {
+      target: {
+        value: new Array(401).fill(0).join(``),
+      },
+    });
+    expect(buttonRef.current.disabled).toBeTruthy();
+  });
+
+  test(`should submit form with correct params`, () => {
+    const onSubmitForm = jest.fn();
+    const rating = 5;
+    const comment = new Array(100).fill(1).join(``);
+    const addReviewComponent = shallow(
+      <AddReview
+        avatar="test-avatar"
+        isAuthorized={true}
+        film={film}
+        onSubmitForm={onSubmitForm}
+      />
+    );
+    addReviewComponent.instance()._ratingRef.current = {value: rating};
+    addReviewComponent.instance()._commentRef.current = {value: comment};
+    addReviewComponent.find(`form`).simulate(`submit`, {preventDefault: () => {}});
+    expect(onSubmitForm).toBeCalledTimes(1);
+    expect(onSubmitForm.mock.calls[0][0]).toEqual({rating, comment});
   });
 });

@@ -413,6 +413,9 @@ main {
   transition: opacity 0.2s; }
   .add-review__btn:hover {
     opacity: 0.5; }
+  .add-review__btn:disabled {
+    opacity: 0.2;
+    cursor: default; }
 
 .breadcrumbs {
   margin: 0 20px; }
@@ -1398,7 +1401,7 @@ main {
   top: 24px;
   right: 24px;
   z-index: 1;
-  width: 272px;
+  width: 296px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -1406,7 +1409,7 @@ main {
 
 .notification-list__item {
   position: relative;
-  padding: 16px;
+  padding: 16px 40px 16px 16px;
   margin-bottom: 16px;
 }
 
