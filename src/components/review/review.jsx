@@ -1,6 +1,5 @@
 import React from "react";
-
-import {reviewType} from "@common/types";
+import PropTypes from "prop-types";
 
 
 const Review = (props) => {
@@ -22,6 +21,12 @@ Review.defaultProps = {
   underlineColor: `#ffffff`,
 };
 
-Review.propTypes = reviewType;
+Review.propTypes = {
+  ratingScore: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  underlineColor: PropTypes.string.isRequired,
+};
 
 export default Review;

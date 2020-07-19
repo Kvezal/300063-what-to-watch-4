@@ -23,7 +23,7 @@ class AddReview extends PureComponent {
     this._commentRef = createRef();
     this._buttonRef = createRef();
     this._handleFormSubmit = this._handleFormSubmit.bind(this);
-    this._handleCommentChange = this._handleCommentChange.bind(this);
+    this._checkDisabledButton = this._checkDisabledButton.bind(this);
   }
 
   render() {
@@ -70,7 +70,7 @@ class AddReview extends PureComponent {
 
       <div className="add-review">
         <form action="#" className="add-review__form" onSubmit={this._handleFormSubmit}>
-          <RatingControl ref={this._ratingRef} defaultValue="3"/>
+          <RatingControl ref={this._ratingRef} defaultValue="0" onControlChange={this._checkDisabledButton}/>
 
           <div className="add-review__text" style={{background: colors.RGBAWithOffset}}>
             <textarea
@@ -79,7 +79,7 @@ class AddReview extends PureComponent {
               id="review-text"
               placeholder="Review text"
               ref={this._commentRef}
-              onChange={this._handleCommentChange}
+              onChange={this._checkDisabledButton}
             />
             <div className="add-review__submit">
               <button
@@ -96,9 +96,11 @@ class AddReview extends PureComponent {
     </section>;
   }
 
-  _handleCommentChange(event) {
-    const countCommentSymbols = event.target.value.length;
-    this._buttonRef.current.disabled = countCommentSymbols < MIN_COMMENT_SYMBOLS || countCommentSymbols > MAX_COMMENT_SYMBOLS;
+  _checkDisabledButton() {
+    const countCommentSymbols = this._commentRef.current.value.length;
+    const isInvalidComment = countCommentSymbols < MIN_COMMENT_SYMBOLS || countCommentSymbols > MAX_COMMENT_SYMBOLS;
+    const isInvalidRating = this._ratingRef.current.value === `0`;
+    this._buttonRef.current.disabled = isInvalidComment || isInvalidRating;
   }
 
   _handleFormSubmit(event) {

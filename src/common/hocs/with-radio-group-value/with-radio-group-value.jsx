@@ -13,22 +13,20 @@ const withRadioGroupValue = (Component) => {
       radioRef.current = {
         value: defaultValue
       };
-      this._handleRadioChange = this._handleRadioChange.bind(this);
     }
 
     render() {
+      const {onControlChange, radioRef} = this.props;
       const {value} = this.state;
       return <Component
         value={value}
-        onChange={this._handleRadioChange}
+        onChange={(controlValue) => {
+          radioRef.current = {value: controlValue};
+          this.setState({value: controlValue});
+          onControlChange(controlValue);
+        }}
         {...this.props}
       />;
-    }
-
-    _handleRadioChange(value) {
-      const {radioRef} = this.props;
-      radioRef.current = {value};
-      this.setState({value});
     }
   }
 
@@ -41,7 +39,8 @@ const withRadioGroupValue = (Component) => {
     radioRef: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({current: PropTypes.instanceOf(Element)})
-    ])
+    ]),
+    onControlChange: PropTypes.func.isRequired,
   };
 
   return React.forwardRef((props, ref) => <RadioGroupValue radioRef={ref} {...props}/>);

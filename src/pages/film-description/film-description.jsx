@@ -32,11 +32,7 @@ const getTab = (activeTab, info, reviews) => {
         hexColor: picture.backgroundColor,
         offset: 20,
       });
-      reviews.map((review) => {
-        review.underlineColor = colors.RGBAWithOffset;
-        return review;
-      });
-      return <Reviews list={reviews}/>;
+      return <Reviews list={reviews} separatorColor={colors.RGBAWithOffset}/>;
     case FilmOverviewTabsEnum.OVERVIEW:
     default:
       return <Overview
@@ -54,6 +50,7 @@ const FilmDescription = (props) => {
     return null;
   }
   const {name, genre, releaseDate, picture} = info;
+
   return <Fragment>
     <section className="movie-card movie-card--full" style={{backgroundColor: picture.backgroundColor}}>
       <div className="movie-card__hero">
@@ -88,7 +85,7 @@ const FilmDescription = (props) => {
                 </svg>
                 <span>My list</span>
               </button>
-              <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              {isAuthorized && <Link to="/dev-review" className="btn movie-card__button">Add review</Link>}
             </div>
           </div>
         </div>

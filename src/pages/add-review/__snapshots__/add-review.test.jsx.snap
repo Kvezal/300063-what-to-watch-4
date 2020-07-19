@@ -149,7 +149,7 @@ exports[`AddReviewPage should render component 1`] = `
             htmlFor="star-2"
           />
           <input
-            checked={true}
+            checked={false}
             className="rating__input"
             id="star-3"
             name="rating"

@@ -84,32 +84,31 @@ describe(`AddReviewPage`, () => {
         disabled: false,
       }
     };
-    addReviewComponent.find(`.add-review__textarea`).simulate(`change`, {
-      target: {
-        value: new Array(49).fill(0).join(``),
-      },
-    });
+    addReviewComponent.instance()._ratingRef.current = {
+      value: `1`,
+    };
+    addReviewComponent.instance()._commentRef.current = {
+      value: new Array(49).fill(0).join(``),
+    };
+    addReviewComponent.find(`.add-review__textarea`).simulate(`change`);
     expect(buttonRef.current.disabled).toBeTruthy();
 
-    addReviewComponent.find(`.add-review__textarea`).simulate(`change`, {
-      target: {
-        value: new Array(50).fill(0).join(``),
-      },
-    });
+    addReviewComponent.instance()._commentRef.current = {
+      value: new Array(50).fill(0).join(``),
+    };
+    addReviewComponent.find(`.add-review__textarea`).simulate(`change`);
     expect(buttonRef.current.disabled).toBeFalsy();
 
-    addReviewComponent.find(`.add-review__textarea`).simulate(`change`, {
-      target: {
-        value: new Array(400).fill(0).join(``),
-      },
-    });
+    addReviewComponent.instance()._commentRef.current = {
+      value: new Array(400).fill(0).join(``),
+    };
+    addReviewComponent.find(`.add-review__textarea`).simulate(`change`);
     expect(buttonRef.current.disabled).toBeFalsy();
 
-    addReviewComponent.find(`.add-review__textarea`).simulate(`change`, {
-      target: {
-        value: new Array(401).fill(0).join(``),
-      },
-    });
+    addReviewComponent.instance()._commentRef.current = {
+      value: new Array(401).fill(0).join(``),
+    };
+    addReviewComponent.find(`.add-review__textarea`).simulate(`change`);
     expect(buttonRef.current.disabled).toBeTruthy();
   });
 

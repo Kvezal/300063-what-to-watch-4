@@ -11,7 +11,7 @@ exports[`ReviewsComponent should render component 1`] = `
       className="review"
       style={
         Object {
-          "borderBottom": "1px solid #ffffff",
+          "borderBottom": "1px solid #000000",
         }
       }
     >
@@ -49,7 +49,7 @@ exports[`ReviewsComponent should render component 1`] = `
       className="review"
       style={
         Object {
-          "borderBottom": "1px solid #ffffff",
+          "borderBottom": "1px solid #000000",
         }
       }
     >
@@ -87,7 +87,7 @@ exports[`ReviewsComponent should render component 1`] = `
       className="review"
       style={
         Object {
-          "borderBottom": "1px solid #ffffff",
+          "borderBottom": "1px solid #000000",
         }
       }
     >
@@ -129,7 +129,7 @@ exports[`ReviewsComponent should render component 1`] = `
       className="review"
       style={
         Object {
-          "borderBottom": "1px solid #ffffff",
+          "borderBottom": "1px solid #000000",
         }
       }
     >
@@ -167,7 +167,7 @@ exports[`ReviewsComponent should render component 1`] = `
       className="review"
       style={
         Object {
-          "borderBottom": "1px solid #ffffff",
+          "borderBottom": "1px solid #000000",
         }
       }
     >
@@ -205,7 +205,7 @@ exports[`ReviewsComponent should render component 1`] = `
       className="review"
       style={
         Object {
-          "borderBottom": "1px solid #ffffff",
+          "borderBottom": "1px solid #000000",
         }
       }
     >
