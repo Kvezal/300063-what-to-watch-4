@@ -1,13 +1,10 @@
 import {extend} from "@common/utils";
-import {ErrorType} from "@store/user/const";
 
-import ActionType from "./action-type";
-import {AuthorizationStatus} from "./const";
+import {ActionType, AuthorizationStatus} from "./const";
 
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  error: ErrorType.NONE,
 };
 
 const reducer = (state = initialState, action) => {

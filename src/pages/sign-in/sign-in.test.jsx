@@ -4,9 +4,10 @@ import {MemoryRouter} from "react-router-dom";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import {ErrorType} from "@store/user/const";
+import {ErrorType, UserErrorNotificationName} from "@store/user/const";
 
 import SignIn from "./sign-in";
+import {HTTPMethod, NotificationType} from "@store/notification/const";
 
 
 Enzyme.configure({
@@ -14,11 +15,20 @@ Enzyme.configure({
 });
 
 describe(`SignInPage`, () => {
+  const errors = [{
+    id: `test-id-1`,
+    type: NotificationType.ERROR,
+    name: UserErrorNotificationName.EMAIL,
+    method: HTTPMethod.GET,
+    title: `title`,
+    text: `text`,
+  }];
+
   test(`should render component`, () => {
     const tree = render.create(
       <MemoryRouter>
         <SignIn
-          error={ErrorType.NONE}
+          errors={[]}
           onFormSubmit={() => {}}
         />
       </MemoryRouter>,
@@ -31,7 +41,7 @@ describe(`SignInPage`, () => {
   test(`should create component`, () => {
     const signInComponent = shallow(
       <SignIn
-        error={ErrorType.NONE}
+        errors={[]}
         onFormSubmit={() => {}}
       />
     );
@@ -42,7 +52,7 @@ describe(`SignInPage`, () => {
   test(`shouldn't have error message`, () => {
     const signInComponent = shallow(
       <SignIn
-        error={ErrorType.NONE}
+        errors={[]}
         onFormSubmit={() => {}}
       />
     );
@@ -53,7 +63,7 @@ describe(`SignInPage`, () => {
   test(`input shouldn't be marked if hasn't error`, () => {
     const signInComponent = shallow(
       <SignIn
-        error={ErrorType.NONE}
+        errors={[]}
         onFormSubmit={() => {}}
       />
     );
@@ -64,7 +74,7 @@ describe(`SignInPage`, () => {
   test(`should have error message`, () => {
     const signInComponent = shallow(
       <SignIn
-        error={ErrorType.EMAIL}
+        errors={errors}
         onFormSubmit={() => {}}
       />
     );
@@ -75,7 +85,7 @@ describe(`SignInPage`, () => {
   test(`input should be marked if has error`, () => {
     const signInComponent = shallow(
       <SignIn
-        error={ErrorType.EMAIL}
+        errors={errors}
         onFormSubmit={() => {}}
       />
     );
@@ -87,7 +97,7 @@ describe(`SignInPage`, () => {
     const onFormSubmit = jest.fn();
     const signInComponent = shallow(
       <SignIn
-        error={ErrorType.EMAIL}
+        errors={errors}
         onFormSubmit={onFormSubmit}
       />
     );

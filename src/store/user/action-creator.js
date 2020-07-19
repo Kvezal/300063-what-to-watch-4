@@ -1,4 +1,4 @@
-import ActionType from "./action-type";
+import {ActionType} from "./const";
 
 
 const setAuthorizationStatus = (status) => ({
@@ -6,12 +6,6 @@ const setAuthorizationStatus = (status) => ({
   payload: status,
 });
 
-const addAuthorizationError = (error) => ({
-  type: ActionType.ADD_AUTHORIZATION_ERROR,
-  payload: error
-});
-
 export {
   setAuthorizationStatus,
-  addAuthorizationError
 };

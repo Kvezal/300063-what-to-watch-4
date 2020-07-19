@@ -21,7 +21,7 @@ exports[`NotificationListComponent should render component 1`] = `
     <p
       className="notification-list__text"
     >
-      text 1 (500)
+      text 1
     </p>
   </li>
   <li
@@ -41,7 +41,7 @@ exports[`NotificationListComponent should render component 1`] = `
     <p
       className="notification-list__text"
     >
-      text 2 (500)
+      text 2
     </p>
   </li>
   <li
@@ -61,7 +61,7 @@ exports[`NotificationListComponent should render component 1`] = `
     <p
       className="notification-list__text"
     >
-      text 3 (500)
+      text 3
     </p>
   </li>
   <li
@@ -81,7 +81,7 @@ exports[`NotificationListComponent should render component 1`] = `
     <p
       className="notification-list__text"
     >
-      text 4 (500)
+      text 4
     </p>
   </li>
   <li
@@ -101,7 +101,7 @@ exports[`NotificationListComponent should render component 1`] = `
     <p
       className="notification-list__text"
     >
-      text 5 (500)
+      text 5
     </p>
   </li>
 </ul>

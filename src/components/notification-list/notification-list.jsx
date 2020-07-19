@@ -7,7 +7,7 @@ const NotificationList = (props) => {
   const displayedNotifications = list.slice(0, maxItems);
   return <ul className="notification-list">
     {displayedNotifications.map((item) => {
-      const {title, text, httpCode, type, id} = item;
+      const {title, text, type, id} = item;
       return <li key={id} className={`notification-list__item notification-list__item--${type}`}>
         <button
           onClick={() => onCloseNotification(id)}
@@ -16,7 +16,7 @@ const NotificationList = (props) => {
           Close notification
         </button>
         <h3 className="notification-list__title">{title}</h3>
-        <p className="notification-list__text">{`${text} (${httpCode})`}</p>
+        <p className="notification-list__text">{`${text}`}</p>
       </li>;
     })}
   </ul>;

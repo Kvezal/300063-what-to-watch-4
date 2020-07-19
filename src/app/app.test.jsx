@@ -160,11 +160,13 @@ describe(`App`, () => {
         promoFilm: films[0],
         currentFilmId: 1,
         reviews,
+      },
+      [NameSpace.NOTIFICATION]: {
         notifications: [],
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.AUTH,
-      }
+      },
     });
   });
 

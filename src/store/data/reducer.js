@@ -1,7 +1,7 @@
 import {GenreEnum} from "@common/enums";
 import {extend} from "@common/utils";
 
-import ActionType from "./action-type";
+import {ActionType} from "./const";
 
 
 const initialState = {
@@ -10,7 +10,6 @@ const initialState = {
   currentFilmId: 5,
   promoFilm: {},
   filmReviews: [],
-  notifications: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -34,18 +33,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FILM_REVIEWS:
       return extend(state, {
         filmReviews: action.payload,
-      });
-    case ActionType.ADD_ERROR_NOTIFICATION:
-      const notifications = state.notifications.slice();
-      notifications.push(action.payload);
-      return extend(state, {
-        notifications,
-      });
-    case ActionType.REMOVE_NOTIFICATION:
-      const filteredNotifications = state.notifications.slice()
-        .filter((notification) => notification.id !== action.payload);
-      return extend(state, {
-        notifications: filteredNotifications,
       });
     default:
       return state;

@@ -1,6 +1,11 @@
-import {AuthorizationStatus, ErrorType} from "@store/user/const";
+import {nanoid} from "nanoid";
 
-import {addAuthorizationError, setAuthorizationStatus} from "./action-creator";
+import {ID_LENGTH} from "@store/const";
+import {addNotification} from "@store/notification/action-creator";
+import {HTTPMethod, NotificationType} from "@store/notification/const";
+
+import {setAuthorizationStatus} from "./action-creator";
+import {AuthorizationStatus, UserErrorNotificationName} from "./const";
 
 
 const checkAuth = () => (dispatch, getState, api) => {
@@ -19,9 +24,15 @@ const login = (authData) => (dispatch, getState, api) => {
       window.location.href = `/`;
       dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
     })
-    .catch((error) => {
-      dispatch(addAuthorizationError(ErrorType.EMAIL));
-      throw error;
+    .catch(() => {
+      dispatch(addNotification({
+        id: nanoid(ID_LENGTH),
+        type: NotificationType.HIDDEN,
+        name: UserErrorNotificationName.EMAIL,
+        method: HTTPMethod.POST,
+        title: `Email is invalid`,
+        text: `Enter correct email and try to post again`,
+      }));
     });
 };
 
