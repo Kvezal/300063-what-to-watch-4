@@ -22,10 +22,6 @@ const getCurrentGenre = (state) => {
   return state[NAME_SPACE].genre;
 };
 
-const getFilmId = (state) => {
-  return state[NAME_SPACE].currentFilmId;
-};
-
 const getReviews = (state) => {
   return state[NAME_SPACE].filmReviews;
 };
@@ -66,7 +62,7 @@ export {
   getFilms,
   getPromoFilm,
   getReviews,
-  getFilmId,
+  getCurrentFilmId,
   getLikedFilms,
   getFilmById,
   getFilteredFilmsByGenre,

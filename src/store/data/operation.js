@@ -1,7 +1,7 @@
 import {nanoid} from "nanoid";
 import {adaptFilm, adaptReview} from "@common/adapter";
 import {ID_LENGTH} from "@store/const";
-import {getFilmId} from "@store/data/selectors";
+import {getCurrentFilmId} from "@store/data/selectors";
 import {addNotification} from "@store/notification/action-creator";
 import {NotificationType, HTTPMethod} from "@store/notification/const";
 
@@ -48,7 +48,7 @@ const loadPromoFilm = () => (dispatch, getState, api) => {
 };
 
 const loadFilmReviews = () => (dispatch, getState, api) => {
-  const filmId = getFilmId(getState());
+  const filmId = getCurrentFilmId(getState());
   const path = URLHandlerPath.FILM_COMMENT.replace(`:filmId`, filmId);
   return api
     .get(path)
@@ -69,7 +69,7 @@ const loadFilmReviews = () => (dispatch, getState, api) => {
 };
 
 const postReview = (commentData) => (dispatch, getState, api) => {
-  const filmId = getFilmId(getState());
+  const filmId = getCurrentFilmId(getState());
   const path = URLHandlerPath.FILM_COMMENT.replace(`:filmId`, filmId);
   return api.post(path, commentData)
     .then(() => {
