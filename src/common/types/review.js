@@ -6,6 +6,7 @@ const reviewType = {
   text: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
+  underlineColor: PropTypes.string.isRequired,
 };
 
 export default reviewType;

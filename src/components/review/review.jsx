@@ -4,9 +4,9 @@ import {reviewType} from "@common/types";
 
 
 const Review = (props) => {
-  const {ratingScore, text, author, date} = props;
+  const {ratingScore, text, author, date, underlineColor} = props;
 
-  return <div className="review">
+  return <div className="review" style={{borderBottom: `1px solid ${underlineColor}`}}>
     <blockquote className="review__quote">
       <p className="review__text">{text}</p>
       <footer className="review__details">
@@ -16,6 +16,10 @@ const Review = (props) => {
     </blockquote>
     <div className="review__rating">{ratingScore}</div>
   </div>;
+};
+
+Review.defaultProps = {
+  underlineColor: `#ffffff`,
 };
 
 Review.propTypes = reviewType;

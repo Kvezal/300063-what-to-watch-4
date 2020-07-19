@@ -8,7 +8,6 @@ import {splitListIntoTwoColumn} from "@common/utils";
 
 const Reviews = (props) => {
   const {list} = props;
-
   const {left, right} = splitListIntoTwoColumn(Review, list);
   return <div className="movie-card__reviews movie-card__row">
     <div className="movie-card__reviews-col">{left}</div>

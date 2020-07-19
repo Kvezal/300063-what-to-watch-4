@@ -9,6 +9,7 @@ import Tabs from "@components/tabs/tabs";
 import User from "@components/user/user";
 import {FilmOverviewTabsEnum} from "@common/enums";
 import {filmType, reviewType} from "@common/types";
+import {getColorParams} from "@common/utils";
 
 import Details from "./details/details";
 import Overview from "./overview/overview";
@@ -16,7 +17,7 @@ import Reviews from "./reviews/reviews";
 
 
 const getTab = (activeTab, info, reviews) => {
-  const {rating, description, director, starring, genre, runTime, releaseDate} = info;
+  const {rating, description, director, starring, genre, runTime, releaseDate, picture} = info;
   switch (activeTab) {
     case FilmOverviewTabsEnum.DETAILS:
       return <Details
@@ -27,6 +28,14 @@ const getTab = (activeTab, info, reviews) => {
         starring={starring}
       />;
     case FilmOverviewTabsEnum.REVIEWS:
+      const colors = getColorParams({
+        hexColor: picture.backgroundColor,
+        offset: 20,
+      });
+      reviews.map((review) => {
+        review.underlineColor = colors.RGBAWithOffset;
+        return review;
+      });
       return <Reviews list={reviews}/>;
     case FilmOverviewTabsEnum.OVERVIEW:
     default:
