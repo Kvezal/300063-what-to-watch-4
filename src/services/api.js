@@ -1,14 +1,12 @@
 import axios from "axios";
 
+import {API_URL, HTTPErrorCode, SERVER_TIMEOUT} from "@services/const";
 
-const Error = {
-  UNAUTHORIZED: 401,
-};
 
 const createAPI = (onUnauthorized) => {
   const api = axios.create({
-    baseURL: `https://4.react.pages.academy/wtw`,
-    timeout: 5000,
+    baseURL: API_URL,
+    timeout: SERVER_TIMEOUT,
     withCredentials: true,
   });
 
@@ -16,9 +14,8 @@ const createAPI = (onUnauthorized) => {
 
   const onFail = (error) => {
     const {response} = error;
-    if (response.state === Error.UNAUTHORIZED) {
+    if (response.status === HTTPErrorCode.UNAUTHORIZED) {
       onUnauthorized();
-
       // throw an error because it's important to interrupt the Promise chane after an authorization request
       // authorization request is a special case and we have to understand a request was failed
       throw error;

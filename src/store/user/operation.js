@@ -4,13 +4,16 @@ import {ID_LENGTH} from "@store/const";
 import {addNotification} from "@store/notification/action-creator";
 import {HTTPMethod, NotificationType} from "@store/notification/const";
 
-import {setAuthorizationStatus} from "./action-creator";
+import {setAuthorizationStatus, setUser} from "./action-creator";
 import {AuthorizationStatus, UserErrorNotificationName} from "./const";
+import {adaptUser} from "@common/adapter";
 
 
 const checkAuth = () => (dispatch, getState, api) => {
   return api.get(`/login `)
-    .then(() => {
+    .then((response) => adaptUser(response.data))
+    .then((user) => {
+      dispatch(setUser(user));
       dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
     });
 };
@@ -20,9 +23,11 @@ const login = (authData) => (dispatch, getState, api) => {
     email: authData.email,
     password: authData.password,
   })
-    .then(() => {
-      window.location.href = `/`;
+    .then((response) => adaptUser(response.data))
+    .then((user) => {
+      dispatch(setUser(user));
       dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
+      window.location.href = `/`;
     })
     .catch(() => {
       dispatch(addNotification({

@@ -5,7 +5,7 @@ const NAME_SPACE = NameSpace.DATA;
 
 const ActionType = {
   SET_AUTHORIZATION_STATUS: `SET_AUTHORIZATION_STATUS`,
-  ADD_AUTHORIZATION_ERROR: `ADD_AUTHORIZATION_ERROR`,
+  SET_USER: `SET_USER`,
 };
 
 const AuthorizationStatus = {

@@ -1,13 +1,13 @@
 import {connect} from "react-redux";
 
 import AddReview from "@pages/add-review/add-review";
-import {getAuthorizedFlag} from "@store/user/selector";
+import {getAuthorizedFlag, getAvatar} from "@store/user/selector";
 import {getFilmById} from "@store/data/selectors";
 import {postReview} from "@store/data/operation";
 
 
 const mapStateToProps = (state) => ({
-  avatar: `avatar`,
+  avatar: getAvatar(state),
   isAuthorized: getAuthorizedFlag(state),
   film: getFilmById(state),
 });

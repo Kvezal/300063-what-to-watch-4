@@ -39,14 +39,12 @@ const App = () => {
     <Switch>
       <Route exact path="/">
         <MainWrapper
-          avatar="avatar.jpg"
           tabList={filmFilters}
           activeTab={filmFilters[0].id}
         />
       </Route>
       <Route exact path="/films">
         <FilmDescriptionWrapper
-          avatar="avatar.jpg"
           baseTab="overview"
           tabList={filmDescriptionTabList}
           activeTab={filmDescriptionTabList[0].id}

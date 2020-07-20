@@ -11,7 +11,13 @@ const removeNotification = (notificationId) => ({
   payload: notificationId,
 });
 
+const removeNotificationsByName = (payload) => ({
+  type: ActionType.REMOVE_NOTIFICATIONS_BY_NAME,
+  payload,
+});
+
 export {
   addNotification,
   removeNotification,
+  removeNotificationsByName,
 };

@@ -16,10 +16,14 @@ const reducer = (state = initialState, action) => {
         notifications,
       });
     case ActionType.REMOVE_NOTIFICATION:
-      const filteredNotifications = state.notifications.slice()
-        .filter((notification) => notification.id !== action.payload);
       return extend(state, {
-        notifications: filteredNotifications,
+        notifications: state.notifications.slice()
+          .filter((notification) => notification.id !== action.payload),
+      });
+    case ActionType.REMOVE_NOTIFICATIONS_BY_NAME:
+      return extend(state, {
+        notifications: state.notifications.slice()
+          .filter((notification) => notification.name !== action.payload),
       });
     default:
       return state;

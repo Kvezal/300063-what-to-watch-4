@@ -54,7 +54,7 @@ class AddReview extends PureComponent {
           <Logo/>
           <Breadcrumbs list={breadcrumbs}/>
           <User
-            avatar={avatar}
+            avatar={avatar || ``}
             isAuthorized={isAuthorized}
           />
         </header>
@@ -114,7 +114,7 @@ class AddReview extends PureComponent {
 }
 
 AddReview.propTypes = {
-  avatar: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
   isAuthorized: PropTypes.bool.isRequired,
   film: PropTypes.shape(filmType),
   onSubmitForm: PropTypes.func.isRequired,

@@ -61,7 +61,7 @@ const FilmDescription = (props) => {
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header movie-card__head">
           <Logo/>
-          <User avatar={avatar} isAuthorized={isAuthorized}/>
+          <User avatar={avatar || ``} isAuthorized={isAuthorized}/>
         </header>
 
         <div className="movie-card__wrap">
@@ -129,7 +129,7 @@ FilmDescription.propTypes = {
   likedFilms: PropTypes.arrayOf(
       PropTypes.shape(filmType)
   ).isRequired,
-  avatar: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
   tabList: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
