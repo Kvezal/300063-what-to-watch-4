@@ -2,20 +2,22 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
+import AppRoute from "@app/app-route";
+import history from "@app/history";
+import {filmType} from "@common/types";
 import ButtonMore from "@components/button-more/button-more";
 import FilmFilter from "@components/film-filter/film-filter";
 import FilmList from "@components/film-list/film-list";
 import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
-import {filmType} from "@common/types";
 import User from "@components/user/user";
 
 
 const FILM_COUNT_IN_ONE_STEP = 8;
 
 const Main = (props) => {
-  const {promoFilm, films, avatar, onFilmChoose, onStepChange, step, tabList, activeTab, onActiveTabChange, chooseFilmsWithGenre, isAuthorized} = props;
-  const {genre, releaseDate, name, picture} = promoFilm;
+  const {promoFilm, films, avatar, onStepChange, step, tabList, activeTab, onActiveTabChange, onFilmsWithGenreChoose, isAuthorized, onFavoriteFilmClick} = props;
+  const {id: promoFilmId, genre, releaseDate, name, picture} = promoFilm;
   const hasPromoParams = genre && releaseDate && name && picture;
   if (!hasPromoParams) {
     return null;
@@ -30,7 +32,7 @@ const Main = (props) => {
       <h1 className="visually-hidden">WTW</h1>
       <header className="page-header movie-card__head">
         <Logo/>
-        <User avatar={avatar || ``} isAuthorized={isAuthorized}/>
+        <User avatar={avatar} isAuthorized={isAuthorized}/>
       </header>
 
       <div className="movie-card__wrap">
@@ -47,18 +49,28 @@ const Main = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <Link className="btn btn--play movie-card__button" type="button" to="/player">
+              <Link
+                className="btn btn--play movie-card__button"
+                type="button"
+                to={AppRoute.PLAYER.replace(`:filmId`, promoFilmId)}
+              >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"/>
                 </svg>
                 <span>Play</span>
               </Link>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"/>
-                </svg>
-                <span>My list</span>
-              </button>
+              {isAuthorized && (
+                <button
+                  className="btn btn--list movie-card__button"
+                  type="button"
+                  onClick={() => onFavoriteFilmClick(promoFilm)}
+                >
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"/>
+                  </svg>
+                  <span>My list</span>
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -73,14 +85,14 @@ const Main = (props) => {
           list={tabList}
           onItemClick={(id) => {
             onActiveTabChange(id);
-            chooseFilmsWithGenre(id);
+            onFilmsWithGenreChoose(id);
           }}
           activeItem={activeTab}
         />
 
         <FilmList
           list={films}
-          onCardClick={onFilmChoose}
+          onCardClick={(filmId) => history.push(AppRoute.FILMS.replace(`:filmId`, filmId))}
           pack={FILM_COUNT_IN_ONE_STEP}
           step={step}
         />
@@ -114,9 +126,9 @@ Main.propTypes = {
   ).isRequired,
   activeTab: PropTypes.string.isRequired,
   onActiveTabChange: PropTypes.func.isRequired,
-  onFilmChoose: PropTypes.func.isRequired,
-  chooseFilmsWithGenre: PropTypes.func.isRequired,
+  onFilmsWithGenreChoose: PropTypes.func.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
+  onFavoriteFilmClick: PropTypes.func.isRequired,
 };
 
 export default Main;

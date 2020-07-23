@@ -1,6 +1,6 @@
 import {createSelector} from "reselect";
 
-import {GenreEnum} from "@common/enums";
+import {EGenre} from "@common/enums";
 import NameSpace from "@store/name-space.js";
 
 
@@ -14,8 +14,8 @@ const getPromoFilm = (state) => {
   return state[NAME_SPACE].promoFilm;
 };
 
-const getCurrentFilmId = (state) => {
-  return state[NAME_SPACE].currentFilmId;
+const getCurrentFilmId = (state, props) => {
+  return Number(props.match.params.filmId);
 };
 
 const getCurrentGenre = (state) => {
@@ -24,6 +24,10 @@ const getCurrentGenre = (state) => {
 
 const getReviews = (state) => {
   return state[NAME_SPACE].filmReviews;
+};
+
+const getFavoriteFilms = (state) => {
+  return state[NAME_SPACE].favoriteFilms;
 };
 
 const getFilmById = createSelector(
@@ -42,7 +46,7 @@ const getLikedFilms = createSelector(
         return [];
       }
       return films
-        .filter((film) => film.genre === currentFilm.genre)
+        .filter((film) => film.genre === currentFilm.genre && film.id !== currentFilm.id)
         .slice(0, 4);
     }
 );
@@ -51,7 +55,7 @@ const getFilteredFilmsByGenre = createSelector(
     getFilms,
     getCurrentGenre,
     (films, genre) => {
-      if (genre === GenreEnum.ALL) {
+      if (genre === EGenre.ALL) {
         return films;
       }
       return films.filter((film) => film.genre === genre);
@@ -63,6 +67,7 @@ export {
   getPromoFilm,
   getReviews,
   getCurrentFilmId,
+  getFavoriteFilms,
   getLikedFilms,
   getFilmById,
   getFilteredFilmsByGenre,

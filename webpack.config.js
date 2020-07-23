@@ -2,7 +2,7 @@
 
 const path = require(`path`);
 
-const publicDir = path.resolve(__dirname, `public`);
+const publicDir = path.join(__dirname, `public`);
 
 module.exports = {
   entry: `./src/index.jsx`,

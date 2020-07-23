@@ -1,70 +1,67 @@
 import React from "react";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
 
+import AppRoute from "@app/app-route";
+import history from "@app/history";
 import AddReview from "@containers/add-review";
 import FilmDescription from "@containers/film-description";
 import Main from "@containers/main";
-import NotificationList from "@containers/notification-list";
 import Player from "@containers/player";
 import SignIn from "@containers/sign-in";
-import {FilmOverviewTabsEnum} from "@common/enums";
-import {withActiveFlag, withActiveTab, withStep} from "@common/hocs";
+import {EFilmOverviewTab, EGenre} from "@common/enums";
+import {withActiveFlag, withActiveTab, withNotifications, withStep} from "@common/hocs";
 
 
-const MainWrapper = withActiveTab(withStep(Main));
-const FilmDescriptionWrapper = withActiveTab(FilmDescription);
-const PlayerWrapper = withActiveFlag(Player);
+const MainWrapper = withNotifications(withActiveTab(withStep(Main)));
+const FilmDescriptionWrapper = withNotifications(withActiveTab(FilmDescription));
+const PlayerWrapper = withNotifications(withActiveFlag(Player));
 
 const App = () => {
   const filmDescriptionTabList = [
-    {name: `Overview`, id: FilmOverviewTabsEnum.OVERVIEW},
-    {name: `Details`, id: FilmOverviewTabsEnum.DETAILS},
-    {name: `Reviews`, id: FilmOverviewTabsEnum.REVIEWS},
+    {name: `Overview`, id: EFilmOverviewTab.OVERVIEW},
+    {name: `Details`, id: EFilmOverviewTab.DETAILS},
+    {name: `Reviews`, id: EFilmOverviewTab.REVIEWS},
   ];
 
   const filmFilters = [
-    {name: `All genres`, id: `All genres`},
-    {name: `Comedies`, id: `Comedy`},
-    {name: `Crime`, id: `Crime`},
-    {name: `Documentary`, id: `Documentary`},
-    {name: `Dramas`, id: `Drama`},
-    {name: `Horror`, id: `Horror`},
-    {name: `Kids & Family`, id: `Kids & Family`},
-    {name: `Romance`, id: `Romance`},
-    {name: `Sci-Fi`, id: `Sci-Fi`},
-    {name: `Thrillers`, id: `Thriller`}
+    {name: `All genres`, id: EGenre.ALL},
+    {name: `Comedies`, id: EGenre.COMEDY},
+    {name: `Crime`, id: EGenre.CRIME},
+    {name: `Documentary`, id: EGenre.DOCUMENTARY},
+    {name: `Dramas`, id: EGenre.DRAMA},
+    {name: `Horror`, id: EGenre.HORROR},
+    {name: `Kids & Family`, id: EGenre.KIDS_AND_FAMILY},
+    {name: `Romance`, id: EGenre.ROMANCE},
+    {name: `Sci-Fi`, id: EGenre.SCI_FI},
+    {name: `Thrillers`, id: EGenre.THRILLER}
   ];
 
-  return <BrowserRouter>
+  return <Router history={history}>
     <Switch>
-      <Route exact path="/">
-        <MainWrapper
+      <Route exact path={AppRoute.ROOT} render={() => {
+        return <MainWrapper
           tabList={filmFilters}
-          activeTab={filmFilters[0].id}
-        />
-      </Route>
-      <Route exact path="/films">
-        <FilmDescriptionWrapper
-          baseTab="overview"
-          tabList={filmDescriptionTabList}
-          activeTab={filmDescriptionTabList[0].id}
-        />
-      </Route>
-      <Route exact path="/player">
+          activeTab={EGenre.ALL}
+        />;
+      }}/>
+      <Route exact path={AppRoute.PLAYER} render={(props) =>
         <PlayerWrapper
           muted={false}
           isActive={true}
+          {...props}
         />
-      </Route>
-      <Route exact path="/login">
-        <SignIn/>
-      </Route>
-      <Route exact path="/dev-review">
-        <AddReview/>
-      </Route>
+      }/>
+      <Route exact path={AppRoute.LOGIN} render={() => <SignIn/>}/>
+      <Route exact path={AppRoute.REVIEW} render={() => <AddReview/>}/>
+      <Route exact path={AppRoute.FILMS} render={(props) =>
+        <FilmDescriptionWrapper
+          baseTab="overview"
+          tabList={filmDescriptionTabList}
+          activeTab={EFilmOverviewTab.OVERVIEW}
+          {...props}
+        />}/>
     </Switch>
-    <NotificationList/>
-  </BrowserRouter>;
+  </Router>;
 };
 
 export default App;

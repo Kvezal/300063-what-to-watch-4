@@ -102,6 +102,15 @@ const withVideoPlayer = (Component) => {
         video.src = source;
       }
     }
+
+    componentWillUnmount() {
+      const video = this._videoRef.current;
+      video.oncanplaythrough = null;
+      video.onplay = null;
+      video.onpause = null;
+      video.onloadedmetadata = null;
+      video.ontimeupdate = null;
+    }
   }
 
   WithVideoPlayer.defaultProps = {

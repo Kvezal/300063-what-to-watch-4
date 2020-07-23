@@ -7,8 +7,8 @@ import {getFilmById, getFilteredFilmsByGenre} from "@store/data/selectors";
 
 const PlayerWrapper = withVideoPlayer(Player);
 
-const mapStateToProps = (state) => {
-  const film = getFilmById(state);
+const mapStateToProps = (state, props) => {
+  const film = getFilmById(state, props);
   return {
     films: getFilteredFilmsByGenre(state),
     source: film ? film.source.video : ``,

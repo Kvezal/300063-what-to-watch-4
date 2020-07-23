@@ -1,35 +1,41 @@
 import {ActionType} from "./const";
 
 
-const chooseGenre = (genre) => ({
+const chooseGenre = (payload) => ({
   type: ActionType.CHOOSE_GENRE,
-  payload: genre,
+  payload,
 });
 
-const loadFilms = (films) => ({
+const loadFilms = (payload) => ({
   type: ActionType.LOAD_FILMS,
-  payload: films,
+  payload,
 });
 
-const chooseFilmId = (filmId) => ({
-  type: ActionType.CHOOSE_FILM_ID,
-  payload: filmId,
+const loadFavoriteFilms = (payload) => ({
+  type: ActionType.LOAD_FAVORITE_FILMS,
+  payload,
 });
 
-const loadPromoFilm = (film) => ({
+const loadPromoFilm = (payload) => ({
   type: ActionType.LOAD_PROMO_FILM,
-  payload: film,
+  payload,
 });
 
-const loadFilmReviews = (reviews) => ({
+const loadFilmReviews = (payload) => ({
   type: ActionType.LOAD_FILM_REVIEWS,
-  payload: reviews,
+  payload,
+});
+
+const updateFilm = (payload) => ({
+  type: ActionType.UPDATE_FILM,
+  payload,
 });
 
 export {
   chooseGenre,
   loadFilms,
-  chooseFilmId,
+  loadFavoriteFilms,
   loadPromoFilm,
   loadFilmReviews,
+  updateFilm,
 };

@@ -1,8 +1,8 @@
-import FilmOverviewTabsEnum from "./film-overview-tabs";
-import GenreEnum from "./genres";
+import EFilmOverviewTab from "./film-overview-tab";
+import EGenre from "./genre";
 
 
 export {
-  FilmOverviewTabsEnum,
-  GenreEnum,
+  EFilmOverviewTab,
+  EGenre,
 };

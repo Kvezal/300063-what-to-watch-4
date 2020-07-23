@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
+import AppRoute from "@app/app-route";
 import {getTime} from "@common/utils";
 
 
@@ -16,7 +17,7 @@ const Player = (props) => {
 
     <Link
       className="player__exit"
-      to="/"
+      to={AppRoute.ROOT}
       style={{textDecoration: `none`}}
     >
       Exit

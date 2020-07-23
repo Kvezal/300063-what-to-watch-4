@@ -1,8 +1,10 @@
 import {connect} from "react-redux";
 
 import Main from "@pages/main/main";
-import {chooseFilmId, chooseGenre} from "@store/data/action-creator";
+import {chooseGenre} from "@store/data/action-creator";
 import {getFilteredFilmsByGenre, getPromoFilm} from "@store/data/selectors";
+import {FavoriteFilmStatus} from "@store/data/const";
+import {changeFavoriteFilmStatus} from "@store/data/operation";
 import {getAuthorizedFlag, getAvatar} from "@store/user/selector";
 
 
@@ -14,12 +16,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilmChoose: (filmId) => {
-    dispatch(chooseFilmId(filmId));
+  onFilmsWithGenreChoose: (genre) => {
+    dispatch(chooseGenre(genre));
   },
 
-  chooseFilmsWithGenre: (genre) => {
-    dispatch(chooseGenre(genre));
+  onFavoriteFilmClick: (film) => {
+    const favoriteStatus = film.isFavorite ? FavoriteFilmStatus.ADD : FavoriteFilmStatus.DELETE;
+    dispatch(changeFavoriteFilmStatus(film.id, favoriteStatus));
   }
 });
 

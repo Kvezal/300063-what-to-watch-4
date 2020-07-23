@@ -1,5 +1,6 @@
-import NameSpace from "@store/name-space";
 import {createSelector} from "reselect";
+
+import NameSpace from "@store/name-space";
 import {NotificationType} from "@store/notification/const";
 
 

@@ -2,9 +2,8 @@ import MockAdapter from "axios-mock-adapter";
 
 import {adaptFilm, adaptReview} from "@common/adapter";
 import {extend} from "@common/utils";
-import {GenreEnum} from "@common/enums";
+import {EGenre} from "@common/enums";
 import createAPI from "@services/api";
-import NameSpace from "@store/name-space";
 
 import {ActionType} from "./const";
 import * as ActionCreator from "./action-creator";
@@ -15,10 +14,11 @@ import * as Operation from "./operation";
 const api = createAPI(() => {});
 
 const initialState = {
-  genre: GenreEnum.ALL,
+  genre: EGenre.ALL,
   films: [],
-  promoFilm: null,
-  currentFilmId: 1,
+  promoFilm: {},
+  filmReviews: [],
+  favoriteFilms: [],
 };
 
 const filmFromServer = {
@@ -80,6 +80,7 @@ const promoFilm = {
     `James Woods`,
     `Elizabeth McGovern`
   ],
+  isFavorite: false,
 };
 
 const films = [
@@ -111,6 +112,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
   {
     id: 2,
@@ -140,6 +142,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
   {
     id: 3,
@@ -169,6 +172,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
   {
     id: 4,
@@ -198,6 +202,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
 ];
 
@@ -258,15 +263,6 @@ describe(`DataReducer`, () => {
       });
   });
 
-  test(`choose film id action should return correct object`, () => {
-    const filmId = 10;
-    expect(ActionCreator.chooseFilmId(filmId))
-      .toEqual({
-        type: ActionType.CHOOSE_FILM_ID,
-        payload: filmId,
-      });
-  });
-
   test(`load promo film action should return correct object`, () => {
     expect(ActionCreator.loadPromoFilm(promoFilm))
       .toEqual({
@@ -280,6 +276,22 @@ describe(`DataReducer`, () => {
       .toEqual({
         type: ActionType.LOAD_FILM_REVIEWS,
         payload: reviews,
+      });
+  });
+
+  test(`load favorite films action should return correct object`, () => {
+    expect(ActionCreator.loadFavoriteFilms(films))
+      .toEqual({
+        type: ActionType.LOAD_FAVORITE_FILMS,
+        payload: films,
+      });
+  });
+
+  test(`update film action should return correct object`, () => {
+    expect(ActionCreator.updateFilm(films))
+      .toEqual({
+        type: ActionType.UPDATE_FILM,
+        payload: films,
       });
   });
 
@@ -303,7 +315,7 @@ describe(`DataReducer`, () => {
   });
 
   test(`should set genre`, () => {
-    const genre = GenreEnum.DRAMA;
+    const genre = EGenre.DRAMA;
     const chooseGenreAction = {
       type: ActionType.CHOOSE_GENRE,
       payload: genre,
@@ -314,44 +326,113 @@ describe(`DataReducer`, () => {
       }));
   });
 
-  test(`should set currentFilmId`, () => {
-    const filmId = 2;
-    const state = extend(initialState, {
-      films,
-    });
-    const chooseFilmAction = {
-      type: ActionType.CHOOSE_FILM_ID,
-      payload: filmId,
-    };
-    expect(reducer(state, chooseFilmAction))
-      .toEqual(extend(state, {
-        currentFilmId: filmId,
-      }));
-  });
-
   test(`should set filmReviews`, () => {
-    const state = extend(initialState, {
-      filmReviews: reviews,
-    });
     const loadFilmReviewsAction = {
       type: ActionType.LOAD_FILM_REVIEWS,
       payload: reviews,
     };
-    expect(reducer(state, loadFilmReviewsAction))
-      .toEqual(extend(state, {
+    expect(reducer(initialState, loadFilmReviewsAction))
+      .toEqual(extend(initialState, {
         filmReviews: reviews,
       }));
+  });
+
+  test(`should set favoriteFilms`, () => {
+    const loadFavoriteFilmsAction = {
+      type: ActionType.LOAD_FAVORITE_FILMS,
+      payload: films,
+    };
+    expect(reducer(initialState, loadFavoriteFilmsAction))
+      .toEqual(extend(initialState, {
+        favoriteFilms: films,
+      }))
+  });
+
+  test(`should update films and favoriteFilms`, () => {
+    const film = {
+      id: 2,
+      name: `name 2`,
+      genre: `Drama`,
+      runTime: `3h 49m`,
+      releaseDate: 1984,
+      description: `description 2`,
+      director: `director 2`,
+      rating: {
+        score: 9.9,
+        count: 276395,
+        assessment: `Very good`,
+      },
+      source: {
+        video: `video2`,
+        previewVideo: `previewVideo2`,
+      },
+      picture: {
+        poster: `poster2`,
+        preview: `preview2`,
+        cover: `cover2`,
+        backgroundColor: `color2`,
+      },
+      starring: [
+        `Robert De Niro`,
+        `James Woods`,
+        `Elizabeth McGovern`
+      ],
+      isFavorite: false,
+    };
+    const state = extend(initialState, {
+      favoriteFilms: [film],
+      films: [film],
+    });
+    const updatedFilm = {
+      id: 2,
+      name: `name 2`,
+      genre: `Drama`,
+      runTime: `3h 49m`,
+      releaseDate: 1984,
+      description: `description 2`,
+      director: `director 2`,
+      rating: {
+        score: 9.9,
+        count: 276395,
+        assessment: `Very good`,
+      },
+      source: {
+        video: `video2`,
+        previewVideo: `previewVideo2`,
+      },
+      picture: {
+        poster: `poster2`,
+        preview: `preview2`,
+        cover: `cover2`,
+        backgroundColor: `color2`,
+      },
+      starring: [
+        `Robert De Niro`,
+        `James Woods`,
+        `Elizabeth McGovern`
+      ],
+      isFavorite: true,
+    };
+    const updateFilmAction = {
+      type: ActionType.UPDATE_FILM,
+      payload: updatedFilm,
+    };
+    expect(reducer(state, updateFilmAction))
+      .toEqual(extend(initialState, {
+        films: [updatedFilm],
+        favoriteFilms: [updatedFilm],
+      }))
   });
 
   test(`should make a correct API call to /films`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const filmLoader = Operation.loadFilms();
+    const filmsLoader = Operation.loadFilms();
 
     apiMock.onGet(`/films`)
       .reply(200, [filmFromServer]);
 
-    return filmLoader(dispatch, () => {}, api)
+    return filmsLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenCalledWith({
@@ -369,7 +450,7 @@ describe(`DataReducer`, () => {
     apiMock.onGet(`/films/promo`)
       .reply(200, filmFromServer);
 
-    return promoFilmLoader(dispatch, () => {}, api)
+    promoFilmLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenCalledWith({
@@ -380,23 +461,56 @@ describe(`DataReducer`, () => {
   });
 
   test(`should make a correct API call to /comments/:filmId`, () => {
+    const filmId = 1;
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const filmReviewLoader = Operation.loadFilmReviews();
+    const filmReviewLoader = Operation.loadFilmReviews(filmId);
 
-    apiMock.onGet(`/comments/1`)
+    apiMock.onGet(`/comments/${filmId}`)
       .reply(200, [filmReviewFromServer]);
 
-    return filmReviewLoader(dispatch, () => ({
-      [NameSpace.DATA]: {
-        currentFilmId: 1,
-      }
-    }), api)
+    filmReviewLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenCalledWith({
           type: ActionType.LOAD_FILM_REVIEWS,
           payload: [adaptReview(filmReviewFromServer)],
+        });
+      });
+  });
+
+  test(`should make a correct API call to /favorite`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const favoriteFilmLoader = Operation.loadFavoriteFilms();
+
+    apiMock.onGet(`/favorite`)
+      .reply(200, [filmFromServer]);
+
+    favoriteFilmLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledWith({
+          type: ActionType.LOAD_FAVORITE_FILMS,
+          payload: [adaptFilm(filmFromServer)],
+        });
+      });
+  });
+
+  test(`should make a correct API call to /favorite/:filmId/:status`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const favoriteFilmStatusChanger = Operation.changeFavoriteFilmStatus(3, 1);
+
+    apiMock.onPost(`/favorite/3/1`)
+      .reply(200, filmFromServer);
+
+    favoriteFilmStatusChanger(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledWith({
+          type: ActionType.UPDATE_FILM,
+          payload: adaptFilm(filmFromServer),
         });
       });
   });

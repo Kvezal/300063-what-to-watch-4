@@ -7,13 +7,14 @@ const withActiveFlag = (Component) => {
     constructor(props) {
       super(props);
       this._handlerActiveChange = this._handlerActiveChange.bind(this);
+      this._isUnmounted = false;
       this.state = {
         isActive: props.isActive,
       };
     }
 
     _handlerActiveChange() {
-      this.setState((prevState) => ({isActive: !prevState.isActive}));
+      return !this._isUnmounted && this.setState((prevState) => ({isActive: !prevState.isActive}));
     }
 
     render() {
@@ -24,6 +25,10 @@ const withActiveFlag = (Component) => {
         isActive={isActive}
         onActiveChange={this._handlerActiveChange}
       />;
+    }
+
+    componentWillUnmount() {
+      this._isUnmounted = true;
     }
   }
 
