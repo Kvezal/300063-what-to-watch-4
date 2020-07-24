@@ -15,10 +15,10 @@ const api = createAPI(() => {});
 
 const initialState = {
   genre: EGenre.ALL,
-  films: [],
-  promoFilm: {},
-  filmReviews: [],
-  favoriteFilms: [],
+  films: null,
+  promoFilm: null,
+  filmReviews: null,
+  favoriteFilms: null,
 };
 
 const filmFromServer = {
@@ -348,7 +348,7 @@ describe(`DataReducer`, () => {
       }))
   });
 
-  test(`should update films and favoriteFilms`, () => {
+  test(`should update film in promoFilm, films and favoriteFilms`, () => {
     const film = {
       id: 2,
       name: `name 2`,
@@ -382,6 +382,7 @@ describe(`DataReducer`, () => {
     const state = extend(initialState, {
       favoriteFilms: [film],
       films: [film],
+      promoFilm: film,
     });
     const updatedFilm = {
       id: 2,
@@ -421,6 +422,7 @@ describe(`DataReducer`, () => {
       .toEqual(extend(initialState, {
         films: [updatedFilm],
         favoriteFilms: [updatedFilm],
+        promoFilm: updatedFilm,
       }))
   });
 
