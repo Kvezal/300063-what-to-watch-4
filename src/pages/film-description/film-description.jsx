@@ -168,7 +168,7 @@ FilmDescription.propTypes = {
   onActiveTabChange: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(
       PropTypes.shape(reviewType)
-  ).isRequired,
+  ),
   isAuthorized: PropTypes.bool.isRequired,
   onFavoriteFilmClick: PropTypes.func.isRequired,
   onReviewsLoad: PropTypes.func.isRequired,

@@ -9,12 +9,12 @@ import Main from "@containers/main";
 import Player from "@containers/player";
 import SignIn from "@containers/sign-in";
 import {EFilmOverviewTab, EGenre} from "@common/enums";
-import {withActiveFlag, withActiveTab, withNotifications, withStep} from "@common/hocs";
+import {withActiveTab, withNotifications, withStep} from "@common/hocs";
 
 
 const MainWrapper = withNotifications(withActiveTab(withStep(Main)));
 const FilmDescriptionWrapper = withNotifications(withActiveTab(FilmDescription));
-const PlayerWrapper = withNotifications(withActiveFlag(Player));
+const PlayerWrapper = withNotifications(Player);
 
 const App = () => {
   const filmDescriptionTabList = [
@@ -47,7 +47,7 @@ const App = () => {
       <Route exact path={AppRoute.PLAYER} render={(props) =>
         <PlayerWrapper
           muted={false}
-          isActive={true}
+          isPlaying={true}
           {...props}
         />
       }/>

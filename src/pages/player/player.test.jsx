@@ -14,10 +14,10 @@ describe(`PlayerPage`, () => {
     const fullScreenPlayerComponent = shallow(
         <Player
           renderPlayer={() => {}}
-          isActive={false}
+          isPlaying={false}
           time={0}
           duration={0}
-          onActiveChange={() => {}}
+          onPlayingChange={() => {}}
           onFullScreenOpen={() => {}}
         />,
         {createNodeMock: () => ({})}
@@ -30,10 +30,10 @@ describe(`PlayerPage`, () => {
     const fullScreenPlayerComponent = shallow(
         <Player
           renderPlayer={() => {}}
-          isActive={false}
+          isPlaying={false}
           time={0}
           duration={0}
-          onActiveChange={() => {}}
+          onPlayingChange={() => {}}
           onFullScreenOpen={() => {}}
         />
     );
@@ -45,10 +45,10 @@ describe(`PlayerPage`, () => {
     const fullScreenPlayerComponent = shallow(
         <Player
           renderPlayer={() => {}}
-          isActive={true}
+          isPlaying={true}
           time={0}
           duration={0}
-          onActiveChange={() => {}}
+          onPlayingChange={() => {}}
           onFullScreenOpen={() => {}}
         />
     );
@@ -61,10 +61,10 @@ describe(`PlayerPage`, () => {
     const fullScreenPlayerComponent = shallow(
         <Player
           renderPlayer={() => {}}
-          isActive={true}
+          isPlaying={true}
           time={0}
           duration={0}
-          onActiveChange={onPlayerButtonClick}
+          onPlayingChange={onPlayerButtonClick}
           onFullScreenOpen={() => {}}
         />
     );
@@ -76,10 +76,10 @@ describe(`PlayerPage`, () => {
     const fullScreenPlayerComponent = shallow(
         <Player
           renderPlayer={() => {}}
-          isActive={true}
+          isPlaying={true}
           time={10}
           duration={3700}
-          onActiveChange={() => {}}
+          onPlayingChange={() => {}}
           onFullScreenOpen={() => {}}
         />
     );
@@ -92,10 +92,10 @@ describe(`PlayerPage`, () => {
     const fullScreenPlayerComponent = shallow(
         <Player
           renderPlayer={() => {}}
-          isActive={true}
+          isPlaying={true}
           time={0}
           duration={0}
-          onActiveChange={() => {}}
+          onPlayingChange={() => {}}
           onFullScreenOpen={onFullScreenOpenClick}
         />
     );

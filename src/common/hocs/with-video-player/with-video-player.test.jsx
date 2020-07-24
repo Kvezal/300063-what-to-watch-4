@@ -20,7 +20,7 @@ const TestComponent = (props) => {
 };
 
 TestComponent.propTypes = {
-  isActive: PropTypes.bool.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
   renderPlayer: PropTypes.func.isRequired,
 };
 
@@ -36,7 +36,7 @@ describe(`withVideoPlayerHOC`, () => {
           <TestComponentWithHOC
             source={source}
             poster={poster}
-            isActive={false}
+            isPlaying={false}
           />,
           {createNodeMock: () => ({})}
       )
@@ -49,7 +49,7 @@ describe(`withVideoPlayerHOC`, () => {
         <TestComponentWithHOC
           source={source}
           poster={poster}
-          isActive={false}
+          isPlaying={false}
         />
     );
     const video = wrapper.find(`video`);
@@ -61,10 +61,10 @@ describe(`withVideoPlayerHOC`, () => {
         <TestComponentWithHOC
           source={source}
           poster={poster}
-          isActive={true}
+          isPlaying={true}
         />
     );
-    jest.spyOn(window.HTMLMediaElement.prototype, `play`).mockImplementation(() => {});
+    jest.spyOn(window.HTMLMediaElement.prototype, `play`).mockImplementation(() => new Promise(() => {}));
     const {_videoRef} = wrapper.instance();
     wrapper.instance().componentDidUpdate();
     expect(_videoRef.current.play).toHaveBeenCalled();
@@ -75,7 +75,7 @@ describe(`withVideoPlayerHOC`, () => {
         <TestComponentWithHOC
           source={source}
           poster={poster}
-          isActive={false}
+          isPlaying={false}
         />
     );
     jest.spyOn(window.HTMLMediaElement.prototype, `pause`).mockImplementation(() => {});

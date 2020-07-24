@@ -30,17 +30,17 @@ const getFavoriteFilms = (state) => {
   return state[NAME_SPACE].favoriteFilms;
 };
 
-const getFilmById = createSelector(
+const getCurrentFilm = createSelector(
     getFilms,
     getCurrentFilmId,
     (films, filmId) => {
-      return films.find((film) => film.id === filmId);
+      return films && films.find((film) => film.id === filmId);
     }
 );
 
 const getLikedFilms = createSelector(
     getFilms,
-    getFilmById,
+    getCurrentFilm,
     (films, currentFilm) => {
       if (!currentFilm) {
         return [];
@@ -62,6 +62,17 @@ const getFilteredFilmsByGenre = createSelector(
     }
 );
 
+const getCurrentFilmVideoSource = createSelector(
+    getCurrentFilm,
+    (film) => film && film.source.video
+);
+
+const getCurrentFilmPicturePreview = createSelector(
+    getCurrentFilm,
+    (film) => film && film.picture.preview
+);
+
+
 export {
   getFilms,
   getPromoFilm,
@@ -69,6 +80,8 @@ export {
   getCurrentFilmId,
   getFavoriteFilms,
   getLikedFilms,
-  getFilmById,
+  getCurrentFilm,
   getFilteredFilmsByGenre,
+  getCurrentFilmVideoSource,
+  getCurrentFilmPicturePreview,
 };

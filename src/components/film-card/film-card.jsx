@@ -1,50 +1,64 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 
 const VIDEO_PLAYING_DELAY = 1000;
 
-const FilmCard = (props) => {
-  const {filmId, filmName, onCardClick, onActiveChange, renderPlayer} = props;
+class FilmCard extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  let timer = 0;
+    this._timer = 0;
+    this._handleCardMouseEnter = this._handleCardMouseEnter.bind(this);
+    this._handleCardMouseLeave = this._handleCardMouseLeave.bind(this);
+  }
 
-  const handleCardMouseEnter = () => {
-    timer = setTimeout(() => {
-      onActiveChange();
-      clearTimeout(timer);
+  render() {
+    const {filmId, filmName, onCardClick, renderPlayer} = this.props;
+
+    return <article
+      className="small-movie-card catalog__movies-card"
+      onClick={() => onCardClick(filmId)}
+      onMouseEnter={this._handleCardMouseEnter}
+      onMouseLeave={this._handleCardMouseLeave}
+    >
+      <div className="small-movie-card__image">
+        {renderPlayer()}
+      </div>
+      <h3 className="small-movie-card__title">
+        <a className="small-movie-card__link">{filmName}</a>
+      </h3>
+    </article>;
+  }
+
+  _handleCardMouseEnter() {
+    const {onPlayingChange} = this.props;
+    this._timer = setTimeout(() => {
+      onPlayingChange(true);
+      clearTimeout(this._timer);
     }, VIDEO_PLAYING_DELAY);
-  };
+  }
 
-  const handleCardMouseLeave = () => {
-    if (!timer) {
-      onActiveChange();
-    } else {
-      clearTimeout(timer);
+  _handleCardMouseLeave() {
+    const {onPlayingChange} = this.props;
+    if (this._timer) {
+      clearTimeout(this._timer);
     }
-  };
+    onPlayingChange(false);
+  }
 
-  return <article
-    className="small-movie-card catalog__movies-card"
-    onClick={() => onCardClick(filmId)}
-    onMouseEnter={handleCardMouseEnter}
-    onMouseLeave={handleCardMouseLeave}
-  >
-    <div className="small-movie-card__image">
-      {renderPlayer()}
-    </div>
-    <h3 className="small-movie-card__title">
-      <a className="small-movie-card__link">{filmName}</a>
-    </h3>
-  </article>;
-};
+  componentWillUnmount() {
+    clearTimeout(this._timer);
+    this._handleCardMouseEnter = null;
+    this._handleCardMouseLeave = null;
+  }
+}
 
 FilmCard.propTypes = {
   filmId: PropTypes.number.isRequired,
   filmName: PropTypes.string.isRequired,
   onCardClick: PropTypes.func.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  onActiveChange: PropTypes.func.isRequired,
+  onPlayingChange: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,
 };
 

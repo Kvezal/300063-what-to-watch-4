@@ -1,11 +1,15 @@
 import {connect} from "react-redux";
 
+import {withLoading} from "@common/hocs";
 import Main from "@pages/main/main";
 import {chooseGenre} from "@store/data/action-creator";
 import {getFilteredFilmsByGenre, getPromoFilm} from "@store/data/selectors";
 import {FavoriteFilmStatus} from "@store/data/const";
 import {changeFavoriteFilmStatus} from "@store/data/operation";
 import {getAuthorizedFlag, getAvatar} from "@store/user/selector";
+
+
+const MainWrapper = withLoading(Main, [`promoFilm`, `films`]);
 
 
 const mapStateToProps = (state) => ({
@@ -26,4 +30,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(MainWrapper);

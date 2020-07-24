@@ -18,10 +18,6 @@ const FILM_COUNT_IN_ONE_STEP = 8;
 const Main = (props) => {
   const {promoFilm, films, avatar, onStepChange, step, tabList, activeTab, onActiveTabChange, onFilmsWithGenreChoose, isAuthorized, onFavoriteFilmClick} = props;
   const {id: promoFilmId, genre, releaseDate, name, picture} = promoFilm;
-  const hasPromoParams = genre && releaseDate && name && picture;
-  if (!hasPromoParams) {
-    return null;
-  }
 
   return <Fragment>
     <section className="movie-card">

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {withLoading} from "@common/hocs";
 import FilmDescription from "@pages/film-description/film-description";
 import {
-  getFilmById,
+  getCurrentFilm,
   getFilteredFilmsByGenre,
   getLikedFilms,
   getReviews
@@ -13,12 +13,14 @@ import {changeFavoriteFilmStatus, loadFilmReviews} from "@store/data/operation";
 import {FavoriteFilmStatus} from "@store/data/const";
 
 
+const FilmDescriptionWrapper = withLoading(FilmDescription, [`info`, `films`]);
+
 const mapStateToProps = (state, props) => ({
   avatar: getAvatar(state),
   films: getFilteredFilmsByGenre(state),
   likedFilms: getLikedFilms(state, props),
   reviews: getReviews(state, props),
-  info: getFilmById(state, props),
+  info: getCurrentFilm(state, props),
   isAuthorized: getAuthorizedFlag(state),
 });
 
@@ -33,4 +35,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withLoading(FilmDescription, [`info`]));
+export default connect(mapStateToProps, mapDispatchToProps)(FilmDescriptionWrapper);

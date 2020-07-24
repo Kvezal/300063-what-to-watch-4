@@ -5,11 +5,11 @@ import {ActionType} from "./const";
 
 
 const initialState = {
-  films: [],
+  films: null,
   genre: EGenre.ALL,
-  promoFilm: {},
-  filmReviews: [],
-  favoriteFilms: [],
+  promoFilm: null,
+  filmReviews: null,
+  favoriteFilms: null,
 };
 
 const updateItemFilm = (list, film) => {

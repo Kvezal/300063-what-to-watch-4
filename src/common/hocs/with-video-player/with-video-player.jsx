@@ -7,23 +7,26 @@ const withVideoPlayer = (Component) => {
     constructor(props) {
       super(props);
 
+      this._handlePlayerChange = this._handlePlayerChange.bind(this);
       this._handleFullScreenOpen = this._handleFullScreenOpen.bind(this);
       this._videoRef = createRef();
 
       this.state = {
         isLoading: true,
-        isPlaying: props.isActive,
+        isPlaying: props.isPlaying,
         time: 0,
         duration: 0,
       };
     }
 
     render() {
-      const {time, duration} = this.state;
+      const {time, duration, isPlaying} = this.state;
       return <Component
         {...this.props}
         time={time}
         duration={duration}
+        isPlaying={isPlaying}
+        onPlayingChange={this._handlePlayerChange}
         onFullScreenOpen={this._handleFullScreenOpen}
         renderPlayer={() => {
           return <video
@@ -32,6 +35,13 @@ const withVideoPlayer = (Component) => {
           />;
         }}
       />;
+    }
+
+    _handlePlayerChange(flag) {
+      const {isPlaying} = this.state;
+      this.setState({
+        isPlaying: flag !== undefined ? flag : !isPlaying,
+      });
     }
 
     _handleFullScreenOpen() {
@@ -81,17 +91,23 @@ const withVideoPlayer = (Component) => {
         });
       };
 
-      video.ontimeupdate = () => this.setState((prev) => ({
-        time: prev.isPlaying ? Math.floor(video.currentTime) : 0,
-      }));
+      video.ontimeupdate = () => {
+        this.setState((prev) => ({
+          time: prev.isPlaying || canStop ? Math.floor(video.currentTime) : 0,
+        }));
+      };
     }
 
     componentDidUpdate(prevProps) {
-      const {isActive: isPlaying, source, poster} = this.props;
+      const {source, poster} = this.props;
+      const {isPlaying} = this.state;
       const video = this._videoRef.current;
 
       if (isPlaying) {
-        video.play();
+        video.play()
+          .catch(() => this.setState({
+            isPlaying: false,
+          }));
       } else {
         video.pause();
       }
@@ -105,6 +121,7 @@ const withVideoPlayer = (Component) => {
 
     componentWillUnmount() {
       const video = this._videoRef.current;
+      this._handlePlayerChange = null;
       video.oncanplaythrough = null;
       video.onplay = null;
       video.onpause = null;
@@ -121,7 +138,7 @@ const withVideoPlayer = (Component) => {
   WithVideoPlayer.propTypes = {
     source: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
-    isActive: PropTypes.bool.isRequired,
+    isPlaying: PropTypes.bool.isRequired,
     muted: PropTypes.bool.isRequired,
     canStop: PropTypes.bool.isRequired,
   };

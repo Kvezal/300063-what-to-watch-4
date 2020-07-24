@@ -9,7 +9,7 @@ import {getTime} from "@common/utils";
 const PERCENTS_IN_ONE = 100;
 
 const Player = (props) => {
-  const {renderPlayer, onFullScreenOpen, isActive, onActiveChange, duration, time} = props;
+  const {renderPlayer, onFullScreenOpen, isPlaying, onPlayingChange, duration, time} = props;
   const progress = time / duration * PERCENTS_IN_ONE;
 
   return <div className="player">
@@ -36,10 +36,10 @@ const Player = (props) => {
         <button
           type="button"
           className="player__play"
-          onClick={onActiveChange}
+          onClick={() => onPlayingChange()}
         >
           <svg viewBox="0 0 19 19" width="19" height="19">
-            <use xlinkHref={`#${isActive ? `pause` : `play-s`}`}/>
+            <use xlinkHref={`#${isPlaying ? `pause` : `play-s`}`}/>
           </svg>
           <span>Play</span>
         </button>
@@ -58,8 +58,8 @@ const Player = (props) => {
 
 Player.propTypes = {
   renderPlayer: PropTypes.func.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  onActiveChange: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  onPlayingChange: PropTypes.func.isRequired,
   time: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
   onFullScreenOpen: PropTypes.func.isRequired,
