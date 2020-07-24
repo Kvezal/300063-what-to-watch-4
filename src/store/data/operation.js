@@ -1,14 +1,15 @@
 import {nanoid} from "nanoid";
+
+import {AppRoute, history} from "@app";
 import {adaptFilm, adaptReview} from "@common/adapter";
 import {ID_LENGTH} from "@store/const";
+import {FavoriteFilmStatus} from "@store/data/const";
 import {getCurrentFilmId} from "@store/data/selectors";
 import {addNotification} from "@store/notification/action-creator";
 import {NotificationType, HTTPMethod} from "@store/notification/const";
 
 import * as ActionCreator from "./action-creator";
 import {DataErrorNotificationName, URLHandlerPath} from "./const";
-import {AppRoute} from "@app/index";
-import {FavoriteFilmStatus} from "@store/data/const";
 
 
 const loadFilms = () => (dispatch, getState, api) => {
@@ -86,8 +87,8 @@ const loadFavoriteFilms = () => (dispatch, getState, api) => {
     });
 };
 
-const postReview = (commentData) => (dispatch, getState, api) => {
-  const filmId = getCurrentFilmId(getState());
+const postReview = (commentData, props) => (dispatch, getState, api) => {
+  const filmId = getCurrentFilmId(null, props);
   const path = URLHandlerPath.FILM_COMMENT.replace(`:filmId`, filmId);
   return api.post(path, commentData)
     .then(() => {

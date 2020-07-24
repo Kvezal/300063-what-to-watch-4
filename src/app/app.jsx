@@ -52,7 +52,7 @@ const App = () => {
         />
       }/>
       <Route exact path={AppRoute.LOGIN} render={() => <SignIn/>}/>
-      <Route exact path={AppRoute.REVIEW} render={() => <AddReview/>}/>
+      <Route exact path={AppRoute.REVIEW} render={(props) => <AddReview {...props}/>}/>
       <Route exact path={AppRoute.FILMS} render={(props) =>
         <FilmDescriptionWrapper
           baseTab="overview"

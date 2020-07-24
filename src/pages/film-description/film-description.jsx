@@ -95,7 +95,12 @@ class FilmDescription extends PureComponent {
                       </svg>
                       <span>My list</span>
                     </button>
-                    <Link to="/dev-review" className="btn movie-card__button">Add review</Link>
+                    <Link
+                      to={AppRoute.REVIEW.replace(`:filmId`, id)}
+                      className="btn movie-card__button"
+                    >
+                      Add review
+                    </Link>
                   </Fragment>
                 )}
               </div>
