@@ -49,7 +49,7 @@ const getTab = (activeTab, info, reviews) => {
 class FilmDescription extends PureComponent {
   render() {
     const {likedFilms, info, avatar, activeTab, tabList, reviews, onActiveTabChange, isAuthorized, onFavoriteFilmClick} = this.props;
-    const {id, name, genre, releaseDate, picture} = info;
+    const {id, name, genre, releaseDate, picture, isFavorite} = info;
 
     return <Fragment>
       <section className="movie-card movie-card--full" style={{backgroundColor: picture.backgroundColor}}>
@@ -90,9 +90,14 @@ class FilmDescription extends PureComponent {
                       type="button"
                       onClick={() => onFavoriteFilmClick(info)}
                     >
-                      <svg viewBox="0 0 19 20" width="19" height="20">
-                        <use xlinkHref="#add"/>
-                      </svg>
+                      {isFavorite
+                        ? <svg viewBox="0 0 18 14" width="18" height="14">
+                          <use xlinkHref="#in-list"/>
+                        </svg>
+                        : <svg viewBox="0 0 19 20" width="19" height="20">
+                          <use xlinkHref="#add"/>
+                        </svg>
+                      }
                       <span>My list</span>
                     </button>
                     <Link

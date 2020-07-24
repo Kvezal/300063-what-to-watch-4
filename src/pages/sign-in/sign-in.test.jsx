@@ -4,10 +4,10 @@ import {MemoryRouter} from "react-router-dom";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import {ErrorType, UserErrorNotificationName} from "@store/user/const";
+import {HTTPMethod, NotificationType} from "@store/notification/const";
+import {UserErrorNotificationName} from "@store/user/const";
 
 import SignIn from "./sign-in";
-import {HTTPMethod, NotificationType} from "@store/notification/const";
 
 
 Enzyme.configure({

@@ -37,6 +37,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
   {
     id: 2,
@@ -66,6 +67,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
   {
     id: 3,
@@ -95,6 +97,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
   {
     id: 4,
@@ -124,6 +127,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
 ];
 
