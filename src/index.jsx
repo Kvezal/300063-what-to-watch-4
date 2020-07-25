@@ -9,6 +9,7 @@ import App from "@app/app";
 import {createAPI} from "@services";
 import reducer from "@store/reducer";
 import {loadFilms, loadPromoFilm, loadFilmReviews} from "@store/data/operation";
+import {checkAuth} from "@store/user/operation";
 
 
 const api = createAPI(() => {});
@@ -20,6 +21,7 @@ const store = createStore(
     )
 );
 
+store.dispatch(checkAuth());
 store.dispatch(loadFilms());
 store.dispatch(loadPromoFilm());
 store.dispatch(loadFilmReviews());

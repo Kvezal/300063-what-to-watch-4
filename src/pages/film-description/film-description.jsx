@@ -4,8 +4,9 @@ import {Link} from "react-router-dom";
 
 import FilmList from "@components/film-list/film-list";
 import Footer from "@components/footer/footer";
-import Header from "@components/header/header";
+import Logo from "@components/logo/logo";
 import Tabs from "@components/tabs/tabs";
+import User from "@components/user/user";
 import {FilmOverviewTabsEnum} from "@common/enums";
 import {filmType, reviewType} from "@common/types";
 
@@ -39,7 +40,7 @@ const getTab = (activeTab, info, reviews) => {
 };
 
 const FilmDescription = (props) => {
-  const {likedFilms, info, avatar, onFilmChoose, activeTab, tabList, reviews, onActiveTabChange} = props;
+  const {likedFilms, info, avatar, onFilmChoose, activeTab, tabList, reviews, onActiveTabChange, isAuthorized} = props;
   if (!info) {
     return null;
   }
@@ -51,7 +52,11 @@ const FilmDescription = (props) => {
           <img src={picture && picture.cover} alt={name}/>
         </div>
 
-        <Header avatar={avatar}/>
+        <h1 className="visually-hidden">WTW</h1>
+        <header className="page-header movie-card__head">
+          <Logo/>
+          <User avatar={avatar} isAuthorized={isAuthorized}/>
+        </header>
 
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
@@ -131,6 +136,7 @@ FilmDescription.propTypes = {
       PropTypes.shape(reviewType)
   ).isRequired,
   onFilmChoose: PropTypes.func.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
 };
 
 export default FilmDescription;
