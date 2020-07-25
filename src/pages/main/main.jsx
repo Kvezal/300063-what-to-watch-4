@@ -16,7 +16,20 @@ import User from "@components/user/user";
 const FILM_COUNT_IN_ONE_STEP = 8;
 
 const Main = (props) => {
-  const {promoFilm, films, avatar, onStepChange, step, tabList, activeTab, onActiveTabChange, onFilmsWithGenreChoose, isAuthorized, onFavoriteFilmClick} = props;
+  const {
+    isAuthorized,
+    tabList,
+    activeTab,
+    step,
+    promoFilm,
+    films,
+    avatar,
+    onActiveTabChange,
+    onStepChange,
+    onStepReset,
+    onFilmsWithGenreChoose,
+    onFavoriteFilmClick,
+  } = props;
   const {id: promoFilmId, genre, releaseDate, name, picture} = promoFilm;
 
   return <Fragment>
@@ -82,6 +95,7 @@ const Main = (props) => {
           onItemClick={(id) => {
             onActiveTabChange(id);
             onFilmsWithGenreChoose(id);
+            onStepReset();
           }}
           activeItem={activeTab}
         />
@@ -107,13 +121,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promoFilm: PropTypes.shape(filmType).isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape(filmType)
-  ).isRequired,
-  avatar: PropTypes.string,
-  onStepChange: PropTypes.func.isRequired,
-  step: PropTypes.number.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
   tabList: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
@@ -121,9 +129,16 @@ Main.propTypes = {
       })
   ).isRequired,
   activeTab: PropTypes.string.isRequired,
+  step: PropTypes.number.isRequired,
+  promoFilm: PropTypes.shape(filmType).isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape(filmType)
+  ).isRequired,
+  avatar: PropTypes.string,
   onActiveTabChange: PropTypes.func.isRequired,
+  onStepChange: PropTypes.func.isRequired,
+  onStepReset: PropTypes.func.isRequired,
   onFilmsWithGenreChoose: PropTypes.func.isRequired,
-  isAuthorized: PropTypes.bool.isRequired,
   onFavoriteFilmClick: PropTypes.func.isRequired,
 };
 

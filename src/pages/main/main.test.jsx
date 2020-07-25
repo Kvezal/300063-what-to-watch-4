@@ -161,6 +161,7 @@ describe(`MainPage`, () => {
               onActiveTabChange={() => {}}
               isAuthorized={true}
               onFavoriteFilmClick={() => {}}
+              onStepReset={() => {}}
             />
           </MemoryRouter>,
           {createNodeMock: () => ({})}
@@ -187,6 +188,7 @@ describe(`MainPage`, () => {
         onActiveTabChange={() => {}}
         isAuthorized={true}
         onFavoriteFilmClick={() => {}}
+        onStepReset={() => {}}
       />
     );
     const mainTitleList = mainPage.find(`a.small-movie-card__link`);
@@ -213,6 +215,7 @@ describe(`MainPage`, () => {
         onActiveTabChange={() => {}}
         isAuthorized={true}
         onFavoriteFilmClick={onFavoriteFilmClick}
+        onStepReset={() => {}}
       />
     );
     mainPage.find(`button.movie-card__button`).simulate(`click`);
