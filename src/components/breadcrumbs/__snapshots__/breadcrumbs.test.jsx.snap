@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreadcrumbsComponent should render component 1`] = `
+<nav
+  className="breadcrumbs"
+>
+  <ul
+    className="breadcrumbs__list"
+  >
+    <li
+      className="breadcrumbs__item"
+    >
+      <a
+        aria-current={null}
+        className="breadcrumbs__link"
+        href="/href-1"
+        onClick={[Function]}
+      >
+        name-1
+      </a>
+    </li>
+    <li
+      className="breadcrumbs__item"
+    >
+      <a
+        aria-current={null}
+        className="breadcrumbs__link"
+        href="/href-2"
+        onClick={[Function]}
+      >
+        name-2
+      </a>
+    </li>
+    <li
+      className="breadcrumbs__item"
+    >
+      <a
+        className="breadcrumbs__link"
+      >
+        name-3
+      </a>
+    </li>
+  </ul>
+</nav>
+`;

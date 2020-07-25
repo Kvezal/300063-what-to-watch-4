@@ -1,12 +1,12 @@
 import {connect} from "react-redux";
 
 import NotificationList from "@components/notification-list/notification-list";
-import {removeNotification} from "@store/data/action-creator";
-import {getNotifications} from "@store/data/selectors";
+import {removeNotification} from "@store/notification/action-creator";
+import {getDisplayedNotifications} from "@store/notification/selectors";
 
 
 const mapStateToProps = (state) => ({
-  list: getNotifications(state),
+  list: getDisplayedNotifications(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

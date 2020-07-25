@@ -9,6 +9,11 @@ exports[`ReviewsComponent should render component 1`] = `
   >
     <div
       className="review"
+      style={
+        Object {
+          "borderBottom": "1px solid #000000",
+        }
+      }
     >
       <blockquote
         className="review__quote"
@@ -42,6 +47,11 @@ exports[`ReviewsComponent should render component 1`] = `
     </div>
     <div
       className="review"
+      style={
+        Object {
+          "borderBottom": "1px solid #000000",
+        }
+      }
     >
       <blockquote
         className="review__quote"
@@ -75,6 +85,11 @@ exports[`ReviewsComponent should render component 1`] = `
     </div>
     <div
       className="review"
+      style={
+        Object {
+          "borderBottom": "1px solid #000000",
+        }
+      }
     >
       <blockquote
         className="review__quote"
@@ -112,6 +127,11 @@ exports[`ReviewsComponent should render component 1`] = `
   >
     <div
       className="review"
+      style={
+        Object {
+          "borderBottom": "1px solid #000000",
+        }
+      }
     >
       <blockquote
         className="review__quote"
@@ -145,6 +165,11 @@ exports[`ReviewsComponent should render component 1`] = `
     </div>
     <div
       className="review"
+      style={
+        Object {
+          "borderBottom": "1px solid #000000",
+        }
+      }
     >
       <blockquote
         className="review__quote"
@@ -178,6 +203,11 @@ exports[`ReviewsComponent should render component 1`] = `
     </div>
     <div
       className="review"
+      style={
+        Object {
+          "borderBottom": "1px solid #000000",
+        }
+      }
     >
       <blockquote
         className="review__quote"

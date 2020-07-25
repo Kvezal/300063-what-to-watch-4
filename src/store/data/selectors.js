@@ -1,8 +1,7 @@
 import {createSelector} from "reselect";
 
 import {GenreEnum} from "@common/enums";
-
-import NameSpace from "../name-space.js";
+import NameSpace from "@store/name-space.js";
 
 
 const NAME_SPACE = NameSpace.DATA;
@@ -23,16 +22,8 @@ const getCurrentGenre = (state) => {
   return state[NAME_SPACE].genre;
 };
 
-const getFilmId = (state) => {
-  return state[NAME_SPACE].currentFilmId;
-};
-
 const getReviews = (state) => {
   return state[NAME_SPACE].filmReviews;
-};
-
-const getNotifications = (state) => {
-  return state[NAME_SPACE].notifications;
 };
 
 const getFilmById = createSelector(
@@ -71,8 +62,7 @@ export {
   getFilms,
   getPromoFilm,
   getReviews,
-  getFilmId,
-  getNotifications,
+  getCurrentFilmId,
   getLikedFilms,
   getFilmById,
   getFilteredFilmsByGenre,

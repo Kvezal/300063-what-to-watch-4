@@ -4,7 +4,8 @@ import classNames from "classnames";
 
 import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
-import {ErrorType} from "@store/user/const";
+import {TNotification} from "@store/notification/types";
+import {UserErrorNotificationName} from "@store/user/const";
 
 
 class SignIn extends PureComponent {
@@ -18,7 +19,7 @@ class SignIn extends PureComponent {
   }
 
   render() {
-    const {error} = this.props;
+    const {errors} = this.props;
 
     return <div className="user-page">
       <header className="page-header user-page__head">
@@ -29,7 +30,7 @@ class SignIn extends PureComponent {
       <div className="sign-in user-page__content">
         <div className={classNames({
           "sign-in__message": true,
-          "visually-hidden": error === ErrorType.NONE,
+          "visually-hidden": !errors.length,
         })}>
           <p>Please enter a valid email address</p>
         </div>
@@ -41,7 +42,7 @@ class SignIn extends PureComponent {
           <div className="sign-in__fields">
             <div className={classNames({
               "sign-in__field": true,
-              "sign-in__field--error": error !== ErrorType.NONE
+              "sign-in__field--error": errors.some((error) => error.name === UserErrorNotificationName.EMAIL)
             })}>
               <input
                 className="sign-in__input"
@@ -96,7 +97,9 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
-  error: PropTypes.string.isRequired,
+  errors: PropTypes.arrayOf(
+      PropTypes.shape(TNotification)
+  ).isRequired,
 };
 
 export default SignIn;

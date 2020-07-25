@@ -1,4 +1,5 @@
-import ActionType from "./action-type";
+import {ActionType} from "./const";
+
 
 const chooseGenre = (genre) => ({
   type: ActionType.CHOOSE_GENRE,
@@ -25,22 +26,10 @@ const loadFilmReviews = (reviews) => ({
   payload: reviews,
 });
 
-const addErrorNotification = (error) => ({
-  type: ActionType.ADD_ERROR_NOTIFICATION,
-  payload: error,
-});
-
-const removeNotification = (notificationId) => ({
-  type: ActionType.REMOVE_NOTIFICATION,
-  payload: notificationId,
-});
-
 export {
   chooseGenre,
   loadFilms,
   chooseFilmId,
   loadPromoFilm,
   loadFilmReviews,
-  addErrorNotification,
-  removeNotification,
 };

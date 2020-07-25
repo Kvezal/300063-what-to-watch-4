@@ -1,17 +1,17 @@
-import ActionType from "./action-type";
+import {ActionType} from "./const";
 
 
-const setAuthorizationStatus = (status) => ({
+const setAuthorizationStatus = (payload) => ({
   type: ActionType.SET_AUTHORIZATION_STATUS,
-  payload: status,
+  payload,
 });
 
-const addAuthorizationError = (error) => ({
-  type: ActionType.ADD_AUTHORIZATION_ERROR,
-  payload: error
+const setUser = (payload) => ({
+  type: ActionType.SET_USER,
+  payload
 });
 
 export {
   setAuthorizationStatus,
-  addAuthorizationError
+  setUser,
 };

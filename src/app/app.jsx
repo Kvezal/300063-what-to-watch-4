@@ -1,6 +1,7 @@
 import React from "react";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
+import AddReview from "@containers/add-review";
 import FilmDescription from "@containers/film-description";
 import Main from "@containers/main";
 import NotificationList from "@containers/notification-list";
@@ -38,14 +39,12 @@ const App = () => {
     <Switch>
       <Route exact path="/">
         <MainWrapper
-          avatar="avatar.jpg"
           tabList={filmFilters}
           activeTab={filmFilters[0].id}
         />
       </Route>
       <Route exact path="/films">
         <FilmDescriptionWrapper
-          avatar="avatar.jpg"
           baseTab="overview"
           tabList={filmDescriptionTabList}
           activeTab={filmDescriptionTabList[0].id}
@@ -59,6 +58,9 @@ const App = () => {
       </Route>
       <Route exact path="/login">
         <SignIn/>
+      </Route>
+      <Route exact path="/dev-review">
+        <AddReview/>
       </Route>
     </Switch>
     <NotificationList/>

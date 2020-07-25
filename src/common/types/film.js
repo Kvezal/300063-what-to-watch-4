@@ -21,7 +21,7 @@ const filmType = {
     poster: PropTypes.string,
     preview: PropTypes.string,
     cover: PropTypes.string,
-    color: PropTypes.string,
+    backgroundColor: PropTypes.string,
   }),
   starring: PropTypes.arrayOf(
       PropTypes.string

@@ -30,7 +30,7 @@ const Main = (props) => {
       <h1 className="visually-hidden">WTW</h1>
       <header className="page-header movie-card__head">
         <Logo/>
-        <User avatar={avatar} isAuthorized={isAuthorized}/>
+        <User avatar={avatar || ``} isAuthorized={isAuthorized}/>
       </header>
 
       <div className="movie-card__wrap">
@@ -103,7 +103,7 @@ Main.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape(filmType)
   ).isRequired,
-  avatar: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
   onStepChange: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
   tabList: PropTypes.arrayOf(

@@ -9,6 +9,7 @@ import Tabs from "@components/tabs/tabs";
 import User from "@components/user/user";
 import {FilmOverviewTabsEnum} from "@common/enums";
 import {filmType, reviewType} from "@common/types";
+import {getColorParams} from "@common/utils";
 
 import Details from "./details/details";
 import Overview from "./overview/overview";
@@ -16,7 +17,7 @@ import Reviews from "./reviews/reviews";
 
 
 const getTab = (activeTab, info, reviews) => {
-  const {rating, description, director, starring, genre, runTime, releaseDate} = info;
+  const {rating, description, director, starring, genre, runTime, releaseDate, picture} = info;
   switch (activeTab) {
     case FilmOverviewTabsEnum.DETAILS:
       return <Details
@@ -27,7 +28,11 @@ const getTab = (activeTab, info, reviews) => {
         starring={starring}
       />;
     case FilmOverviewTabsEnum.REVIEWS:
-      return <Reviews list={reviews}/>;
+      const colors = getColorParams({
+        hexColor: picture.backgroundColor,
+        offset: 20,
+      });
+      return <Reviews list={reviews} separatorColor={colors.RGBAWithOffset}/>;
     case FilmOverviewTabsEnum.OVERVIEW:
     default:
       return <Overview
@@ -45,6 +50,7 @@ const FilmDescription = (props) => {
     return null;
   }
   const {name, genre, releaseDate, picture} = info;
+
   return <Fragment>
     <section className="movie-card movie-card--full" style={{backgroundColor: picture.backgroundColor}}>
       <div className="movie-card__hero">
@@ -55,7 +61,7 @@ const FilmDescription = (props) => {
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header movie-card__head">
           <Logo/>
-          <User avatar={avatar} isAuthorized={isAuthorized}/>
+          <User avatar={avatar || ``} isAuthorized={isAuthorized}/>
         </header>
 
         <div className="movie-card__wrap">
@@ -79,7 +85,7 @@ const FilmDescription = (props) => {
                 </svg>
                 <span>My list</span>
               </button>
-              <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              {isAuthorized && <Link to="/dev-review" className="btn movie-card__button">Add review</Link>}
             </div>
           </div>
         </div>
@@ -123,7 +129,7 @@ FilmDescription.propTypes = {
   likedFilms: PropTypes.arrayOf(
       PropTypes.shape(filmType)
   ).isRequired,
-  avatar: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
   tabList: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,

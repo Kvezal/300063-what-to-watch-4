@@ -1,7 +1,4 @@
-import React from "react";
-
-
-const splitListIntoTwoColumn = (Component, list) => {
+const splitListIntoTwoColumn = (list) => {
   const emptyColumnObject = {
     left: [],
     right: [],
@@ -10,9 +7,8 @@ const splitListIntoTwoColumn = (Component, list) => {
     return emptyColumnObject;
   }
   return list.reduce((columns, item, index) => {
-    const review = <Component key={index} {...item}/>;
     const column = index % 2 ? columns.right : columns.left;
-    column.push(review);
+    column.push(item);
     return columns;
   }, emptyColumnObject);
 };
