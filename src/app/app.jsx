@@ -6,16 +6,17 @@ import {connect} from "react-redux";
 import filmMockData from "@mocks/film-page-data";
 import reviews from "@mocks/reviews";
 import promoFilm from "@mocks/promo-film";
-import {withActiveTab, withStep} from "@hocs";
+import {withActiveFlag, withActiveTab, withStep, withVideoPlayer} from "@hocs";
 import MainPage from "@app/main-page";
 import FilmDescription from "@app/film-description";
+import FullScreenPlayer from "@app/full-screen-player";
 import {filmListType} from "@types";
 import {ActionCreator} from "@reducer";
 import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
 
-
 const FilmDescriptionWrapper = withActiveTab(FilmDescription);
 const MainPageWrapper = withActiveTab(withStep(MainPage));
+const FullScreenPlayerWrapper = withActiveFlag(withVideoPlayer(FullScreenPlayer));
 
 const App = (props) => {
   const {films, onFilmChoose, chooseFilmsWithGenre} = props;
@@ -63,6 +64,12 @@ const App = (props) => {
           reviews={reviews}
           tabList={filmDescriptionTabList}
           activeTab={filmDescriptionTabList[0].id}
+        />
+      </Route>
+      <Route exact path="/player">
+        <FullScreenPlayerWrapper
+          info={films[0]}
+          muted={false}
         />
       </Route>
     </Switch>

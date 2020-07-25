@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {MemoryRouter} from "react-router-dom";
 
 import MainPage from "./main-page";
 
@@ -62,20 +63,21 @@ describe(`MainPage`, () => {
   test(`should match to snapshot`, () => {
     const tree = renderer
       .create(
-          <MainPage
-            promoFilm={promoFilm}
-            genre=""
-            onFilterClick={() => {}}
-            films={films}
-            avatar={avatar}
-            onCardClick={() => {}}
-            onStepChange={() => {}}
-            step={1}
-            tabList={filmFilters}
-            activeTab={filmFilters[0].id}
-            onActiveTabChange={() => {}}
-          />
-          ,
+          <MemoryRouter>
+            <MainPage
+              promoFilm={promoFilm}
+              genre=""
+              onFilterClick={() => {}}
+              films={films}
+              avatar={avatar}
+              onCardClick={() => {}}
+              onStepChange={() => {}}
+              step={1}
+              tabList={filmFilters}
+              activeTab={filmFilters[0].id}
+              onActiveTabChange={() => {}}
+            />
+          </MemoryRouter>,
           {createNodeMock: () => ({})}
       )
       .toJSON();

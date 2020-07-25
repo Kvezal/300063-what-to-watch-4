@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {MemoryRouter} from "react-router-dom";
 
 import {App} from "./app";
 
@@ -43,11 +44,13 @@ describe(`App`, () => {
   it(`should match to snapshot`, () => {
     const tree = renderer
       .create(
-          <App
-            onFilmChoose={() => {}}
-            chooseFilmsWithGenre={() => {}}
-            films={films}
-          />,
+          <MemoryRouter>
+            <App
+              onFilmChoose={() => {}}
+              chooseFilmsWithGenre={() => {}}
+              films={films}
+            />
+          </MemoryRouter>,
           {createNodeMock: () => ({})}
       )
       .toJSON();

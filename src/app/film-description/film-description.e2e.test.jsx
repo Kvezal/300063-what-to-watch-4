@@ -1,4 +1,5 @@
 import React from "react";
+import {MemoryRouter} from "react-router-dom";
 import Enzyme, {shallow, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
@@ -96,17 +97,19 @@ Gustave finds himself the recipient of a priceless painting and the chief suspec
 
   test(`should have liked films`, () => {
     const filmOverviewComponent = mount(
-        <FilmDescription
-          likedFilms={likedFilms}
-          info={overviewFilm}
-          avatar={avatar}
-          onCardClick={() => {}}
-          renderTabs={() => {}}
-          activeTab={`overview`}
-          reviews={[]}
-          tabList={tabList}
-          onActiveTabChange={() => {}}
-        />
+        <MemoryRouter>
+          <FilmDescription
+            likedFilms={likedFilms}
+            info={overviewFilm}
+            avatar={avatar}
+            onCardClick={() => {}}
+            renderTabs={() => {}}
+            activeTab={`overview`}
+            reviews={[]}
+            tabList={tabList}
+            onActiveTabChange={() => {}}
+          />
+        </MemoryRouter>
     );
     const filmCards = filmOverviewComponent.find(`article.small-movie-card`);
     expect(filmCards).toHaveLength(likedFilms.length);
