@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import FilmCard from "@components/film-card/film-card";
-import {withActiveFlag, withVideoPlayer} from "@common/hocs";
+import {withVideoPlayer} from "@common/hocs";
 import {filmType} from "@common/types";
 
 
-const FilmCardWrapper = withActiveFlag(withVideoPlayer(FilmCard));
+const FilmCardWrapper = withVideoPlayer(FilmCard);
 
 const FilmList = (props) => {
   const {onCardClick, list, pack, step} = props;
@@ -20,6 +20,7 @@ const FilmList = (props) => {
       filmName={film.name}
       source={film.source.previewVideo}
       poster={film.picture.preview}
+      isPlaying={false}
       canStop={false}
       muted={true}
       onCardClick={onCardClick}

@@ -2,15 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
+import AppRoute from "@app/app-route";
+
 
 const User = (props) => {
   const {avatar, isAuthorized} = props;
   return <div className="user-block">
     {isAuthorized
-      ? <div className="user-block__avatar">
-        <img src={avatar} alt="User avatar" width="63" height="63"/>
-      </div>
-      : <Link to="/login" className="user-block__link">Sign in</Link>
+      ? <Link to={AppRoute.MY_LIST}>
+        <div className="user-block__avatar">
+          <img src={avatar} alt="User avatar" width="63" height="63"/>
+        </div>
+      </Link>
+      : <Link to={AppRoute.LOGIN} className="user-block__link">Sign in</Link>
     }
   </div>;
 };

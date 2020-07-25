@@ -28,9 +28,6 @@ class AddReview extends PureComponent {
 
   render() {
     const {isAuthorized, avatar, film} = this.props;
-    if (!film) {
-      return null;
-    }
     const {name, picture} = film;
 
     const breadcrumbs = [

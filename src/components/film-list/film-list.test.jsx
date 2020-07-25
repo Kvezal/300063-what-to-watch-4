@@ -40,6 +40,7 @@ describe(`FilmListComponent`, () => {
         `James Woods`,
         `Elizabeth McGovern`
       ],
+      isFavorite: false,
     },
     {
       id: 2,
@@ -69,6 +70,7 @@ describe(`FilmListComponent`, () => {
         `James Woods`,
         `Elizabeth McGovern`
       ],
+      isFavorite: false,
     },
     {
       id: 3,
@@ -98,6 +100,7 @@ describe(`FilmListComponent`, () => {
         `James Woods`,
         `Elizabeth McGovern`
       ],
+      isFavorite: false,
     },
     {
       id: 4,
@@ -127,6 +130,7 @@ describe(`FilmListComponent`, () => {
         `James Woods`,
         `Elizabeth McGovern`
       ],
+      isFavorite: false,
     },
   ];
 

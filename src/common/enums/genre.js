@@ -1,4 +1,4 @@
-const GenreEnum = {
+const EGenre = {
   ALL: `All genres`,
   COMEDY: `Comedy`,
   CRIME: `Crime`,
@@ -12,4 +12,4 @@ const GenreEnum = {
 };
 
 
-export default GenreEnum;
+export default EGenre;

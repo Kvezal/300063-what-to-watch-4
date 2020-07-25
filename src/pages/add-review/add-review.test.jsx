@@ -35,6 +35,7 @@ const film = {
     `James Woods`,
     `Elizabeth McGovern`
   ],
+  isFavorite: false,
 };
 
 Enzyme.configure({

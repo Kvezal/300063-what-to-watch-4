@@ -26,6 +26,7 @@ const filmType = {
   starring: PropTypes.arrayOf(
       PropTypes.string
   ),
+  isFavorite: PropTypes.bool.isRequired,
 };
 
 export default filmType;

@@ -1,24 +1,27 @@
 import {connect} from "react-redux";
 
+import withLoading from "@common/hocs/with-loading/with-loading";
 import AddReview from "@pages/add-review/add-review";
 import {getAuthorizedFlag, getAvatar} from "@store/user/selector";
-import {getFilmById} from "@store/data/selectors";
+import {getCurrentFilm} from "@store/data/selectors";
 import {postReview} from "@store/data/operation";
 
 
-const mapStateToProps = (state) => ({
+const AddReviewWrapper = withLoading(AddReview, [`film`]);
+
+const mapStateToProps = (state, props) => ({
   avatar: getAvatar(state),
   isAuthorized: getAuthorizedFlag(state),
-  film: getFilmById(state),
+  film: getCurrentFilm(state, props),
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, props) => ({
   onSubmitForm: (commentData) => {
     dispatch(postReview({
       rating: commentData.rating,
       comment: commentData.comment,
-    }));
+    }, props));
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddReview);
+export default connect(mapStateToProps, mapDispatchToProps)(AddReviewWrapper);

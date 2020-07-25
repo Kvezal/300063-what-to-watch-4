@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withNotificationsHOC should render component with NotificationList 1`] = `
+Array [
+  <div
+    className="test-component"
+  />,
+  <ul
+    className="notification-list"
+  />,
+]
+`;

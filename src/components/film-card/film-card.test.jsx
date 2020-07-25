@@ -20,8 +20,8 @@ describe(`FilmCardComponent`, () => {
             filmId={1}
             filmName={filmName}
             onCardClick={() => {}}
-            isActive={false}
-            onActiveChange={() => {}}
+            isPlaying={false}
+            onPlayingChange={() => {}}
             renderPlayer={() => {}}
           />, {
             createNodeMock: () => ({}),
@@ -37,8 +37,8 @@ describe(`FilmCardComponent`, () => {
           filmId={1}
           filmName={filmName}
           onCardClick={() => {}}
-          isActive={false}
-          onActiveChange={() => {}}
+          isPlaying={false}
+          onPlayingChange={() => {}}
           renderPlayer={() => {}}
         />
     );
@@ -52,8 +52,8 @@ describe(`FilmCardComponent`, () => {
           filmId={1}
           filmName={filmName}
           onCardClick={() => {}}
-          isActive={false}
-          onActiveChange={() => {}}
+          isPlaying={false}
+          onPlayingChange={() => {}}
           renderPlayer={() => {}}
         />
     );
@@ -68,8 +68,8 @@ describe(`FilmCardComponent`, () => {
           filmId={1}
           filmName={filmName}
           onCardClick={handleCardClickMock}
-          isActive={false}
-          onActiveChange={() => {}}
+          isPlaying={false}
+          onPlayingChange={() => {}}
           renderPlayer={() => {}}
         />
     );

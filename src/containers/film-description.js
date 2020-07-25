@@ -1,24 +1,38 @@
 import {connect} from "react-redux";
 
+import {withLoading} from "@common/hocs";
 import FilmDescription from "@pages/film-description/film-description";
-import {chooseFilmId} from "@store/data/action-creator";
-import {getFilmById, getFilteredFilmsByGenre, getLikedFilms, getReviews} from "@store/data/selectors";
+import {
+  getCurrentFilm,
+  getFilteredFilmsByGenre,
+  getLikedFilms,
+  getReviews
+} from "@store/data/selectors";
 import {getAuthorizedFlag, getAvatar} from "@store/user/selector";
+import {changeFavoriteFilmStatus, loadFilmReviews} from "@store/data/operation";
+import {FavoriteFilmStatus} from "@store/data/const";
 
 
-const mapStateToProps = (state) => ({
+const FilmDescriptionWrapper = withLoading(FilmDescription, [`info`, `films`]);
+
+const mapStateToProps = (state, props) => ({
   avatar: getAvatar(state),
   films: getFilteredFilmsByGenre(state),
-  likedFilms: getLikedFilms(state),
-  reviews: getReviews(state),
-  info: getFilmById(state),
+  likedFilms: getLikedFilms(state, props),
+  reviews: getReviews(state, props),
+  info: getCurrentFilm(state, props),
   isAuthorized: getAuthorizedFlag(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilmChoose: (filmId) => {
-    dispatch(chooseFilmId(filmId));
+  onFavoriteFilmClick: (film) => {
+    const favoriteStatus = film.isFavorite ? FavoriteFilmStatus.ADD : FavoriteFilmStatus.DELETE;
+    dispatch(changeFavoriteFilmStatus(film.id, favoriteStatus));
   },
+
+  onReviewsLoad: (filmId) => {
+    dispatch(loadFilmReviews(filmId));
+  }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilmDescription);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmDescriptionWrapper);

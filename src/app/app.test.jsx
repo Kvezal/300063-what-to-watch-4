@@ -4,7 +4,7 @@ import renderer from "react-test-renderer";
 import {MemoryRouter} from "react-router-dom";
 import configureStore from 'redux-mock-store';
 
-import {GenreEnum} from "@common/enums";
+import {EGenre} from "@common/enums";
 import NameSpace from "@store/name-space";
 import {AuthorizationStatus} from "@store/user/const";
 
@@ -41,6 +41,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
   {
     id: 2,
@@ -69,6 +70,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
   {
     id: 3,
@@ -97,6 +99,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
   {
     id: 4,
@@ -125,6 +128,7 @@ const films = [
       `James Woods`,
       `Elizabeth McGovern`
     ],
+    isFavorite: false,
   },
 ];
 
@@ -155,7 +159,7 @@ describe(`App`, () => {
   beforeEach(() => {
     store = mockStore({
       [NameSpace.DATA]: {
-        genre: GenreEnum.All,
+        genre: EGenre.All,
         films,
         promoFilm: films[0],
         currentFilmId: 1,
@@ -174,7 +178,7 @@ describe(`App`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <MemoryRouter>
+            <MemoryRouter initialEntries={["/"]}>
               <App/>
             </MemoryRouter>
           </Provider>,

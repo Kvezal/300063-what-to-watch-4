@@ -25,6 +25,7 @@ const adaptFilm = (film) => {
     description: film.description,
     director: film.director,
     starring: film.starring,
+    isFavorite: film.is_favorite,
   };
 };
 
