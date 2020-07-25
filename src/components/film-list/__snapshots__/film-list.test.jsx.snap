@@ -14,7 +14,7 @@ exports[`FilmListComponent should render component 1`] = `
       className="small-movie-card__image"
     >
       <video
-        width="100%"
+        className="player__video"
       />
     </div>
     <h3
@@ -22,9 +22,8 @@ exports[`FilmListComponent should render component 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
       >
-        Fantastic Beasts: The Crimes of Grindelwald
+        name 1
       </a>
     </h3>
   </article>
@@ -38,7 +37,7 @@ exports[`FilmListComponent should render component 1`] = `
       className="small-movie-card__image"
     >
       <video
-        width="100%"
+        className="player__video"
       />
     </div>
     <h3
@@ -46,9 +45,8 @@ exports[`FilmListComponent should render component 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
       >
-        Bohemian Rhapsody
+        name 2
       </a>
     </h3>
   </article>
@@ -62,7 +60,7 @@ exports[`FilmListComponent should render component 1`] = `
       className="small-movie-card__image"
     >
       <video
-        width="100%"
+        className="player__video"
       />
     </div>
     <h3
@@ -70,9 +68,8 @@ exports[`FilmListComponent should render component 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
       >
-        Macbeth
+        name 3
       </a>
     </h3>
   </article>
@@ -86,7 +83,7 @@ exports[`FilmListComponent should render component 1`] = `
       className="small-movie-card__image"
     >
       <video
-        width="100%"
+        className="player__video"
       />
     </div>
     <h3
@@ -94,9 +91,8 @@ exports[`FilmListComponent should render component 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
       >
-        Aviator
+        name 4
       </a>
     </h3>
   </article>

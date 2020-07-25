@@ -1,27 +1,19 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import {connect} from "react-redux";
 
-import filmMockData from "@mocks/film-page-data";
-import reviews from "@mocks/reviews";
-import promoFilm from "@mocks/promo-film";
-import {withActiveFlag, withActiveTab, withStep, withVideoPlayer} from "@hocs";
-import MainPage from "@app/main-page";
-import FilmDescription from "@app/film-description";
-import FullScreenPlayer from "@app/full-screen-player";
-import {filmListType} from "@types";
-import {ActionCreator} from "@reducer";
-import FilmOverviewTabsEnum from "@enums/film-overview-tabs";
+import FilmDescription from "@containers/film-description";
+import Main from "@containers/main";
+import NotificationList from "@containers/notification-list";
+import Player from "@containers/player";
+import {FilmOverviewTabsEnum} from "@common/enums";
+import {withActiveFlag, withActiveTab, withStep} from "@common/hocs";
 
+
+const MainWrapper = withActiveTab(withStep(Main));
 const FilmDescriptionWrapper = withActiveTab(FilmDescription);
-const MainPageWrapper = withActiveTab(withStep(MainPage));
-const FullScreenPlayerWrapper = withActiveFlag(withVideoPlayer(FullScreenPlayer));
+const PlayerWrapper = withActiveFlag(Player);
 
-const App = (props) => {
-  const {films, onFilmChoose, chooseFilmsWithGenre} = props;
-  const {overviewFilm} = filmMockData;
-
+const App = () => {
   const filmDescriptionTabList = [
     {name: `Overview`, id: FilmOverviewTabsEnum.OVERVIEW},
     {name: `Details`, id: FilmOverviewTabsEnum.DETAILS},
@@ -44,56 +36,29 @@ const App = (props) => {
   return <BrowserRouter>
     <Switch>
       <Route exact path="/">
-        <MainPageWrapper
-          promoFilm={promoFilm}
-          films={films}
+        <MainWrapper
           avatar="avatar.jpg"
-          onCardClick={onFilmChoose}
           tabList={filmFilters}
           activeTab={filmFilters[0].id}
-          onActiveTabChange={(id) => chooseFilmsWithGenre(id)}
         />
       </Route>
       <Route exact path="/films">
         <FilmDescriptionWrapper
-          info={overviewFilm}
-          likedFilms={films.slice(0, 4)}
           avatar="avatar.jpg"
-          onCardClick={onFilmChoose}
           baseTab="overview"
-          reviews={reviews}
           tabList={filmDescriptionTabList}
           activeTab={filmDescriptionTabList[0].id}
         />
       </Route>
       <Route exact path="/player">
-        <FullScreenPlayerWrapper
-          info={films[0]}
+        <PlayerWrapper
           muted={false}
+          isActive={true}
         />
       </Route>
     </Switch>
+    <NotificationList/>
   </BrowserRouter>;
 };
 
-App.propTypes = {
-  films: filmListType.isRequired,
-  onFilmChoose: PropTypes.func.isRequired,
-  chooseFilmsWithGenre: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  films: state.filteredFilms,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onFilmChoose: (filmId) => {
-    dispatch(ActionCreator.chooseFilm(filmId));
-  },
-  chooseFilmsWithGenre: (genre) => {
-    dispatch(ActionCreator.chooseFilmsWithGenre(genre));
-  }
-});
-
-export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

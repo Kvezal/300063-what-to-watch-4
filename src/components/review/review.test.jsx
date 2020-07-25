@@ -1,9 +1,9 @@
 import React from "react";
+import render from "react-test-renderer";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import Review from "./review";
-import render from "react-test-renderer";
 
 
 Enzyme.configure({

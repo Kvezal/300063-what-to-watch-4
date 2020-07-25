@@ -1,14 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import FileType from "@types/film";
-
 
 const VIDEO_PLAYING_DELAY = 1000;
 
 const FilmCard = (props) => {
-  const {onCardClick, info, onActiveChange, renderPlayer} = props;
-  const {id, title, href} = info;
+  const {filmId, filmName, onCardClick, onActiveChange, renderPlayer} = props;
 
   let timer = 0;
 
@@ -29,7 +26,7 @@ const FilmCard = (props) => {
 
   return <article
     className="small-movie-card catalog__movies-card"
-    onClick={() => onCardClick(id)}
+    onClick={() => onCardClick(filmId)}
     onMouseEnter={handleCardMouseEnter}
     onMouseLeave={handleCardMouseLeave}
   >
@@ -37,13 +34,14 @@ const FilmCard = (props) => {
       {renderPlayer()}
     </div>
     <h3 className="small-movie-card__title">
-      <a className="small-movie-card__link" href={href}>{title}</a>
+      <a className="small-movie-card__link">{filmName}</a>
     </h3>
   </article>;
 };
 
 FilmCard.propTypes = {
-  info: PropTypes.shape(FileType).isRequired,
+  filmId: PropTypes.number.isRequired,
+  filmName: PropTypes.string.isRequired,
   onCardClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
   onActiveChange: PropTypes.func.isRequired,

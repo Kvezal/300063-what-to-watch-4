@@ -1,5 +1,6 @@
 import React from "react";
 import render from "react-test-renderer";
+import {MemoryRouter} from "react-router-dom";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
@@ -13,7 +14,11 @@ Enzyme.configure({
 describe(`FooterComponent`, () => {
   test(`should render component`, () => {
     const tree = render
-      .create(<Footer/>)
+      .create(
+          <MemoryRouter>
+            <Footer/>
+          </MemoryRouter>
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

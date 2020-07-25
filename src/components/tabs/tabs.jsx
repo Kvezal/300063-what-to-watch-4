@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 
 const Tabs = (props) => {
@@ -9,7 +10,11 @@ const Tabs = (props) => {
     <ul className="movie-nav__list">
       {list.map((item) => {
         const {name, id} = item;
-        return <li key={id} className={`movie-nav__item ${activeTab === id ? `movie-nav__item--active` : ``}`}>
+        const className = classNames({
+          "movie-nav__item": true,
+          "movie-nav__item--active": activeTab === id,
+        });
+        return <li key={id} className={className}>
           <a
             className="movie-nav__link"
             onClick={() => onActiveTabChange(id)}

@@ -14,13 +14,12 @@
   "jest": {
     "moduleNameMapper": {
       "@app(.*)$": "<rootDir>/src/app/$1",
-      "@types(.*)$": "<rootDir>/src/types/$1",
       "@components(.*)$": "<rootDir>/src/components/$1",
-      "@mocks(.*)$": "<rootDir>/src/mocks/$1",
-      "@hocs(.*)$": "<rootDir>/src/hocs/$1",
-      "@utils(.*)$": "<rootDir>/src/utils/$1",
-      "@enums(.*)$": "<rootDir>/src/enums/$1",
-      "@reducer(.*)$": "<rootDir>/src/reducer/$1"
+      "@common(.*)$": "<rootDir>/src/common/$1",
+      "@containers(.*)$": "<rootDir>/src/containers/$1",
+      "@pages(.*)$": "<rootDir>/src/pages/$1",
+      "@services(.*)$": "<rootDir>/src/services/$1",
+      "@store(.*)$": "<rootDir>/src/store/$1"
     }
   },
   "husky": {
@@ -32,6 +31,7 @@
     "@babel/core": "7.10.2",
     "@babel/preset-env": "7.10.2",
     "@babel/preset-react": "7.10.1",
+    "axios-mock-adapter": "1.18.1",
     "babel-jest": "26.0.1",
     "babel-loader": "8.1.0",
     "enzyme": "3.11.0",
@@ -42,6 +42,7 @@
     "husky": "4.2.5",
     "jest": "26.0.1",
     "react-test-renderer": "16.13.1",
+    "redux-mock-store": "1.5.4",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11",
     "webpack-dev-server": "3.11.0"
@@ -50,11 +51,16 @@
     "node": "10"
   },
   "dependencies": {
+    "axios": "0.19.2",
+    "classnames": "2.2.6",
+    "nanoid": "3.1.10",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-redux": "7.2.0",
     "react-router-dom": "5.2.0",
-    "redux": "4.0.5"
+    "redux": "4.0.5",
+    "redux-devtools-extension": "2.13.8",
+    "redux-thunk": "2.3.0"
   }
 }

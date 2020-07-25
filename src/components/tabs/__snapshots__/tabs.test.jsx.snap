@@ -18,7 +18,7 @@ exports[`TabsComponent should render component 1`] = `
       </a>
     </li>
     <li
-      className="movie-nav__item "
+      className="movie-nav__item"
     >
       <a
         className="movie-nav__link"
@@ -28,7 +28,7 @@ exports[`TabsComponent should render component 1`] = `
       </a>
     </li>
     <li
-      className="movie-nav__item "
+      className="movie-nav__item"
     >
       <a
         className="movie-nav__link"

@@ -1,5 +1,6 @@
 import React from "react";
 import render from "react-test-renderer";
+import {MemoryRouter} from "react-router-dom";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
@@ -15,7 +16,11 @@ describe(`HeaderComponent`, () => {
 
   test(`should render component`, () => {
     const tree = render
-      .create()
+      .create(
+          <MemoryRouter>
+            <Header avatar={avatar}/>
+          </MemoryRouter>
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

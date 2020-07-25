@@ -9,8 +9,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="name 1"
+        src="cover1"
       />
     </div>
     <h1
@@ -26,7 +26,8 @@ Array [
       >
         <a
           className="logo__link"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -70,9 +71,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel"
+            alt="name 1"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="poster1"
             width="218"
           />
         </div>
@@ -82,7 +83,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            The Grand Budapest Hotel
+            name 1
           </h2>
           <p
             className="movie-card__meta"
@@ -90,12 +91,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Drama
+              Crime
             </span>
             <span
               className="movie-card__year"
             >
-              2014
+              1984
             </span>
           </p>
           <div
@@ -167,7 +168,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -177,7 +178,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -187,7 +188,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -197,7 +198,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -207,7 +208,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -217,7 +218,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -227,7 +228,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -237,7 +238,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -247,7 +248,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
@@ -259,104 +260,7 @@ Array [
       </ul>
       <div
         className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              width="100%"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Fantastic Beasts: The Crimes of Grindelwald
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              width="100%"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              width="100%"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Macbeth
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              width="100%"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Aviator
-            </a>
-          </h3>
-        </article>
-      </div>
+      />
     </section>
     <footer
       className="page-footer"
@@ -366,7 +270,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -394,5 +299,8 @@ Array [
       </div>
     </footer>
   </div>,
+  <ul
+    className="notification-list"
+  />,
 ]
 `;
