@@ -1,11 +1,6 @@
 import {ActionType} from "./const";
 
 
-const chooseGenre = (payload) => ({
-  type: ActionType.CHOOSE_GENRE,
-  payload,
-});
-
 const loadFilms = (payload) => ({
   type: ActionType.LOAD_FILMS,
   payload,
@@ -37,7 +32,6 @@ const changeCommentStatus = (payload) => ({
 });
 
 export {
-  chooseGenre,
   loadFilms,
   loadFavoriteFilms,
   loadPromoFilm,

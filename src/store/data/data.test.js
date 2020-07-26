@@ -14,7 +14,6 @@ import * as Operation from "./operation";
 const api = createAPI(() => {});
 
 const initialState = {
-  genre: EGenre.ALL,
   films: null,
   promoFilm: null,
   filmReviews: null,
@@ -255,15 +254,6 @@ describe(`DataReducer`, () => {
       });
   });
 
-  test(`choose genre action should return correct object`, () => {
-    const genre = `test`;
-    expect(ActionCreator.chooseGenre(genre))
-      .toEqual({
-        type: ActionType.CHOOSE_GENRE,
-        payload: genre,
-      });
-  });
-
   test(`load promo film action should return correct object`, () => {
     expect(ActionCreator.loadPromoFilm(promoFilm))
       .toEqual({
@@ -324,18 +314,6 @@ describe(`DataReducer`, () => {
     expect(reducer(initialState, loadFilmsAction))
       .toEqual(extend(initialState, {
         films,
-      }));
-  });
-
-  test(`should set genre`, () => {
-    const genre = EGenre.DRAMA;
-    const chooseGenreAction = {
-      type: ActionType.CHOOSE_GENRE,
-      payload: genre,
-    };
-    expect(reducer(initialState, chooseGenreAction))
-      .toEqual(extend(initialState, {
-        genre,
       }));
   });
 

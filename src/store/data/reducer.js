@@ -1,4 +1,3 @@
-import {EGenre} from "@common/enums";
 import {extend} from "@common/utils";
 
 import {ActionType, CommentStatus} from "./const";
@@ -6,7 +5,6 @@ import {ActionType, CommentStatus} from "./const";
 
 const initialState = {
   films: null,
-  genre: EGenre.ALL,
   promoFilm: null,
   filmReviews: null,
   favoriteFilms: null,
@@ -26,10 +24,6 @@ const updateItemFilm = (list, film) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHOOSE_GENRE:
-      return extend(state, {
-        genre: action.payload,
-      });
     case ActionType.LOAD_FILMS:
       return extend(state, {
         films: action.payload,
