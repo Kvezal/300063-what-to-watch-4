@@ -33,6 +33,7 @@ const films = [
     },
     picture: {
       poster: `poster1`,
+      preview: `preview1`,
       cover: `cover1`,
       backgroundColor: `color1`,
     },
@@ -62,6 +63,7 @@ const films = [
     },
     picture: {
       poster: `poster2`,
+      preview: `preview2`,
       cover: `cover2`,
       backgroundColor: `color2`,
     },
@@ -91,6 +93,7 @@ const films = [
     },
     picture: {
       poster: `poster3`,
+      preview: `preview3`,
       cover: `cover3`,
       backgroundColor: `color3`,
     },
@@ -120,6 +123,7 @@ const films = [
     },
     picture: {
       poster: `poster4`,
+      preview: `preview4`,
       cover: `cover4`,
       backgroundColor: `color4`,
     },
@@ -162,8 +166,7 @@ describe(`App`, () => {
         genre: EGenre.All,
         films,
         promoFilm: films[0],
-        currentFilmId: 1,
-        reviews,
+        filmReviews: reviews,
       },
       [NameSpace.NOTIFICATION]: {
         notifications: [],

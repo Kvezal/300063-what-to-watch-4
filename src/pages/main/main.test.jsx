@@ -153,7 +153,6 @@ describe(`MainPage`, () => {
               films={films}
               avatar={avatar}
               onFilmChoose={() => {}}
-              onFilmsWithGenreChoose={() => {}}
               onStepChange={() => {}}
               step={1}
               tabList={filmFilters}
@@ -180,7 +179,6 @@ describe(`MainPage`, () => {
         films={films}
         avatar={avatar}
         onFilmChoose={onFilmChoose}
-        onFilmsWithGenreChoose={() => {}}
         onStepChange={() => {}}
         step={1}
         tabList={filmFilters}
@@ -207,7 +205,6 @@ describe(`MainPage`, () => {
         films={films}
         avatar={avatar}
         onFilmChoose={() => {}}
-        onFilmsWithGenreChoose={() => {}}
         onStepChange={() => {}}
         step={1}
         tabList={filmFilters}

@@ -27,7 +27,6 @@ const Main = (props) => {
     onActiveTabChange,
     onStepChange,
     onStepReset,
-    onFilmsWithGenreChoose,
     onFavoriteFilmClick,
   } = props;
   const {id: promoFilmId, genre, releaseDate, name, picture} = promoFilm;
@@ -94,7 +93,6 @@ const Main = (props) => {
           list={tabList}
           onItemClick={(id) => {
             onActiveTabChange(id);
-            onFilmsWithGenreChoose(id);
             onStepReset();
           }}
           activeItem={activeTab}
@@ -138,7 +136,6 @@ Main.propTypes = {
   onActiveTabChange: PropTypes.func.isRequired,
   onStepChange: PropTypes.func.isRequired,
   onStepReset: PropTypes.func.isRequired,
-  onFilmsWithGenreChoose: PropTypes.func.isRequired,
   onFavoriteFilmClick: PropTypes.func.isRequired,
 };
 

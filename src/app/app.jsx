@@ -3,13 +3,13 @@ import {Switch, Route, Router} from "react-router-dom";
 
 import AppRoute from "@app/app-route";
 import history from "@app/history";
+import {EFilmOverviewTab, EGenre} from "@common/enums";
+import {withActiveTab, withNotifications, withStep} from "@common/hocs";
 import AddReview from "@containers/add-review";
 import FilmDescription from "@containers/film-description";
 import Main from "@containers/main";
 import Player from "@containers/player";
 import SignIn from "@containers/sign-in";
-import {EFilmOverviewTab, EGenre} from "@common/enums";
-import {withActiveTab, withNotifications, withStep} from "@common/hocs";
 
 
 const AddReviewWrapper = withNotifications(AddReview);
@@ -39,11 +39,12 @@ const App = () => {
 
   return <Router history={history}>
     <Switch>
-      <Route exact path={AppRoute.ROOT} render={() => {
+      <Route exact path={AppRoute.ROOT} render={(props) => {
         return <MainWrapper
           tabList={filmFilters}
           activeTab={EGenre.ALL}
           loadingParams={[`promoFilm`, `films`]}
+          {...props}
         />;
       }}/>
       <Route exact path={AppRoute.PLAYER} render={(props) =>
@@ -68,10 +69,9 @@ const App = () => {
       />
       <Route exact path={AppRoute.FILMS} render={(props) =>
         <FilmDescriptionWrapper
-          baseTab="overview"
           tabList={filmDescriptionTabList}
           activeTab={EFilmOverviewTab.OVERVIEW}
-          loadingParams={[`info`, `films`]}
+          loadingParams={[`info`, `likedFilms`]}
           {...props}
         />}/>
     </Switch>

@@ -4,18 +4,21 @@ import {Link} from "react-router-dom";
 
 import AppRoute from "@app/app-route";
 import history from "@app/history";
+import {withLoading} from "@common/hocs";
+import {EFilmOverviewTab} from "@common/enums";
+import {filmType, reviewType} from "@common/types";
+import {getColorParams} from "@common/utils";
 import FilmList from "@components/film-list/film-list";
 import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import Tabs from "@components/tabs/tabs";
 import User from "@components/user/user";
-import {EFilmOverviewTab} from "@common/enums";
-import {filmType, reviewType} from "@common/types";
-import {getColorParams} from "@common/utils";
 
 import Details from "./details/details";
 import Overview from "./overview/overview";
 import Reviews from "./reviews/reviews";
+
+const ReviewsWrap = withLoading(Reviews);
 
 
 const getTab = (activeTab, info, reviews) => {
@@ -34,7 +37,11 @@ const getTab = (activeTab, info, reviews) => {
         hexColor: picture.backgroundColor,
         offset: 20,
       });
-      return <Reviews list={reviews} separatorColor={colors.RGBAWithOffset}/>;
+      return <ReviewsWrap
+        list={reviews}
+        separatorColor={colors.RGBAWithOffset}
+        loadingParams={[`list`]}
+      />;
     case EFilmOverviewTab.OVERVIEW:
     default:
       return <Overview
