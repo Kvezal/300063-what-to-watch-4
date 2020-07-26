@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 
-import withLoading from "@common/hocs/with-loading/with-loading";
+import {withFormState, withLoading} from "@common/hocs";
 import AddReview from "@pages/add-review/add-review";
 import {changeCommentStatus} from "@store/data/action-creator";
 import {CommentStatus} from "@store/data/const";
@@ -9,13 +9,13 @@ import {getCurrentFilm, getCommentStatus} from "@store/data/selectors";
 import {getAuthorizedFlag, getAvatar} from "@store/user/selector";
 
 
-const AddReviewWrapper = withLoading(AddReview, [`film`]);
+const AddReviewWrapper = withLoading(withFormState(AddReview), [`film`]);
 
 const mapStateToProps = (state, props) => ({
   avatar: getAvatar(state),
   isAuthorized: getAuthorizedFlag(state),
   film: getCurrentFilm(state, props),
-  commentStatus: getCommentStatus(state),
+  formDisabled: getCommentStatus(state) === CommentStatus.POSTING,
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -23,10 +23,6 @@ const mapDispatchToProps = (dispatch, props) => ({
     dispatch(changeCommentStatus(CommentStatus.POSTING));
     dispatch(postReview(commentData, props));
   },
-
-  onCommentStatusChange: () => {
-
-  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddReviewWrapper);

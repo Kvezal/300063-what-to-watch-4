@@ -11,15 +11,17 @@ const withFormState = (Component) => {
 
       this.state = {
         formState: props.initialFormState,
-        formDisabled: props.formDisabled
+        formDisabled: props.initialFormDisabled,
       };
     }
 
     render() {
+      const {formDisabled: formDisabledProp} = this.props;
       const {formState, formDisabled} = this.state;
       return <Component
+        {...this.props}
         formState={formState}
-        formDisabled={formDisabled}
+        formDisabled={formDisabledProp || formDisabled}
         onControlChange={(field, value) => {
           this.setState((prev) => ({
             formState: extend(prev.formState, {
@@ -32,13 +34,17 @@ const withFormState = (Component) => {
             formDisabled: disabled,
           }));
         }}
-        {...this.props}
       />;
     }
   }
 
+  WithFormState.defaultProps = {
+    initialFormDisabled: true,
+  };
+
   WithFormState.propTypes = {
     initialFormState: PropTypes.any.isRequired,
+    initialFormDisabled: PropTypes.bool.isRequired,
     formDisabled: PropTypes.bool.isRequired,
   };
 
