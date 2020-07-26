@@ -4,7 +4,6 @@ import {withLoading} from "@common/hocs";
 import FilmDescription from "@pages/film-description/film-description";
 import {
   getCurrentFilm,
-  getFilteredFilmsByGenre,
   getLikedFilms,
   getReviews
 } from "@store/data/selectors";
@@ -17,7 +16,6 @@ const FilmDescriptionWrapper = withLoading(FilmDescription);
 
 const mapStateToProps = (state, props) => ({
   avatar: getAvatar(state),
-  films: getFilteredFilmsByGenre(state),
   likedFilms: getLikedFilms(state, props),
   reviews: getReviews(state, props),
   info: getCurrentFilm(state, props),
