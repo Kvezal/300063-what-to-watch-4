@@ -30,6 +30,10 @@ const getFavoriteFilms = (state) => {
   return state[NAME_SPACE].favoriteFilms;
 };
 
+const getCommentStatus = (state) => {
+  return state[NAME_SPACE].commentStatus;
+};
+
 const getCurrentFilm = createSelector(
     getFilms,
     getCurrentFilmId,
@@ -79,6 +83,7 @@ export {
   getReviews,
   getCurrentFilmId,
   getFavoriteFilms,
+  getCommentStatus,
   getLikedFilms,
   getCurrentFilm,
   getFilteredFilmsByGenre,

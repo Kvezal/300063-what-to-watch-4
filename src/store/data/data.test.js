@@ -5,7 +5,7 @@ import {extend} from "@common/utils";
 import {EGenre} from "@common/enums";
 import createAPI from "@services/api";
 
-import {ActionType} from "./const";
+import {ActionType, CommentStatus} from "./const";
 import * as ActionCreator from "./action-creator";
 import reducer from "./reducer";
 import * as Operation from "./operation";
@@ -19,6 +19,7 @@ const initialState = {
   promoFilm: null,
   filmReviews: null,
   favoriteFilms: null,
+  commentStatus: CommentStatus.NONE,
 };
 
 const filmFromServer = {
@@ -295,6 +296,18 @@ describe(`DataReducer`, () => {
       });
   });
 
+  test.each([
+    CommentStatus.ERROR,
+    CommentStatus.POSTING,
+    CommentStatus.NONE
+  ])(`change comment status action should return correct object for %p`, (status) => {
+    expect(ActionCreator.changeCommentStatus(status))
+      .toEqual({
+        type: ActionType.CHANGE_COMMENT_STATUS,
+        payload: status,
+      });
+  });
+
   test(`should return base state if action type is incorrect`, () => {
     const incorrectAction = {
       type: `test`,
@@ -423,6 +436,21 @@ describe(`DataReducer`, () => {
         films: [updatedFilm],
         favoriteFilms: [updatedFilm],
         promoFilm: updatedFilm,
+      }))
+  });
+
+  test.each([
+    CommentStatus.ERROR,
+    CommentStatus.POSTING,
+    CommentStatus.NONE
+  ])(`should set commentStatus %p`, (status) => {
+    const changeCommentPostingStatusAction = {
+      type: ActionType.CHANGE_COMMENT_STATUS,
+      payload: status,
+    };
+    expect(reducer(initialState, changeCommentPostingStatusAction))
+      .toEqual(extend(initialState, {
+        commentStatus: status,
       }))
   });
 

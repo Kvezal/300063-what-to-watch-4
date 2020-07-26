@@ -3,13 +3,14 @@ import {nanoid} from "nanoid";
 import {AppRoute, history} from "@app";
 import {adaptFilm, adaptReview} from "@common/adapter";
 import {ID_LENGTH} from "@store/const";
-import {FavoriteFilmStatus} from "@store/data/const";
+import {CommentStatus, FavoriteFilmStatus} from "@store/data/const";
 import {getCurrentFilmId} from "@store/data/selectors";
 import {addNotification} from "@store/notification/action-creator";
 import {NotificationType, HTTPMethod} from "@store/notification/const";
 
 import * as ActionCreator from "./action-creator";
 import {DataErrorNotificationName, URLHandlerPath} from "./const";
+import {changeCommentStatus} from "./action-creator";
 
 
 const loadFilms = () => (dispatch, getState, api) => {
@@ -95,13 +96,14 @@ const postReview = (commentData, props) => (dispatch, getState, api) => {
       history.push(AppRoute.FILMS.replace(`:filmId`, filmId));
     })
     .catch(() => {
+      dispatch(changeCommentStatus(CommentStatus.ERROR));
       dispatch(addNotification({
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
         name: DataErrorNotificationName.FILM_COMMENT,
         method: HTTPMethod.POST,
         title: `Post film comment error`,
-        text: `Try to reload page`,
+        text: `Try to send comment again`,
       }));
     });
 };

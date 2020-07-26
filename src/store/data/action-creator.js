@@ -31,6 +31,11 @@ const updateFilm = (payload) => ({
   payload,
 });
 
+const changeCommentStatus = (payload) => ({
+  type: ActionType.CHANGE_COMMENT_STATUS,
+  payload,
+});
+
 export {
   chooseGenre,
   loadFilms,
@@ -38,4 +43,5 @@ export {
   loadPromoFilm,
   loadFilmReviews,
   updateFilm,
+  changeCommentStatus,
 };

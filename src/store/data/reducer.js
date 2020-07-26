@@ -1,7 +1,7 @@
 import {EGenre} from "@common/enums";
 import {extend} from "@common/utils";
 
-import {ActionType} from "./const";
+import {ActionType, CommentStatus} from "./const";
 
 
 const initialState = {
@@ -10,6 +10,7 @@ const initialState = {
   promoFilm: null,
   filmReviews: null,
   favoriteFilms: null,
+  commentStatus: CommentStatus.NONE,
 };
 
 const updateItemFilm = (list, film) => {
@@ -50,6 +51,10 @@ const reducer = (state = initialState, action) => {
         favoriteFilms: updateItemFilm(state.favoriteFilms, action.payload),
         films: updateItemFilm(state.films, action.payload),
         promoFilm: state.promoFilm.id === action.payload.id ? action.payload : state.promoFilm,
+      });
+    case ActionType.CHANGE_COMMENT_STATUS:
+      return extend(state, {
+        commentStatus: action.payload,
       });
     default:
       return state;

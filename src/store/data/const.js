@@ -10,7 +10,8 @@ const ActionType = {
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_FILM_REVIEWS: `LOAD_FILM_REVIEWS`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
-  UPDATE_FILM: `${NAME_SPACE}:UPDATE_FILM`,
+  UPDATE_FILM: `UPDATE_FILM`,
+  CHANGE_COMMENT_STATUS: `CHANGE_COMMENT_STATUS`,
 };
 
 const DataErrorNotificationName = {
@@ -34,10 +35,16 @@ const FavoriteFilmStatus = {
   DELETE: `1`,
 };
 
+const CommentStatus = {
+  NONE: `NONE`,
+  POSTING: `POSTING`,
+  ERROR: `ERROR`,
+};
 
 export {
   ActionType,
   DataErrorNotificationName,
   URLHandlerPath,
   FavoriteFilmStatus,
+  CommentStatus,
 };

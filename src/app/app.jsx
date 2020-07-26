@@ -12,6 +12,7 @@ import {EFilmOverviewTab, EGenre} from "@common/enums";
 import {withActiveTab, withNotifications, withStep} from "@common/hocs";
 
 
+const AddReviewWrapper = withNotifications(AddReview);
 const MainWrapper = withNotifications(withActiveTab(withStep(Main)));
 const FilmDescriptionWrapper = withNotifications(withActiveTab(FilmDescription));
 const PlayerWrapper = withNotifications(Player);
@@ -52,7 +53,7 @@ const App = () => {
         />
       }/>
       <Route exact path={AppRoute.LOGIN} render={() => <SignIn/>}/>
-      <Route exact path={AppRoute.REVIEW} render={(props) => <AddReview {...props}/>}/>
+      <Route exact path={AppRoute.REVIEW} render={(props) => <AddReviewWrapper {...props}/>}/>
       <Route exact path={AppRoute.FILMS} render={(props) =>
         <FilmDescriptionWrapper
           baseTab="overview"

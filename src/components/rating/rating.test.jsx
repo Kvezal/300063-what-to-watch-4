@@ -15,6 +15,7 @@ describe(`RatingComponent`, () => {
     const tree = render.create(
         <Rating
           value="2"
+          name="rating"
           onChange={() => {}}
         />
     )
@@ -26,6 +27,7 @@ describe(`RatingComponent`, () => {
     const ratingComponent = shallow(
         <Rating
           value="2"
+          name="rating"
           onChange={() => {}}
         />
     );
@@ -39,6 +41,7 @@ describe(`RatingComponent`, () => {
         <Rating
           starCount={starCount}
           value="2"
+          name="rating"
           onChange={() => {}}
         />
     );
@@ -51,6 +54,7 @@ describe(`RatingComponent`, () => {
     const ratingComponent = shallow(
         <Rating
           value="2"
+          name="rating"
           onChange={onChange}
         />
     );
