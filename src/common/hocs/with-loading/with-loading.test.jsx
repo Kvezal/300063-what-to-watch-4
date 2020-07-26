@@ -20,11 +20,10 @@ TestComponent.propTypes = {
   prop: PropTypes.string,
 };
 
+const TestComponentWithHOC = withLoading(TestComponent, [`prop`]);
 
 describe(`withLoadingHOC`, () => {
   test(`shouldn't create component`, () => {
-    const TestComponentWithHOC = withLoading(
-      TestComponent, [`prop`]);
     const testComponent = mount(
         <TestComponentWithHOC
           prop={null}
@@ -35,10 +34,6 @@ describe(`withLoadingHOC`, () => {
   });
 
   test(`should create component`, () => {
-    const TestComponentWithHOC = withLoading(
-      TestComponent,
-      [`prop`]
-    );
     const testComponent = mount(
       <TestComponentWithHOC
         prop=""
