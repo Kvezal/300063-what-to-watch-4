@@ -43,12 +43,14 @@ const App = () => {
         return <MainWrapper
           tabList={filmFilters}
           activeTab={EGenre.ALL}
+          loadingParams={[`promoFilm`, `films`]}
         />;
       }}/>
       <Route exact path={AppRoute.PLAYER} render={(props) =>
         <PlayerWrapper
           muted={false}
           isPlaying={true}
+          loadingParams={[`source`, `poster`]}
           {...props}
         />
       }/>
@@ -60,6 +62,7 @@ const App = () => {
             comment: ``,
           }}
           initialFormDisabled={true}
+          loadingParams={[`film`]}
           {...props}
         />}
       />
@@ -68,6 +71,7 @@ const App = () => {
           baseTab="overview"
           tabList={filmDescriptionTabList}
           activeTab={EFilmOverviewTab.OVERVIEW}
+          loadingParams={[`info`, `films`]}
           {...props}
         />}/>
     </Switch>

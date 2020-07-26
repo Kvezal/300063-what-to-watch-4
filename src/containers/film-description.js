@@ -13,7 +13,7 @@ import {changeFavoriteFilmStatus, loadFilmReviews} from "@store/data/operation";
 import {FavoriteFilmStatus} from "@store/data/const";
 
 
-const FilmDescriptionWrapper = withLoading(FilmDescription, [`info`, `films`]);
+const FilmDescriptionWrapper = withLoading(FilmDescription);
 
 const mapStateToProps = (state, props) => ({
   avatar: getAvatar(state),

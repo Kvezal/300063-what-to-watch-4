@@ -9,7 +9,7 @@ import {changeFavoriteFilmStatus} from "@store/data/operation";
 import {getAuthorizedFlag, getAvatar} from "@store/user/selector";
 
 
-const MainWrapper = withLoading(Main, [`promoFilm`, `films`]);
+const MainWrapper = withLoading(Main);
 
 
 const mapStateToProps = (state) => ({

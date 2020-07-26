@@ -9,7 +9,7 @@ import {getCurrentFilm, getCommentStatus} from "@store/data/selectors";
 import {getAuthorizedFlag, getAvatar} from "@store/user/selector";
 
 
-const AddReviewWrapper = withLoading(withFormState(AddReview), [`film`]);
+const AddReviewWrapper = withLoading(withFormState(AddReview));
 
 const mapStateToProps = (state, props) => ({
   avatar: getAvatar(state),

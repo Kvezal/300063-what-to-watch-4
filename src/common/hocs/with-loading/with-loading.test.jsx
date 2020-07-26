@@ -20,7 +20,7 @@ TestComponent.propTypes = {
   prop: PropTypes.string,
 };
 
-const TestComponentWithHOC = withLoading(TestComponent, [`prop`]);
+const TestComponentWithHOC = withLoading(TestComponent);
 
 describe(`withLoadingHOC`, () => {
   test(`shouldn't create component`, () => {
@@ -28,6 +28,7 @@ describe(`withLoadingHOC`, () => {
         <TestComponentWithHOC
           prop={null}
           unlessProp={null}
+          loadingParams={[`prop`]}
         />
     );
     expect(testComponent.find(`div.test-component`)).toHaveLength(0);
@@ -38,6 +39,7 @@ describe(`withLoadingHOC`, () => {
       <TestComponentWithHOC
         prop=""
         unlessProp={null}
+        loadingParams={[`prop`]}
       />
     );
     expect(testComponent.find(`div.test-component`)).toHaveLength(1);
