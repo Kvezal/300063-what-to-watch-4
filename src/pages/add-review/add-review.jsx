@@ -8,12 +8,13 @@ import Rating from "@components/rating/rating";
 import {withRadioGroupValue} from "@common/hocs";
 import {filmType} from "@common/types";
 import {getColorParams} from "@common/utils";
+import {AuthorizationStatus} from "@store/user/const";
 
 
 const RatingControl = withRadioGroupValue(Rating);
 
 const AddReview = (props) => {
-  const {isAuthorized, avatar, film, onSubmitForm, formState, onControlChange, formDisabled, onDisabledChange} = props;
+  const {authorizationStatus, avatar, film, onSubmitForm, formState, onControlChange, formDisabled, onDisabledChange} = props;
   const {name, picture} = film;
 
   const breadcrumbs = [
@@ -38,7 +39,7 @@ const AddReview = (props) => {
         <Breadcrumbs list={breadcrumbs}/>
         <User
           avatar={avatar || ``}
-          isAuthorized={isAuthorized}
+          isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}
         />
       </header>
       <div className="movie-card__poster movie-card__poster--small">
@@ -99,7 +100,7 @@ const AddReview = (props) => {
 
 AddReview.propTypes = {
   avatar: PropTypes.string,
-  isAuthorized: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   film: PropTypes.shape(filmType),
   onSubmitForm: PropTypes.func.isRequired,
   formState: PropTypes.shape({

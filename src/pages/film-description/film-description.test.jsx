@@ -5,6 +5,7 @@ import Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter} from "react-router-dom";
 
 import {EFilmOverviewTab} from "@common/enums";
+import {AuthorizationStatus} from "@store/user/const";
 
 import FilmDescription from "./film-description";
 
@@ -158,7 +159,7 @@ describe(`FilmDescriptionPage`, () => {
               activeTab={`overview`}
               reviews={[]}
               tabList={tabList}
-              isAuthorized={true}
+              authorizationStatus={AuthorizationStatus.AUTH}
               onFavoriteFilmClick={() => {}}
               onReviewsLoad={() => {}}
             />
@@ -181,7 +182,7 @@ describe(`FilmDescriptionPage`, () => {
         reviews={[]}
         tabList={tabList}
         onActiveTabChange={() => {}}
-        isAuthorized={true}
+        authorizationStatus={AuthorizationStatus.AUTH}
         onFavoriteFilmClick={() => {}}
         onReviewsLoad={() => {}}
       />
@@ -203,7 +204,7 @@ describe(`FilmDescriptionPage`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
-          isAuthorized={true}
+          authorizationStatus={AuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => {}}
           onReviewsLoad={() => {}}
         />
@@ -225,7 +226,7 @@ describe(`FilmDescriptionPage`, () => {
         reviews={[]}
         tabList={tabList}
         onActiveTabChange={() => {}}
-        isAuthorized={true}
+        authorizationStatus={AuthorizationStatus.AUTH}
         onFavoriteFilmClick={() => {}}
         onReviewsLoad={() => {}}
       />
@@ -246,7 +247,7 @@ describe(`FilmDescriptionPage`, () => {
         reviews={[]}
         tabList={tabList}
         onActiveTabChange={() => {}}
-        isAuthorized={true}
+        authorizationStatus={AuthorizationStatus.AUTH}
         onFavoriteFilmClick={() => {}}
         onReviewsLoad={() => {}}
       />
@@ -267,7 +268,7 @@ describe(`FilmDescriptionPage`, () => {
         reviews={[]}
         tabList={tabList}
         onActiveTabChange={() => {}}
-        isAuthorized={true}
+        authorizationStatus={AuthorizationStatus.AUTH}
         onFavoriteFilmClick={() => {}}
         onReviewsLoad={() => {}}
       />
@@ -288,7 +289,7 @@ describe(`FilmDescriptionPage`, () => {
         reviews={[]}
         tabList={tabList}
         onActiveTabChange={() => {}}
-        isAuthorized={true}
+        authorizationStatus={AuthorizationStatus.AUTH}
         onFavoriteFilmClick={() => {}}
         onReviewsLoad={() => {}}
       />
@@ -309,7 +310,7 @@ describe(`FilmDescriptionPage`, () => {
         reviews={[]}
         tabList={tabList}
         onActiveTabChange={() => {}}
-        isAuthorized={true}
+        authorizationStatus={AuthorizationStatus.AUTH}
         onFavoriteFilmClick={() => {}}
         onReviewsLoad={() => {}}
       />
@@ -331,7 +332,7 @@ describe(`FilmDescriptionPage`, () => {
         reviews={[]}
         tabList={tabList}
         onActiveTabChange={() => {}}
-        isAuthorized={true}
+        authorizationStatus={AuthorizationStatus.AUTH}
         onFavoriteFilmClick={onFavoriteFilmClick}
         onReviewsLoad={() => {}}
       />
@@ -353,7 +354,7 @@ describe(`FilmDescriptionPage`, () => {
         reviews={[]}
         tabList={tabList}
         onActiveTabChange={() => {}}
-        isAuthorized={true}
+        authorizationStatus={AuthorizationStatus.AUTH}
         onFavoriteFilmClick={() => {}}
         onReviewsLoad={onReviewsLoad}
       />

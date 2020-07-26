@@ -4,6 +4,8 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter} from "react-router-dom";
 
+import {AuthorizationStatus} from "@store/user/const";
+
 import Main from "./main";
 
 
@@ -158,7 +160,7 @@ describe(`MainPage`, () => {
               tabList={filmFilters}
               activeTab={filmFilters[0].id}
               onActiveTabChange={() => {}}
-              isAuthorized={true}
+              authorizationStatus={AuthorizationStatus.AUTH}
               onFavoriteFilmClick={() => {}}
               onStepReset={() => {}}
             />
@@ -184,7 +186,7 @@ describe(`MainPage`, () => {
         tabList={filmFilters}
         activeTab={filmFilters[0].id}
         onActiveTabChange={() => {}}
-        isAuthorized={true}
+        authorizationStatus={AuthorizationStatus.AUTH}
         onFavoriteFilmClick={() => {}}
         onStepReset={() => {}}
       />
@@ -210,7 +212,7 @@ describe(`MainPage`, () => {
         tabList={filmFilters}
         activeTab={filmFilters[0].id}
         onActiveTabChange={() => {}}
-        isAuthorized={true}
+        authorizationStatus={AuthorizationStatus.AUTH}
         onFavoriteFilmClick={onFavoriteFilmClick}
         onStepReset={() => {}}
       />

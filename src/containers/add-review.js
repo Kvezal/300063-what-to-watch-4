@@ -6,14 +6,14 @@ import {changeCommentStatus} from "@store/data/action-creator";
 import {CommentStatus} from "@store/data/const";
 import {postReview} from "@store/data/operation";
 import {getCurrentFilm, getCommentStatus} from "@store/data/selectors";
-import {getAuthorizedFlag, getAvatar} from "@store/user/selector";
+import {getAuthorizationStatus, getAvatar} from "@store/user/selector";
 
 
 const AddReviewWrapper = withLoading(withFormState(AddReview));
 
 const mapStateToProps = (state, props) => ({
   avatar: getAvatar(state),
-  isAuthorized: getAuthorizedFlag(state),
+  authorizationStatus: getAuthorizationStatus(state),
   film: getCurrentFilm(state, props),
   formDisabled: getCommentStatus(state) === CommentStatus.POSTING,
 });

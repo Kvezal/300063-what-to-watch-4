@@ -13,6 +13,7 @@ import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import Tabs from "@components/tabs/tabs";
 import User from "@components/user/user";
+import {AuthorizationStatus} from "@store/user/const";
 
 import Details from "./details/details";
 import Overview from "./overview/overview";
@@ -55,7 +56,7 @@ const getTab = (activeTab, info, reviews) => {
 
 class FilmDescription extends PureComponent {
   render() {
-    const {likedFilms, info, avatar, activeTab, tabList, reviews, onActiveTabChange, isAuthorized, onFavoriteFilmClick} = this.props;
+    const {likedFilms, info, avatar, activeTab, tabList, reviews, onActiveTabChange, authorizationStatus, onFavoriteFilmClick} = this.props;
     const {id, name, genre, releaseDate, picture, isFavorite} = info;
 
     return <Fragment>
@@ -68,7 +69,7 @@ class FilmDescription extends PureComponent {
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header movie-card__head">
             <Logo/>
-            <User avatar={avatar || ``} isAuthorized={isAuthorized}/>
+            <User avatar={avatar || ``} isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}/>
           </header>
 
           <div className="movie-card__wrap">
@@ -90,7 +91,7 @@ class FilmDescription extends PureComponent {
                   </svg>
                   <span>Play</span>
                 </Link>
-                {isAuthorized && (
+                {authorizationStatus === AuthorizationStatus.AUTH && (
                   <Fragment>
                     <button
                       className="btn btn--list movie-card__button"
@@ -186,7 +187,7 @@ FilmDescription.propTypes = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape(reviewType)
   ),
-  isAuthorized: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   onFavoriteFilmClick: PropTypes.func.isRequired,
   onReviewsLoad: PropTypes.func.isRequired,
 };

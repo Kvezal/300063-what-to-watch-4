@@ -30,6 +30,7 @@ const login = (authData) => (dispatch, getState, api) => {
       window.location.href = `/`;
     })
     .catch(() => {
+      dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
       dispatch(addNotification({
         id: nanoid(ID_LENGTH),
         type: NotificationType.HIDDEN,

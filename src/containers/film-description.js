@@ -7,7 +7,7 @@ import {
   getLikedFilms,
   getReviews
 } from "@store/data/selectors";
-import {getAuthorizedFlag, getAvatar} from "@store/user/selector";
+import {getAuthorizationStatus, getAvatar} from "@store/user/selector";
 import {changeFavoriteFilmStatus, loadFilmReviews} from "@store/data/operation";
 import {FavoriteFilmStatus} from "@store/data/const";
 
@@ -19,7 +19,7 @@ const mapStateToProps = (state, props) => ({
   likedFilms: getLikedFilms(state, props),
   reviews: getReviews(state, props),
   info: getCurrentFilm(state, props),
-  isAuthorized: getAuthorizedFlag(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

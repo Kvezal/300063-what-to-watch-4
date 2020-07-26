@@ -9,6 +9,7 @@ import AddReview from "@containers/add-review";
 import FilmDescription from "@containers/film-description";
 import Main from "@containers/main";
 import Player from "@containers/player";
+import PrivateRoute from "@containers/private-route";
 import SignIn from "@containers/sign-in";
 
 
@@ -56,7 +57,7 @@ const App = () => {
         />
       }/>
       <Route exact path={AppRoute.LOGIN} render={() => <SignIn/>}/>
-      <Route exact path={AppRoute.REVIEW} render={(props) =>
+      <PrivateRoute exact path={AppRoute.REVIEW} render={(props) =>
         <AddReviewWrapper
           initialFormState={{
             rating: `0`,

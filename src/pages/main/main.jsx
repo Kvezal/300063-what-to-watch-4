@@ -11,13 +11,14 @@ import FilmList from "@components/film-list/film-list";
 import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import User from "@components/user/user";
+import {AuthorizationStatus} from "@store/user/const";
 
 
 const FILM_COUNT_IN_ONE_STEP = 8;
 
 const Main = (props) => {
   const {
-    isAuthorized,
+    authorizationStatus,
     tabList,
     activeTab,
     step,
@@ -40,7 +41,7 @@ const Main = (props) => {
       <h1 className="visually-hidden">WTW</h1>
       <header className="page-header movie-card__head">
         <Logo/>
-        <User avatar={avatar} isAuthorized={isAuthorized}/>
+        <User avatar={avatar} isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}/>
       </header>
 
       <div className="movie-card__wrap">
@@ -67,7 +68,7 @@ const Main = (props) => {
                 </svg>
                 <span>Play</span>
               </Link>
-              {isAuthorized && (
+              {authorizationStatus === AuthorizationStatus.AUTH && (
                 <button
                   className="btn btn--list movie-card__button"
                   type="button"
@@ -119,7 +120,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  isAuthorized: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   tabList: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
