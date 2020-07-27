@@ -167,6 +167,7 @@ describe(`App`, () => {
         films,
         promoFilm: films[0],
         filmReviews: reviews,
+        favoriteFilms: [],
       },
       [NameSpace.NOTIFICATION]: {
         notifications: [],

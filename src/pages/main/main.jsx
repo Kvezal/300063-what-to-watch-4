@@ -11,6 +11,7 @@ import FilmList from "@components/film-list/film-list";
 import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import User from "@components/user/user";
+import {FavoriteFilmActionType} from "@store/data/const";
 import {AuthorizationStatus} from "@store/user/const";
 
 
@@ -29,8 +30,11 @@ const Main = (props) => {
     onStepChange,
     onStepReset,
     onFavoriteFilmClick,
+    favoriteFilms,
   } = props;
-  const {id: promoFilmId, genre, releaseDate, name, picture, isFavorite} = promoFilm;
+  const {id: promoFilmId, genre, releaseDate, name, picture} = promoFilm;
+
+  const isFavorite = favoriteFilms && favoriteFilms.some((item) => item.id === promoFilmId);
 
   return <Fragment>
     <section className="movie-card">
@@ -72,7 +76,12 @@ const Main = (props) => {
                 <button
                   className="btn btn--list movie-card__button"
                   type="button"
-                  onClick={() => onFavoriteFilmClick(promoFilm)}
+                  onClick={() => {
+                    const favoriteFilmActionType = isFavorite
+                      ? FavoriteFilmActionType.DELETE
+                      : FavoriteFilmActionType.ADD;
+                    onFavoriteFilmClick(promoFilmId, favoriteFilmActionType);
+                  }}
                 >
                   {isFavorite
                     ? <svg viewBox="0 0 18 14" width="18" height="14">
@@ -136,6 +145,9 @@ Main.propTypes = {
   step: PropTypes.number.isRequired,
   promoFilm: PropTypes.shape(filmType).isRequired,
   films: PropTypes.arrayOf(
+      PropTypes.shape(filmType)
+  ).isRequired,
+  favoriteFilms: PropTypes.arrayOf(
       PropTypes.shape(filmType)
   ).isRequired,
   avatar: PropTypes.string,

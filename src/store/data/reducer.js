@@ -11,17 +11,6 @@ const initialState = {
   commentStatus: CommentStatus.NONE,
 };
 
-const updateItemFilm = (list, film) => {
-  return list.reduce((result, item) => {
-    if (item.id === film.id) {
-      result.push(film);
-    } else {
-      result.push(item);
-    }
-    return result;
-  }, []);
-};
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_FILMS:
@@ -40,15 +29,17 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         favoriteFilms: action.payload,
       });
-    case ActionType.UPDATE_FILM:
-      return extend(state, {
-        favoriteFilms: updateItemFilm(state.favoriteFilms, action.payload),
-        films: updateItemFilm(state.films, action.payload),
-        promoFilm: state.promoFilm.id === action.payload.id ? action.payload : state.promoFilm,
-      });
     case ActionType.CHANGE_COMMENT_STATUS:
       return extend(state, {
         commentStatus: action.payload,
+      });
+    case ActionType.ADD_FAVORITE_FILM:
+      return extend(state, {
+        favoriteFilms: state.favoriteFilms.concat(action.payload),
+      });
+    case ActionType.REMOVE_FAVORITE_FILM:
+      return extend(state, {
+        favoriteFilms: state.favoriteFilms.filter((film) => film.id !== action.payload.id),
       });
     default:
       return state;

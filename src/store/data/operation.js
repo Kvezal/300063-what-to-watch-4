@@ -3,7 +3,7 @@ import {nanoid} from "nanoid";
 import {AppRoute, history} from "@app";
 import {adaptFilm, adaptReview} from "@common/adapter";
 import {ID_LENGTH} from "@store/const";
-import {CommentStatus, FavoriteFilmStatus} from "@store/data/const";
+import {CommentStatus, FavoriteFilmActionType} from "@store/data/const";
 import {getCurrentFilmId} from "@store/data/selectors";
 import {addNotification} from "@store/notification/action-creator";
 import {NotificationType, HTTPMethod} from "@store/notification/const";
@@ -112,14 +112,20 @@ const changeFavoriteFilmStatus = (filmId, status) => (dispatch, getState, api) =
   const path = URLHandlerPath.FAVORITE_FILM.replace(`:filmId`, filmId).replace(`:status`, status);
   return api.post(path)
     .then((response) => adaptFilm(response.data))
-    .then((film) => dispatch(ActionCreator.updateFilm(film)))
+    .then((film) => {
+      if (film.isFavorite) {
+        dispatch(ActionCreator.addFavoriteFilm(film));
+      } else {
+        dispatch(ActionCreator.removeFavoriteFilm(film));
+      }
+    })
     .catch(() => {
       dispatch(addNotification({
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
         name: DataErrorNotificationName.FAVORITE_FILM_STATUS,
         method: HTTPMethod.POST,
-        title: status === FavoriteFilmStatus.ADD ? `Error adding film to favorite list` : `Error deleting film from favorite list`,
+        title: status === FavoriteFilmActionType.ADD ? `Error adding film to favorite list` : `Error deleting film from favorite list`,
         text: `Try to add film to favorite list again`,
       }));
     });

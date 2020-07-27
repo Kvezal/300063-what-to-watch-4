@@ -151,6 +151,7 @@ describe(`FilmDescriptionPage`, () => {
           <MemoryRouter>
             <FilmDescription
               likedFilms={likedFilms}
+              favoriteFilms={[]}
               onActiveTabChange={() => {}}
               info={likedFilms[0]}
               avatar={avatar}
@@ -174,6 +175,7 @@ describe(`FilmDescriptionPage`, () => {
     const filmOverviewComponent = shallow(
       <FilmDescription
         likedFilms={likedFilms}
+        favoriteFilms={[]}
         info={likedFilms[0]}
         avatar={avatar}
         onFilmChoose={() => {}}
@@ -196,6 +198,7 @@ describe(`FilmDescriptionPage`, () => {
       <MemoryRouter>
         <FilmDescription
           likedFilms={likedFilms}
+          favoriteFilms={[]}
           info={likedFilms[0]}
           avatar={avatar}
           onFilmChoose={() => {}}
@@ -218,6 +221,7 @@ describe(`FilmDescriptionPage`, () => {
     const filmOverviewComponent = shallow(
       <FilmDescription
         likedFilms={likedFilms}
+        favoriteFilms={[]}
         info={likedFilms[0]}
         avatar={avatar}
         onFilmChoose={() => {}}
@@ -239,6 +243,7 @@ describe(`FilmDescriptionPage`, () => {
     const filmOverviewComponent = shallow(
       <FilmDescription
         likedFilms={likedFilms}
+        favoriteFilms={[]}
         info={likedFilms[0]}
         avatar={avatar}
         onFilmChoose={() => {}}
@@ -260,6 +265,7 @@ describe(`FilmDescriptionPage`, () => {
     const filmOverviewComponent = shallow(
       <FilmDescription
         likedFilms={likedFilms}
+        favoriteFilms={[]}
         info={likedFilms[0]}
         avatar={avatar}
         onFilmChoose={() => {}}
@@ -281,6 +287,7 @@ describe(`FilmDescriptionPage`, () => {
     const filmOverviewComponent = shallow(
       <FilmDescription
         likedFilms={likedFilms}
+        favoriteFilms={[]}
         info={likedFilms[0]}
         avatar={avatar}
         onFilmChoose={() => {}}
@@ -302,6 +309,7 @@ describe(`FilmDescriptionPage`, () => {
     const filmOverviewComponent = shallow(
       <FilmDescription
         likedFilms={likedFilms}
+        favoriteFilms={[]}
         info={likedFilms[0]}
         avatar={avatar}
         onFilmChoose={() => {}}
@@ -324,6 +332,7 @@ describe(`FilmDescriptionPage`, () => {
     const mainPage = shallow(
       <FilmDescription
         likedFilms={likedFilms}
+        favoriteFilms={[]}
         info={likedFilms[0]}
         avatar={avatar}
         onFilmChoose={() => {}}
@@ -346,6 +355,7 @@ describe(`FilmDescriptionPage`, () => {
     const mainPage = shallow(
       <FilmDescription
         likedFilms={likedFilms}
+        favoriteFilms={[]}
         info={likedFilms[0]}
         avatar={avatar}
         onFilmChoose={() => {}}

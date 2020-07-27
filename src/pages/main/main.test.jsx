@@ -7,6 +7,7 @@ import {MemoryRouter} from "react-router-dom";
 import {AuthorizationStatus} from "@store/user/const";
 
 import Main from "./main";
+import FilmDescription from "@pages/film-description/film-description";
 
 
 const avatar = `avatar.jpg`;
@@ -150,6 +151,7 @@ describe(`MainPage`, () => {
           <MemoryRouter>
             <Main
               promoFilm={films[0]}
+              favoriteFilms={[]}
               genre=""
               onFilterClick={() => {}}
               films={films}
@@ -176,6 +178,7 @@ describe(`MainPage`, () => {
     const mainPage = shallow(
       <Main
         promoFilm={films[0]}
+        favoriteFilms={[]}
         genre=""
         onFilterClick={() => {}}
         films={films}
@@ -202,6 +205,7 @@ describe(`MainPage`, () => {
     const mainPage = shallow(
       <Main
         promoFilm={films[0]}
+        favoriteFilms={[]}
         genre=""
         onFilterClick={() => {}}
         films={films}

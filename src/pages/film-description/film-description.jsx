@@ -13,14 +13,15 @@ import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import Tabs from "@components/tabs/tabs";
 import User from "@components/user/user";
+import {FavoriteFilmActionType} from "@store/data/const";
 import {AuthorizationStatus} from "@store/user/const";
 
 import Details from "./details/details";
 import Overview from "./overview/overview";
 import Reviews from "./reviews/reviews";
 
-const ReviewsWrap = withLoading(Reviews);
 
+const ReviewsWrap = withLoading(Reviews);
 
 const getTab = (activeTab, info, reviews) => {
   const {rating, description, director, starring, genre, runTime, releaseDate, picture} = info;
@@ -56,8 +57,21 @@ const getTab = (activeTab, info, reviews) => {
 
 class FilmDescription extends PureComponent {
   render() {
-    const {likedFilms, info, avatar, activeTab, tabList, reviews, onActiveTabChange, authorizationStatus, onFavoriteFilmClick} = this.props;
-    const {id, name, genre, releaseDate, picture, isFavorite} = info;
+    const {
+      likedFilms,
+      info,
+      avatar,
+      activeTab,
+      tabList,
+      reviews,
+      onActiveTabChange,
+      authorizationStatus,
+      onFavoriteFilmClick,
+      favoriteFilms,
+    } = this.props;
+    const {id, name, genre, releaseDate, picture} = info;
+
+    const isFavorite = favoriteFilms && favoriteFilms.some((item) => item.id === id);
 
     return <Fragment>
       <section className="movie-card movie-card--full" style={{backgroundColor: picture.backgroundColor}}>
@@ -96,7 +110,12 @@ class FilmDescription extends PureComponent {
                     <button
                       className="btn btn--list movie-card__button"
                       type="button"
-                      onClick={() => onFavoriteFilmClick(info)}
+                      onClick={() => {
+                        const favoriteFilmActionType = isFavorite
+                          ? FavoriteFilmActionType.DELETE
+                          : FavoriteFilmActionType.ADD;
+                        onFavoriteFilmClick(id, favoriteFilmActionType);
+                      }}
                     >
                       {isFavorite
                         ? <svg viewBox="0 0 18 14" width="18" height="14">
@@ -175,6 +194,9 @@ FilmDescription.propTypes = {
   likedFilms: PropTypes.arrayOf(
       PropTypes.shape(filmType)
   ).isRequired,
+  favoriteFilms: PropTypes.arrayOf(
+      PropTypes.shape(filmType)
+  ).isRequired,
   avatar: PropTypes.string,
   tabList: PropTypes.arrayOf(
       PropTypes.shape({
@@ -188,8 +210,8 @@ FilmDescription.propTypes = {
       PropTypes.shape(reviewType)
   ),
   authorizationStatus: PropTypes.string.isRequired,
-  onFavoriteFilmClick: PropTypes.func.isRequired,
   onReviewsLoad: PropTypes.func.isRequired,
+  onFavoriteFilmClick: PropTypes.func.isRequired,
 };
 
 export default FilmDescription;

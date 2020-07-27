@@ -21,13 +21,18 @@ const loadFilmReviews = (payload) => ({
   payload,
 });
 
-const updateFilm = (payload) => ({
-  type: ActionType.UPDATE_FILM,
+const changeCommentStatus = (payload) => ({
+  type: ActionType.CHANGE_COMMENT_STATUS,
   payload,
 });
 
-const changeCommentStatus = (payload) => ({
-  type: ActionType.CHANGE_COMMENT_STATUS,
+const addFavoriteFilm = (payload) => ({
+  type: ActionType.ADD_FAVORITE_FILM,
+  payload,
+});
+
+const removeFavoriteFilm = (payload) => ({
+  type: ActionType.REMOVE_FAVORITE_FILM,
   payload,
 });
 
@@ -36,6 +41,7 @@ export {
   loadFavoriteFilms,
   loadPromoFilm,
   loadFilmReviews,
-  updateFilm,
   changeCommentStatus,
+  addFavoriteFilm,
+  removeFavoriteFilm,
 };

@@ -2,8 +2,8 @@ import MockAdapter from "axios-mock-adapter";
 
 import {adaptFilm, adaptReview} from "@common/adapter";
 import {extend} from "@common/utils";
-import {EGenre} from "@common/enums";
 import createAPI from "@services/api";
+import {FavoriteFilmActionType} from "@store/data/const";
 
 import {ActionType, CommentStatus} from "./const";
 import * as ActionCreator from "./action-creator";
@@ -38,7 +38,7 @@ const filmFromServer = {
   run_time: 229,
   genre: `Crime`,
   released: 1984,
-  is_favorite: false
+  is_favorite: true
 };
 
 const filmReviewFromServer = {
@@ -206,6 +206,37 @@ const films = [
   },
 ];
 
+const film = {
+  id: 5,
+  name: `name 5`,
+  genre: `Comedy`,
+  runTime: `3h 49m`,
+  releaseDate: 1984,
+  description: `description 5`,
+  director: `director 5`,
+  rating: {
+    score: 9.9,
+    count: 276395,
+    assessment: `Very good`,
+  },
+  source: {
+    video: `video5`,
+    previewVideo: `previewVideo5`,
+  },
+  picture: {
+    poster: `poster5`,
+    preview: `preview5`,
+    cover: `cover5`,
+    backgroundColor: `color5`,
+  },
+  starring: [
+    `Robert De Niro`,
+    `James Woods`,
+    `Elizabeth McGovern`
+  ],
+  isFavorite: true,
+};
+
 const reviews = [
   {
     text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
@@ -278,11 +309,19 @@ describe(`DataReducer`, () => {
       });
   });
 
-  test(`update film action should return correct object`, () => {
-    expect(ActionCreator.updateFilm(films))
+  test(`add favorite film action should return correct object`, () => {
+    expect(ActionCreator.addFavoriteFilm(film))
       .toEqual({
-        type: ActionType.UPDATE_FILM,
-        payload: films,
+        type: ActionType.ADD_FAVORITE_FILM,
+        payload: film,
+      });
+  });
+
+  test(`remove favorite film action should return correct object`, () => {
+    expect(ActionCreator.removeFavoriteFilm(film))
+      .toEqual({
+        type: ActionType.REMOVE_FAVORITE_FILM,
+        payload: film,
       });
   });
 
@@ -336,85 +375,35 @@ describe(`DataReducer`, () => {
     expect(reducer(initialState, loadFavoriteFilmsAction))
       .toEqual(extend(initialState, {
         favoriteFilms: films,
-      }))
+      }));
   });
 
-  test(`should update film in promoFilm, films and favoriteFilms`, () => {
-    const film = {
-      id: 2,
-      name: `name 2`,
-      genre: `Drama`,
-      runTime: `3h 49m`,
-      releaseDate: 1984,
-      description: `description 2`,
-      director: `director 2`,
-      rating: {
-        score: 9.9,
-        count: 276395,
-        assessment: `Very good`,
-      },
-      source: {
-        video: `video2`,
-        previewVideo: `previewVideo2`,
-      },
-      picture: {
-        poster: `poster2`,
-        preview: `preview2`,
-        cover: `cover2`,
-        backgroundColor: `color2`,
-      },
-      starring: [
-        `Robert De Niro`,
-        `James Woods`,
-        `Elizabeth McGovern`
-      ],
-      isFavorite: false,
-    };
+  test(`should add a film to favoriteFilms`, () => {
     const state = extend(initialState, {
-      favoriteFilms: [film],
-      films: [film],
-      promoFilm: film,
+      favoriteFilms: []
     });
-    const updatedFilm = {
-      id: 2,
-      name: `name 2`,
-      genre: `Drama`,
-      runTime: `3h 49m`,
-      releaseDate: 1984,
-      description: `description 2`,
-      director: `director 2`,
-      rating: {
-        score: 9.9,
-        count: 276395,
-        assessment: `Very good`,
-      },
-      source: {
-        video: `video2`,
-        previewVideo: `previewVideo2`,
-      },
-      picture: {
-        poster: `poster2`,
-        preview: `preview2`,
-        cover: `cover2`,
-        backgroundColor: `color2`,
-      },
-      starring: [
-        `Robert De Niro`,
-        `James Woods`,
-        `Elizabeth McGovern`
-      ],
-      isFavorite: true,
+    const addFavoriteFilmAction = {
+      type: ActionType.ADD_FAVORITE_FILM,
+      payload: film,
     };
-    const updateFilmAction = {
-      type: ActionType.UPDATE_FILM,
-      payload: updatedFilm,
-    };
-    expect(reducer(state, updateFilmAction))
+    expect(reducer(state, addFavoriteFilmAction))
       .toEqual(extend(initialState, {
-        films: [updatedFilm],
-        favoriteFilms: [updatedFilm],
-        promoFilm: updatedFilm,
-      }))
+        favoriteFilms: [film],
+      }));
+  });
+
+  test(`should remove a film from favoriteFilms`, () => {
+    const state = extend(initialState, {
+      favoriteFilms: [film]
+    });
+    const removeFavoriteFilmAction = {
+      type: ActionType.REMOVE_FAVORITE_FILM,
+      payload: film,
+    };
+    expect(reducer(state, removeFavoriteFilmAction))
+      .toEqual(extend(initialState, {
+        favoriteFilms: [],
+      }));
   });
 
   test.each([
@@ -429,7 +418,7 @@ describe(`DataReducer`, () => {
     expect(reducer(initialState, changeCommentPostingStatusAction))
       .toEqual(extend(initialState, {
         commentStatus: status,
-      }))
+      }));
   });
 
   test(`should make a correct API call to /films`, () => {
@@ -508,16 +497,16 @@ describe(`DataReducer`, () => {
   test(`should make a correct API call to /favorite/:filmId/:status`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const favoriteFilmStatusChanger = Operation.changeFavoriteFilmStatus(3, 1);
+    const favoriteFilmStatusChanger = Operation.changeFavoriteFilmStatus(3, FavoriteFilmActionType.ADD);
 
-    apiMock.onPost(`/favorite/3/1`)
+    apiMock.onPost(`/favorite/3/${FavoriteFilmActionType.ADD}`)
       .reply(200, filmFromServer);
 
     favoriteFilmStatusChanger(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenCalledWith({
-          type: ActionType.UPDATE_FILM,
+          type: ActionType.ADD_FAVORITE_FILM,
           payload: adaptFilm(filmFromServer),
         });
       });

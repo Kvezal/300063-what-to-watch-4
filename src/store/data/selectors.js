@@ -81,7 +81,6 @@ const getCurrentFilmPicturePreview = createSelector(
     (film) => film && film.picture.preview
 );
 
-
 export {
   getFilms,
   getPromoFilm,

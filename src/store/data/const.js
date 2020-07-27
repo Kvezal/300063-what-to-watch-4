@@ -9,8 +9,9 @@ const ActionType = {
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_FILM_REVIEWS: `LOAD_FILM_REVIEWS`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
-  UPDATE_FILM: `UPDATE_FILM`,
   CHANGE_COMMENT_STATUS: `CHANGE_COMMENT_STATUS`,
+  ADD_FAVORITE_FILM: `ADD_FAVORITE_FILM`,
+  REMOVE_FAVORITE_FILM: `REMOVE_FAVORITE_FILM`,
 };
 
 const DataErrorNotificationName = {
@@ -29,9 +30,9 @@ const URLHandlerPath = {
   FAVORITE_FILM: `/favorite/:filmId/:status`,
 };
 
-const FavoriteFilmStatus = {
-  ADD: `0`,
-  DELETE: `1`,
+const FavoriteFilmActionType = {
+  ADD: `1`,
+  DELETE: `0`,
 };
 
 const CommentStatus = {
@@ -44,6 +45,6 @@ export {
   ActionType,
   DataErrorNotificationName,
   URLHandlerPath,
-  FavoriteFilmStatus,
+  FavoriteFilmActionType,
   CommentStatus,
 };
