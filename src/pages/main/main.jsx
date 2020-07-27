@@ -30,7 +30,7 @@ const Main = (props) => {
     onStepReset,
     onFavoriteFilmClick,
   } = props;
-  const {id: promoFilmId, genre, releaseDate, name, picture} = promoFilm;
+  const {id: promoFilmId, genre, releaseDate, name, picture, isFavorite} = promoFilm;
 
   return <Fragment>
     <section className="movie-card">
@@ -74,9 +74,14 @@ const Main = (props) => {
                   type="button"
                   onClick={() => onFavoriteFilmClick(promoFilm)}
                 >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"/>
-                  </svg>
+                  {isFavorite
+                    ? <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"/>
+                    </svg>
+                    : <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"/>
+                    </svg>
+                  }
                   <span>My list</span>
                 </button>
               )}
