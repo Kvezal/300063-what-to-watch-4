@@ -11,11 +11,13 @@ import Main from "@containers/main";
 import Player from "@containers/player";
 import PrivateRoute from "@containers/private-route";
 import SignIn from "@containers/sign-in";
+import MyList from "@containers/my-list";
 
 
 const AddReviewWrapper = withNotifications(AddReview);
-const MainWrapper = withNotifications(withActiveTab(withStep(Main)));
 const FilmDescriptionWrapper = withNotifications(withActiveTab(FilmDescription));
+const MainWrapper = withNotifications(withActiveTab(withStep(Main)));
+const MyListWrapper = withNotifications(MyList);
 const PlayerWrapper = withNotifications(Player);
 
 const App = () => {
@@ -74,7 +76,14 @@ const App = () => {
           activeTab={EFilmOverviewTab.OVERVIEW}
           loadingParams={[`info`, `likedFilms`]}
           {...props}
-        />}/>
+        />}
+      />
+      <PrivateRoute exact path={AppRoute.MY_LIST} render={(props) =>
+        <MyListWrapper
+          loadingParams={[`films`, `authorizationStatus`]}
+          {...props}
+        />}
+      />
     </Switch>
   </Router>;
 };
