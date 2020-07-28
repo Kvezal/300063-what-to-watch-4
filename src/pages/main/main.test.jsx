@@ -175,23 +175,23 @@ describe(`MainPage`, () => {
   test(`card titles should be pressed`, () => {
     const onFilmChoose = jest.fn();
     const mainPage = shallow(
-      <Main
-        promoFilm={films[0]}
-        favoriteFilms={[]}
-        genre=""
-        onFilterClick={() => {}}
-        films={films}
-        avatar={avatar}
-        onFilmChoose={onFilmChoose}
-        onStepChange={() => {}}
-        step={1}
-        tabList={filmFilters}
-        activeTab={filmFilters[0].id}
-        onActiveTabChange={() => {}}
-        authorizationStatus={AuthorizationStatus.AUTH}
-        onFavoriteFilmClick={() => {}}
-        onStepReset={() => {}}
-      />
+        <Main
+          promoFilm={films[0]}
+          favoriteFilms={[]}
+          genre=""
+          onFilterClick={() => {}}
+          films={films}
+          avatar={avatar}
+          onFilmChoose={onFilmChoose}
+          onStepChange={() => {}}
+          step={1}
+          tabList={filmFilters}
+          activeTab={filmFilters[0].id}
+          onActiveTabChange={() => {}}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => {}}
+          onStepReset={() => {}}
+        />
     );
     const mainTitleList = mainPage.find(`a.small-movie-card__link`);
     mainTitleList.forEach((mainTitle) => mainTitle.simulate(`click`));
@@ -202,23 +202,23 @@ describe(`MainPage`, () => {
   test(`add favorite list button should be clicked`, () => {
     const onFavoriteFilmClick = jest.fn();
     const mainPage = shallow(
-      <Main
-        promoFilm={films[0]}
-        favoriteFilms={[]}
-        genre=""
-        onFilterClick={() => {}}
-        films={films}
-        avatar={avatar}
-        onFilmChoose={() => {}}
-        onStepChange={() => {}}
-        step={1}
-        tabList={filmFilters}
-        activeTab={filmFilters[0].id}
-        onActiveTabChange={() => {}}
-        authorizationStatus={AuthorizationStatus.AUTH}
-        onFavoriteFilmClick={onFavoriteFilmClick}
-        onStepReset={() => {}}
-      />
+        <Main
+          promoFilm={films[0]}
+          favoriteFilms={[]}
+          genre=""
+          onFilterClick={() => {}}
+          films={films}
+          avatar={avatar}
+          onFilmChoose={() => {}}
+          onStepChange={() => {}}
+          step={1}
+          tabList={filmFilters}
+          activeTab={filmFilters[0].id}
+          onActiveTabChange={() => {}}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          onFavoriteFilmClick={onFavoriteFilmClick}
+          onStepReset={() => {}}
+        />
     );
     mainPage.find(`button.movie-card__button`).simulate(`click`);
     expect(onFavoriteFilmClick).toHaveBeenCalledTimes(1);

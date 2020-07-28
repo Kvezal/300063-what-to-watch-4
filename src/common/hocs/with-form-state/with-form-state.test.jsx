@@ -53,13 +53,13 @@ const TestComponentWithHOC = withFormState(TestComponent);
 describe(`withFormStateHOC`, () => {
   test(`should set formState`, () => {
     const testComponent = mount(
-      <TestComponentWithHOC
-        initialFormState={{
-          checkbox: false,
-          comment: ``,
-        }}
-        formDisabled={true}
-      />
+        <TestComponentWithHOC
+          initialFormState={{
+            checkbox: false,
+            comment: ``,
+          }}
+          formDisabled={true}
+        />
     );
     testComponent.find(`input[type="checkbox"]`).simulate(`change`, {
       target: {
@@ -78,13 +78,13 @@ describe(`withFormStateHOC`, () => {
 
   test(`should disabled form`, () => {
     const testComponent = mount(
-      <TestComponentWithHOC
-        initialFormState={{
-          checkbox: false,
-          comment: `test`,
-        }}
-        formDisabled={true}
-      />
+        <TestComponentWithHOC
+          initialFormState={{
+            checkbox: false,
+            comment: `test`,
+          }}
+          formDisabled={true}
+        />
     );
     jest.spyOn(HTMLFormElement.prototype, `checkValidity`).mockImplementation(() => true);
     testComponent.find(`form`).simulate(`change`);

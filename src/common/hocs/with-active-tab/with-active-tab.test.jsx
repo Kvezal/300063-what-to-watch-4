@@ -46,14 +46,14 @@ describe(`withActiveTab`, () => {
 
   test(`should set active tab`, () => {
     const testComponent = mount(
-        <Router history={history} initialEntries={['/']}>
-          <Route path="/" render={(props) => {
-            return <TestComponentWithHOC
+        <Router history={history} initialEntries={[`/`]}>
+          <Route path="/" render={(props) =>
+            <TestComponentWithHOC
               list={tabs}
               activeTab={tabs[1].id}
               {...props}
             />
-          }}/>
+          }/>
         </Router>
     );
     const activeTabText = testComponent.find(`div.active`).text();
@@ -62,14 +62,14 @@ describe(`withActiveTab`, () => {
 
   test(`should change active tab`, () => {
     const testComponent = mount(
-        <Router history={history} initialEntries={['/']}>
-          <Route path="/" render={(props) => {
-            return <TestComponentWithHOC
+        <Router history={history} initialEntries={[`/`]}>
+          <Route path="/" render={(props) =>
+            <TestComponentWithHOC
               list={tabs}
               activeTab={tabs[1].id}
               {...props}
             />
-          }}/>
+          }/>
         </Router>
     );
     const activeTabs = testComponent.find(`div.test`);
@@ -85,11 +85,11 @@ describe(`withActiveTab`, () => {
 
   test(`hash should set active tab`, () => {
     const testComponent = mount(
-      <TestComponentWithHOC
-        list={tabs}
-        activeTab={tabs[1].id}
-        location={{hash: `#${tabs[0].id}`}}
-      />
+        <TestComponentWithHOC
+          list={tabs}
+          activeTab={tabs[1].id}
+          location={{hash: `#${tabs[0].id}`}}
+        />
     );
     expect(testComponent.find(`div.active`).text()).toBe(tabs[0].name);
   });

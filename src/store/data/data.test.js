@@ -21,6 +21,8 @@ const initialState = {
   commentStatus: CommentStatus.NONE,
 };
 
+// imitation of server data before adaptation
+/* eslint-disable camelcase */
 const filmFromServer = {
   id: 3,
   name: `name 3`,
@@ -40,6 +42,7 @@ const filmFromServer = {
   released: 1984,
   is_favorite: true
 };
+/* eslint-enable camelcase */
 
 const filmReviewFromServer = {
   id: 1,

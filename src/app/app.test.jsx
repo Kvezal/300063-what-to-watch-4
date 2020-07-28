@@ -182,7 +182,7 @@ describe(`App`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <MemoryRouter initialEntries={["/"]}>
+            <MemoryRouter initialEntries={[`/`]}>
               <App/>
             </MemoryRouter>
           </Provider>,

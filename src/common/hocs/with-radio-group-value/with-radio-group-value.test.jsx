@@ -14,9 +14,11 @@ const TestComponent = (props) => {
   const {value, onChange} = props;
   return <Fragment>
     <div className="result">{value}</div>
-    <input type="radio" value="1" onChange={(event) => {
-      onChange(event.target.value)
-    }}/>
+    <input
+      type="radio"
+      value="1"
+      onChange={(event) => onChange(event.target.value)}
+    />
   </Fragment>;
 };
 
@@ -38,6 +40,6 @@ describe(`withRadioGroupValueHOC`, () => {
     const inputs = testComponent.find(`input`);
     inputs.at(0).simulate(`change`, {target: {value: controlValue}});
     expect(onChangeControl).toBeCalledTimes(1);
-    expect(onChangeControl.mock.calls[0][0]).toBe(controlValue)
+    expect(onChangeControl.mock.calls[0][0]).toBe(controlValue);
   });
 });

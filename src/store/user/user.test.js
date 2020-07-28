@@ -13,45 +13,45 @@ describe(`UserReducer`, () => {
 
   test(`should change authorizationStatus`, () => {
     expect(
-      reducer({
-        authorizationStatus: AuthorizationStatus.NO_AUTH,
-      }, {
-        type: ActionType.SET_AUTHORIZATION_STATUS,
-        payload: AuthorizationStatus.AUTH,
-      })
+        reducer({
+          authorizationStatus: AuthorizationStatus.NO_AUTH,
+        }, {
+          type: ActionType.SET_AUTHORIZATION_STATUS,
+          payload: AuthorizationStatus.AUTH,
+        })
     ).toEqual({
       authorizationStatus: AuthorizationStatus.AUTH,
     });
 
     expect(
-      reducer({
-        authorizationStatus: AuthorizationStatus.AUTH,
-      }, {
-        type: ActionType.SET_AUTHORIZATION_STATUS,
-        payload: AuthorizationStatus.AUTH,
-      })
+        reducer({
+          authorizationStatus: AuthorizationStatus.AUTH,
+        }, {
+          type: ActionType.SET_AUTHORIZATION_STATUS,
+          payload: AuthorizationStatus.AUTH,
+        })
     ).toEqual({
       authorizationStatus: AuthorizationStatus.AUTH,
     });
 
     expect(
-      reducer({
-        authorizationStatus: AuthorizationStatus.AUTH,
-      }, {
-        type: ActionType.SET_AUTHORIZATION_STATUS,
-        payload: AuthorizationStatus.NO_AUTH,
-      })
+        reducer({
+          authorizationStatus: AuthorizationStatus.AUTH,
+        }, {
+          type: ActionType.SET_AUTHORIZATION_STATUS,
+          payload: AuthorizationStatus.NO_AUTH,
+        })
     ).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
     });
 
     expect(
-      reducer({
-        authorizationStatus: AuthorizationStatus.NO_AUTH,
-      }, {
-        type: ActionType.SET_AUTHORIZATION_STATUS,
-        payload: AuthorizationStatus.NO_AUTH,
-      })
+        reducer({
+          authorizationStatus: AuthorizationStatus.NO_AUTH,
+        }, {
+          type: ActionType.SET_AUTHORIZATION_STATUS,
+          payload: AuthorizationStatus.NO_AUTH,
+        })
     ).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
     });
@@ -60,11 +60,11 @@ describe(`UserReducer`, () => {
   test(`should unauthorize user`, () => {
     expect(
         reducer({
-        authorizationStatus: AuthorizationStatus.AUTH,
-      }, {
-        type: ActionType.SET_AUTHORIZATION_STATUS,
-        payload: AuthorizationStatus.NO_AUTH,
-      })
+          authorizationStatus: AuthorizationStatus.AUTH,
+        }, {
+          type: ActionType.SET_AUTHORIZATION_STATUS,
+          payload: AuthorizationStatus.NO_AUTH,
+        })
     ).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
     });

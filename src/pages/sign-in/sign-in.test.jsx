@@ -26,21 +26,21 @@ describe(`SignInPage`, () => {
 
   test(`should render component`, () => {
     const tree = render.create(
-      <MemoryRouter>
-        <SignIn
-          errors={[]}
-          onFormSubmit={() => {}}
-          formState={{
-            email: `test-email`,
-            password: `test-password`,
-          }}
-          initialFormDisabled={true}
-          loadingParams={[]}
-          onControlChange={() => {}}
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
-        />
-      </MemoryRouter>,
-      {createNodeMock: () => ({})}
+        <MemoryRouter>
+          <SignIn
+            errors={[]}
+            onFormSubmit={() => {}}
+            formState={{
+              email: `test-email`,
+              password: `test-password`,
+            }}
+            initialFormDisabled={true}
+            loadingParams={[]}
+            onControlChange={() => {}}
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+          />
+        </MemoryRouter>,
+        {createNodeMock: () => ({})}
     )
       .toJSON();
     expect(tree).toMatchSnapshot();
@@ -48,18 +48,18 @@ describe(`SignInPage`, () => {
 
   test(`should create component`, () => {
     const signInComponent = shallow(
-      <SignIn
-        errors={[]}
-        onFormSubmit={() => {}}
-        formState={{
-          email: ``,
-          password: ``,
-        }}
-        initialFormDisabled={true}
-        loadingParams={[]}
-        onControlChange={() => {}}
-        authorizationStatus={AuthorizationStatus.NO_AUTH}
-      />
+        <SignIn
+          errors={[]}
+          onFormSubmit={() => {}}
+          formState={{
+            email: ``,
+            password: ``,
+          }}
+          initialFormDisabled={true}
+          loadingParams={[]}
+          onControlChange={() => {}}
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+        />
     );
     const signIn = signInComponent.find(`.sign-in`);
     expect(signIn).toHaveLength(1);
@@ -67,18 +67,18 @@ describe(`SignInPage`, () => {
 
   test(`shouldn't have error message`, () => {
     const signInComponent = shallow(
-      <SignIn
-        errors={[]}
-        onFormSubmit={() => {}}
-        formState={{
-          email: ``,
-          password: ``,
-        }}
-        initialFormDisabled={true}
-        loadingParams={[]}
-        onControlChange={() => {}}
-        authorizationStatus={AuthorizationStatus.NO_AUTH}
-      />
+        <SignIn
+          errors={[]}
+          onFormSubmit={() => {}}
+          formState={{
+            email: ``,
+            password: ``,
+          }}
+          initialFormDisabled={true}
+          loadingParams={[]}
+          onControlChange={() => {}}
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+        />
     );
     const signIn = signInComponent.find(`.sign-in__message.visually-hidden`);
     expect(signIn).toHaveLength(1);
@@ -86,18 +86,18 @@ describe(`SignInPage`, () => {
 
   test(`input shouldn't be marked if hasn't error`, () => {
     const signInComponent = shallow(
-      <SignIn
-        errors={[]}
-        onFormSubmit={() => {}}
-        formState={{
-          email: ``,
-          password: ``,
-        }}
-        initialFormDisabled={true}
-        loadingParams={[]}
-        onControlChange={() => {}}
-        authorizationStatus={AuthorizationStatus.NO_AUTH}
-      />
+        <SignIn
+          errors={[]}
+          onFormSubmit={() => {}}
+          formState={{
+            email: ``,
+            password: ``,
+          }}
+          initialFormDisabled={true}
+          loadingParams={[]}
+          onControlChange={() => {}}
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+        />
     );
     const signIn = signInComponent.find(`.sign-in__field.sign-in__field--error`);
     expect(signIn).toHaveLength(0);
@@ -105,18 +105,18 @@ describe(`SignInPage`, () => {
 
   test(`should have error message`, () => {
     const signInComponent = shallow(
-      <SignIn
-        errors={errors}
-        onFormSubmit={() => {}}
-        formState={{
-          email: ``,
-          password: ``,
-        }}
-        initialFormDisabled={true}
-        loadingParams={[]}
-        onControlChange={() => {}}
-        authorizationStatus={AuthorizationStatus.NO_AUTH}
-      />
+        <SignIn
+          errors={errors}
+          onFormSubmit={() => {}}
+          formState={{
+            email: ``,
+            password: ``,
+          }}
+          initialFormDisabled={true}
+          loadingParams={[]}
+          onControlChange={() => {}}
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+        />
     );
     const signIn = signInComponent.find(`.sign-in__message.visually-hidden`);
     expect(signIn).toHaveLength(0);
@@ -124,18 +124,18 @@ describe(`SignInPage`, () => {
 
   test(`input should be marked if has error`, () => {
     const signInComponent = shallow(
-      <SignIn
-        errors={errors}
-        onFormSubmit={() => {}}
-        formState={{
-          email: ``,
-          password: ``,
-        }}
-        initialFormDisabled={true}
-        loadingParams={[]}
-        onControlChange={() => {}}
-        authorizationStatus={AuthorizationStatus.NO_AUTH}
-      />
+        <SignIn
+          errors={errors}
+          onFormSubmit={() => {}}
+          formState={{
+            email: ``,
+            password: ``,
+          }}
+          initialFormDisabled={true}
+          loadingParams={[]}
+          onControlChange={() => {}}
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+        />
     );
     const signIn = signInComponent.find(`.sign-in__field.sign-in__field--error`);
     expect(signIn).toHaveLength(1);
@@ -148,15 +148,15 @@ describe(`SignInPage`, () => {
       password: `test-password`,
     };
     const signInComponent = shallow(
-      <SignIn
-        errors={[]}
-        onFormSubmit={onFormSubmit}
-        formState={formState}
-        initialFormDisabled={true}
-        loadingParams={[]}
-        onControlChange={() => {}}
-        authorizationStatus={AuthorizationStatus.NO_AUTH}
-      />
+        <SignIn
+          errors={[]}
+          onFormSubmit={onFormSubmit}
+          formState={formState}
+          initialFormDisabled={true}
+          loadingParams={[]}
+          onControlChange={() => {}}
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+        />
     );
     signInComponent.find(`.sign-in__form`).simulate(`submit`, {preventDefault: () => {}});
     expect(onFormSubmit).toBeCalledTimes(1);

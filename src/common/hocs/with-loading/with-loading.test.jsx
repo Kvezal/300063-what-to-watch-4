@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import render from "react-test-renderer";
-import Enzyme, {shallow, mount} from "enzyme";
+import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import withLoading from "./with-loading";
@@ -36,11 +35,11 @@ describe(`withLoadingHOC`, () => {
 
   test(`should create component`, () => {
     const testComponent = mount(
-      <TestComponentWithHOC
-        prop=""
-        unlessProp={null}
-        loadingParams={[`prop`]}
-      />
+        <TestComponentWithHOC
+          prop=""
+          unlessProp={null}
+          loadingParams={[`prop`]}
+        />
     );
     expect(testComponent.find(`div.test-component`)).toHaveLength(1);
   });

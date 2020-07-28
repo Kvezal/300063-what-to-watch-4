@@ -43,7 +43,7 @@ describe(`NotificationReducer`, () => {
       .toEqual({
         type: ActionType.REMOVE_NOTIFICATIONS_BY_NAME,
         payload: notificationName,
-      })
+      });
   });
 
   test(`reset notifications by name should return correct object`, () => {
@@ -51,7 +51,7 @@ describe(`NotificationReducer`, () => {
       .toEqual({
         type: ActionType.RESET_NOTIFICATIONS,
         payload: null,
-      })
+      });
   });
 
   test(`should return base state if action type is incorrect`, () => {

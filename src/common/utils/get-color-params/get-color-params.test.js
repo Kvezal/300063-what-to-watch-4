@@ -48,7 +48,7 @@ describe(`getColorParams`, () => {
     const params = {
       hexColor: `#572a34`,
       offset: 20,
-      alpha: .5,
+      alpha: 0.5,
     };
     const result = {
       RGBA: `rgba(87, 42, 52, 0.5)`,

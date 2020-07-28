@@ -13,10 +13,10 @@ Enzyme.configure({
 const TestComponent = (props) => {
   const {step, onStepChange, onStepReset} = props;
   return <Fragment>
-    <div>{step}</div>;
+    <div>{step}</div>
     <button className="increase" onClick={onStepChange}/>
     <button className="reset" onClick={onStepReset}/>
-  </Fragment>
+  </Fragment>;
 };
 
 TestComponent.propTypes = {

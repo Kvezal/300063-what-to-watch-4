@@ -42,9 +42,9 @@ describe(`BreadcrumbsComponent`, () => {
 
   test(`should display breadcrumbs item`, () => {
     const breadcrumbsComponent = shallow(
-      <Breadcrumbs
-        list={breadcrumbs}
-      />
+        <Breadcrumbs
+          list={breadcrumbs}
+        />
     );
     const breadcrumbsContainer = breadcrumbsComponent.find(`.breadcrumbs__item`);
     expect(breadcrumbsContainer).toHaveLength(breadcrumbs.length);

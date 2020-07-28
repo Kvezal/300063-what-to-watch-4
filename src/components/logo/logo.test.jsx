@@ -15,9 +15,9 @@ describe(`LogoComponent`, () => {
   test(`should render component`, () => {
     const tree = render
       .create(
-        <MemoryRouter>
-          <Logo/>
-        </MemoryRouter>
+          <MemoryRouter>
+            <Logo/>
+          </MemoryRouter>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

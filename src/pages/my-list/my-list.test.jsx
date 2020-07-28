@@ -140,14 +140,14 @@ Enzyme.configure({
 describe(`MyListPage`, () => {
   test(`should render component`, () => {
     const tree = render.create(
-      <MemoryRouter>
-        <MyList
-          avatar={avatar}
-          films={films}
-          authorizationStatus={AuthorizationStatus.AUTH}
-        />
-      </MemoryRouter>,
-      {createNodeMock: () => ({})}
+        <MemoryRouter>
+          <MyList
+            avatar={avatar}
+            films={films}
+            authorizationStatus={AuthorizationStatus.AUTH}
+          />
+        </MemoryRouter>,
+        {createNodeMock: () => ({})}
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
