@@ -4,6 +4,7 @@ import AppRoute from "@app/app-route";
 import history from "@app/history";
 import {adaptUser} from "@common/adapter";
 import {ID_LENGTH} from "@store/const";
+import {loadFavoriteFilms} from "@store/data/operation";
 import {addNotification, resetNotification} from "@store/notification/action-creator";
 import {HTTPMethod, NotificationType} from "@store/notification/const";
 
@@ -32,7 +33,8 @@ const login = (authData) => (dispatch, getState, api) => {
       dispatch([
         setUser(user),
         setAuthorizationStatus(AuthorizationStatus.AUTH),
-        resetNotification()
+        resetNotification(),
+        loadFavoriteFilms()
       ]);
       history.push(AppRoute.ROOT);
     })
@@ -47,7 +49,7 @@ const login = (authData) => (dispatch, getState, api) => {
       };
       dispatch([
         setAuthorizationStatus(AuthorizationStatus.NO_AUTH),
-        addNotification(notification),
+        addNotification(notification)
       ]);
     });
 };

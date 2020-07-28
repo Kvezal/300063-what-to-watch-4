@@ -1,4 +1,5 @@
 import {nanoid} from "nanoid";
+import {UNAUTHORIZED} from "http-status-codes";
 
 import {AppRoute, history} from "@app";
 import {adaptFilm, adaptReview} from "@common/adapter";
@@ -39,7 +40,10 @@ const loadPromoFilm = () => (dispatch, getState, api) => {
     .then((film) => {
       dispatch(ActionCreator.loadPromoFilm(film));
     })
-    .catch(() => {
+    .catch((error) => {
+      if (error.response.status === UNAUTHORIZED) {
+        return;
+      }
       dispatch(addNotification({
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
@@ -59,7 +63,10 @@ const loadFilmReviews = (filmId) => (dispatch, getState, api) => {
     .then((reviews) => {
       dispatch(ActionCreator.loadFilmReviews(reviews));
     })
-    .catch(() => {
+    .catch((error) => {
+      if (error.response.status === UNAUTHORIZED) {
+        return;
+      }
       dispatch(addNotification({
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
@@ -76,7 +83,10 @@ const loadFavoriteFilms = () => (dispatch, getState, api) => {
     .get(URLHandlerPath.FAVORITE_FILM_LIST)
     .then((response) => response.data.map((films) => adaptFilm(films)))
     .then((reviews) => dispatch(ActionCreator.loadFavoriteFilms(reviews)))
-    .catch(() => {
+    .catch((error) => {
+      if (error.response.status === UNAUTHORIZED) {
+        return;
+      }
       dispatch(addNotification({
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
@@ -95,7 +105,10 @@ const postReview = (commentData, props) => (dispatch, getState, api) => {
     .then(() => {
       history.push(AppRoute.FILMS.replace(`:filmId`, filmId));
     })
-    .catch(() => {
+    .catch((error) => {
+      if (error.response.status === UNAUTHORIZED) {
+        return;
+      }
       const notification = {
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
@@ -123,7 +136,10 @@ const changeFavoriteFilmStatus = (filmId, status) => (dispatch, getState, api) =
         ActionCreator.updatePromoFilm(film)
       ]);
     })
-    .catch(() => {
+    .catch((error) => {
+      if (error.response.status === UNAUTHORIZED) {
+        return;
+      }
       dispatch(addNotification({
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,

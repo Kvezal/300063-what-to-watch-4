@@ -40,6 +40,7 @@ const withFormState = (Component) => {
 
   WithFormState.defaultProps = {
     initialFormDisabled: true,
+    formDisabled: false,
   };
 
   WithFormState.propTypes = {

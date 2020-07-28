@@ -15,7 +15,7 @@ const createAPIMiddleware = (api) => ({dispatch, getState}) => (next) => (action
       .catch((error) => {
         const {response} = error;
         if (response.status === UNAUTHORIZED) {
-          const errorParams = {
+          const notification = {
             id: nanoid(ID_LENGTH),
             type: NotificationType.ERROR,
             name: APIErrorName.UNAUTHORIZED,
@@ -23,7 +23,10 @@ const createAPIMiddleware = (api) => ({dispatch, getState}) => (next) => (action
             title: `Authorization error`,
             text: `You should authorize`,
           };
-          dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH), addNotification(errorParams));
+          dispatch([
+            setAuthorizationStatus(AuthorizationStatus.NO_AUTH),
+            addNotification(notification)
+          ]);
         }
         throw error;
       });
