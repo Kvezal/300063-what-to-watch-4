@@ -18,8 +18,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onFormSubmit: (authParams) => {
-    dispatch(removeNotificationsByName(UserErrorNotificationName.EMAIL));
-    dispatch(login(authParams));
+    dispatch([
+      removeNotificationsByName(UserErrorNotificationName.EMAIL),
+      login(authParams)
+    ]);
   }
 });
 

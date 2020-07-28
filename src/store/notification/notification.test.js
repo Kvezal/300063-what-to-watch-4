@@ -2,7 +2,7 @@ import {extend} from "@common/utils";
 import {HTTPMethod, NotificationType} from "@store/notification/const";
 
 import {ActionType} from "./const";
-import {addNotification, removeNotification} from "./action-creator";
+import {addNotification, removeNotification, resetNotification} from "./action-creator";
 import reducer from "./reducer";
 import {removeNotificationsByName} from "@store/notification/action-creator";
 
@@ -44,7 +44,15 @@ describe(`NotificationReducer`, () => {
         type: ActionType.REMOVE_NOTIFICATIONS_BY_NAME,
         payload: notificationName,
       })
-  })
+  });
+
+  test(`reset notifications by name should return correct object`, () => {
+    expect(resetNotification())
+      .toEqual({
+        type: ActionType.RESET_NOTIFICATIONS,
+        payload: null,
+      })
+  });
 
   test(`should return base state if action type is incorrect`, () => {
     const incorrectAction = {
@@ -139,6 +147,37 @@ describe(`NotificationReducer`, () => {
           title: `title 3`,
           text: `text 3`,
         }],
+      }));
+  });
+
+  test(`should reset notifications`, () => {
+    const state = extend(initialState, {
+      notifications: [
+        {
+          id: 1,
+          type: NotificationType.ERROR,
+          name: `test`,
+          method: HTTPMethod.GET,
+          title: `title 1`,
+          text: `text 1`,
+        },
+        {
+          id: 2,
+          type: NotificationType.ERROR,
+          name: `test 2`,
+          method: HTTPMethod.GET,
+          title: `title 2`,
+          text: `text 2`,
+        }
+      ],
+    });
+    const resetNotificationsAction = {
+      type: ActionType.RESET_NOTIFICATIONS,
+      payload: null,
+    };
+    expect(reducer(state, resetNotificationsAction))
+      .toEqual(extend(state, {
+        notifications: [],
       }));
   });
 });

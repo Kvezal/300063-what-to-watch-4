@@ -24,10 +24,12 @@ const store = createStore(
     )
 );
 
-store.dispatch(checkAuth());
-store.dispatch(loadFilms());
-store.dispatch(loadFavoriteFilms());
-store.dispatch(loadPromoFilm());
+store.dispatch([
+  checkAuth(),
+  loadFilms(),
+  loadFavoriteFilms(),
+  loadPromoFilm()
+]);
 
 ReactDOM.render(
     <Provider store={store}>

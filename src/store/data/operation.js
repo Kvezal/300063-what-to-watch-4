@@ -96,15 +96,18 @@ const postReview = (commentData, props) => (dispatch, getState, api) => {
       history.push(AppRoute.FILMS.replace(`:filmId`, filmId));
     })
     .catch(() => {
-      dispatch(changeCommentStatus(CommentStatus.ERROR));
-      dispatch(addNotification({
+      const notification = {
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
         name: DataErrorNotificationName.FILM_COMMENT,
         method: HTTPMethod.POST,
         title: `Post film comment error`,
         text: `Try to send comment again`,
-      }));
+      };
+      dispatch([
+        changeCommentStatus(CommentStatus.ERROR),
+        addNotification(notification)
+      ]);
     });
 };
 

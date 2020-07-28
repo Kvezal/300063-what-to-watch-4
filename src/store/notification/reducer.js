@@ -25,6 +25,10 @@ const reducer = (state = initialState, action) => {
         notifications: state.notifications.slice()
           .filter((notification) => notification.name !== action.payload),
       });
+    case ActionType.RESET_NOTIFICATIONS:
+      return extend(state, {
+        notifications: [],
+      });
     default:
       return state;
   }

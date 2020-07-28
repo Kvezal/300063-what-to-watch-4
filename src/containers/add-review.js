@@ -20,8 +20,10 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
   onSubmitForm: (commentData) => {
-    dispatch(changeCommentStatus(CommentStatus.POSTING));
-    dispatch(postReview(commentData, props));
+    dispatch([
+      changeCommentStatus(CommentStatus.POSTING),
+      postReview(commentData, props)
+    ]);
   },
 });
 
