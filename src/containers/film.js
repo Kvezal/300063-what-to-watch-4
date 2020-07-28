@@ -1,14 +1,14 @@
 import {connect} from "react-redux";
 
 import {withLoading} from "@common/hocs";
-import FilmDescription from "@pages/film-description/film-description";
+import Film from "@pages/film/film";
 import {getCurrentFilm, getLikedFilms, getReviews} from "@store/data/selectors";
 import {getAuthorizationStatus, getAvatar} from "@store/user/selector";
 import {changeFavoriteFilmStatus, loadFilmReviews} from "@store/data/operation";
 import {FavoriteFilmActionType} from "@store/data/const";
 
 
-const FilmDescriptionWrapper = withLoading(FilmDescription);
+const FilmWrapper = withLoading(Film);
 
 const mapStateToProps = (state, props) => ({
   avatar: getAvatar(state),
@@ -31,4 +31,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilmDescriptionWrapper);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmWrapper);

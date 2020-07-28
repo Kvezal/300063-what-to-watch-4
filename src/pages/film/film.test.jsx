@@ -7,7 +7,7 @@ import {MemoryRouter} from "react-router-dom";
 import {EFilmOverviewTab} from "@common/enums";
 import {AuthorizationStatus} from "@store/user/const";
 
-import FilmDescription from "./film-description";
+import Film from "./film";
 
 
 const avatar = `avatar.jpg`;
@@ -144,12 +144,12 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-describe(`FilmDescriptionPage`, () => {
+describe(`FilmPage`, () => {
   test(`should render component`, () => {
     const tree = render
       .create(
           <MemoryRouter>
-            <FilmDescription
+            <Film
               likedFilms={likedFilms}
               favoriteFilms={[]}
               onActiveTabChange={() => {}}
@@ -173,7 +173,7 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should create component`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
+      <Film
         likedFilms={likedFilms}
         favoriteFilms={[]}
         info={likedFilms[0]}
@@ -196,7 +196,7 @@ describe(`FilmDescriptionPage`, () => {
   test(`should have liked films`, () => {
     const filmOverviewComponent = mount(
       <MemoryRouter>
-        <FilmDescription
+        <Film
           likedFilms={likedFilms}
           favoriteFilms={[]}
           info={likedFilms[0]}
@@ -219,7 +219,7 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should have film name`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
+      <Film
         likedFilms={likedFilms}
         favoriteFilms={[]}
         info={likedFilms[0]}
@@ -241,7 +241,7 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should have genres`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
+      <Film
         likedFilms={likedFilms}
         favoriteFilms={[]}
         info={likedFilms[0]}
@@ -263,7 +263,7 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should have release date`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
+      <Film
         likedFilms={likedFilms}
         favoriteFilms={[]}
         info={likedFilms[0]}
@@ -285,7 +285,7 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should have poster`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
+      <Film
         likedFilms={likedFilms}
         favoriteFilms={[]}
         info={likedFilms[0]}
@@ -307,7 +307,7 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should have cover`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
+      <Film
         likedFilms={likedFilms}
         favoriteFilms={[]}
         info={likedFilms[0]}
@@ -330,7 +330,7 @@ describe(`FilmDescriptionPage`, () => {
   test(`add favorite list button should be clicked`, () => {
     const onFavoriteFilmClick = jest.fn();
     const mainPage = shallow(
-      <FilmDescription
+      <Film
         likedFilms={likedFilms}
         favoriteFilms={[]}
         info={likedFilms[0]}
@@ -353,7 +353,7 @@ describe(`FilmDescriptionPage`, () => {
   test(`should be called when component updated`, () => {
     const onReviewsLoad = jest.fn();
     const mainPage = shallow(
-      <FilmDescription
+      <Film
         likedFilms={likedFilms}
         favoriteFilms={[]}
         info={likedFilms[0]}

@@ -54,7 +54,7 @@ const getTab = (activeTab, info, reviews) => {
   }
 };
 
-class FilmDescription extends PureComponent {
+class Film extends PureComponent {
   render() {
     const {
       likedFilms,
@@ -180,7 +180,7 @@ class FilmDescription extends PureComponent {
   }
 }
 
-FilmDescription.propTypes = {
+Film.propTypes = {
   info: PropTypes.shape(filmType),
   likedFilms: PropTypes.arrayOf(
       PropTypes.shape(filmType)
@@ -202,4 +202,4 @@ FilmDescription.propTypes = {
   onFavoriteFilmClick: PropTypes.func.isRequired,
 };
 
-export default FilmDescription;
+export default Film;

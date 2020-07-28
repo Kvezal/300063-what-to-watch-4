@@ -1,16 +1,18 @@
 import {nanoid} from "nanoid";
 
+import AppRoute from "@app/app-route";
+import history from "@app/history";
+import {adaptUser} from "@common/adapter";
 import {ID_LENGTH} from "@store/const";
 import {addNotification} from "@store/notification/action-creator";
 import {HTTPMethod, NotificationType} from "@store/notification/const";
 
 import {setAuthorizationStatus, setUser} from "./action-creator";
-import {AuthorizationStatus, UserErrorNotificationName} from "./const";
-import {adaptUser} from "@common/adapter";
+import {AuthorizationStatus, URLHandlerPath, UserErrorNotificationName} from "./const";
 
 
 const checkAuth = () => (dispatch, getState, api) => {
-  return api.get(`/login `)
+  return api.get(URLHandlerPath.LOGIN)
     .then((response) => adaptUser(response.data))
     .then((user) => {
       dispatch(setUser(user));
@@ -19,15 +21,14 @@ const checkAuth = () => (dispatch, getState, api) => {
 };
 
 const login = (authData) => (dispatch, getState, api) => {
-  return api.post(`/login`, {
+  return api.post(URLHandlerPath.LOGIN, {
     email: authData.email,
     password: authData.password,
   })
     .then((response) => adaptUser(response.data))
     .then((user) => {
-      dispatch(setUser(user));
-      dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
-      window.location.href = `/`;
+      dispatch([setUser(user), setAuthorizationStatus(AuthorizationStatus.AUTH)]);
+      history.push(AppRoute.ROOT);
     })
     .catch(() => {
       dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));

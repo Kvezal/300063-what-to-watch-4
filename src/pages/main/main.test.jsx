@@ -7,7 +7,6 @@ import {MemoryRouter} from "react-router-dom";
 import {AuthorizationStatus} from "@store/user/const";
 
 import Main from "./main";
-import FilmDescription from "@pages/film-description/film-description";
 
 
 const avatar = `avatar.jpg`;

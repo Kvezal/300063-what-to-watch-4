@@ -6,7 +6,7 @@ import history from "@app/history";
 import {EFilmOverviewTab, EGenre} from "@common/enums";
 import {withActiveTab, withNotifications, withStep} from "@common/hocs";
 import AddReview from "@containers/add-review";
-import FilmDescription from "@containers/film-description";
+import Film from "@containers/film";
 import Main from "@containers/main";
 import Player from "@containers/player";
 import PrivateRoute from "@containers/private-route";
@@ -15,7 +15,7 @@ import MyList from "@containers/my-list";
 
 
 const AddReviewWrapper = withNotifications(AddReview);
-const FilmDescriptionWrapper = withNotifications(withActiveTab(FilmDescription));
+const FilmWrapper = withNotifications(withActiveTab(Film));
 const MainWrapper = withNotifications(withActiveTab(withStep(Main)));
 const MyListWrapper = withNotifications(MyList);
 const PlayerWrapper = withNotifications(Player);
@@ -71,7 +71,7 @@ const App = () => {
         />}
       />
       <Route exact path={AppRoute.FILMS} render={(props) =>
-        <FilmDescriptionWrapper
+        <FilmWrapper
           tabList={filmDescriptionTabList}
           activeTab={EFilmOverviewTab.OVERVIEW}
           loadingParams={[`info`, `likedFilms`]}

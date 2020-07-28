@@ -17,8 +17,13 @@ const UserErrorNotificationName = {
   EMAIL: `${NAME_SPACE}:EMAIL`,
 };
 
+const URLHandlerPath = {
+  LOGIN: `/login`,
+};
+
 export {
   ActionType,
   AuthorizationStatus,
   UserErrorNotificationName,
+  URLHandlerPath
 };
