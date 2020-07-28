@@ -5,7 +5,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import {HTTPMethod, NotificationType} from "@store/notification/const";
-import {UserErrorNotificationName} from "@store/user/const";
+import {AuthorizationStatus, UserErrorNotificationName} from "@store/user/const";
 
 import SignIn from "./sign-in";
 
@@ -30,6 +30,14 @@ describe(`SignInPage`, () => {
         <SignIn
           errors={[]}
           onFormSubmit={() => {}}
+          formState={{
+            email: `test-email`,
+            password: `test-password`,
+          }}
+          initialFormDisabled={true}
+          loadingParams={[]}
+          onControlChange={() => {}}
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
         />
       </MemoryRouter>,
       {createNodeMock: () => ({})}
@@ -43,6 +51,14 @@ describe(`SignInPage`, () => {
       <SignIn
         errors={[]}
         onFormSubmit={() => {}}
+        formState={{
+          email: ``,
+          password: ``,
+        }}
+        initialFormDisabled={true}
+        loadingParams={[]}
+        onControlChange={() => {}}
+        authorizationStatus={AuthorizationStatus.NO_AUTH}
       />
     );
     const signIn = signInComponent.find(`.sign-in`);
@@ -54,6 +70,14 @@ describe(`SignInPage`, () => {
       <SignIn
         errors={[]}
         onFormSubmit={() => {}}
+        formState={{
+          email: ``,
+          password: ``,
+        }}
+        initialFormDisabled={true}
+        loadingParams={[]}
+        onControlChange={() => {}}
+        authorizationStatus={AuthorizationStatus.NO_AUTH}
       />
     );
     const signIn = signInComponent.find(`.sign-in__message.visually-hidden`);
@@ -65,6 +89,14 @@ describe(`SignInPage`, () => {
       <SignIn
         errors={[]}
         onFormSubmit={() => {}}
+        formState={{
+          email: ``,
+          password: ``,
+        }}
+        initialFormDisabled={true}
+        loadingParams={[]}
+        onControlChange={() => {}}
+        authorizationStatus={AuthorizationStatus.NO_AUTH}
       />
     );
     const signIn = signInComponent.find(`.sign-in__field.sign-in__field--error`);
@@ -76,6 +108,14 @@ describe(`SignInPage`, () => {
       <SignIn
         errors={errors}
         onFormSubmit={() => {}}
+        formState={{
+          email: ``,
+          password: ``,
+        }}
+        initialFormDisabled={true}
+        loadingParams={[]}
+        onControlChange={() => {}}
+        authorizationStatus={AuthorizationStatus.NO_AUTH}
       />
     );
     const signIn = signInComponent.find(`.sign-in__message.visually-hidden`);
@@ -87,6 +127,14 @@ describe(`SignInPage`, () => {
       <SignIn
         errors={errors}
         onFormSubmit={() => {}}
+        formState={{
+          email: ``,
+          password: ``,
+        }}
+        initialFormDisabled={true}
+        loadingParams={[]}
+        onControlChange={() => {}}
+        authorizationStatus={AuthorizationStatus.NO_AUTH}
       />
     );
     const signIn = signInComponent.find(`.sign-in__field.sign-in__field--error`);
@@ -95,23 +143,23 @@ describe(`SignInPage`, () => {
 
   test(`form should be submitted`, () => {
     const onFormSubmit = jest.fn();
+    const formState = {
+      email: `test-email`,
+      password: `test-password`,
+    };
     const signInComponent = shallow(
       <SignIn
-        errors={errors}
+        errors={[]}
         onFormSubmit={onFormSubmit}
+        formState={formState}
+        initialFormDisabled={true}
+        loadingParams={[]}
+        onControlChange={() => {}}
+        authorizationStatus={AuthorizationStatus.NO_AUTH}
       />
     );
-    signInComponent.instance()._emailRef = {
-      current: {
-        value: `email`,
-      },
-    };
-    signInComponent.instance()._passwordRef = {
-      current: {
-        value: `password`,
-      },
-    };
     signInComponent.find(`.sign-in__form`).simulate(`submit`, {preventDefault: () => {}});
     expect(onFormSubmit).toBeCalledTimes(1);
+    expect(onFormSubmit).toHaveBeenCalledWith(formState);
   });
 });

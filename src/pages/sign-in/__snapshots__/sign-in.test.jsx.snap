@@ -63,8 +63,11 @@ exports[`SignInPage should render component 1`] = `
             className="sign-in__input"
             id="user-email"
             name="user-email"
+            onChange={[Function]}
             placeholder="Email address"
+            required={true}
             type="email"
+            value="test-email"
           />
           <label
             className="sign-in__label visually-hidden"
@@ -80,8 +83,10 @@ exports[`SignInPage should render component 1`] = `
             className="sign-in__input"
             id="user-password"
             name="user-password"
+            onChange={[Function]}
             placeholder="Password"
             type="password"
+            value="test-password"
           />
           <label
             className="sign-in__label visually-hidden"
