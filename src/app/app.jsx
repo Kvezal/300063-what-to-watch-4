@@ -58,7 +58,9 @@ const App = () => {
           {...props}
         />
       }/>
-      <Route exact path={AppRoute.LOGIN} render={() => <SignIn/>}/>
+      <Route exact path={AppRoute.LOGIN} render={() =>
+        <SignIn loadingParams={[`authorizationStatus`]}/>
+      }/>
       <PrivateRoute exact path={AppRoute.REVIEW} render={(props) =>
         <AddReviewWrapper
           initialFormState={{

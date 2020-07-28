@@ -5,7 +5,9 @@ import classNames from "classnames";
 import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import {TNotification} from "@store/notification/types";
-import {UserErrorNotificationName} from "@store/user/const";
+import {AuthorizationStatus, UserErrorNotificationName} from "@store/user/const";
+import {Redirect} from "react-router-dom";
+import AppRoute from "@app/app-route";
 
 
 class SignIn extends PureComponent {
@@ -19,7 +21,11 @@ class SignIn extends PureComponent {
   }
 
   render() {
-    const {errors} = this.props;
+    const {errors, authorizationStatus} = this.props;
+
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      return <Redirect to={AppRoute.ROOT}/>;
+    }
 
     return <div className="user-page">
       <header className="page-header user-page__head">
@@ -100,6 +106,7 @@ SignIn.propTypes = {
   errors: PropTypes.arrayOf(
       PropTypes.shape(TNotification)
   ).isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 export default SignIn;

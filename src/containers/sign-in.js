@@ -1,14 +1,19 @@
 import {connect} from "react-redux";
 
+import {withLoading} from "@common/hocs";
 import SignIn from "@pages/sign-in/sign-in";
 import {removeNotificationsByName} from "@store/notification/action-creator";
 import {getNotificationsByName} from "@store/notification/selectors";
 import {UserErrorNotificationName} from "@store/user/const";
 import {login} from "@store/user/operation";
+import {getAuthorizationStatus} from "@store/user/selector";
 
+
+const SignInWrapper = withLoading(SignIn);
 
 const mapStateToProps = (state) => ({
   errors: getNotificationsByName(state, UserErrorNotificationName.EMAIL),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -18,4 +23,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInWrapper);
