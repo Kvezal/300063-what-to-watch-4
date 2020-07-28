@@ -13,7 +13,6 @@ import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import Tabs from "@components/tabs/tabs";
 import User from "@components/user/user";
-import {FavoriteFilmActionType} from "@store/data/const";
 import {AuthorizationStatus} from "@store/user/const";
 
 import Details from "./details/details";
@@ -67,11 +66,8 @@ class FilmDescription extends PureComponent {
       onActiveTabChange,
       authorizationStatus,
       onFavoriteFilmClick,
-      favoriteFilms,
     } = this.props;
-    const {id, name, genre, releaseDate, picture} = info;
-
-    const isFavorite = favoriteFilms && favoriteFilms.some((item) => item.id === id);
+    const {id, name, genre, releaseDate, picture, isFavorite} = info;
 
     return <Fragment>
       <section className="movie-card movie-card--full" style={{backgroundColor: picture.backgroundColor}}>
@@ -110,12 +106,7 @@ class FilmDescription extends PureComponent {
                     <button
                       className="btn btn--list movie-card__button"
                       type="button"
-                      onClick={() => {
-                        const favoriteFilmActionType = isFavorite
-                          ? FavoriteFilmActionType.DELETE
-                          : FavoriteFilmActionType.ADD;
-                        onFavoriteFilmClick(id, favoriteFilmActionType);
-                      }}
+                      onClick={() => onFavoriteFilmClick(info)}
                     >
                       {isFavorite
                         ? <svg viewBox="0 0 18 14" width="18" height="14">
@@ -192,9 +183,6 @@ class FilmDescription extends PureComponent {
 FilmDescription.propTypes = {
   info: PropTypes.shape(filmType),
   likedFilms: PropTypes.arrayOf(
-      PropTypes.shape(filmType)
-  ).isRequired,
-  favoriteFilms: PropTypes.arrayOf(
       PropTypes.shape(filmType)
   ).isRequired,
   avatar: PropTypes.string,

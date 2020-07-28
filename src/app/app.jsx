@@ -46,7 +46,7 @@ const App = () => {
         return <MainWrapper
           tabList={filmFilters}
           activeTab={EGenre.ALL}
-          loadingParams={[`promoFilm`, `films`, `favoriteFilms`, `authorizationStatus`]}
+          loadingParams={[`promoFilm`, `films`, `authorizationStatus`]}
           {...props}
         />;
       }}/>
@@ -74,7 +74,7 @@ const App = () => {
         <FilmDescriptionWrapper
           tabList={filmDescriptionTabList}
           activeTab={EFilmOverviewTab.OVERVIEW}
-          loadingParams={[`info`, `likedFilms`, `favoriteFilms`]}
+          loadingParams={[`info`, `likedFilms`]}
           {...props}
         />}
       />
