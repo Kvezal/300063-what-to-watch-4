@@ -1,10 +1,10 @@
 import {nanoid} from "nanoid";
+import {UNAUTHORIZED} from "http-status-codes";
 
 import {ID_LENGTH} from "@store/const";
 import {HTTPMethod, NotificationType} from "@store/notification/const";
+import {APIErrorName} from "@services/const";
 import {addNotification} from "@store/notification/action-creator";
-
-import {APIErrorName, HTTPErrorCode} from "./const";
 
 
 const createAPIMiddleware = (api) => ({dispatch, getState}) => (next) => (action) => {
@@ -12,7 +12,7 @@ const createAPIMiddleware = (api) => ({dispatch, getState}) => (next) => (action
     return action(dispatch, getState, api)
       .catch((error) => {
         const {response} = error;
-        if (response.status === HTTPErrorCode.UNAUTHORIZED) {
+        if (response.status === UNAUTHORIZED) {
           dispatch(addNotification({
             id: nanoid(ID_LENGTH),
             type: NotificationType.ERROR,
@@ -24,6 +24,9 @@ const createAPIMiddleware = (api) => ({dispatch, getState}) => (next) => (action
         }
         throw error;
       });
+  }
+  if (Array.isArray(action)) {
+    return action.filter(Boolean).map(dispatch);
   }
   return next(action);
 };

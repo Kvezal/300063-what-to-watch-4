@@ -17,6 +17,7 @@
       "@components(.*)$": "<rootDir>/src/components/$1",
       "@common(.*)$": "<rootDir>/src/common/$1",
       "@containers(.*)$": "<rootDir>/src/containers/$1",
+      "@middlewares(.*)$": "<rootDir>/src/middlewares/$1",
       "@pages(.*)$": "<rootDir>/src/pages/$1",
       "@services(.*)$": "<rootDir>/src/services/$1",
       "@store(.*)$": "<rootDir>/src/store/$1"
@@ -54,6 +55,7 @@
     "axios": "0.19.2",
     "classnames": "2.2.6",
     "history": "4.10.1",
+    "http-status-codes": "1.4.0",
     "nanoid": "3.1.10",
     "prop-types": "15.7.2",
     "react": "16.13.1",

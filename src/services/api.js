@@ -1,6 +1,7 @@
 import axios from "axios";
+import {UNAUTHORIZED} from "http-status-codes";
 
-import {API_URL, HTTPErrorCode, SERVER_TIMEOUT} from "@services/const";
+import {API_URL, SERVER_TIMEOUT} from "@services/const";
 
 
 const createAPI = (onUnauthorized) => {
@@ -14,7 +15,7 @@ const createAPI = (onUnauthorized) => {
 
   const onFail = (error) => {
     const {response} = error;
-    if (response.status === HTTPErrorCode.UNAUTHORIZED) {
+    if (response.status === UNAUTHORIZED) {
       onUnauthorized();
       // throw an error because it's important to interrupt the Promise chane after an authorization request
       // authorization request is a special case and we have to understand a request was failed
