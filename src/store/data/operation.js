@@ -113,11 +113,12 @@ const changeFavoriteFilmStatus = (filmId, status) => (dispatch, getState, api) =
   return api.post(path)
     .then((response) => adaptFilm(response.data))
     .then((film) => {
-      if (film.isFavorite) {
-        dispatch(ActionCreator.addFavoriteFilm(film));
-      } else {
-        dispatch(ActionCreator.removeFavoriteFilm(film));
-      }
+      const favoriteFilmAction = film.isFavorite ? ActionCreator.addFavoriteFilm : ActionCreator.removeFavoriteFilm;
+      dispatch([
+        favoriteFilmAction(film),
+        ActionCreator.updateFilm(film),
+        ActionCreator.updatePromoFilm(film)
+      ]);
     })
     .catch(() => {
       dispatch(addNotification({

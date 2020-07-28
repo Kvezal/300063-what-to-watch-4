@@ -36,6 +36,16 @@ const removeFavoriteFilm = (payload) => ({
   payload,
 });
 
+const updatePromoFilm = (payload) => ({
+  type: ActionType.UPDATE_PROMO_FILM,
+  payload,
+});
+
+const updateFilm = (payload) => ({
+  type: ActionType.UPDATE_FILM,
+  payload,
+});
+
 export {
   loadFilms,
   loadFavoriteFilms,
@@ -44,4 +54,6 @@ export {
   changeCommentStatus,
   addFavoriteFilm,
   removeFavoriteFilm,
+  updatePromoFilm,
+  updateFilm,
 };

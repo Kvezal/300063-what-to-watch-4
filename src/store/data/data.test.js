@@ -337,6 +337,22 @@ describe(`DataReducer`, () => {
       });
   });
 
+  test(`update promo film action should return correct object`, () => {
+    expect(ActionCreator.updatePromoFilm(film))
+      .toEqual({
+        type: ActionType.UPDATE_PROMO_FILM,
+        payload: film,
+      });
+  });
+
+  test(`update film action should return correct object`, () => {
+    expect(ActionCreator.updateFilm(film))
+      .toEqual({
+        type: ActionType.UPDATE_FILM,
+        payload: film,
+      });
+  });
+
   test(`should return base state if action type is incorrect`, () => {
     const incorrectAction = {
       type: `test`,
@@ -421,6 +437,76 @@ describe(`DataReducer`, () => {
       }));
   });
 
+  test(`should update a film into films`, () => {
+    const state = extend(initialState, {
+      films: [film]
+    });
+    const updatedFilm = extend(film, {
+      description: `updated`,
+    });
+    const updateFilmAction = {
+      type: ActionType.UPDATE_FILM,
+      payload: updatedFilm,
+    };
+    expect(reducer(state, updateFilmAction))
+      .toEqual(extend(initialState, {
+        films: [updatedFilm],
+      }));
+  });
+
+  test(`shouldn't update a film into films`, () => {
+    const state = extend(initialState, {
+      films: [film]
+    });
+    const updatedFilm = extend(film, {
+      id: 10,
+      description: `updated`,
+    });
+    const updateFilmAction = {
+      type: ActionType.UPDATE_FILM,
+      payload: updatedFilm,
+    };
+    expect(reducer(state, updateFilmAction))
+      .toEqual(extend(initialState, {
+        films: [film],
+      }));
+  });
+
+  test(`should update promoFilm`, () => {
+    const state = extend(initialState, {
+      promoFilm: film
+    });
+    const updatedFilm = extend(film, {
+      description: `updated`,
+    });
+    const updateFilmAction = {
+      type: ActionType.UPDATE_PROMO_FILM,
+      payload: updatedFilm,
+    };
+    expect(reducer(state, updateFilmAction))
+      .toEqual(extend(initialState, {
+        promoFilm: updatedFilm,
+      }));
+  });
+
+  test(`shouldn't update promoFilm`, () => {
+    const state = extend(initialState, {
+      promoFilm: film
+    });
+    const updatedFilm = extend(film, {
+      id: 10,
+      description: `updated`,
+    });
+    const updateFilmAction = {
+      type: ActionType.UPDATE_PROMO_FILM,
+      payload: updatedFilm,
+    };
+    expect(reducer(state, updateFilmAction))
+      .toEqual(extend(initialState, {
+        promoFilm: film,
+      }));
+  });
+
   test(`should make a correct API call to /films`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
@@ -502,13 +588,23 @@ describe(`DataReducer`, () => {
     apiMock.onPost(`/favorite/3/${FavoriteFilmActionType.ADD}`)
       .reply(200, filmFromServer);
 
+    const adaptedFilm = adaptFilm(filmFromServer);
+
     favoriteFilmStatusChanger(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenCalledWith({
-          type: ActionType.ADD_FAVORITE_FILM,
-          payload: adaptFilm(filmFromServer),
-        });
+        expect(dispatch).toHaveBeenCalledWith([
+          {
+            type: ActionType.ADD_FAVORITE_FILM,
+            payload: adaptedFilm,
+          }, {
+            type: ActionType.UPDATE_FILM,
+            payload: adaptedFilm,
+          }, {
+            type: ActionType.UPDATE_PROMO_FILM,
+            payload: adaptedFilm,
+          }
+        ]);
       });
   });
 });

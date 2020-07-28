@@ -35,11 +35,21 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.ADD_FAVORITE_FILM:
       return extend(state, {
-        favoriteFilms: state.favoriteFilms.concat(action.payload),
+        favoriteFilms: state.favoriteFilms.some((film) => film.id === action.payload.id)
+          ? state.favoriteFilms.map((film) => film.id === action.payload.id ? action.payload : film)
+          : state.favoriteFilms.concat(action.payload),
       });
     case ActionType.REMOVE_FAVORITE_FILM:
       return extend(state, {
         favoriteFilms: state.favoriteFilms.filter((film) => film.id !== action.payload.id),
+      });
+    case ActionType.UPDATE_FILM:
+      return extend(state, {
+        films: state.films.map((film) => film.id === action.payload.id ? action.payload : film),
+      });
+    case ActionType.UPDATE_PROMO_FILM:
+      return extend(state, {
+        promoFilm: state.promoFilm.id === action.payload.id ? action.payload : state.promoFilm,
       });
     default:
       return state;
