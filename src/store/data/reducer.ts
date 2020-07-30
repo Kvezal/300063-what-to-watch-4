@@ -1,4 +1,4 @@
-import {FilmInterface, ReviewInterface} from "@common/types";
+import {IFilm, IReview} from "@common/types";
 import {extend} from "@common/utils";
 
 import {ECommentStatus, EDataAction, IDataState, TDataAction} from "./interface";
@@ -13,29 +13,29 @@ const initialState: IDataState = {
   commentStatus: ECommentStatus.NONE,
 };
 
-const getFavoriteFilms = (filmList: FilmInterface[], film: FilmInterface) => {
-  return filmList.some((item: FilmInterface) => item.id === (film as FilmInterface).id)
-    ? filmList.map((item: FilmInterface) => item.id === (film as FilmInterface).id ? film : item)
-    : filmList.concat(film as FilmInterface);
+const getFavoriteFilms = (filmList: IFilm[], film: IFilm) => {
+  return filmList.some((item: IFilm) => item.id === (film as IFilm).id)
+    ? filmList.map((item: IFilm) => item.id === (film as IFilm).id ? film : item)
+    : filmList.concat(film as IFilm);
 };
 
 const reducer: Reducer<IDataState, TDataAction> = (state: IDataState = initialState, action: TDataAction) => {
   switch (action.type) {
     case EDataAction.LOAD_FILMS:
       return extend(state, {
-        films: action.payload as FilmInterface[],
+        films: action.payload as IFilm[],
       });
     case EDataAction.LOAD_PROMO_FILM:
       return extend(state, {
-        promoFilm: action.payload as FilmInterface,
+        promoFilm: action.payload as IFilm,
       });
     case EDataAction.LOAD_FILM_REVIEWS:
       return extend(state, {
-        filmReviews: action.payload as ReviewInterface[],
+        filmReviews: action.payload as IReview[],
       });
     case EDataAction.LOAD_FAVORITE_FILMS:
       return extend(state, {
-        favoriteFilms: action.payload as FilmInterface[],
+        favoriteFilms: action.payload as IFilm[],
       });
     case EDataAction.CHANGE_COMMENT_STATUS:
       return extend(state, {
@@ -43,19 +43,19 @@ const reducer: Reducer<IDataState, TDataAction> = (state: IDataState = initialSt
       });
     case EDataAction.ADD_FAVORITE_FILM:
       return extend(state, {
-        favoriteFilms: getFavoriteFilms(state.favoriteFilms, action.payload as FilmInterface),
+        favoriteFilms: getFavoriteFilms(state.favoriteFilms, action.payload as IFilm),
       });
     case EDataAction.REMOVE_FAVORITE_FILM:
       return extend(state, {
-        favoriteFilms: state.favoriteFilms.filter((film) => film.id !== (action.payload as FilmInterface).id),
+        favoriteFilms: state.favoriteFilms.filter((film) => film.id !== (action.payload as IFilm).id),
       });
     case EDataAction.UPDATE_FILM:
       return extend(state, {
-        films: state.films.map((film: FilmInterface) => film.id === (action.payload as FilmInterface).id ? (action.payload as FilmInterface) : film),
+        films: state.films.map((film: IFilm) => film.id === (action.payload as IFilm).id ? (action.payload as IFilm) : film),
       });
     case EDataAction.UPDATE_PROMO_FILM:
       return extend(state, {
-        promoFilm: state.promoFilm.id === (action.payload as FilmInterface).id ? (action.payload as FilmInterface) : state.promoFilm,
+        promoFilm: state.promoFilm.id === (action.payload as IFilm).id ? (action.payload as IFilm) : state.promoFilm,
       });
     default:
       return state;

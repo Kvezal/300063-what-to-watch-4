@@ -1,4 +1,4 @@
-export interface ReviewInterface {
+export interface IReview {
   id: number;
   ratingScore: number;
   text: string;

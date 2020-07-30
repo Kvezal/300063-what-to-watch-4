@@ -1,23 +1,23 @@
-import {FilmInterface, ReviewInterface} from "@common/types";
+import {IFilm, IReview} from "@common/types";
 import {IDataAction, EDataAction, ECommentStatus} from "./interface";
 
 
-const loadFilms = (payload: FilmInterface[]): IDataAction<FilmInterface[]> => ({
+const loadFilms = (payload: IFilm[]): IDataAction<IFilm[]> => ({
   type: EDataAction.LOAD_FILMS,
   payload,
 });
 
-const loadFavoriteFilms = (payload: FilmInterface[]): IDataAction<FilmInterface[]> => ({
+const loadFavoriteFilms = (payload: IFilm[]): IDataAction<IFilm[]> => ({
   type: EDataAction.LOAD_FAVORITE_FILMS,
   payload,
 });
 
-const loadPromoFilm = (payload: FilmInterface): IDataAction<FilmInterface> => ({
+const loadPromoFilm = (payload: IFilm): IDataAction<IFilm> => ({
   type: EDataAction.LOAD_PROMO_FILM,
   payload,
 });
 
-const loadFilmReviews = (payload: ReviewInterface[]): IDataAction<ReviewInterface[]> => ({
+const loadFilmReviews = (payload: IReview[]): IDataAction<IReview[]> => ({
   type: EDataAction.LOAD_FILM_REVIEWS,
   payload,
 });
@@ -27,22 +27,22 @@ const changeCommentStatus = (payload: ECommentStatus): IDataAction<ECommentStatu
   payload,
 });
 
-const addFavoriteFilm = (payload: FilmInterface): IDataAction<FilmInterface> => ({
+const addFavoriteFilm = (payload: IFilm): IDataAction<IFilm> => ({
   type: EDataAction.ADD_FAVORITE_FILM,
   payload,
 });
 
-const removeFavoriteFilm = (payload: FilmInterface): IDataAction<FilmInterface> => ({
+const removeFavoriteFilm = (payload: IFilm): IDataAction<IFilm> => ({
   type: EDataAction.REMOVE_FAVORITE_FILM,
   payload,
 });
 
-const updatePromoFilm = (payload: FilmInterface): IDataAction<FilmInterface> => ({
+const updatePromoFilm = (payload: IFilm): IDataAction<IFilm> => ({
   type: EDataAction.UPDATE_PROMO_FILM,
   payload,
 });
 
-const updateFilm = (payload: FilmInterface): IDataAction<FilmInterface> => ({
+const updateFilm = (payload: IFilm): IDataAction<IFilm> => ({
   type: EDataAction.UPDATE_FILM,
   payload,
 });

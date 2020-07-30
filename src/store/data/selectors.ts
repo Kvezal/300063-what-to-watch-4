@@ -1,7 +1,7 @@
 import {createSelector} from "reselect";
 
 import {EGenre} from "@common/enums";
-import {FilmInterface, ReviewInterface} from "@common/types";
+import {IFilm, IReview} from "@common/types";
 import {TStoreState} from "@store/interface";
 import ENameSpace from "@store/name-space";
 
@@ -10,11 +10,11 @@ import {ECommentStatus} from "./interface";
 
 const NAME_SPACE = ENameSpace.DATA;
 
-const getFilms = (state: TStoreState): FilmInterface[] => {
+const getFilms = (state: TStoreState): IFilm[] => {
   return state[NAME_SPACE].films;
 };
 
-const getPromoFilm = (state: TStoreState): FilmInterface => {
+const getPromoFilm = (state: TStoreState): IFilm => {
   return state[NAME_SPACE].promoFilm;
 };
 
@@ -26,11 +26,11 @@ const getHash = (state: TStoreState, props): string => {
   return decodeURIComponent(props.location.hash);
 };
 
-const getReviews = (state: TStoreState): ReviewInterface[] => {
+const getReviews = (state: TStoreState): IReview[] => {
   return state[NAME_SPACE].filmReviews;
 };
 
-const getFavoriteFilms = (state: TStoreState): FilmInterface[] => {
+const getFavoriteFilms = (state: TStoreState): IFilm[] => {
   return state[NAME_SPACE].favoriteFilms;
 };
 

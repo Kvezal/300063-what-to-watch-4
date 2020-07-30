@@ -5,7 +5,7 @@ import AppRoute from "@app/app-route";
 import history from "@app/history";
 import {withLoading} from "@hocs/index";
 import {EFilmTab} from "@common/enums";
-import {FilmInterface, ReviewInterface} from "@common/types";
+import {IFilm, IReview} from "@common/types";
 import {getColorParams} from "@common/utils";
 import FilmList from "@components/film-list/film-list";
 import Footer from "@components/footer/footer";
@@ -25,7 +25,7 @@ const ReviewsWrap = withLoading(Reviews);
 const STARTING_FILM_LIST_STEP = 1;
 const COUNT_FILM_IN_ONE_STEP = 8;
 
-const getTab = (activeTab: EFilmTab, info: FilmInterface, reviews: ReviewInterface[]) => {
+const getTab = (activeTab: EFilmTab, info: IFilm, reviews: IReview[]) => {
   const {rating, description, director, starring, genre, runTime, releaseDate, picture} = info;
   switch (activeTab) {
     case EFilmTab.DETAILS:

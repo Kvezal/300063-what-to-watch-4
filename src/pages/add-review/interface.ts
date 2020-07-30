@@ -1,4 +1,4 @@
-import {FilmInterface} from "@common/types";
+import {IFilm} from "@common/types";
 
 
 export interface IAddReviewFormState {
@@ -9,7 +9,7 @@ export interface IAddReviewFormState {
 export interface IAddReviewProps {
   avatar: string;
   authorizationStatus: string;
-  film: FilmInterface;
+  film: IFilm;
   formState: IAddReviewFormState;
   formDisabled: boolean;
   onSubmitForm: (formState: IAddReviewFormState) => void;

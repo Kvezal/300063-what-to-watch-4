@@ -1,5 +1,5 @@
 import {AnyAction} from "redux";
-import {FilmInterface, ReviewInterface} from "@common/types";
+import {IFilm, IReview} from "@common/types";
 
 
 export enum EDataAction {
@@ -47,11 +47,11 @@ export interface IDataAction<T = null> extends AnyAction {
 }
 
 export interface IDataState {
-  films: FilmInterface[];
-  promoFilm: FilmInterface;
-  filmReviews: ReviewInterface[];
-  favoriteFilms: FilmInterface[];
+  films: IFilm[];
+  promoFilm: IFilm;
+  filmReviews: IReview[];
+  favoriteFilms: IFilm[];
   commentStatus: ECommentStatus;
 }
 
-export type TDataAction = IDataAction<FilmInterface[] | FilmInterface | ReviewInterface[] | ECommentStatus>;
+export type TDataAction = IDataAction<IFilm[] | IFilm | IReview[] | ECommentStatus>;

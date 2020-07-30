@@ -6,7 +6,7 @@ import {getCurrentFilm, getLikedFilms, getReviews} from "@store/data/selectors";
 import {getAuthorizationStatus, getAvatar} from "@store/user/selector";
 import {changeFavoriteFilmStatus, loadFilmReviews} from "@store/data/operation";
 import {EFavoriteFilmActionType} from "@store/data/interface";
-import {FilmInterface} from "@common/types";
+import {IFilm} from "@common/types";
 
 
 const FilmWrapper = withLoading(Film);
@@ -20,7 +20,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFavoriteFilmClick: (film: FilmInterface): void => {
+  onFavoriteFilmClick: (film: IFilm): void => {
     const favoriteFilmActionType = film.isFavorite
       ? EFavoriteFilmActionType.DELETE
       : EFavoriteFilmActionType.ADD;

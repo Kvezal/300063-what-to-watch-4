@@ -1,4 +1,4 @@
-import {FilmInterface} from "@common/types";
+import {IFilm} from "@common/types";
 import {EGenre} from "@common/enums";
 import {ITab} from "@components/tabs/interface";
 
@@ -8,11 +8,11 @@ export interface IMainProps {
   tabList: ITab[];
   activeTab: EGenre;
   step: number;
-  promoFilm: FilmInterface;
-  films: FilmInterface[];
+  promoFilm: IFilm;
+  films: IFilm[];
   avatar: string;
   onActiveTabChange: (tab: EGenre) => void;
   onStepChange: () => void;
   onStepReset: () => void;
-  onFavoriteFilmClick: (film: FilmInterface) => void;
+  onFavoriteFilmClick: (film: IFilm) => void;
 }

@@ -4,19 +4,19 @@ export interface FilmRatingInterface {
   assessment: string;
 }
 
-export interface FilmScoreInterface {
+export interface IFilmScore {
   video: string;
   previewVideo: string;
 }
 
-export interface FilmPictureInterface {
+export interface IFilmPicture {
   poster: string;
   preview: string;
   cover: string;
   backgroundColor: string;
 }
 
-export interface FilmInterface {
+export interface IFilm {
   id: number;
   name: string;
   genre: string;
@@ -25,13 +25,13 @@ export interface FilmInterface {
   description: string;
   director: string;
   rating: FilmRatingInterface;
-  source: FilmScoreInterface;
-  picture: FilmPictureInterface;
+  source: IFilmScore;
+  picture: IFilmPicture;
   starring: string[];
   isFavorite: boolean;
 }
 
-export interface ServerFilmInterface {
+export interface IServerFilm {
   id: number;
   name: string;
   poster_image: string;

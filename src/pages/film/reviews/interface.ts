@@ -1,7 +1,7 @@
-import {ReviewInterface} from "@common/types";
+import {IReview} from "@common/types";
 
 
 export interface IReviewsProps {
-  list: ReviewInterface[];
+  list: IReview[];
   separatorColor: string;
 }

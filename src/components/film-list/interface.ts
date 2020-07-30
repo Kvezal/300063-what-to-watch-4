@@ -1,8 +1,8 @@
-import {FilmInterface} from "@common/types";
+import {IFilm} from "@common/types";
 
 
 export interface IFilmListProps {
-  list: FilmInterface[];
+  list: IFilm[];
   onCardClick: (filmId: number) => void;
   pack?: number;
   step?: number;

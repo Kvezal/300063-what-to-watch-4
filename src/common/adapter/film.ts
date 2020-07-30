@@ -1,7 +1,7 @@
-import {FilmInterface, ServerFilmInterface} from "@common/types";
+import {IFilm, IServerFilm} from "@common/types";
 import {getTime, getAssessment} from "@common/utils";
 
-const adaptFilm = (film: ServerFilmInterface): FilmInterface => {
+const adaptFilm = (film: IServerFilm): IFilm => {
   return {
     id: film.id,
     genre: film.genre,

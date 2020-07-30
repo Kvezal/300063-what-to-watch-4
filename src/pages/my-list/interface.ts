@@ -1,8 +1,8 @@
-import {FilmInterface} from "@common/types";
+import {IFilm} from "@common/types";
 
 
 export interface IMyListProps {
   authorizationStatus: string;
   avatar: string;
-  films: FilmInterface[];
+  films: IFilm[];
 }

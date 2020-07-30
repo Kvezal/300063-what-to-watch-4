@@ -17,14 +17,14 @@ import {
   EDataErrorNotificationName,
   EFavoriteFilmActionType,
 } from "./interface";
-import {FilmInterface, ReviewInterface, ServerFilmInterface} from "@common/types";
+import {IFilm, IReview, IServerFilm} from "@common/types";
 
 
 const loadFilms = () => (dispatch: Dispatch, getState, api) => {
   return api
     .get(EDataURLHandlerPath.FILMS)
-    .then((response) => response.data.map((film: ServerFilmInterface) => adaptFilm(film)))
-    .then((films: FilmInterface[]) => {
+    .then((response) => response.data.map((film: IServerFilm) => adaptFilm(film)))
+    .then((films: IFilm[]) => {
       dispatch(ActionCreator.loadFilms(films));
     })
     .catch(() => {
@@ -43,7 +43,7 @@ const loadPromoFilm = () => (dispatch, getState, api) => {
   return api
     .get(EDataURLHandlerPath.PROMO_FILM)
     .then((response) => adaptFilm(response.data))
-    .then((film: FilmInterface) => {
+    .then((film: IFilm) => {
       dispatch(ActionCreator.loadPromoFilm(film));
     })
     .catch((error) => {
@@ -66,7 +66,7 @@ const loadFilmReviews = (filmId) => (dispatch, getState, api) => {
   return api
     .get(path)
     .then((response) => response.data.map((reviews) => adaptReview(reviews)))
-    .then((reviews: ReviewInterface[]) => {
+    .then((reviews: IReview[]) => {
       dispatch(ActionCreator.loadFilmReviews(reviews));
     })
     .catch((error) => {
@@ -87,8 +87,8 @@ const loadFilmReviews = (filmId) => (dispatch, getState, api) => {
 const loadFavoriteFilms = () => (dispatch, getState, api) => {
   return api
     .get(EDataURLHandlerPath.FAVORITE_FILM_LIST)
-    .then((response) => response.data.map((films: ServerFilmInterface) => adaptFilm(films)))
-    .then((films: FilmInterface[]) => dispatch(ActionCreator.loadFavoriteFilms(films)))
+    .then((response) => response.data.map((films: IServerFilm) => adaptFilm(films)))
+    .then((films: IFilm[]) => dispatch(ActionCreator.loadFavoriteFilms(films)))
     .catch((error) => {
       if (error.response.status === UNAUTHORIZED) {
         return;
