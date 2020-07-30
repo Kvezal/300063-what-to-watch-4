@@ -1,4 +1,5 @@
 import {nanoid} from "nanoid";
+import {Dispatch} from "redux";
 import {UNAUTHORIZED} from "http-status-codes";
 
 import {AppRoute, history} from "@app/index";
@@ -16,9 +17,7 @@ import {
   EDataErrorNotificationName,
   EFavoriteFilmActionType,
 } from "./interface";
-import {FilmInterface, ServerFilmInterface} from "@common/types";
-import ReviewInterface from "@common/types/review";
-import {Dispatch} from "redux";
+import {FilmInterface, ReviewInterface, ServerFilmInterface} from "@common/types";
 
 
 const loadFilms = () => (dispatch: Dispatch, getState, api) => {

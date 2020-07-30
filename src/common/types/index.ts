@@ -1,5 +1,5 @@
 import {FilmInterface, ServerFilmInterface} from "./film";
-import ReviewInterface from "./review";
+import {ReviewInterface} from "./review";
 import {UserInterface, ServerUserInterface} from "./user";
 
 export {

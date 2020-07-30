@@ -12,7 +12,7 @@ import {checkAuth} from "@store/user/operation";
 import {loadFavoriteFilms, loadFilms, loadPromoFilm} from "@store/data/operation";
 
 
-const api = createAPI(() => {});
+const api = createAPI();
 
 const store = createStore(
     reducer,

@@ -3,7 +3,7 @@ import * as React from "react";
 import {IReviewProps} from "./interface";
 
 
-const Review: React.FC<IReviewProps> = (props) => {
+const Review: React.FC<IReviewProps> = (props: IReviewProps) => {
   const {ratingScore, text, author, date, underlineColor} = props;
 
   return <div className="review" style={{borderBottom: `1px solid ${underlineColor}`}}>

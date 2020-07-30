@@ -11,7 +11,7 @@ import {EAuthorizationStatus} from "@store/user/interface";
 import {IMyListProps} from "./interface";
 
 
-const MyList: React.FC<IMyListProps> = (props) => {
+const MyList: React.FC<IMyListProps> = (props: IMyListProps) => {
   const {authorizationStatus, avatar, films} = props;
   return <div className="user-page">
     <header className="page-header user-page__head">

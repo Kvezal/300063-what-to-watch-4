@@ -7,7 +7,7 @@ import {EAuthorizationStatus} from "@store/user/interface";
 import {TPrivateRoute} from "./interface";
 
 
-const PrivateRoute: React.FC<TPrivateRoute> = (props) => {
+const PrivateRoute: React.FC<TPrivateRoute> = (props: TPrivateRoute) => {
   const {path, exact, render, authorizationStatus} = props;
   if (authorizationStatus === null) {
     return null;

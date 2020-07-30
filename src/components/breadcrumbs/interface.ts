@@ -1,13 +1,8 @@
-interface IBreadcrumb {
+export interface IBreadcrumb {
   name: string;
   href?: string;
 }
 
-interface IBreadcrumbsProps {
+export interface IBreadcrumbsProps {
   list: IBreadcrumb[];
 }
-
-export {
-  IBreadcrumb,
-  IBreadcrumbsProps,
-};

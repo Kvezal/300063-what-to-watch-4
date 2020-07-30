@@ -13,7 +13,7 @@ import {IAddReviewProps} from "./interface";
 
 const RatingControl = withRadioGroupValue(Rating);
 
-const AddReview: React.FC<IAddReviewProps> = (props) => {
+const AddReview: React.FC<IAddReviewProps> = (props: IAddReviewProps) => {
   const {authorizationStatus, avatar, film, onSubmitForm, formState, onControlChange, formDisabled, onDisabledChange} = props;
   const {name, picture} = film;
 

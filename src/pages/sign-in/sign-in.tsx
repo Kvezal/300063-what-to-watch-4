@@ -11,7 +11,7 @@ import {ISignInProps} from "./interface";
 import {ChangeEvent} from "react";
 
 
-const SignIn: React.FC<ISignInProps> = (props) => {
+const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
   const {errors, authorizationStatus, onControlChange, onFormSubmit, formState} = props;
 
   if (authorizationStatus === EAuthorizationStatus.AUTH) {

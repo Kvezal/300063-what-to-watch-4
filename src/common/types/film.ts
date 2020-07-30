@@ -1,22 +1,22 @@
-interface FilmRatingInterface {
+export interface FilmRatingInterface {
   score: number;
   count: number;
   assessment: string;
 }
 
-interface FilmScoreInterface {
+export interface FilmScoreInterface {
   video: string;
   previewVideo: string;
 }
 
-interface FilmPictureInterface {
+export interface FilmPictureInterface {
   poster: string;
   preview: string;
   cover: string;
   backgroundColor: string;
 }
 
-interface FilmInterface {
+export interface FilmInterface {
   id: number;
   name: string;
   genre: string;
@@ -31,7 +31,7 @@ interface FilmInterface {
   isFavorite: boolean;
 }
 
-interface ServerFilmInterface {
+export interface ServerFilmInterface {
   id: number;
   name: string;
   poster_image: string;
@@ -50,11 +50,3 @@ interface ServerFilmInterface {
   released: number;
   is_favorite: boolean;
 }
-
-export {
-  FilmInterface,
-  FilmRatingInterface,
-  FilmPictureInterface,
-  FilmScoreInterface,
-  ServerFilmInterface,
-};

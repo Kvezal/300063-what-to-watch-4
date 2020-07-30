@@ -1,20 +1,14 @@
-type TFormState = {
+export type TFormState = {
   [key: string]: number | string | boolean;
 };
 
-interface IWithFormStateHOCState {
+export interface IWithFormStateHOCState {
   formState: TFormState;
   formDisabled: boolean;
 }
 
-interface IWithFormStateHOCInjectProps {
+export interface IWithFormStateHOCInjectProps {
   initialFormState: TFormState;
   initialFormDisabled: boolean;
   formDisabled: boolean;
 }
-
-export {
-  TFormState,
-  IWithFormStateHOCState,
-  IWithFormStateHOCInjectProps,
-};

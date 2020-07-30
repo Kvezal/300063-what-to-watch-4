@@ -1,19 +1,16 @@
 import * as React from "react";
-
-import history from "@app/history";
 import {Subtract} from "utility-types";
 
+import history from "@app/history";
 
-interface IInjectProps {
-  activeTab: string;
-  onActiveTabChange: (tab: string) => void;
-}
+import {IWithActiveTabHOCInjectProps} from "./interface";
+
 
 const withActiveTab = (Component) => {
   type TComponentProps = React.ComponentProps<typeof Component>;
-  type T = Subtract<TComponentProps, IInjectProps>;
+  type THOC = Subtract<TComponentProps, IWithActiveTabHOCInjectProps>;
 
-  const WithActiveTab: React.FunctionComponent<T> = (props) => {
+  const WithActiveTab: React.FunctionComponent<THOC> = (props: THOC) => {
     const {location, activeTab} = props;
     return <Component
       {...props}

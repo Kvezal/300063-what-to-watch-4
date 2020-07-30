@@ -17,7 +17,7 @@ import EGenre from "@common/enums/genre";
 
 const FILM_COUNT_IN_ONE_STEP = 8;
 
-const Main: React.FunctionComponent<IMainProps> = (props) => {
+const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
   const {
     authorizationStatus,
     tabList,

@@ -8,7 +8,7 @@ import {extend} from "@common/utils";
 import {ILogoProps} from "./interface";
 
 
-const Logo: React.FC<ILogoProps> = (props) => {
+const Logo: React.FC<ILogoProps> = (props: ILogoProps) => {
   const linkClass = classNames(extend({
     "logo__link": true,
   }, props.linkClass));

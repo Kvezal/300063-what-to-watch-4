@@ -3,7 +3,7 @@ import * as React from "react";
 import {IRatingProps} from "./interface";
 
 
-const Rating: React.FC<IRatingProps> = (props) => {
+const Rating: React.FC<IRatingProps> = (props: IRatingProps) => {
   const {starCount, value, name, onChange, required} = props;
 
   return <div className="rating">

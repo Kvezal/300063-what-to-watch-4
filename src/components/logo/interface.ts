@@ -1,9 +1,5 @@
-interface ILogoProps {
+export interface ILogoProps {
   linkClass?: {
     [key: string]: boolean;
   };
 }
-
-export {
-  ILogoProps,
-};

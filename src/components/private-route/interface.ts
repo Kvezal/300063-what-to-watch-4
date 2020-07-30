@@ -2,16 +2,11 @@ import * as React from "react";
 import {RouteProps} from "react-router-dom";
 
 
-interface IPrivateRoute {
+export interface IPrivateRoute {
   path: string;
   exact: boolean;
   render: (props: RouteProps) => React.ReactNode;
   authorizationStatus: string;
 }
 
-type TPrivateRoute = RouteProps & IPrivateRoute;
-
-export {
-  IPrivateRoute,
-  TPrivateRoute,
-};
+export type TPrivateRoute = RouteProps & IPrivateRoute;

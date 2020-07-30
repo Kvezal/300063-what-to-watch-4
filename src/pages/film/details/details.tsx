@@ -3,7 +3,7 @@ import * as React from "react";
 import {IDetailsProps} from "./interface";
 
 
-const Details: React.FC<IDetailsProps> = (props) => {
+const Details: React.FC<IDetailsProps> = (props: IDetailsProps) => {
   const {director, starring, runTime, genre, releaseDate} = props;
   const maxStarringIndex = starring && starring.length - 1;
   return <div className="movie-card__text movie-card__row">

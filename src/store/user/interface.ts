@@ -2,42 +2,32 @@ import {AnyAction} from "redux";
 
 import {UserInterface} from "@common/types";
 
-enum EUserAction {
+export enum EUserAction {
   SET_AUTHORIZATION_STATUS = `SET_AUTHORIZATION_STATUS`,
   SET_USER = `SET_USER`,
 }
 
-enum EAuthorizationStatus {
+export enum EAuthorizationStatus {
   AUTH = `AUTH`,
   NO_AUTH = `NO_AUTH`,
 }
 
-enum EUserErrorNotificationName {
+export enum EUserErrorNotificationName {
   EMAIL = `DATA:EMAIL`,
 }
 
-enum EUserURLHandlerPath {
+export enum EUserURLHandlerPath {
   LOGIN = `/login`,
 }
 
-interface IUserAction<T = null> extends AnyAction {
+export interface IUserAction<T = null> extends AnyAction {
   type: EUserAction;
   payload: T;
 }
 
-interface IUserState {
+export interface IUserState {
   user: UserInterface;
   authorizationStatus: EAuthorizationStatus;
 }
 
-type TUserAction = IUserAction<EAuthorizationStatus | UserInterface>;
-
-export {
-  EUserAction,
-  EAuthorizationStatus,
-  EUserErrorNotificationName,
-  EUserURLHandlerPath,
-  IUserAction,
-  IUserState,
-  TUserAction,
-};
+export type TUserAction = IUserAction<EAuthorizationStatus | UserInterface>;

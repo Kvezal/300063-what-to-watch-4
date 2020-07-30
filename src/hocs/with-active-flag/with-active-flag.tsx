@@ -1,22 +1,15 @@
 import * as React from "react";
 import {Subtract} from "utility-types";
 
+import {IWithActiveFlagHOCInjectProps, IWithActiveFlagHOCState} from "./interface";
 
-interface IWithActiveFlag {
-  isActive: boolean;
-}
-
-interface IInjectProps extends IWithActiveFlag {
-  isActive: boolean;
-  onActiveChange: (tab: string) => void;
-}
 
 const withActiveFlag = (Component) => {
   type TComponent = React.ComponentProps<typeof Component>;
-  type T = Subtract<TComponent, IInjectProps>
+  type T = Subtract<TComponent, IWithActiveFlagHOCInjectProps>
 
-  return class WithActiveFlag extends React.PureComponent<T, IWithActiveFlag> {
-    static defaultProps: IWithActiveFlag = {
+  return class WithActiveFlag extends React.PureComponent<T, IWithActiveFlagHOCState> {
+    static defaultProps: IWithActiveFlagHOCState = {
       isActive: false,
     };
     private isUnmounted = false;

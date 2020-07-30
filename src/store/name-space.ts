@@ -1,4 +1,4 @@
-enum ENameSpace {
+export enum ENameSpace {
   DATA = `DATA`,
   USER = `USER`,
   NOTIFICATION = `NOTIFICATION`,

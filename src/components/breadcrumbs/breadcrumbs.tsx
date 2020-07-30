@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import {IBreadcrumbsProps} from "./interface";
 
 
-const Breadcrumbs: React.FC<IBreadcrumbsProps> = (props) => {
+const Breadcrumbs: React.FC<IBreadcrumbsProps> = (props: IBreadcrumbsProps) => {
   const list = props.list.slice();
   const lastItem = list.pop();
 

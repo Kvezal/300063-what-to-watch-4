@@ -4,7 +4,7 @@ import classNames from "classnames";
 import {ITabsProps} from "@components/tabs/interface";
 
 
-const Tabs: React.FC<ITabsProps> = (props) => {
+const Tabs: React.FC<ITabsProps> = (props: ITabsProps) => {
   const {list, activeTab, onActiveTabChange} = props;
 
   return <nav className="movie-nav movie-card__nav">

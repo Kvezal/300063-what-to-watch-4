@@ -6,7 +6,7 @@ import AppRoute from "@app/app-route";
 import {IUserProps} from "./interface";
 
 
-const User: React.FC<IUserProps> = (props) => {
+const User: React.FC<IUserProps> = (props: IUserProps) => {
   const {avatar, isAuthorized} = props;
   return <div className="user-block">
     {isAuthorized

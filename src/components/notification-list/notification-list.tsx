@@ -3,7 +3,7 @@ import * as React from "react";
 import {INotificationList} from "./interface";
 
 
-const NotificationList: React.FC<INotificationList> = (props) => {
+const NotificationList: React.FC<INotificationList> = (props: INotificationList) => {
   const {list, onCloseNotification, maxItems} = props;
   const displayedNotifications = list.slice(0, maxItems);
   return <ul className="notification-list">

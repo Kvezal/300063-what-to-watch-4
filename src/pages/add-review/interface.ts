@@ -1,11 +1,12 @@
 import {FilmInterface} from "@common/types";
 
-interface IAddReviewFormState {
+
+export interface IAddReviewFormState {
   rating: string;
   comment: string;
 }
 
-interface IAddReviewProps {
+export interface IAddReviewProps {
   avatar: string;
   authorizationStatus: string;
   film: FilmInterface;
@@ -15,8 +16,3 @@ interface IAddReviewProps {
   onControlChange: (fieldName: string, value: string) => void;
   onDisabledChange: (isDisabled: boolean) => void;
 }
-
-export {
-  IAddReviewFormState,
-  IAddReviewProps,
-};

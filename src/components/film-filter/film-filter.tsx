@@ -4,7 +4,7 @@ import classNames from "classnames";
 import {IFilmFilterProps} from "./interface";
 
 
-const FilmFilter: React.FC<IFilmFilterProps> = (props) => {
+const FilmFilter: React.FC<IFilmFilterProps> = (props: IFilmFilterProps) => {
   const {list, onItemClick, activeItem} = props;
   return <ul className="catalog__genres-list">
     {list.map((item) => {

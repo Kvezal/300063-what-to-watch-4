@@ -1,23 +1,14 @@
 import * as React from "react";
 import {Subtract} from "utility-types";
 
+import {IWithRadioGroupValueHOCInjectProps, IWithRadioGroupValueHOCState} from "./interface";
 
-interface IState {
-  value: string | number;
-}
-
-interface IWithRadioGroupValueHOCInjectProps {
-  defaultValue: string | number;
-  onControlChange: (controlValue: string | number) => string | number;
-  value: string;
-  onChange: (fieldName: string) => void;
-}
 
 const withRadioGroupValue = (Component) => {
   type TComponent = React.ComponentProps<typeof Component>;
   type THOC = Subtract<TComponent, IWithRadioGroupValueHOCInjectProps>;
 
-  class RadioGroupValue extends React.PureComponent<THOC, IState> {
+  class RadioGroupValue extends React.PureComponent<THOC, IWithRadioGroupValueHOCState> {
     constructor(props) {
       super(props);
       const {defaultValue} = props;

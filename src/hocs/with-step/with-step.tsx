@@ -1,16 +1,14 @@
 import * as React from "react";
+import {Subtract} from "utility-types";
 
+import {IWithStepHOCInjectProps, IWithStepHOCState} from "./interface";
 
-interface IWithStep {
-  step: number;
-}
 
 const withStep = (Component) => {
-  return class WithStep extends React.PureComponent<IWithStep, IWithStep> {
-    static defaultValue: Partial<IWithStep> = {
-      step: 1,
-    };
+  type TComponent = React.ComponentProps<typeof Component>;
+  type THOC = Subtract<TComponent, IWithStepHOCInjectProps>;
 
+  return class WithStep extends React.PureComponent<THOC, IWithStepHOCState> {
     constructor(props) {
       super(props);
 

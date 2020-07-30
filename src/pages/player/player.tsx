@@ -9,7 +9,7 @@ import {IPlayerProps} from "./interface";
 
 const PERCENTS_IN_ONE = 100;
 
-const Player: React.FC<IPlayerProps> = (props) => {
+const Player: React.FC<IPlayerProps> = (props: IPlayerProps) => {
   const {renderPlayer, onFullScreenOpen, isPlaying, onPlayingChange, duration, time} = props;
   const progress = time / duration * PERCENTS_IN_ONE;
 

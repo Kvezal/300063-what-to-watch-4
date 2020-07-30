@@ -3,7 +3,7 @@ import {ITab} from "@components/tabs/interface";
 import {EFilmTab} from "@common/enums";
 
 
-interface IFilmProps {
+export interface IFilmProps {
   info: FilmInterface;
   likedFilms: FilmInterface[];
   avatar: string;
@@ -15,7 +15,3 @@ interface IFilmProps {
   onReviewsLoad: (filmId: number) => void;
   onFavoriteFilmClick: (film: FilmInterface) => void;
 }
-
-export {
-  IFilmProps,
-};

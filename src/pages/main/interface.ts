@@ -3,7 +3,7 @@ import {EGenre} from "@common/enums";
 import {ITab} from "@components/tabs/interface";
 
 
-interface IMainProps {
+export interface IMainProps {
   authorizationStatus: string;
   tabList: ITab[];
   activeTab: EGenre;
@@ -16,7 +16,3 @@ interface IMainProps {
   onStepReset: () => void;
   onFavoriteFilmClick: (film: FilmInterface) => void;
 }
-
-export {
-  IMainProps,
-};

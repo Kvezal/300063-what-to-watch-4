@@ -5,7 +5,7 @@ import {IOverviewProps} from "./interface";
 
 const MAX_STARRING_COUNT = 4;
 
-const Overview: React.FC<IOverviewProps> = (props) => {
+const Overview: React.FC<IOverviewProps> = (props: IOverviewProps) => {
   const {rating, director, description, starring} = props;
 
   let starringString = starring.join(`, `);

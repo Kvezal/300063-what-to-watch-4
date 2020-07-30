@@ -1,6 +1,7 @@
 import * as React from "react";
 
-interface IPlayerProps {
+
+export interface IPlayerProps {
   renderPlayer: () => React.ReactNode;
   isPlaying: boolean;
   onPlayingChange: () => void;
@@ -8,7 +9,3 @@ interface IPlayerProps {
   duration: number;
   onFullScreenOpen: () => void;
 }
-
-export {
-  IPlayerProps,
-};

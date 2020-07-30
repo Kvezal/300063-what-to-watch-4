@@ -1,8 +1,4 @@
-interface IUserProps {
+export interface IUserProps {
   avatar: string;
   isAuthorized: boolean;
 }
-
-export {
-  IUserProps,
-};

@@ -6,7 +6,7 @@ import {splitListIntoTwoColumn} from "@common/utils";
 import {IReviewsProps} from "./interface";
 
 
-const Reviews: React.FunctionComponent<IReviewsProps> = (props) => {
+const Reviews: React.FunctionComponent<IReviewsProps> = (props: IReviewsProps) => {
   const {list, separatorColor} = props;
 
   const {left, right} = splitListIntoTwoColumn(list);

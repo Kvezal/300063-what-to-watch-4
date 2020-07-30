@@ -1,11 +1,11 @@
 import {createSelector} from "reselect";
 
 import {EGenre} from "@common/enums";
-import ENameSpace from "@store/name-space";
-import {FilmInterface} from "@common/types";
-import ReviewInterface from "@common/types/review";
-import {ECommentStatus} from "./interface";
+import {FilmInterface, ReviewInterface} from "@common/types";
 import {TStoreState} from "@store/interface";
+import ENameSpace from "@store/name-space";
+
+import {ECommentStatus} from "./interface";
 
 
 const NAME_SPACE = ENameSpace.DATA;

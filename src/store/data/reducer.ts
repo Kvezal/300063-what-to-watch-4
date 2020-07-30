@@ -14,8 +14,8 @@ const initialState: IDataState = {
 };
 
 const getFavoriteFilms = (filmList: FilmInterface[], film: FilmInterface) => {
-  return filmList.some((film: FilmInterface) => film.id === (film as FilmInterface).id)
-    ? filmList.map((film: FilmInterface) => film.id === (film as FilmInterface).id ? film : film)
+  return filmList.some((item: FilmInterface) => item.id === (film as FilmInterface).id)
+    ? filmList.map((item: FilmInterface) => item.id === (film as FilmInterface).id ? film : item)
     : filmList.concat(film as FilmInterface);
 };
 

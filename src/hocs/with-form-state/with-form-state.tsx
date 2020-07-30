@@ -1,8 +1,9 @@
 import * as React from "react";
+import {Subtract} from "utility-types";
 
 import {extend} from "@common/utils";
-import {IWithFormStateHOCInjectProps, IWithFormStateHOCState} from "@hocs/with-form-state/interface";
-import {Subtract} from "utility-types";
+
+import {IWithFormStateHOCInjectProps, IWithFormStateHOCState} from "./interface";
 
 
 const withFormState = (Component) => {

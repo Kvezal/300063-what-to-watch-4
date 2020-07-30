@@ -1,15 +1,10 @@
-interface ITab {
+export interface ITab {
   name: string;
   id: string;
 }
 
-interface ITabsProps {
+export interface ITabsProps {
   list: ITab[];
   activeTab: string;
   onActiveTabChange: (tabId: string) => void;
 }
-
-export {
-  ITab,
-  ITabsProps,
-};
