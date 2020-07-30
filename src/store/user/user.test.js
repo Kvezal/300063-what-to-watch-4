@@ -1,12 +1,12 @@
 import {setAuthorizationStatus} from "./action-creator";
-import {ActionType, AuthorizationStatus} from "./const";
+import {EUserAction, EAuthorizationStatus} from "./interface";
 import reducer from "./reducer";
 
 
 describe(`UserReducer`, () => {
-  test.each(Object.values(AuthorizationStatus))(`set authorization status should return correct object`, (status) => {
+  test.each(Object.values(EAuthorizationStatus))(`set authorization status should return correct object`, (status) => {
     expect(setAuthorizationStatus(status)).toEqual({
-      type: ActionType.SET_AUTHORIZATION_STATUS,
+      type: EUserAction.SET_AUTHORIZATION_STATUS,
       payload: status
     });
   });
@@ -14,59 +14,59 @@ describe(`UserReducer`, () => {
   test(`should change authorizationStatus`, () => {
     expect(
         reducer({
-          authorizationStatus: AuthorizationStatus.NO_AUTH,
+          authorizationStatus: EAuthorizationStatus.NO_AUTH,
         }, {
-          type: ActionType.SET_AUTHORIZATION_STATUS,
-          payload: AuthorizationStatus.AUTH,
+          type: EUserAction.SET_AUTHORIZATION_STATUS,
+          payload: EAuthorizationStatus.AUTH,
         })
     ).toEqual({
-      authorizationStatus: AuthorizationStatus.AUTH,
+      authorizationStatus: EAuthorizationStatus.AUTH,
     });
 
     expect(
         reducer({
-          authorizationStatus: AuthorizationStatus.AUTH,
+          authorizationStatus: EAuthorizationStatus.AUTH,
         }, {
-          type: ActionType.SET_AUTHORIZATION_STATUS,
-          payload: AuthorizationStatus.AUTH,
+          type: EUserAction.SET_AUTHORIZATION_STATUS,
+          payload: EAuthorizationStatus.AUTH,
         })
     ).toEqual({
-      authorizationStatus: AuthorizationStatus.AUTH,
+      authorizationStatus: EAuthorizationStatus.AUTH,
     });
 
     expect(
         reducer({
-          authorizationStatus: AuthorizationStatus.AUTH,
+          authorizationStatus: EAuthorizationStatus.AUTH,
         }, {
-          type: ActionType.SET_AUTHORIZATION_STATUS,
-          payload: AuthorizationStatus.NO_AUTH,
+          type: EUserAction.SET_AUTHORIZATION_STATUS,
+          payload: EAuthorizationStatus.NO_AUTH,
         })
     ).toEqual({
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      authorizationStatus: EAuthorizationStatus.NO_AUTH,
     });
 
     expect(
         reducer({
-          authorizationStatus: AuthorizationStatus.NO_AUTH,
+          authorizationStatus: EAuthorizationStatus.NO_AUTH,
         }, {
-          type: ActionType.SET_AUTHORIZATION_STATUS,
-          payload: AuthorizationStatus.NO_AUTH,
+          type: EUserAction.SET_AUTHORIZATION_STATUS,
+          payload: EAuthorizationStatus.NO_AUTH,
         })
     ).toEqual({
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      authorizationStatus: EAuthorizationStatus.NO_AUTH,
     });
   });
 
   test(`should unauthorize user`, () => {
     expect(
         reducer({
-          authorizationStatus: AuthorizationStatus.AUTH,
+          authorizationStatus: EAuthorizationStatus.AUTH,
         }, {
-          type: ActionType.SET_AUTHORIZATION_STATUS,
-          payload: AuthorizationStatus.NO_AUTH,
+          type: EUserAction.SET_AUTHORIZATION_STATUS,
+          payload: EAuthorizationStatus.NO_AUTH,
         })
     ).toEqual({
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      authorizationStatus: EAuthorizationStatus.NO_AUTH,
     });
   });
 });

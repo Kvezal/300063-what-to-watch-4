@@ -4,8 +4,8 @@ import Enzyme, {mount, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter} from "react-router-dom";
 
-import {EFilmOverviewTab} from "@common/enums";
-import {AuthorizationStatus} from "@store/user/const";
+import {EFilmTab} from "@common/enums";
+import {EAuthorizationStatus} from "@store/user/interface";
 
 import Film from "./film";
 
@@ -135,9 +135,9 @@ const likedFilms = [
 ];
 
 const tabList = [
-  {name: `Overview`, id: EFilmOverviewTab.OVERVIEW},
-  {name: `Details`, id: EFilmOverviewTab.DETAILS},
-  {name: `Reviews`, id: EFilmOverviewTab.REVIEWS},
+  {name: `Overview`, id: EFilmTab.OVERVIEW},
+  {name: `Details`, id: EFilmTab.DETAILS},
+  {name: `Reviews`, id: EFilmTab.REVIEWS},
 ];
 
 Enzyme.configure({
@@ -160,7 +160,7 @@ describe(`FilmPage`, () => {
               activeTab={`overview`}
               reviews={[]}
               tabList={tabList}
-              authorizationStatus={AuthorizationStatus.AUTH}
+              authorizationStatus={EAuthorizationStatus.AUTH}
               onFavoriteFilmClick={() => {}}
               onReviewsLoad={() => {}}
             />
@@ -184,7 +184,7 @@ describe(`FilmPage`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => {}}
           onReviewsLoad={() => {}}
         />
@@ -207,7 +207,7 @@ describe(`FilmPage`, () => {
             reviews={[]}
             tabList={tabList}
             onActiveTabChange={() => {}}
-            authorizationStatus={AuthorizationStatus.AUTH}
+            authorizationStatus={EAuthorizationStatus.AUTH}
             onFavoriteFilmClick={() => {}}
             onReviewsLoad={() => {}}
           />
@@ -230,7 +230,7 @@ describe(`FilmPage`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => {}}
           onReviewsLoad={() => {}}
         />
@@ -252,7 +252,7 @@ describe(`FilmPage`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => {}}
           onReviewsLoad={() => {}}
         />
@@ -274,7 +274,7 @@ describe(`FilmPage`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => {}}
           onReviewsLoad={() => {}}
         />
@@ -296,7 +296,7 @@ describe(`FilmPage`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => {}}
           onReviewsLoad={() => {}}
         />
@@ -318,7 +318,7 @@ describe(`FilmPage`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => {}}
           onReviewsLoad={() => {}}
         />
@@ -341,7 +341,7 @@ describe(`FilmPage`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={onFavoriteFilmClick}
           onReviewsLoad={() => {}}
         />
@@ -364,7 +364,7 @@ describe(`FilmPage`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => {}}
           onReviewsLoad={onReviewsLoad}
         />

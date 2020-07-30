@@ -1,10 +1,10 @@
 import {extend} from "@common/utils";
-import {HTTPMethod, NotificationType} from "@store/notification/const";
+import {removeNotificationsByName} from "@store/notification/action-creator";
+import {EHTTPMethod, ENotificationType} from "@store/notification/interface";
 
-import {ActionType} from "./const";
+import {ENotificationAction} from "./interface";
 import {addNotification, removeNotification, resetNotification} from "./action-creator";
 import reducer from "./reducer";
-import {removeNotificationsByName} from "@store/notification/action-creator";
 
 
 const initialState = {
@@ -15,15 +15,15 @@ describe(`NotificationReducer`, () => {
   test(`add error notification action should return correct object`, () => {
     const notification = {
       id: `test-id`,
-      type: NotificationType.ERROR,
+      type: ENotificationType.ERROR,
       name: `test`,
-      method: HTTPMethod.GET,
+      method: EHTTPMethod.GET,
       title: `title`,
       text: `text`,
     };
     expect(addNotification(notification))
       .toEqual({
-        type: ActionType.ADD_NOTIFICATION,
+        type: ENotificationAction.ADD_NOTIFICATION,
         payload: notification,
       });
   });
@@ -32,7 +32,7 @@ describe(`NotificationReducer`, () => {
     const notificationId = `test-id`;
     expect(removeNotification(notificationId))
       .toEqual({
-        type: ActionType.REMOVE_NOTIFICATION,
+        type: ENotificationAction.REMOVE_NOTIFICATION,
         payload: notificationId,
       });
   });
@@ -41,7 +41,7 @@ describe(`NotificationReducer`, () => {
     const notificationName = `test`;
     expect(removeNotificationsByName(notificationName))
       .toEqual({
-        type: ActionType.REMOVE_NOTIFICATIONS_BY_NAME,
+        type: ENotificationAction.REMOVE_NOTIFICATIONS_BY_NAME,
         payload: notificationName,
       });
   });
@@ -49,7 +49,7 @@ describe(`NotificationReducer`, () => {
   test(`reset notifications by name should return correct object`, () => {
     expect(resetNotification())
       .toEqual({
-        type: ActionType.RESET_NOTIFICATIONS,
+        type: ENotificationAction.RESET_NOTIFICATIONS,
         payload: null,
       });
   });
@@ -65,14 +65,14 @@ describe(`NotificationReducer`, () => {
   test(`should add new notification`, () => {
     const notification = {
       id: `test-id-1`,
-      type: NotificationType.ERROR,
+      type: ENotificationType.ERROR,
       name: `test`,
-      method: HTTPMethod.GET,
+      method: EHTTPMethod.GET,
       title: `title 1`,
       text: `text 1`,
     };
     const addErrorNotificationAction = {
-      type: ActionType.ADD_NOTIFICATION,
+      type: ENotificationAction.ADD_NOTIFICATION,
       payload: notification,
     };
     expect(reducer(initialState, addErrorNotificationAction))
@@ -87,16 +87,16 @@ describe(`NotificationReducer`, () => {
       notifications: [
         {
           id: notificationId,
-          type: NotificationType.ERROR,
+          type: ENotificationType.ERROR,
           name: `test`,
-          method: HTTPMethod.GET,
+          method: EHTTPMethod.GET,
           title: `title 1`,
           text: `text 1`,
         }
       ],
     });
     const removeNotificationAction = {
-      type: ActionType.REMOVE_NOTIFICATION,
+      type: ENotificationAction.REMOVE_NOTIFICATION,
       payload: notificationId,
     };
     expect(reducer(state, removeNotificationAction))
@@ -111,39 +111,39 @@ describe(`NotificationReducer`, () => {
       notifications: [
         {
           id: 1,
-          type: NotificationType.ERROR,
+          type: ENotificationType.ERROR,
           name: `name1`,
-          method: HTTPMethod.GET,
+          method: EHTTPMethod.GET,
           title: `title 1`,
           text: `text 1`,
         }, {
           id: 2,
-          type: NotificationType.ERROR,
+          type: ENotificationType.ERROR,
           name: `name1`,
-          method: HTTPMethod.GET,
+          method: EHTTPMethod.GET,
           title: `title 2`,
           text: `text 2`,
         }, {
           id: 3,
-          type: NotificationType.ERROR,
+          type: ENotificationType.ERROR,
           name: `name2`,
-          method: HTTPMethod.GET,
+          method: EHTTPMethod.GET,
           title: `title 3`,
           text: `text 3`,
         }
       ],
     });
     const removeNotificationAction = {
-      type: ActionType.REMOVE_NOTIFICATIONS_BY_NAME,
+      type: ENotificationAction.REMOVE_NOTIFICATIONS_BY_NAME,
       payload: notificationName,
     };
     expect(reducer(state, removeNotificationAction))
       .toEqual(extend(state, {
         notifications: [{
           id: 3,
-          type: NotificationType.ERROR,
+          type: ENotificationType.ERROR,
           name: `name2`,
-          method: HTTPMethod.GET,
+          method: EHTTPMethod.GET,
           title: `title 3`,
           text: `text 3`,
         }],
@@ -155,24 +155,24 @@ describe(`NotificationReducer`, () => {
       notifications: [
         {
           id: 1,
-          type: NotificationType.ERROR,
+          type: ENotificationType.ERROR,
           name: `test`,
-          method: HTTPMethod.GET,
+          method: EHTTPMethod.GET,
           title: `title 1`,
           text: `text 1`,
         },
         {
           id: 2,
-          type: NotificationType.ERROR,
+          type: ENotificationType.ERROR,
           name: `test 2`,
-          method: HTTPMethod.GET,
+          method: EHTTPMethod.GET,
           title: `title 2`,
           text: `text 2`,
         }
       ],
     });
     const resetNotificationsAction = {
-      type: ActionType.RESET_NOTIFICATIONS,
+      type: ENotificationAction.RESET_NOTIFICATIONS,
       payload: null,
     };
     expect(reducer(state, resetNotificationsAction))

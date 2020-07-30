@@ -5,7 +5,7 @@ import Adapter from "enzyme-adapter-react-16";
 
 import AddReview from "./add-review";
 import {MemoryRouter} from "react-router-dom";
-import {AuthorizationStatus} from "@store/user/const";
+import {EAuthorizationStatus} from "@store/user/interface";
 
 
 const film = {
@@ -49,7 +49,7 @@ describe(`AddReviewPage`, () => {
         <MemoryRouter>
           <AddReview
             avatar="test-avatar"
-            authorizationStatus={AuthorizationStatus.AUTH}
+            authorizationStatus={EAuthorizationStatus.AUTH}
             film={film}
             onSubmitForm={() => {}}
             formDisabled={true}
@@ -70,7 +70,7 @@ describe(`AddReviewPage`, () => {
     const addReviewComponent = shallow(
         <AddReview
           avatar="test-avatar"
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           film={film}
           onSubmitForm={() => {}}
           formDisabled={false}
@@ -91,7 +91,7 @@ describe(`AddReviewPage`, () => {
     const addReviewComponent = shallow(
         <AddReview
           avatar="test-avatar"
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           film={film}
           onSubmitForm={() => {}}
           formDisabled={false}
@@ -118,7 +118,7 @@ describe(`AddReviewPage`, () => {
     const addReviewComponent = shallow(
         <AddReview
           avatar="test-avatar"
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           film={film}
           onSubmitForm={() => {}}
           formDisabled={false}
@@ -147,7 +147,7 @@ describe(`AddReviewPage`, () => {
     const addReviewComponent = shallow(
         <AddReview
           avatar="test-avatar"
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           film={film}
           formDisabled={false}
           formState={{
@@ -169,7 +169,7 @@ describe(`AddReviewPage`, () => {
     const addReviewComponent = shallow(
         <AddReview
           avatar="test-avatar"
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           film={film}
           formDisabled={true}
           formState={{
@@ -190,7 +190,7 @@ describe(`AddReviewPage`, () => {
     const addReviewComponent = shallow(
         <AddReview
           avatar="test-avatar"
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
           film={film}
           formDisabled={false}
           formState={{

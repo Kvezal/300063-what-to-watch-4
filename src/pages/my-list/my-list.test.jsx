@@ -4,7 +4,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter} from "react-router-dom";
 
-import {AuthorizationStatus} from "@store/user/const";
+import {EAuthorizationStatus} from "@store/user/interface";
 
 import MyList from "./my-list";
 
@@ -144,7 +144,7 @@ describe(`MyListPage`, () => {
           <MyList
             avatar={avatar}
             films={films}
-            authorizationStatus={AuthorizationStatus.AUTH}
+            authorizationStatus={EAuthorizationStatus.AUTH}
           />
         </MemoryRouter>,
         {createNodeMock: () => ({})}
@@ -157,7 +157,7 @@ describe(`MyListPage`, () => {
         <MyList
           avatar={avatar}
           films={films}
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus={EAuthorizationStatus.AUTH}
         />
     );
     expect(myListComponent.find(`.user-page`)).toHaveLength(1);

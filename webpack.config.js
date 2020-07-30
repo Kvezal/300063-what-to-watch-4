@@ -39,6 +39,7 @@ module.exports = {
       '@components': path.resolve(__dirname, `src/components/`),
       '@common': path.resolve(__dirname, `src/common/`),
       '@containers': path.resolve(__dirname, `src/containers/`),
+      '@hocs': path.resolve(__dirname, `src/hocs/`),
       '@middlewares': path.resolve(__dirname, `src/middlewares/`),
       '@pages': path.resolve(__dirname, `src/pages/`),
       '@services': path.resolve(__dirname, `src/services/`),

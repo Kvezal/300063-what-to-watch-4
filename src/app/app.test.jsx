@@ -5,8 +5,8 @@ import {MemoryRouter} from "react-router-dom";
 import configureStore from 'redux-mock-store';
 
 import {EGenre} from "@common/enums";
-import NameSpace from "@store/name-space";
-import {AuthorizationStatus} from "@store/user/const";
+import ENameSpace from "@store/name-space";
+import {EAuthorizationStatus} from "@store/user/interface";
 
 import App from "./app";
 
@@ -162,18 +162,18 @@ describe(`App`, () => {
 
   beforeEach(() => {
     store = mockStore({
-      [NameSpace.DATA]: {
+      [ENameSpace.DATA]: {
         genre: EGenre.All,
         films,
         promoFilm: films[0],
         filmReviews: reviews,
         favoriteFilms: [],
       },
-      [NameSpace.NOTIFICATION]: {
+      [ENameSpace.NOTIFICATION]: {
         notifications: [],
       },
-      [NameSpace.USER]: {
-        authorizationStatus: AuthorizationStatus.AUTH,
+      [ENameSpace.USER]: {
+        authorizationStatus: EAuthorizationStatus.AUTH,
       },
     });
   });

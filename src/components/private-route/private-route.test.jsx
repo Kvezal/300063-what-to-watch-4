@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter, Route} from "react-router-dom";
 
 import PrivateRoute from "./private-route";
-import {AuthorizationStatus} from "@store/user/const";
+import {EAuthorizationStatus} from "@store/user/interface";
 
 
 Enzyme.configure({
@@ -22,7 +22,7 @@ describe(`PrivateRouteComponent`, () => {
           <PrivateRoute
             path="/private"
             exact
-            authorizationStatus={AuthorizationStatus.AUTH}
+            authorizationStatus={EAuthorizationStatus.AUTH}
             redirect="/not-private"
             render={() => <TestComponent/>}
           />
@@ -42,7 +42,7 @@ describe(`PrivateRouteComponent`, () => {
           <PrivateRoute
             path="/private"
             exact
-            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            authorizationStatus={EAuthorizationStatus.NO_AUTH}
             redirect="/not-private"
             render={() => <TestComponent/>}
           />

@@ -4,8 +4,8 @@ import {MemoryRouter} from "react-router-dom";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import {HTTPMethod, NotificationType} from "@store/notification/const";
-import {AuthorizationStatus, UserErrorNotificationName} from "@store/user/const";
+import {EHTTPMethod, ENotificationType} from "@store/notification/interface";
+import {EAuthorizationStatus, EUserErrorNotificationName} from "@store/user/interface";
 
 import SignIn from "./sign-in";
 
@@ -17,9 +17,9 @@ Enzyme.configure({
 describe(`SignInPage`, () => {
   const errors = [{
     id: `test-id-1`,
-    type: NotificationType.ERROR,
-    name: UserErrorNotificationName.EMAIL,
-    method: HTTPMethod.GET,
+    type: ENotificationType.ERROR,
+    name: EUserErrorNotificationName.EMAIL,
+    method: EHTTPMethod.GET,
     title: `title`,
     text: `text`,
   }];
@@ -37,7 +37,7 @@ describe(`SignInPage`, () => {
             initialFormDisabled={true}
             loadingParams={[]}
             onControlChange={() => {}}
-            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            authorizationStatus={EAuthorizationStatus.NO_AUTH}
           />
         </MemoryRouter>,
         {createNodeMock: () => ({})}
@@ -58,7 +58,7 @@ describe(`SignInPage`, () => {
           initialFormDisabled={true}
           loadingParams={[]}
           onControlChange={() => {}}
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          authorizationStatus={EAuthorizationStatus.NO_AUTH}
         />
     );
     const signIn = signInComponent.find(`.sign-in`);
@@ -77,7 +77,7 @@ describe(`SignInPage`, () => {
           initialFormDisabled={true}
           loadingParams={[]}
           onControlChange={() => {}}
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          authorizationStatus={EAuthorizationStatus.NO_AUTH}
         />
     );
     const signIn = signInComponent.find(`.sign-in__message.visually-hidden`);
@@ -96,7 +96,7 @@ describe(`SignInPage`, () => {
           initialFormDisabled={true}
           loadingParams={[]}
           onControlChange={() => {}}
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          authorizationStatus={EAuthorizationStatus.NO_AUTH}
         />
     );
     const signIn = signInComponent.find(`.sign-in__field.sign-in__field--error`);
@@ -115,7 +115,7 @@ describe(`SignInPage`, () => {
           initialFormDisabled={true}
           loadingParams={[]}
           onControlChange={() => {}}
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          authorizationStatus={EAuthorizationStatus.NO_AUTH}
         />
     );
     const signIn = signInComponent.find(`.sign-in__message.visually-hidden`);
@@ -134,7 +134,7 @@ describe(`SignInPage`, () => {
           initialFormDisabled={true}
           loadingParams={[]}
           onControlChange={() => {}}
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          authorizationStatus={EAuthorizationStatus.NO_AUTH}
         />
     );
     const signIn = signInComponent.find(`.sign-in__field.sign-in__field--error`);
@@ -155,7 +155,7 @@ describe(`SignInPage`, () => {
           initialFormDisabled={true}
           loadingParams={[]}
           onControlChange={() => {}}
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          authorizationStatus={EAuthorizationStatus.NO_AUTH}
         />
     );
     signInComponent.find(`.sign-in__form`).simulate(`submit`, {preventDefault: () => {}});
