@@ -22,8 +22,7 @@ import {IFilmProps} from "./interface";
 
 const ReviewsWrap = withLoading(Reviews);
 
-const STARTING_FILM_LIST_STEP = 1;
-const COUNT_FILM_IN_ONE_STEP = 8;
+const FILM_COUNT_IN_ONE_STEP = 4;
 
 const getTab = (activeTab: EFilmTab, info: IFilm, reviews: IReview[]) => {
   const {rating, description, director, starring, genre, runTime, releaseDate, picture} = info;
@@ -163,8 +162,7 @@ class Film extends React.PureComponent<IFilmProps> {
           <FilmList
             list={likedFilms}
             onCardClick={(filmId: number) => history.push(AppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
-            step={STARTING_FILM_LIST_STEP}
-            pack={COUNT_FILM_IN_ONE_STEP}
+            pack={FILM_COUNT_IN_ONE_STEP}
           />
         </section>
         <Footer/>

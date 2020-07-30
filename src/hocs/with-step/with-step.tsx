@@ -13,7 +13,7 @@ const withStep = (Component) => {
       super(props);
 
       this.state = {
-        step: props.step,
+        step: props.step || 1,
       };
     }
 

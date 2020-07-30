@@ -47,6 +47,7 @@ const App = () => {
         return <MainWrapper
           tabList={filmFilters}
           activeTab={EGenre.ALL}
+          pack={8}
           loadingParams={[`promoFilm`, `films`, `authorizationStatus`]}
           {...props}
         />;
