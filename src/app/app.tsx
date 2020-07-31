@@ -18,20 +18,17 @@ import {EUserErrorNotificationName} from "@store/user/interface";
 
 const AddReviewWrapper = withNotifications(AddReview);
 const FilmWrapper = withNotifications(withActiveTab(Film));
-const MainWrapper = withNotifications(withActiveTab(withStep(Main)));
+const MainWrapper = withNotifications(withStep(Main));
 const MyListWrapper = withNotifications(MyList);
 const PlayerWrapper = withNotifications(Player);
 
 const App = () => {
   const filmDescriptionTabList = Object.values(EFilmTab);
 
-  const filmFilters = [ALL_GENRES];
-
   return <Router history={history}>
     <Switch>
       <Route exact path={AppRoute.ROOT} render={(props) => {
         return <MainWrapper
-          tabList={filmFilters}
           activeTab={ALL_GENRES}
           pack={8}
           loadingParams={[`promoFilm`, `films`, `authorizationStatus`]}

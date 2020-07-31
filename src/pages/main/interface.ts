@@ -3,7 +3,7 @@ import {IFilm} from "@common/types";
 
 export interface IMainProps {
   authorizationStatus: string;
-  tabList: string[];
+  genres: string[];
   activeTab: string;
   step: number;
   promoFilm: IFilm;

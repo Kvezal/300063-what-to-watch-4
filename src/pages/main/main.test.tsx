@@ -151,7 +151,7 @@ describe(`MainPage`, () => {
               avatar={avatar}
               onStepChange={() => null}
               step={1}
-              tabList={filmFilters}
+              genres={filmFilters}
               activeTab={ALL_GENRES}
               onActiveTabChange={() => null}
               authorizationStatus={EAuthorizationStatus.AUTH}
@@ -174,7 +174,7 @@ describe(`MainPage`, () => {
           avatar={avatar}
           onStepChange={() => null}
           step={1}
-          tabList={filmFilters}
+          genres={filmFilters}
           activeTab={ALL_GENRES}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
@@ -197,7 +197,7 @@ describe(`MainPage`, () => {
           avatar={avatar}
           onStepChange={() => null}
           step={1}
-          tabList={filmFilters}
+          genres={filmFilters}
           activeTab={ALL_GENRES}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}

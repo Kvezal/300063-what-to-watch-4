@@ -172,6 +172,16 @@ Array [
             All genres
           </a>
         </li>
+        <li
+          className="catalog__genres-item"
+          onClick={[Function]}
+        >
+          <a
+            className="catalog__genres-link"
+          >
+            Crime
+          </a>
+        </li>
       </ul>
       <div
         className="catalog__movies-list"

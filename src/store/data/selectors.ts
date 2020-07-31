@@ -40,7 +40,7 @@ const getCommentStatus = (state: TStoreState): ECommentStatus => {
 
 const getCurrentGenre = createSelector(
     getHash,
-    (hash) => {
+    (hash: string) => {
       return hash.replace(`#`, ``) || ALL_GENRES;
     }
 );
@@ -48,7 +48,7 @@ const getCurrentGenre = createSelector(
 const getCurrentFilm = createSelector(
     getFilms,
     getCurrentFilmId,
-    (films, filmId) => {
+    (films: IFilm[], filmId: number) => {
       return films && films.find((film) => film.id === filmId);
     }
 );
@@ -56,12 +56,12 @@ const getCurrentFilm = createSelector(
 const getLikedFilms = createSelector(
     getFilms,
     getCurrentFilm,
-    (films, currentFilm) => {
+    (films: IFilm[], currentFilm: IFilm) => {
       if (!currentFilm) {
         return [];
       }
       return films
-        .filter((film) => film.genre === currentFilm.genre && film.id !== currentFilm.id)
+        .filter((film: IFilm) => film.genre === currentFilm.genre && film.id !== currentFilm.id)
         .slice(0, 4);
     }
 );
@@ -69,22 +69,37 @@ const getLikedFilms = createSelector(
 const getFilteredFilmsByGenre = createSelector(
     getFilms,
     getCurrentGenre,
-    (films, genre) => {
+    (films: IFilm[], genre: string) => {
       if (!films || genre === ALL_GENRES) {
         return films;
       }
-      return films.filter((film) => film.genre === genre);
+      return films.filter((film: IFilm) => film.genre === genre);
     }
 );
 
 const getCurrentFilmVideoSource = createSelector(
     getCurrentFilm,
-    (film) => film && film.source.video
+    (film: IFilm) => film && film.source.video
 );
 
 const getCurrentFilmPicturePreview = createSelector(
     getCurrentFilm,
-    (film) => film && film.picture.preview
+    (film: IFilm) => film && film.picture.preview
+);
+
+const getFilmGenres = createSelector(
+    getFilms,
+    (films: IFilm[]) => {
+      if (!films || films.length === 0) {
+        return [];
+      }
+      return films.reduce((genres: string[], film: IFilm) => {
+        if (genres.includes(film.genre)) {
+          return genres;
+        }
+        return genres.concat(film.genre);
+      }, []);
+    }
 );
 
 export {
@@ -99,4 +114,5 @@ export {
   getFilteredFilmsByGenre,
   getCurrentFilmVideoSource,
   getCurrentFilmPicturePreview,
+  getFilmGenres,
 };

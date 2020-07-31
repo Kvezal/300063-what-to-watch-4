@@ -12,6 +12,7 @@ import User from "@components/user/user";
 import {EAuthorizationStatus} from "@store/user/interface";
 
 import {IMainProps} from "./interface";
+import {ALL_GENRES} from "@common/consts";
 
 
 const FILM_COUNT_IN_ONE_STEP = 8;
@@ -19,7 +20,7 @@ const FILM_COUNT_IN_ONE_STEP = 8;
 const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
   const {
     authorizationStatus,
-    tabList,
+    genres,
     activeTab,
     step,
     promoFilm,
@@ -31,6 +32,8 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
     onFavoriteFilmClick,
   } = props;
   const {id: promoFilmId, genre, releaseDate, name, picture, isFavorite} = promoFilm;
+
+  const filmFilters = [ALL_GENRES].concat(genres.slice(0, 9));
 
   return <React.Fragment>
     <section className="movie-card">
@@ -96,7 +99,7 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <FilmFilter
-          list={tabList}
+          list={filmFilters}
           onItemClick={(id: string) => {
             onActiveTabChange(id);
             onStepReset();
