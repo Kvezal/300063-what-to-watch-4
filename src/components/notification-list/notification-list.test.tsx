@@ -54,7 +54,7 @@ describe(`NotificationListComponent`, () => {
   test(`should create component`, () => {
     const notificationListComponent = shallow(
         <NotificationList
-          list={notifications}
+          notifications={notifications}
           onCloseNotification={() => null}
           maxItems={5}
         />
@@ -66,7 +66,7 @@ describe(`NotificationListComponent`, () => {
   test(`should have notifications`, () => {
     const notificationListComponent = shallow(
         <NotificationList
-          list={notifications}
+          notifications={notifications}
           onCloseNotification={() => null}
           maxItems={5}
         />
@@ -79,7 +79,7 @@ describe(`NotificationListComponent`, () => {
     const maxItems = 3;
     const notificationListComponent = shallow(
         <NotificationList
-          list={notifications}
+          notifications={notifications}
           onCloseNotification={() => null}
           maxItems={maxItems}
         />
@@ -92,7 +92,7 @@ describe(`NotificationListComponent`, () => {
     const onCloseNotification = jest.fn();
     const notificationListComponent = shallow(
         <NotificationList
-          list={notifications}
+          notifications={notifications}
           onCloseNotification={onCloseNotification}
           maxItems={5}
         />
@@ -112,7 +112,7 @@ describe(`NotificationListComponent`, () => {
     };
     const notificationListComponent = shallow(
         <NotificationList
-          list={[notification]}
+          notifications={[notification]}
           onCloseNotification={() => null}
           maxItems={1}
         />
@@ -132,7 +132,7 @@ describe(`NotificationListComponent`, () => {
     };
     const notificationListComponent = shallow(
         <NotificationList
-          list={[notification]}
+          notifications={[notification]}
           onCloseNotification={() => null}
           maxItems={1}
         />

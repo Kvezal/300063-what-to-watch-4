@@ -131,7 +131,7 @@ test(`should render component`, () => {
   const tree = render
     .create(
         <FilmList
-          list={films}
+          films={films}
           onCardClick={() => null}
           step={1}
           pack={4}

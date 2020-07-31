@@ -6,7 +6,7 @@ import {getDisplayedNotifications} from "@store/notification/selectors";
 
 
 const mapStateToProps = (state) => ({
-  list: getDisplayedNotifications(state),
+  notifications: getDisplayedNotifications(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

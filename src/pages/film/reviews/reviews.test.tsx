@@ -58,7 +58,7 @@ describe(`ReviewsComponent`, () => {
   test(`should create component`, () => {
     const reviewsComponent = shallow(
         <Reviews
-          list={reviews}
+          reviews={reviews}
           separatorColor="#000000"
         />
     );
@@ -69,7 +69,7 @@ describe(`ReviewsComponent`, () => {
   test(`should have reviews`, () => {
     const reviewsComponent = mount(
         <Reviews
-          list={reviews}
+          reviews={reviews}
           separatorColor="#000000"
         />
     );

@@ -137,7 +137,7 @@ describe(`FilmListComponent`, () => {
   test(`should create component`, () => {
     const filmListComponent = mount(
         <FilmList
-          list={films}
+          films={films}
           onCardClick={() => null}
           step={1}
           pack={4}
@@ -150,7 +150,7 @@ describe(`FilmListComponent`, () => {
   test(`should have film cards`, () => {
     const filmListComponent = mount(
         <FilmList
-          list={films}
+          films={films}
           onCardClick={() => null}
         />
     );
@@ -162,7 +162,7 @@ describe(`FilmListComponent`, () => {
     const pack = 2;
     const filmListComponent = mount(
         <FilmList
-          list={films}
+          films={films}
           onCardClick={() => null}
           pack={pack}
           step={1}
@@ -177,7 +177,7 @@ describe(`FilmListComponent`, () => {
     const step = 2;
     const filmListComponent = mount(
         <FilmList
-          list={films}
+          films={films}
           onCardClick={() => null}
           pack={pack}
           step={step}

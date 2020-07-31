@@ -36,7 +36,7 @@ const AddReview: React.FC<IAddReviewProps> = (props: IAddReviewProps) => {
       <h1 className="visually-hidden">WTW</h1>
       <header className="page-header">
         <Logo/>
-        <Breadcrumbs list={breadcrumbs}/>
+        <Breadcrumbs breadcrumbs={breadcrumbs}/>
         <User
           avatar={avatar || ``}
           isAuthorized={authorizationStatus === EAuthorizationStatus.AUTH}

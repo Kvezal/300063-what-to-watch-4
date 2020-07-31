@@ -20,7 +20,7 @@ describe(`BreadcrumbsComponent`, () => {
   test(`should create component`, () => {
     const breadcrumbsComponent = shallow(
         <Breadcrumbs
-          list={breadcrumbs}
+          breadcrumbs={breadcrumbs}
         />
     );
     const breadcrumbsContainer = breadcrumbsComponent.find(`.breadcrumbs`);
@@ -31,7 +31,7 @@ describe(`BreadcrumbsComponent`, () => {
     const breadcrumbsComponent = mount(
         <MemoryRouter>
           <Breadcrumbs
-            list={breadcrumbs}
+            breadcrumbs={breadcrumbs}
           />
         </MemoryRouter>
     );
@@ -43,7 +43,7 @@ describe(`BreadcrumbsComponent`, () => {
     const breadcrumbsComponent = mount(
         <MemoryRouter>
           <Breadcrumbs
-            list={breadcrumbs}
+            breadcrumbs={breadcrumbs}
           />
         </MemoryRouter>
     );
@@ -55,7 +55,7 @@ describe(`BreadcrumbsComponent`, () => {
     const breadcrumbsComponent = mount(
         <MemoryRouter>
           <Breadcrumbs
-            list={breadcrumbs}
+            breadcrumbs={breadcrumbs}
           />
         </MemoryRouter>
     );

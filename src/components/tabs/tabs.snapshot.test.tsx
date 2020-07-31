@@ -10,7 +10,7 @@ test(`should render component`, () => {
   const tree = render
     .create(
         <Tabs
-          list={tabs}
+          tabs={tabs}
           activeTab="Overview"
           onActiveTabChange={() => null}
         />

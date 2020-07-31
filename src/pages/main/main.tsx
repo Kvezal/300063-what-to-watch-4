@@ -99,7 +99,7 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <FilmFilter
-          list={filmFilters}
+          tabs={filmFilters}
           onItemClick={(id: string) => {
             onActiveTabChange(id);
             onStepReset();
@@ -108,7 +108,7 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
         />
 
         <FilmList
-          list={films}
+          films={films}
           onCardClick={(filmId: number) => history.push(EAppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
           pack={FILM_COUNT_IN_ONE_STEP}
           step={step}

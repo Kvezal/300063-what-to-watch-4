@@ -41,9 +41,9 @@ const getTab = (activeTab: EFilmTab, info: IFilm, reviews: IReview[]) => {
         offset: 20,
       });
       return <ReviewsWrap
-        list={reviews}
+        reviews={reviews}
         separatorColor={colors.RGBAWithOffset}
-        loadingParams={[`list`]}
+        loadingParams={[`reviews`]}
       />;
     case EFilmTab.OVERVIEW:
     default:
@@ -63,7 +63,7 @@ class Film extends React.PureComponent<IFilmProps> {
       info,
       avatar,
       activeTab,
-      tabList,
+      tabs,
       reviews,
       onActiveTabChange,
       authorizationStatus,
@@ -146,7 +146,7 @@ class Film extends React.PureComponent<IFilmProps> {
 
             <div className="movie-card__desc">
               <Tabs
-                list={tabList}
+                tabs={tabs}
                 activeTab={activeTab}
                 onActiveTabChange={onActiveTabChange}
               />
@@ -160,7 +160,7 @@ class Film extends React.PureComponent<IFilmProps> {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <FilmList
-            list={likedFilms}
+            films={likedFilms}
             onCardClick={(filmId: number) => history.push(EAppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
             pack={FILM_COUNT_IN_ONE_STEP}
           />

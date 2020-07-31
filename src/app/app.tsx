@@ -23,7 +23,7 @@ const MyListWrapper = withNotifications(MyList);
 const PlayerWrapper = withNotifications(Player);
 
 const App = () => {
-  const filmDescriptionTabList = Object.values(EFilmTab);
+  const filmDescriptionTabs = Object.values(EFilmTab);
 
   return <Router history={history}>
     <Switch>
@@ -67,7 +67,7 @@ const App = () => {
       />
       <Route exact path={EAppRoute.FILMS} render={(props) =>
         <FilmWrapper
-          tabList={filmDescriptionTabList}
+          tabs={filmDescriptionTabs}
           activeTab={EFilmTab.OVERVIEW}
           loadingParams={[`info`, `likedFilms`]}
           {...props}

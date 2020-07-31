@@ -15,7 +15,7 @@ describe(`FilmFilterComponent`, () => {
   test(`should create component`, () => {
     const FilmFilterComponent = shallow(
         <FilmFilter
-          list={filterList}
+          tabs={filterList}
           onItemClick={() => null}
           activeItem=""
         />
@@ -27,7 +27,7 @@ describe(`FilmFilterComponent`, () => {
   test(`should have filter list`, () => {
     const FilmFilterComponent = shallow(
         <FilmFilter
-          list={filterList}
+          tabs={filterList}
           onItemClick={() => null}
           activeItem=""
         />
@@ -40,7 +40,7 @@ describe(`FilmFilterComponent`, () => {
     const onItemClick = jest.fn();
     const FilmFilterComponent = shallow(
         <FilmFilter
-          list={filterList}
+          tabs={filterList}
           onItemClick={onItemClick}
           activeItem=""
         />
@@ -54,7 +54,7 @@ describe(`FilmFilterComponent`, () => {
     const onItemClick = jest.fn();
     const FilmFilterComponent = shallow(
         <FilmFilter
-          list={filterList}
+          tabs={filterList}
           onItemClick={onItemClick}
           activeItem=""
         />
@@ -69,7 +69,7 @@ describe(`FilmFilterComponent`, () => {
   test(`should have one active item`, () => {
     const FilmFilterComponent = shallow(
         <FilmFilter
-          list={filterList}
+          tabs={filterList}
           onItemClick={() => null}
           activeItem={filterList[0]}
         />

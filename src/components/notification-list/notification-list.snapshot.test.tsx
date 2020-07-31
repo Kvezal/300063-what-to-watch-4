@@ -48,7 +48,7 @@ const notifications = [
 test(`should render component`, () => {
   const tree = render.create(
       <NotificationList
-        list={notifications}
+        notifications={notifications}
         onCloseNotification={() => null}
         maxItems={5}
       />

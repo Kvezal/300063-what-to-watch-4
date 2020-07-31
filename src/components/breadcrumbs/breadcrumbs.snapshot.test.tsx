@@ -15,7 +15,7 @@ test(`should render component`, () => {
   const tree = render.create(
       <MemoryRouter>
         <Breadcrumbs
-          list={breadcrumbs}
+          breadcrumbs={breadcrumbs}
         />
       </MemoryRouter>
   )

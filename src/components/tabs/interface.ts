@@ -1,5 +1,5 @@
 export interface ITabsProps {
-  list: string[];
+  tabs: string[];
   activeTab: string;
   onActiveTabChange: (tabId: string) => void;
 }

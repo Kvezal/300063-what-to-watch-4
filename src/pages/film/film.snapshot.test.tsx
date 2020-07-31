@@ -143,7 +143,7 @@ test(`should render component`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabs}
+          tabs={tabs}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
           onReviewsLoad={() => null}

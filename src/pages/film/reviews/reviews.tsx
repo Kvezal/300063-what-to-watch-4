@@ -7,9 +7,9 @@ import {IReviewsProps} from "./interface";
 
 
 const Reviews: React.FunctionComponent<IReviewsProps> = (props: IReviewsProps) => {
-  const {list, separatorColor} = props;
+  const {reviews, separatorColor} = props;
 
-  const {left, right} = splitListIntoTwoColumn(list);
+  const {left, right} = splitListIntoTwoColumn(reviews);
   return <div className="movie-card__reviews movie-card__row">
     <div className="movie-card__reviews-col">
       {left.map((item) => <Review key={item.id} underlineColor={separatorColor} {...item}/>)}

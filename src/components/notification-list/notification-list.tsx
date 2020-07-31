@@ -4,8 +4,8 @@ import {INotificationList} from "./interface";
 
 
 const NotificationList: React.FC<INotificationList> = (props: INotificationList) => {
-  const {list, onCloseNotification, maxItems} = props;
-  const displayedNotifications = list.slice(0, maxItems);
+  const {notifications, onCloseNotification, maxItems} = props;
+  const displayedNotifications = notifications.slice(0, maxItems);
   return <ul className="notification-list">
     {displayedNotifications.map((item) => {
       const {title, text, type, id} = item;

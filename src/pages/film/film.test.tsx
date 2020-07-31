@@ -148,7 +148,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabs}
+          tabs={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -168,7 +168,7 @@ describe(`FilmPage`, () => {
             avatar={avatar}
             activeTab={EFilmTab.OVERVIEW}
             reviews={[]}
-            tabList={tabs}
+            tabs={tabs}
             onActiveTabChange={() => null}
             authorizationStatus={EAuthorizationStatus.AUTH}
             onFavoriteFilmClick={() => null}
@@ -188,7 +188,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabs}
+          tabs={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -207,7 +207,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabs}
+          tabs={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -226,7 +226,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabs}
+          tabs={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -245,7 +245,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabs}
+          tabs={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -264,7 +264,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabs}
+          tabs={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -284,7 +284,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabs}
+          tabs={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={onFavoriteFilmClick}
@@ -304,7 +304,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabs}
+          tabs={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}

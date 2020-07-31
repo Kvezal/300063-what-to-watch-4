@@ -15,7 +15,7 @@ describe(`TabsComponent`, () => {
   test(`should create component`, () => {
     const tabsComponent = shallow(
         <Tabs
-          list={tabs}
+          tabs={tabs}
           activeTab="Overview"
           onActiveTabChange={() => null}
         />
@@ -27,7 +27,7 @@ describe(`TabsComponent`, () => {
   test(`should display tab item list`, () => {
     const tabsComponent = shallow(
         <Tabs
-          list={tabs}
+          tabs={tabs}
           activeTab="Overview"
           onActiveTabChange={() => null}
         />
@@ -39,7 +39,7 @@ describe(`TabsComponent`, () => {
   test(`link should contain correct text`, () => {
     const tabsComponent = shallow(
         <Tabs
-          list={tabs}
+          tabs={tabs}
           activeTab="Overview"
           onActiveTabChange={() => null}
         />
@@ -55,7 +55,7 @@ describe(`TabsComponent`, () => {
 
     const tabsComponent = shallow(
         <Tabs
-          list={tabs}
+          tabs={tabs}
           activeTab={tabs[activeTabIndex]}
           onActiveTabChange={() => null}
         />
@@ -68,7 +68,7 @@ describe(`TabsComponent`, () => {
     const onActiveTabChange = jest.fn();
     const tabsComponent = shallow(
         <Tabs
-          list={tabs}
+          tabs={tabs}
           activeTab="Overview"
           onActiveTabChange={onActiveTabChange}
         />
@@ -83,7 +83,7 @@ describe(`TabsComponent`, () => {
     const onActiveTabChange = jest.fn();
     const tabsComponent = shallow(
         <Tabs
-          list={tabs}
+          tabs={tabs}
           activeTab="Overview"
           onActiveTabChange={onActiveTabChange}
         />

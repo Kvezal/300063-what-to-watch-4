@@ -1,16 +1,16 @@
 import * as React from "react";
 import {NavLink} from "react-router-dom";
 
-import {IBreadcrumbsProps} from "./interface";
+import {IBreadcrumb, IBreadcrumbsProps} from "./interface";
 
 
 const Breadcrumbs: React.FC<IBreadcrumbsProps> = (props: IBreadcrumbsProps) => {
-  const list = props.list.slice();
-  const lastItem = list.pop();
+  const breadcrumbs = props.breadcrumbs.slice();
+  const lastBreadcrumb = breadcrumbs.pop();
 
   return <nav className="breadcrumbs">
     <ul className="breadcrumbs__list">
-      {list.map((item) => {
+      {breadcrumbs.map((item: IBreadcrumb) => {
         const {name, href} = item;
         return <li key={name} className="breadcrumbs__item">
           <NavLink
@@ -22,7 +22,7 @@ const Breadcrumbs: React.FC<IBreadcrumbsProps> = (props: IBreadcrumbsProps) => {
         </li>;
       })}
       <li className="breadcrumbs__item">
-        <a className="breadcrumbs__link">{lastItem.name}</a>
+        <a className="breadcrumbs__link">{lastBreadcrumb.name}</a>
       </li>
     </ul>
   </nav>;

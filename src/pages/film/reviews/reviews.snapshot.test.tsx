@@ -53,7 +53,7 @@ test(`should render component`, () => {
   const tree = render
     .create(
         <Reviews
-          list={reviews}
+          reviews={reviews}
           separatorColor="#000000"
         />
     )

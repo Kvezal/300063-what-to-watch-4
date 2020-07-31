@@ -10,7 +10,7 @@ test(`should render component`, () => {
   const tree = render
     .create(
         <FilmFilter
-          list={filterList}
+          tabs={filterList}
           onItemClick={() => null}
           activeItem={filterList[0]}
         />

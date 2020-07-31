@@ -4,5 +4,5 @@ export interface IBreadcrumb {
 }
 
 export interface IBreadcrumbsProps {
-  list: IBreadcrumb[];
+  breadcrumbs: IBreadcrumb[];
 }

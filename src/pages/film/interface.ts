@@ -6,7 +6,7 @@ export interface IFilmProps {
   info: IFilm;
   likedFilms: IFilm[];
   avatar: string;
-  tabList: EFilmTab[];
+  tabs: EFilmTab[];
   activeTab: EFilmTab;
   onActiveTabChange: (id: string) => void;
   reviews: IReview[];
