@@ -8,6 +8,10 @@ import history from "@app/history";
 import withActiveTab from "./with-active-tab";
 
 
+configure({
+  adapter: new Adapter(),
+});
+
 interface ITestComponent {
   list: string[];
   activeTab: string;
@@ -25,10 +29,6 @@ const TestComponent: React.FC<ITestComponent> = (props: ITestComponent) => {
 };
 
 const TestComponentWithHOC = withActiveTab(TestComponent);
-
-configure({
-  adapter: new Adapter(),
-});
 
 describe(`withActiveTab`, () => {
   const tabs = [`Overview`, `Details`, `Reviews`];

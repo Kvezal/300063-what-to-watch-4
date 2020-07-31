@@ -32,7 +32,10 @@ describe(`withRadioGroupValueHOC`, () => {
     const onChangeControl = jest.fn();
     const controlValue = `2`;
     const testComponent = mount(
-        <TestComponentWithHOC defaultValue="123" onControlChange={onChangeControl}/>
+        <TestComponentWithHOC
+          defaultValue="123"
+          onControlChange={onChangeControl}
+        />
     );
     const inputs = testComponent.find(`input`);
     inputs.at(0).simulate(`change`, {target: {value: controlValue}});
