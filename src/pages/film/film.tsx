@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 
 import AppRoute from "@app/app-route";
 import history from "@app/history";
-import {withLoading} from "@hocs/index";
 import {EFilmTab} from "@common/enums";
 import {IFilm, IReview} from "@common/types";
 import {getColorParams} from "@common/utils";
@@ -12,6 +11,7 @@ import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import Tabs from "@components/tabs/tabs";
 import User from "@components/user/user";
+import {withLoading} from "@hocs/index";
 import {EAuthorizationStatus} from "@store/user/interface";
 
 import Details from "./details/details";

@@ -8,7 +8,6 @@ import Logo from "@components/logo/logo";
 import {EAuthorizationStatus, EUserErrorNotificationName} from "@store/user/interface";
 
 import {ISignInProps} from "./interface";
-import {ChangeEvent} from "react";
 
 
 const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
@@ -50,7 +49,7 @@ const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
               placeholder="Email address"
               name="user-email"
               id="user-email"
-              onChange={(event: ChangeEvent<HTMLInputElement>) => onControlChange(`email`, event.target.value)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => onControlChange(`email`, event.target.value)}
               value={formState.email}
               required
             />

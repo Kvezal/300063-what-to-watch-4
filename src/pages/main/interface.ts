@@ -1,5 +1,5 @@
-import {IFilm} from "@common/types";
 import {EGenre} from "@common/enums";
+import {IFilm} from "@common/types";
 import {ITab} from "@components/tabs/interface";
 
 

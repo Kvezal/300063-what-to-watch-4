@@ -4,10 +4,10 @@ import {configure, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter} from "react-router-dom";
 
+import {EGenre} from "@common/enums";
 import {EAuthorizationStatus} from "@store/user/interface";
 
 import Main from "./main";
-import EGenre from "@common/enums/genre";
 
 
 const avatar = `avatar.jpg`;

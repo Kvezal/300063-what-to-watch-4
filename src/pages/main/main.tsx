@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 
 import AppRoute from "@app/app-route";
 import history from "@app/history";
+import {EGenre} from "@common/enums";
 import ButtonMore from "@components/button-more/button-more";
 import FilmFilter from "@components/film-filter/film-filter";
 import FilmList from "@components/film-list/film-list";
@@ -12,7 +13,6 @@ import User from "@components/user/user";
 import {EAuthorizationStatus} from "@store/user/interface";
 
 import {IMainProps} from "./interface";
-import EGenre from "@common/enums/genre";
 
 
 const FILM_COUNT_IN_ONE_STEP = 8;

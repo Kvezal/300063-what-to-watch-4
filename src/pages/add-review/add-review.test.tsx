@@ -2,10 +2,11 @@ import * as React from "react";
 import * as render from "react-test-renderer";
 import {configure, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
+import {MemoryRouter} from "react-router-dom";
+
+import {EAuthorizationStatus} from "@store/user/interface";
 
 import AddReview from "./add-review";
-import {MemoryRouter} from "react-router-dom";
-import {EAuthorizationStatus} from "@store/user/interface";
 
 
 const film = {

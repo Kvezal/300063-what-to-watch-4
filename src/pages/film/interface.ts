@@ -1,6 +1,6 @@
+import {EFilmTab} from "@common/enums";
 import {IFilm, IReview} from "@common/types";
 import {ITab} from "@components/tabs/interface";
-import {EFilmTab} from "@common/enums";
 
 
 export interface IFilmProps {

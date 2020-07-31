@@ -4,7 +4,6 @@ import {Switch, Route, Router} from "react-router-dom";
 import AppRoute from "@app/app-route";
 import history from "@app/history";
 import {EFilmTab, EGenre} from "@common/enums";
-import {withActiveTab, withNotifications, withStep} from "@hocs/index";
 import AddReview from "@containers/add-review";
 import Film from "@containers/film";
 import Main from "@containers/main";
@@ -12,6 +11,7 @@ import Player from "@containers/player";
 import PrivateRoute from "@containers/private-route";
 import SignIn from "@containers/sign-in";
 import MyList from "@containers/my-list";
+import {withActiveTab, withNotifications, withStep} from "@hocs/index";
 import {EUserErrorNotificationName} from "@store/user/interface";
 
 
