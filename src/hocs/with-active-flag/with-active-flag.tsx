@@ -9,10 +9,7 @@ const withActiveFlag = (Component) => {
   type T = Subtract<TComponent, IWithActiveFlagHOCInjectProps>
 
   return class WithActiveFlag extends React.PureComponent<T, IWithActiveFlagHOCState> {
-    static defaultProps: IWithActiveFlagHOCState = {
-      isActive: false,
-    };
-    private isUnmounted = false;
+    private _isUnmounted = false;
 
     constructor(props) {
       super(props);
@@ -22,11 +19,15 @@ const withActiveFlag = (Component) => {
       };
     }
 
-    _handlerActiveChange() {
-      return !this.isUnmounted && this.setState((prevState) => ({isActive: !prevState.isActive}));
+    public componentWillUnmount() {
+      this._isUnmounted = true;
     }
 
-    render() {
+    private _handlerActiveChange() {
+      return !this._isUnmounted && this.setState((prevState) => ({isActive: !prevState.isActive}));
+    }
+
+    public render() {
       const {isActive} = this.state;
 
       return <Component
@@ -34,10 +35,6 @@ const withActiveFlag = (Component) => {
         isActive={isActive}
         onActiveChange={this._handlerActiveChange}
       />;
-    }
-
-    componentWillUnmount() {
-      this.isUnmounted = true;
     }
   };
 };

@@ -22,6 +22,8 @@ const MainWrapper = withNotifications(withStep(Main));
 const MyListWrapper = withNotifications(MyList);
 const PlayerWrapper = withNotifications(Player);
 
+const COUNT_FILMS_IN_ONE_STEP = 8;
+
 const App = () => {
   const filmDescriptionTabs = Object.values(EFilmTab);
 
@@ -29,18 +31,18 @@ const App = () => {
     <Switch>
       <Route exact path={EAppRoute.ROOT} render={(props) => {
         return <MainWrapper
-          activeTab={ALL_GENRES}
-          pack={8}
-          loadingParams={[`promoFilm`, `films`, `authorizationStatus`]}
           {...props}
+          activeTab={ALL_GENRES}
+          pack={COUNT_FILMS_IN_ONE_STEP}
+          loadingParams={[`promoFilm`, `films`, `authorizationStatus`]}
         />;
       }}/>
       <Route exact path={EAppRoute.PLAYER} render={(props) =>
         <PlayerWrapper
+          {...props}
           muted={false}
           isPlaying={true}
           loadingParams={[`source`, `poster`]}
-          {...props}
         />
       }/>
       <Route exact path={EAppRoute.LOGIN} render={() =>
@@ -56,27 +58,27 @@ const App = () => {
       }/>
       <PrivateRoute exact path={EAppRoute.REVIEW} render={(props) =>
         <AddReviewWrapper
+          {...props}
           initialFormState={{
-            rating: `0`,
+            rating: ``,
             comment: ``,
           }}
           initialFormDisabled={true}
           loadingParams={[`film`]}
-          {...props}
         />}
       />
       <Route exact path={EAppRoute.FILMS} render={(props) =>
         <FilmWrapper
+          {...props}
           tabs={filmDescriptionTabs}
           activeTab={EFilmTab.OVERVIEW}
           loadingParams={[`info`, `likedFilms`]}
-          {...props}
         />}
       />
       <PrivateRoute exact path={EAppRoute.MY_LIST} render={(props) =>
         <MyListWrapper
-          loadingParams={[`films`, `authorizationStatus`]}
           {...props}
+          loadingParams={[`films`, `authorizationStatus`]}
         />}
       />
     </Switch>

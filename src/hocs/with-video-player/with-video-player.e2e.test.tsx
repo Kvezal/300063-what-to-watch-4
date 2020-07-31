@@ -52,9 +52,9 @@ describe(`withVideoPlayerHOC`, () => {
         />
     );
     jest.spyOn(window.HTMLMediaElement.prototype, `play`).mockImplementation(() => new Promise(() => null));
-    const {videoRef} = wrapper.instance();
+    const {_videoRef} = wrapper.instance();
     wrapper.instance().componentDidUpdate();
-    expect(videoRef.current.play).toHaveBeenCalled();
+    expect(_videoRef.current.play).toHaveBeenCalled();
   });
   //
   test(`Check HOC's callback turn off video "pause"`, () => {
@@ -68,8 +68,8 @@ describe(`withVideoPlayerHOC`, () => {
         />
     );
     jest.spyOn(window.HTMLMediaElement.prototype, `pause`).mockImplementation(() => null);
-    const {videoRef} = wrapper.instance();
+    const {_videoRef} = wrapper.instance();
     wrapper.instance().componentDidUpdate();
-    expect(videoRef.current.pause).toHaveBeenCalled();
+    expect(_videoRef.current.pause).toHaveBeenCalled();
   });
 });

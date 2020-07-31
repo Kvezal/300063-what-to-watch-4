@@ -17,7 +17,7 @@ const withRadioGroupValue = (Component) => {
       };
     }
 
-    render() {
+    public render() {
       const {onControlChange} = this.props;
       const {value} = this.state;
       return <Component

@@ -57,7 +57,19 @@ const getTab = (activeTab: EFilmTab, info: IFilm, reviews: IReview[]) => {
 };
 
 class Film extends React.PureComponent<IFilmProps> {
-  render() {
+  public componentDidMount() {
+    const {info, onReviewsLoad} = this.props;
+    onReviewsLoad(info.id);
+  }
+
+  public componentDidUpdate(prevProps) {
+    const {info, onReviewsLoad} = this.props;
+    if (!prevProps || prevProps.info.id !== info.id) {
+      onReviewsLoad(info.id);
+    }
+  }
+
+  public render() {
     const {
       likedFilms,
       info,
@@ -168,18 +180,6 @@ class Film extends React.PureComponent<IFilmProps> {
         <Footer/>
       </div>
     </React.Fragment>;
-  }
-
-  componentDidMount() {
-    const {info, onReviewsLoad} = this.props;
-    onReviewsLoad(info.id);
-  }
-
-  componentDidUpdate(prevProps) {
-    const {info, onReviewsLoad} = this.props;
-    if (!prevProps || prevProps.info.id !== info.id) {
-      onReviewsLoad(info.id);
-    }
   }
 }
 

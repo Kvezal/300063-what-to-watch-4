@@ -3,6 +3,10 @@ import {Subtract} from "utility-types";
 
 import {IWithStepHOCInjectProps, IWithStepHOCState} from "./interface";
 
+enum EStepParams {
+  STARTING_STEP = 1,
+  STEP_SIZE = 1,
+}
 
 const withStep = (Component) => {
   type TComponent = React.ComponentProps<typeof Component>;
@@ -13,11 +17,11 @@ const withStep = (Component) => {
       super(props);
 
       this.state = {
-        step: 1,
+        step: EStepParams.STARTING_STEP,
       };
     }
 
-    render() {
+    public render() {
       const {step} = this.state;
 
       return <Component
@@ -25,12 +29,12 @@ const withStep = (Component) => {
         step={step}
         onStepChange={() => {
           this.setState({
-            step: step + 1,
+            step: step + EStepParams.STEP_SIZE,
           });
         }}
         onStepReset={() => {
           this.setState({
-            step: 1,
+            step: EStepParams.STARTING_STEP,
           });
         }}
       />;

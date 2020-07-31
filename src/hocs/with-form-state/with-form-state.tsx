@@ -11,11 +11,6 @@ const withFormState = (Component) => {
   type THOC = Subtract<TComponentProps, IWithFormStateHOCInjectProps>
 
   return class WithFormState extends React.PureComponent<THOC, IWithFormStateHOCState> {
-    static defaultProps: Partial<THOC> = {
-      initialFormDisabled: true,
-      formDisabled: false,
-    };
-
     constructor(props) {
       super(props);
 
@@ -25,7 +20,7 @@ const withFormState = (Component) => {
       };
     }
 
-    render() {
+    public render() {
       const {formDisabled: formDisabledProp} = this.props;
       const {formState, formDisabled} = this.state;
       return <Component

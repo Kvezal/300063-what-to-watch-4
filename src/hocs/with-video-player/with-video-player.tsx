@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {IVideo, IWithVideoPlayerHOCProps, IWithVideoPlayerHOCState} from "@hocs/with-video-player/interface";
 
 
@@ -7,12 +8,7 @@ const withVideoPlayer = (Component) => {
   type THOC = TComponent & IWithVideoPlayerHOCProps;
 
   return class WithVideoPlayer extends React.PureComponent<THOC, IWithVideoPlayerHOCState> {
-    static defaultProps: Partial<THOC> = {
-      canStop: true,
-      muted: false,
-    };
-
-    private videoRef: React.RefObject<IVideo> = React.createRef();
+    private _videoRef: React.RefObject<IVideo> = React.createRef();
 
     constructor(props) {
       super(props);
@@ -28,47 +24,9 @@ const withVideoPlayer = (Component) => {
       };
     }
 
-    render() {
-      const {time, duration, isPlaying} = this.state;
-      return <Component
-        {...this.props}
-        time={time}
-        duration={duration}
-        isPlaying={isPlaying}
-        onPlayingChange={this._handlePlayerChange}
-        onFullScreenOpen={this._handleFullScreenOpen}
-        renderPlayer={() => {
-          return <video
-            className="player__video"
-            ref={this.videoRef}
-          />;
-        }}
-      />;
-    }
-
-    _handlePlayerChange(flag) {
-      const {isPlaying} = this.state;
-      this.setState({
-        isPlaying: flag !== undefined ? flag : !isPlaying,
-      });
-    }
-
-    _handleFullScreenOpen() {
-      const video = this.videoRef.current;
-      if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.mozRequestFullScreen) { /* Firefox */
-        video.mozRequestFullScreen();
-      } else if (video.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-        video.webkitRequestFullscreen();
-      } else if (video.msRequestFullscreen) { /* IE/Edge */
-        video.msRequestFullscreen();
-      }
-    }
-
-    componentDidMount() {
+    public componentDidMount() {
       const {source, poster, muted, canStop} = this.props;
-      const video = this.videoRef.current;
+      const video = this._videoRef.current;
 
       video.poster = poster;
       video.muted = muted;
@@ -107,10 +65,10 @@ const withVideoPlayer = (Component) => {
       };
     }
 
-    componentDidUpdate(prevProps) {
+    public componentDidUpdate(prevProps) {
       const {source, poster} = this.props;
       const {isPlaying} = this.state;
-      const video = this.videoRef.current;
+      const video = this._videoRef.current;
 
       if (isPlaying) {
         video.play()
@@ -128,14 +86,52 @@ const withVideoPlayer = (Component) => {
       }
     }
 
-    componentWillUnmount() {
-      const video = this.videoRef.current;
+    public componentWillUnmount() {
+      const video = this._videoRef.current;
       this._handlePlayerChange = null;
       video.oncanplaythrough = null;
       video.onplay = null;
       video.onpause = null;
       video.onloadedmetadata = null;
       video.ontimeupdate = null;
+    }
+
+    private _handlePlayerChange(flag) {
+      const {isPlaying} = this.state;
+      this.setState({
+        isPlaying: flag !== undefined ? flag : !isPlaying,
+      });
+    }
+
+    private _handleFullScreenOpen() {
+      const video = this._videoRef.current;
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.mozRequestFullScreen) { /* Firefox */
+        video.mozRequestFullScreen();
+      } else if (video.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) { /* IE/Edge */
+        video.msRequestFullscreen();
+      }
+    }
+
+    public render() {
+      const {time, duration, isPlaying} = this.state;
+      return <Component
+        {...this.props}
+        time={time}
+        duration={duration}
+        isPlaying={isPlaying}
+        onPlayingChange={this._handlePlayerChange}
+        onFullScreenOpen={this._handleFullScreenOpen}
+        renderPlayer={() => {
+          return <video
+            className="player__video"
+            ref={this._videoRef}
+          />;
+        }}
+      />;
     }
   };
 };
