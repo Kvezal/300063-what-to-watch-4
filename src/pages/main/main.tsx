@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 
 import AppRoute from "@app/app-route";
 import history from "@app/history";
-import {EGenre} from "@common/enums";
 import ButtonMore from "@components/button-more/button-more";
 import FilmFilter from "@components/film-filter/film-filter";
 import FilmList from "@components/film-list/film-list";
@@ -98,7 +97,7 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
 
         <FilmFilter
           list={tabList}
-          onItemClick={(id: EGenre) => {
+          onItemClick={(id: string) => {
             onActiveTabChange(id);
             onStepReset();
           }}

@@ -11,18 +11,14 @@ configure({
 });
 
 describe(`TabsComponent`, () => {
-  const tabList = [
-    {name: `Overview`, id: `overview`},
-    {name: `Details`, id: `details`},
-    {name: `Reviews`, id: `reviews`},
-  ];
+  const tabs = [`Overview`, `Details`, `Reviews`];
 
   test(`should render component`, () => {
     const tree = render
       .create(
           <Tabs
-            list={tabList}
-            activeTab={`overview`}
+            list={tabs}
+            activeTab="Overview"
             onActiveTabChange={() => null}
           />
       )
@@ -33,8 +29,8 @@ describe(`TabsComponent`, () => {
   test(`should create component`, () => {
     const tabsComponent = shallow(
         <Tabs
-          list={tabList}
-          activeTab={`overview`}
+          list={tabs}
+          activeTab="Overview"
           onActiveTabChange={() => null}
         />
     );
@@ -45,26 +41,26 @@ describe(`TabsComponent`, () => {
   test(`should display tab item list`, () => {
     const tabsComponent = shallow(
         <Tabs
-          list={tabList}
-          activeTab={`overview`}
+          list={tabs}
+          activeTab="Overview"
           onActiveTabChange={() => null}
         />
     );
     const tabItems = tabsComponent.find(`a.movie-nav__link`);
-    expect(tabItems).toHaveLength(tabList.length);
+    expect(tabItems).toHaveLength(tabs.length);
   });
 
   test(`link should contain correct text`, () => {
     const tabsComponent = shallow(
         <Tabs
-          list={tabList}
-          activeTab={`overview`}
+          list={tabs}
+          activeTab="Overview"
           onActiveTabChange={() => null}
         />
     );
     const tabItems = tabsComponent.find(`a.movie-nav__link`);
-    tabList.forEach((item, index) => {
-      expect(tabItems.at(index).text()).toBe(item.name);
+    tabs.forEach((item: string, index: number) => {
+      expect(tabItems.at(index).text()).toBe(item);
     });
   });
 
@@ -73,27 +69,27 @@ describe(`TabsComponent`, () => {
 
     const tabsComponent = shallow(
         <Tabs
-          list={tabList}
-          activeTab={tabList[activeTabIndex].id}
+          list={tabs}
+          activeTab={tabs[activeTabIndex]}
           onActiveTabChange={() => null}
         />
     );
     const activeTabText = tabsComponent.find(`.movie-nav__item--active .movie-nav__link`).text();
-    expect(activeTabText).toBe(tabList[activeTabIndex].name);
+    expect(activeTabText).toBe(tabs[activeTabIndex]);
   });
 
   test(`tab should be pressed`, () => {
     const onActiveTabChange = jest.fn();
     const tabsComponent = shallow(
         <Tabs
-          list={tabList}
-          activeTab={`overview`}
+          list={tabs}
+          activeTab="Overview"
           onActiveTabChange={onActiveTabChange}
         />
     );
     const tabItems = tabsComponent.find(`a.movie-nav__link`);
     tabItems.forEach((tab) => tab.simulate(`click`));
-    expect(onActiveTabChange).toHaveBeenCalledTimes(tabList.length);
+    expect(onActiveTabChange).toHaveBeenCalledTimes(tabs.length);
   });
 
   test(`onActiveTabChange should have param`, () => {
@@ -101,13 +97,13 @@ describe(`TabsComponent`, () => {
     const onActiveTabChange = jest.fn();
     const tabsComponent = shallow(
         <Tabs
-          list={tabList}
-          activeTab={`overview`}
+          list={tabs}
+          activeTab="Overview"
           onActiveTabChange={onActiveTabChange}
         />
     );
     const tabItems = tabsComponent.find(`a.movie-nav__link`);
     tabItems.at(clickedTabIndex).simulate(`click`);
-    expect(onActiveTabChange).toBeCalledWith(tabList[clickedTabIndex].id);
+    expect(onActiveTabChange).toBeCalledWith(tabs[clickedTabIndex]);
   });
 });

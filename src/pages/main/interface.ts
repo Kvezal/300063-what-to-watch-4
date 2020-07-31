@@ -1,17 +1,15 @@
-import {EGenre} from "@common/enums";
 import {IFilm} from "@common/types";
-import {ITab} from "@components/tabs/interface";
 
 
 export interface IMainProps {
   authorizationStatus: string;
-  tabList: ITab[];
-  activeTab: EGenre;
+  tabList: string[];
+  activeTab: string;
   step: number;
   promoFilm: IFilm;
   films: IFilm[];
   avatar: string;
-  onActiveTabChange: (tab: EGenre) => void;
+  onActiveTabChange: (tab: string) => void;
   onStepChange: () => void;
   onStepReset: () => void;
   onFavoriteFilmClick: (film: IFilm) => void;

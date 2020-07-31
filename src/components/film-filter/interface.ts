@@ -1,8 +1,5 @@
-import {ITab} from "@components/tabs/interface";
-
-
 export interface IFilmFilterProps {
-  list: ITab[];
+  list: string[];
   onItemClick: (itemId: string) => void;
   activeItem: string;
 }

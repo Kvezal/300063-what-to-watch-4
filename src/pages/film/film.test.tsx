@@ -134,11 +134,7 @@ const likedFilms = [
   },
 ];
 
-const tabList = [
-  {name: `Overview`, id: EFilmTab.OVERVIEW},
-  {name: `Details`, id: EFilmTab.DETAILS},
-  {name: `Reviews`, id: EFilmTab.REVIEWS},
-];
+const tabs = Object.values(EFilmTab);
 
 configure({
   adapter: new Adapter(),
@@ -156,7 +152,7 @@ describe(`FilmPage`, () => {
               avatar={avatar}
               activeTab={EFilmTab.OVERVIEW}
               reviews={[]}
-              tabList={tabList}
+              tabList={tabs}
               authorizationStatus={EAuthorizationStatus.AUTH}
               onFavoriteFilmClick={() => null}
               onReviewsLoad={() => null}
@@ -176,7 +172,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabList}
+          tabList={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -196,7 +192,7 @@ describe(`FilmPage`, () => {
             avatar={avatar}
             activeTab={EFilmTab.OVERVIEW}
             reviews={[]}
-            tabList={tabList}
+            tabList={tabs}
             onActiveTabChange={() => null}
             authorizationStatus={EAuthorizationStatus.AUTH}
             onFavoriteFilmClick={() => null}
@@ -216,7 +212,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabList}
+          tabList={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -235,7 +231,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabList}
+          tabList={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -254,7 +250,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabList}
+          tabList={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -273,7 +269,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabList}
+          tabList={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -292,7 +288,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabList}
+          tabList={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -312,7 +308,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabList}
+          tabList={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={onFavoriteFilmClick}
@@ -332,7 +328,7 @@ describe(`FilmPage`, () => {
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
-          tabList={tabList}
+          tabList={tabs}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}

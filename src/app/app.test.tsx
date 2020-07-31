@@ -4,7 +4,7 @@ import * as renderer from "react-test-renderer";
 import {MemoryRouter} from "react-router-dom";
 import configureStore from 'redux-mock-store';
 
-import {EGenre} from "@common/enums";
+import {ALL_GENRES} from "@common/consts";
 import {IFilm, IReview} from "@common/types";
 import ENameSpace from "@store/name-space";
 import {EAuthorizationStatus} from "@store/user/interface";
@@ -167,7 +167,7 @@ describe(`App`, () => {
   beforeEach(() => {
     store = mockStore({
       [ENameSpace.DATA]: {
-        genre: EGenre.ALL,
+        genre: ALL_GENRES,
         films,
         promoFilm: films[0],
         filmReviews: reviews,

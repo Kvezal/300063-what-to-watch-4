@@ -11,7 +11,7 @@ import * as Operation from "./operation";
 import {IReview} from "@common/types";
 
 
-const api = createAPI();
+const api = createAPI(() => null);
 
 const initialState = {
   films: null,

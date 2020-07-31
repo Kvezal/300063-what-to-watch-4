@@ -1,6 +1,6 @@
 import {createSelector} from "reselect";
 
-import {EGenre} from "@common/enums";
+import {ALL_GENRES} from "@common/consts";
 import {IFilm, IReview} from "@common/types";
 import {TStoreState} from "@store/interface";
 import ENameSpace from "@store/name-space";
@@ -41,7 +41,7 @@ const getCommentStatus = (state: TStoreState): ECommentStatus => {
 const getCurrentGenre = createSelector(
     getHash,
     (hash) => {
-      return (hash.replace(`#`, ``) as EGenre) || EGenre.ALL;
+      return hash.replace(`#`, ``) || ALL_GENRES;
     }
 );
 
@@ -70,7 +70,7 @@ const getFilteredFilmsByGenre = createSelector(
     getFilms,
     getCurrentGenre,
     (films, genre) => {
-      if (!films || genre === EGenre.ALL) {
+      if (!films || genre === ALL_GENRES) {
         return films;
       }
       return films.filter((film) => film.genre === genre);

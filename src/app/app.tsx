@@ -3,7 +3,8 @@ import {Switch, Route, Router} from "react-router-dom";
 
 import AppRoute from "@app/app-route";
 import history from "@app/history";
-import {EFilmTab, EGenre} from "@common/enums";
+import {ALL_GENRES} from "@common/consts";
+import {EFilmTab} from "@common/enums";
 import AddReview from "@containers/add-review";
 import Film from "@containers/film";
 import Main from "@containers/main";
@@ -22,31 +23,16 @@ const MyListWrapper = withNotifications(MyList);
 const PlayerWrapper = withNotifications(Player);
 
 const App = () => {
-  const filmDescriptionTabList = [
-    {name: `Overview`, id: EFilmTab.OVERVIEW},
-    {name: `Details`, id: EFilmTab.DETAILS},
-    {name: `Reviews`, id: EFilmTab.REVIEWS},
-  ];
+  const filmDescriptionTabList = Object.values(EFilmTab);
 
-  const filmFilters = [
-    {name: `All genres`, id: EGenre.ALL},
-    {name: `Comedies`, id: EGenre.COMEDY},
-    {name: `Crime`, id: EGenre.CRIME},
-    {name: `Documentary`, id: EGenre.DOCUMENTARY},
-    {name: `Dramas`, id: EGenre.DRAMA},
-    {name: `Horror`, id: EGenre.HORROR},
-    {name: `Kids & Family`, id: EGenre.KIDS_AND_FAMILY},
-    {name: `Romance`, id: EGenre.ROMANCE},
-    {name: `Sci-Fi`, id: EGenre.SCI_FI},
-    {name: `Thrillers`, id: EGenre.THRILLER}
-  ];
+  const filmFilters = [ALL_GENRES];
 
   return <Router history={history}>
     <Switch>
       <Route exact path={AppRoute.ROOT} render={(props) => {
         return <MainWrapper
           tabList={filmFilters}
-          activeTab={EGenre.ALL}
+          activeTab={ALL_GENRES}
           pack={8}
           loadingParams={[`promoFilm`, `films`, `authorizationStatus`]}
           {...props}

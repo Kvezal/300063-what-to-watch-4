@@ -7,18 +7,17 @@ import {IFilmFilterProps} from "./interface";
 const FilmFilter: React.FC<IFilmFilterProps> = (props: IFilmFilterProps) => {
   const {list, onItemClick, activeItem} = props;
   return <ul className="catalog__genres-list">
-    {list.map((item) => {
-      const {name, id} = item;
+    {list.map((tab: string) => {
       const className = classNames({
         "catalog__genres-item": true,
-        "catalog__genres-item--active": id === activeItem,
+        "catalog__genres-item--active": tab === activeItem,
       });
       return <li
-        key={name}
+        key={tab}
         className={className}
-        onClick={() => onItemClick(id)}
+        onClick={() => onItemClick(tab)}
       >
-        <a className="catalog__genres-link">{name}</a>
+        <a className="catalog__genres-link">{tab}</a>
       </li>;
     })}
   </ul>;

@@ -6,21 +6,19 @@ import {ITabsProps} from "@components/tabs/interface";
 
 const Tabs: React.FC<ITabsProps> = (props: ITabsProps) => {
   const {list, activeTab, onActiveTabChange} = props;
-
   return <nav className="movie-nav movie-card__nav">
     <ul className="movie-nav__list">
-      {list.map((item) => {
-        const {name, id} = item;
+      {list.map((tab: string) => {
         const className = classNames({
           "movie-nav__item": true,
-          "movie-nav__item--active": activeTab === id,
+          "movie-nav__item--active": activeTab === tab,
         });
-        return <li key={id} className={className}>
+        return <li key={tab} className={className}>
           <a
             className="movie-nav__link"
-            onClick={() => onActiveTabChange(id)}
+            onClick={() => onActiveTabChange(tab)}
           >
-            {name}
+            {tab}
           </a>
         </li>;
       })}

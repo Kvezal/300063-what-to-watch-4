@@ -1,7 +1,7 @@
 enum EFilmTab {
-  OVERVIEW = `overview`,
-  DETAILS = `details`,
-  REVIEWS = `reviews`,
+  OVERVIEW = `Overview`,
+  DETAILS = `Details`,
+  REVIEWS = `Reviews`,
 }
 
 export default EFilmTab;

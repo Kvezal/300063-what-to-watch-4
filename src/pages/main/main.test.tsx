@@ -4,7 +4,7 @@ import {configure, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter} from "react-router-dom";
 
-import {EGenre} from "@common/enums";
+import {ALL_GENRES} from "@common/consts";
 import {EAuthorizationStatus} from "@store/user/interface";
 
 import Main from "./main";
@@ -134,11 +134,7 @@ const films = [
   },
 ];
 
-const filmFilters = [
-  {name: `All genres`, id: `All genres`},
-  {name: `Comedies`, id: `Comedy`},
-  {name: `Crime`, id: `Crime`}
-];
+const filmFilters = [`All genres`, `Comedies`, `Crime`];
 
 configure({
   adapter: new Adapter(),
@@ -156,7 +152,7 @@ describe(`MainPage`, () => {
               onStepChange={() => null}
               step={1}
               tabList={filmFilters}
-              activeTab={EGenre.ALL}
+              activeTab={ALL_GENRES}
               onActiveTabChange={() => null}
               authorizationStatus={EAuthorizationStatus.AUTH}
               onFavoriteFilmClick={() => null}
@@ -179,7 +175,7 @@ describe(`MainPage`, () => {
           onStepChange={() => null}
           step={1}
           tabList={filmFilters}
-          activeTab={EGenre.ALL}
+          activeTab={ALL_GENRES}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -202,7 +198,7 @@ describe(`MainPage`, () => {
           onStepChange={() => null}
           step={1}
           tabList={filmFilters}
-          activeTab={EGenre.ALL}
+          activeTab={ALL_GENRES}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={onFavoriteFilmClick}
