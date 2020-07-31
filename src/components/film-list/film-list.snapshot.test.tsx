@@ -1,13 +1,7 @@
 import * as React from "react";
-import {configure, mount} from "enzyme";
-import * as Adapter from "enzyme-adapter-react-16";
+import * as render from "react-test-renderer";
 
 import FilmList from "./film-list";
-
-
-configure({
-  adapter: new Adapter(),
-});
 
 
 const films = [
@@ -133,57 +127,17 @@ const films = [
   },
 ];
 
-describe(`FilmListComponent`, () => {
-  test(`should create component`, () => {
-    const filmListComponent = mount(
+test(`should render component`, () => {
+  const tree = render
+    .create(
         <FilmList
           list={films}
           onCardClick={() => null}
           step={1}
           pack={4}
-        />
-    );
-    const list = filmListComponent.find(`div.catalog__movies-list`);
-    expect(list).toHaveLength(1);
-  });
-
-  test(`should have film cards`, () => {
-    const filmListComponent = mount(
-        <FilmList
-          list={films}
-          onCardClick={() => null}
-        />
-    );
-    const cards = filmListComponent.find(`article.small-movie-card`);
-    expect(cards).toHaveLength(films.length);
-  });
-
-  test(`should have cards limit`, () => {
-    const pack = 2;
-    const filmListComponent = mount(
-        <FilmList
-          list={films}
-          onCardClick={() => null}
-          pack={pack}
-          step={1}
-        />
-    );
-    const cards = filmListComponent.find(`article.small-movie-card`);
-    expect(cards).toHaveLength(pack);
-  });
-
-  test(`should have cards limit`, () => {
-    const pack = 2;
-    const step = 2;
-    const filmListComponent = mount(
-        <FilmList
-          list={films}
-          onCardClick={() => null}
-          pack={pack}
-          step={step}
-        />
-    );
-    const cards = filmListComponent.find(`article.small-movie-card`);
-    expect(cards).toHaveLength(pack * step);
-  });
+        />,
+        {createNodeMock: () => ({})}
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

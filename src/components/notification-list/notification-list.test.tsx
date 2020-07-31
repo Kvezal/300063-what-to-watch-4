@@ -1,10 +1,10 @@
 import * as React from "react";
-import * as render from "react-test-renderer";
 import {configure, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 
-import NotificationList from "./notification-list";
 import {EHTTPMethod, ENotificationType} from "@store/notification/interface";
+
+import NotificationList from "./notification-list";
 
 
 configure({
@@ -51,17 +51,6 @@ const notifications = [
 ];
 
 describe(`NotificationListComponent`, () => {
-  test(`should render component`, () => {
-    const tree = render.create(
-        <NotificationList
-          list={notifications}
-          onCloseNotification={() => null}
-          maxItems={5}
-        />
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   test(`should create component`, () => {
     const notificationListComponent = shallow(
         <NotificationList
@@ -97,5 +86,58 @@ describe(`NotificationListComponent`, () => {
     );
     const notificationItems = notificationListComponent.find(`.notification-list__item`);
     expect(notificationItems).toHaveLength(maxItems);
+  });
+
+  test(`cross should be pressed`, () => {
+    const onCloseNotification = jest.fn();
+    const notificationListComponent = shallow(
+        <NotificationList
+          list={notifications}
+          onCloseNotification={onCloseNotification}
+          maxItems={5}
+        />
+    );
+    notificationListComponent.find(`.notification-list__button`).at(0).simulate(`click`);
+    expect(onCloseNotification).toBeCalledTimes(1);
+  });
+
+  test(`should have title`, () => {
+    const notification = {
+      id: `test-id-1`,
+      type: ENotificationType.ERROR,
+      name: `test`,
+      method: EHTTPMethod.GET,
+      title: `title 1`,
+      text: `title 1`,
+    };
+    const notificationListComponent = shallow(
+        <NotificationList
+          list={[notification]}
+          onCloseNotification={() => null}
+          maxItems={1}
+        />
+    );
+    const notificationTitle = notificationListComponent.find(`.notification-list__title`).text();
+    expect(notificationTitle).toBe(notification.title);
+  });
+
+  test(`should have description`, () => {
+    const notification = {
+      id: `test-id-1`,
+      type: ENotificationType.ERROR,
+      name: `test`,
+      method: EHTTPMethod.GET,
+      title: `title 1`,
+      text: `title 1`,
+    };
+    const notificationListComponent = shallow(
+        <NotificationList
+          list={[notification]}
+          onCloseNotification={() => null}
+          maxItems={1}
+        />
+    );
+    const notificationText = notificationListComponent.find(`.notification-list__text`).text();
+    expect(notificationText).toBe(notification.text);
   });
 });

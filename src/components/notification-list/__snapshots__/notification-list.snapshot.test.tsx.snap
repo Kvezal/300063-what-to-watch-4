@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NotificationListComponent should render component 1`] = `
+exports[`should render component 1`] = `
 <ul
   className="notification-list"
 >

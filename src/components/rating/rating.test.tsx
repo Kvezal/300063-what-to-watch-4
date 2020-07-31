@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as render from "react-test-renderer";
 import {configure, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 
@@ -11,19 +10,6 @@ configure({
 });
 
 describe(`RatingComponent`, () => {
-  test(`should render component`, () => {
-    const tree = render.create(
-        <Rating
-          starCount={5}
-          value="2"
-          name="rating"
-          onChange={() => null}
-        />
-    )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   test(`should create component`, () => {
     const ratingComponent = shallow(
         <Rating

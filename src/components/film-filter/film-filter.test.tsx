@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as render from "react-test-renderer";
 import {configure, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 
@@ -10,22 +9,9 @@ configure({
   adapter: new Adapter(),
 });
 
+const filterList = [`Documentary`, `Dramas`, `Horror`];
+
 describe(`FilmFilterComponent`, () => {
-  const filterList = [`Documentary`, `Dramas`, `Horror`];
-
-  test(`should render component`, () => {
-    const tree = render
-      .create(
-          <FilmFilter
-            list={filterList}
-            onItemClick={() => null}
-            activeItem={filterList[0]}
-          />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   test(`should create component`, () => {
     const FilmFilterComponent = shallow(
         <FilmFilter

@@ -1,20 +1,14 @@
 import * as React from "react";
-import {configure, mount} from "enzyme";
-import * as Adapter from "enzyme-adapter-react-16";
+import * as render from "react-test-renderer";
 import {MemoryRouter, Route} from "react-router-dom";
-
 import {EAuthorizationStatus} from "@store/user/interface";
 
 import PrivateRoute from "./private-route";
 
 
-configure({
-  adapter: new Adapter(),
-});
-
-describe(`PrivateRouteComponent`, () => {
-  test(`should display private route`, () => {
-    const privateRouteComponent = mount(
+describe(`PrivateRouterSnapshot`, () => {
+  test(`should render private component`, () => {
+    const tree = render.create(
         <MemoryRouter initialEntries={[`/private`]}>
           <PrivateRoute
             path="/private"
@@ -28,13 +22,12 @@ describe(`PrivateRouteComponent`, () => {
             render={() => <div className="not-private-route"/>}
           />
         </MemoryRouter>
-    );
-    expect(privateRouteComponent.find(`.test`)).toHaveLength(1);
-    expect(privateRouteComponent.find(`.not-private-route`)).toHaveLength(0);
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
-  test(`should redirect to not private route`, () => {
-    const privateRouteComponent = mount(
+  test(`shouldn't render private component`, () => {
+    const tree = render.create(
         <MemoryRouter initialEntries={[`/private`]}>
           <PrivateRoute
             path="/private"
@@ -48,8 +41,8 @@ describe(`PrivateRouteComponent`, () => {
             render={() => <div className="not-private-route"/>}
           />
         </MemoryRouter>
-    );
-    expect(privateRouteComponent.find(`.test`)).toHaveLength(0);
-    expect(privateRouteComponent.find(`.not-private-route`)).toHaveLength(1);
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });
+

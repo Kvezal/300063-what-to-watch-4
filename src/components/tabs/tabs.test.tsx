@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as render from "react-test-renderer";
 import {configure, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 
@@ -10,22 +9,9 @@ configure({
   adapter: new Adapter(),
 });
 
+const tabs = [`Overview`, `Details`, `Reviews`];
+
 describe(`TabsComponent`, () => {
-  const tabs = [`Overview`, `Details`, `Reviews`];
-
-  test(`should render component`, () => {
-    const tree = render
-      .create(
-          <Tabs
-            list={tabs}
-            activeTab="Overview"
-            onActiveTabChange={() => null}
-          />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   test(`should create component`, () => {
     const tabsComponent = shallow(
         <Tabs

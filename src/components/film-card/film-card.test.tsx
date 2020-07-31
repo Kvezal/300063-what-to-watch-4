@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as render from "react-test-renderer";
 import {configure, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 
@@ -10,25 +9,9 @@ configure({
   adapter: new Adapter(),
 });
 
-describe(`FilmCardComponent`, () => {
-  const filmName = `Fantastic Beasts: The Crimes of Grindelwald`;
+const filmName = `Fantastic Beasts: The Crimes of Grindelwald`;
 
-  test(`should render component`, () => {
-    const tree = render
-      .create(
-          <FilmCard
-            filmId={1}
-            filmName={filmName}
-            onCardClick={() => null}
-            onPlayingChange={() => null}
-            renderPlayer={() => null}
-          />, {
-            createNodeMock: () => ({}),
-          }
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+describe(`FilmCardComponent`, () => {
 
   test(`should create component`, () => {
     const filmCardComponent = shallow(
@@ -44,7 +27,7 @@ describe(`FilmCardComponent`, () => {
     expect(card).toHaveLength(1);
   });
 
-  test(`film name should match`, () => {
+  test(`should have film name`, () => {
     const filmCardComponent = shallow(
         <FilmCard
           filmId={1}
@@ -55,7 +38,7 @@ describe(`FilmCardComponent`, () => {
         />
     );
     const film = filmCardComponent.find(`.small-movie-card__title .small-movie-card__link`).text();
-    expect(film.includes(filmName)).toBeTruthy();
+    expect(film).toBe(filmName);
   });
 
   test(`should be pressed`, () => {
@@ -71,6 +54,9 @@ describe(`FilmCardComponent`, () => {
     );
     const filmCard = filmCardComponent.find(`article.small-movie-card`);
     filmCard.simulate(`click`);
-    expect(handleCardClickMock).toHaveBeenCalled();
+    expect(handleCardClickMock).toHaveBeenCalledTimes(1);
+    filmCard.simulate(`click`);
+    filmCard.simulate(`click`);
+    expect(handleCardClickMock).toHaveBeenCalledTimes(3);
   });
 });

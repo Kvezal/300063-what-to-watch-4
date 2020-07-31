@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RatingComponent should render component 1`] = `
+exports[`should render component 1`] = `
 <div
   className="rating"
 >

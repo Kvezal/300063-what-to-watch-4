@@ -1,8 +1,7 @@
 import * as React from "react";
-import * as render from "react-test-renderer";
-import {MemoryRouter} from "react-router-dom";
-import {configure, shallow} from "enzyme";
+import {configure, mount, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
+import {MemoryRouter} from "react-router-dom";
 
 import Breadcrumbs from "./breadcrumbs";
 
@@ -18,18 +17,6 @@ configure({
 });
 
 describe(`BreadcrumbsComponent`, () => {
-  test(`should render component`, () => {
-    const tree = render.create(
-        <MemoryRouter>
-          <Breadcrumbs
-            list={breadcrumbs}
-          />
-        </MemoryRouter>
-    )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   test(`should create component`, () => {
     const breadcrumbsComponent = shallow(
         <Breadcrumbs
@@ -41,12 +28,38 @@ describe(`BreadcrumbsComponent`, () => {
   });
 
   test(`should display breadcrumbs item`, () => {
-    const breadcrumbsComponent = shallow(
-        <Breadcrumbs
-          list={breadcrumbs}
-        />
+    const breadcrumbsComponent = mount(
+        <MemoryRouter>
+          <Breadcrumbs
+            list={breadcrumbs}
+          />
+        </MemoryRouter>
     );
-    const breadcrumbsContainer = breadcrumbsComponent.find(`.breadcrumbs__item`);
-    expect(breadcrumbsContainer).toHaveLength(breadcrumbs.length);
+    const link = breadcrumbsComponent.find(`a.breadcrumbs__link`);
+    expect(link).toHaveLength(breadcrumbs.length);
+  });
+
+  test(`items should have href`, () => {
+    const breadcrumbsComponent = mount(
+        <MemoryRouter>
+          <Breadcrumbs
+            list={breadcrumbs}
+          />
+        </MemoryRouter>
+    );
+    const lastLinkHrefs = breadcrumbsComponent.find(`a.breadcrumbs__link[href]`);
+    expect(lastLinkHrefs).toHaveLength(2);
+  });
+
+  test(`last item shouldn't have href`, () => {
+    const breadcrumbsComponent = mount(
+        <MemoryRouter>
+          <Breadcrumbs
+            list={breadcrumbs}
+          />
+        </MemoryRouter>
+    );
+    const lastLinkHref = breadcrumbsComponent.find(`a.breadcrumbs__link`).at(2).href;
+    expect(lastLinkHref).toBeUndefined();
   });
 });

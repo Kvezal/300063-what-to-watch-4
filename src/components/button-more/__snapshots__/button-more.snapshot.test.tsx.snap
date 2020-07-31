@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ButtonMoreComponent should render component 1`] = `
+exports[`should render component 1`] = `
 <button
   className="catalog__button"
   onClick={[Function]}

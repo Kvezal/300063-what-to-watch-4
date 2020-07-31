@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FilmFilterComponent should render component 1`] = `
+exports[`should render component 1`] = `
 <ul
   className="catalog__genres-list"
 >

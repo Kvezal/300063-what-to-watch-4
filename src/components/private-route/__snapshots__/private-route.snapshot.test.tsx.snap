@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrivateRouterSnapshot should render private component 1`] = `
+<div
+  className="test"
+/>
+`;
+
+exports[`PrivateRouterSnapshot shouldn't render private component 1`] = `
+<div
+  className="not-private-route"
+/>
+`;
