@@ -1,5 +1,4 @@
-import padStart from "@common/utils/pad-start";
-import getTimeParams from "@common/utils/get-time-params";
+import {getTimeParams, padStart} from "@common/utils";
 
 
 const getTime = (allSeconds: number, pattern = `hh:mm:ss`): string => {

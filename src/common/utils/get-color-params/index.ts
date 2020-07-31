@@ -1,4 +1,10 @@
 import getColorParams from "./get-color-params";
+import {IColor, IColorParams, IHEXColor} from "./interface";
 
 
-export default getColorParams;
+export {
+  getColorParams,
+  IColor,
+  IColorParams,
+  IHEXColor,
+};

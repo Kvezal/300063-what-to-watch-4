@@ -1,4 +1,4 @@
-export enum TimeMeasure {
+export enum ETimeMeasure {
   SECONDS_IN_MINUTE = 60,
   SECONDS_IN_HOUR = 3600,
 }

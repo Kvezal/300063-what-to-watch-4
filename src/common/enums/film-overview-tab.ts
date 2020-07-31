@@ -1,4 +1,4 @@
-export enum EFilmTab {
+enum EFilmTab {
   OVERVIEW = `overview`,
   DETAILS = `details`,
   REVIEWS = `reviews`,

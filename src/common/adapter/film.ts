@@ -1,6 +1,7 @@
 import {IFilm, IServerFilm} from "@common/types";
 import {getTime, getAssessment} from "@common/utils";
 
+
 const adaptFilm = (film: IServerFilm): IFilm => {
   return {
     id: film.id,

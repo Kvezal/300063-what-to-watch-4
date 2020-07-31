@@ -1,4 +1,5 @@
-import {IColor, IColorParams, IHEXColor} from "@common/utils/get-color-params/interface";
+import {IColor, IColorParams, IHEXColor} from "./interface";
+
 
 const BYTE = 255;
 const HALF_BYTE = 127;

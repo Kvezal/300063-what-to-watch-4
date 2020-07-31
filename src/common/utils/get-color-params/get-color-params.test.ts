@@ -1,6 +1,5 @@
-import {IColor, IColorParams} from "@common/utils/get-color-params/interface";
-
 import getColorParams from "./get-color-params";
+import {IColor, IColorParams} from "./interface";
 
 
 describe(`getColorParams`, () => {

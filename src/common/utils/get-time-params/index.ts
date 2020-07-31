@@ -1,4 +1,9 @@
 import getTimeParams from "./get-time-params";
+import {ITimeParams, ETimeMeasure} from "./interface";
 
 
-export default getTimeParams;
+export {
+  getTimeParams,
+  ITimeParams,
+  ETimeMeasure,
+};

@@ -1,5 +1,6 @@
 import extend from "./extend";
 
+
 describe(`Extend function`, () => {
   const baseObject = {prop1: 1, prop2: 2};
   const addedObject = {newProp1: 3, newProp2: 4};

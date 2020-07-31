@@ -1,4 +1,4 @@
-export enum EGenre {
+enum EGenre {
   ALL = `All genres`,
   COMEDY = `Comedy`,
   CRIME = `Crime`,

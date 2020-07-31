@@ -1,5 +1,6 @@
 import getTime from "./get-time";
 
+
 describe(`getTime`, () => {
   test.each([
     [35, `00:00:35`],
