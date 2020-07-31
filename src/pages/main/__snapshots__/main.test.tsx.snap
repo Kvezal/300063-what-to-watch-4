@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainPage should match to snapshot 1`] = `
+exports[`should match to snapshot 1`] = `
 Array [
   <section
     className="movie-card"
@@ -163,16 +163,6 @@ Array [
       <ul
         className="catalog__genres-list"
       >
-        <li
-          className="catalog__genres-item catalog__genres-item--active"
-          onClick={[Function]}
-        >
-          <a
-            className="catalog__genres-link"
-          >
-            All genres
-          </a>
-        </li>
         <li
           className="catalog__genres-item catalog__genres-item--active"
           onClick={[Function]}

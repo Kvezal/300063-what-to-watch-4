@@ -2,7 +2,7 @@ import {nanoid} from "nanoid";
 import {Dispatch} from "redux";
 import {UNAUTHORIZED} from "http-status-codes";
 
-import {AppRoute, history} from "@app/index";
+import {EAppRoute, history} from "@app/index";
 import {adaptFilm, adaptReview} from "@common/adapter";
 import {IFilm, IReview, IServerFilm, IServerReview} from "@common/types";
 import {ID_LENGTH} from "@store/const";
@@ -109,7 +109,7 @@ const postReview = (commentData, props) => (dispatch, getState, api) => {
   const path = EDataURLHandlerPath.FILM_COMMENT.replace(`:filmId`, `${filmId}`);
   return api.post(path, commentData)
     .then(() => {
-      history.push(AppRoute.FILMS.replace(`:filmId`, `${filmId}`));
+      history.push(EAppRoute.FILMS.replace(`:filmId`, `${filmId}`));
     })
     .catch((error) => {
       if (error.response.status === UNAUTHORIZED) {

@@ -1,15 +1,13 @@
 import * as React from "react";
 import * as render from "react-test-renderer";
-import {configure, shallow} from "enzyme";
-import * as Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter} from "react-router-dom";
 
+import MyList from "@pages/my-list/my-list";
 import {EAuthorizationStatus} from "@store/user/interface";
-
-import MyList from "./my-list";
 
 
 const avatar = `avatar.jpg`;
+
 const films = [
   {
     id: 1,
@@ -133,33 +131,16 @@ const films = [
   },
 ];
 
-configure({
-  adapter: new Adapter(),
-});
-
-describe(`MyListPage`, () => {
-  test(`should render component`, () => {
-    const tree = render.create(
-        <MemoryRouter>
-          <MyList
-            avatar={avatar}
-            films={films}
-            authorizationStatus={EAuthorizationStatus.AUTH}
-          />
-        </MemoryRouter>,
-        {createNodeMock: () => ({})}
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test(`should create component`, () => {
-    const myListComponent = shallow(
+test(`should render component`, () => {
+  const tree = render.create(
+      <MemoryRouter>
         <MyList
           avatar={avatar}
           films={films}
           authorizationStatus={EAuthorizationStatus.AUTH}
         />
-    );
-    expect(myListComponent.find(`.user-page`)).toHaveLength(1);
-  });
+      </MemoryRouter>,
+      {createNodeMock: () => ({})}
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
 });

@@ -9,15 +9,13 @@ const ButtonMore: React.FC<IButtonMoreProps> = (props: React.PropsWithChildren<I
   if (hide) {
     return null;
   }
-  return <div className="catalog__more">
-    <button
-      className="catalog__button"
-      type="button"
-      onClick={onButtonClick}
-    >
-      {children}
-    </button>
-  </div>;
+  return <button
+    className="catalog__button"
+    type="button"
+    onClick={onButtonClick}
+  >
+    {children}
+  </button>;
 };
 
 export default ButtonMore;

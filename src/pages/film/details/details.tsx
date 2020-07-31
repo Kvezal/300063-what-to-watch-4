@@ -15,9 +15,9 @@ const Details: React.FC<IDetailsProps> = (props: IDetailsProps) => {
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Starring</strong>
         <span className="movie-card__details-value">
-          {starring && starring.map((star, index) =>
+          {starring.map((star, index) =>
             <React.Fragment key={index}>
-              {`${star}${maxStarringIndex >= index ? `,` : ``}`} <br/>
+              {`${star}${maxStarringIndex - 1 >= index ? `,` : ``}`}<br/>
             </React.Fragment>
           )}
         </span>

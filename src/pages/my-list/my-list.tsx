@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import AppRoute from "@app/app-route";
+import EAppRoute from "@app/app-route";
 import history from "@app/history";
 import FilmList from "@components/film-list/film-list";
 import Footer from "@components/footer/footer";
@@ -28,7 +28,7 @@ const MyList: React.FC<IMyListProps> = (props: IMyListProps) => {
 
       <FilmList
         list={films}
-        onCardClick={(filmId: number) => history.push(AppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
+        onCardClick={(filmId: number) => history.push(EAppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
       />
     </section>
 

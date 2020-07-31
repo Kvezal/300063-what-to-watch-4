@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
 
-import AppRoute from "@app/app-route";
+import EAppRoute from "@app/app-route";
 import {getTime} from "@common/utils";
 
 import {IPlayerProps} from "./interface";
@@ -18,7 +18,7 @@ const Player: React.FC<IPlayerProps> = (props: IPlayerProps) => {
 
     <Link
       className="player__exit"
-      to={AppRoute.ROOT}
+      to={EAppRoute.ROOT}
       style={{textDecoration: `none`}}
     >
       Exit

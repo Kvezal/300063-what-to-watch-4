@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Switch, Route, Router} from "react-router-dom";
 
-import AppRoute from "@app/app-route";
+import EAppRoute from "@app/app-route";
 import history from "@app/history";
 import {ALL_GENRES} from "@common/consts";
 import {EFilmTab} from "@common/enums";
@@ -27,7 +27,7 @@ const App = () => {
 
   return <Router history={history}>
     <Switch>
-      <Route exact path={AppRoute.ROOT} render={(props) => {
+      <Route exact path={EAppRoute.ROOT} render={(props) => {
         return <MainWrapper
           activeTab={ALL_GENRES}
           pack={8}
@@ -35,7 +35,7 @@ const App = () => {
           {...props}
         />;
       }}/>
-      <Route exact path={AppRoute.PLAYER} render={(props) =>
+      <Route exact path={EAppRoute.PLAYER} render={(props) =>
         <PlayerWrapper
           muted={false}
           isPlaying={true}
@@ -43,7 +43,7 @@ const App = () => {
           {...props}
         />
       }/>
-      <Route exact path={AppRoute.LOGIN} render={() =>
+      <Route exact path={EAppRoute.LOGIN} render={() =>
         <SignIn
           initialFormState={{
             email: ``,
@@ -54,7 +54,7 @@ const App = () => {
           notificationName={EUserErrorNotificationName.EMAIL}
         />
       }/>
-      <PrivateRoute exact path={AppRoute.REVIEW} render={(props) =>
+      <PrivateRoute exact path={EAppRoute.REVIEW} render={(props) =>
         <AddReviewWrapper
           initialFormState={{
             rating: `0`,
@@ -65,7 +65,7 @@ const App = () => {
           {...props}
         />}
       />
-      <Route exact path={AppRoute.FILMS} render={(props) =>
+      <Route exact path={EAppRoute.FILMS} render={(props) =>
         <FilmWrapper
           tabList={filmDescriptionTabList}
           activeTab={EFilmTab.OVERVIEW}
@@ -73,7 +73,7 @@ const App = () => {
           {...props}
         />}
       />
-      <PrivateRoute exact path={AppRoute.MY_LIST} render={(props) =>
+      <PrivateRoute exact path={EAppRoute.MY_LIST} render={(props) =>
         <MyListWrapper
           loadingParams={[`films`, `authorizationStatus`]}
           {...props}

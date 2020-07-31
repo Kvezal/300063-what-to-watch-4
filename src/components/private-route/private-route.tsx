@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Redirect, Route} from "react-router-dom";
 
-import AppRoute from "@app/app-route";
+import EAppRoute from "@app/app-route";
 import {EAuthorizationStatus} from "@store/user/interface";
 
 import {TPrivateRoute} from "./interface";
@@ -17,7 +17,7 @@ const PrivateRoute: React.FC<TPrivateRoute> = (props: TPrivateRoute) => {
     exact={exact}
     render={(rendererProps) => authorizationStatus === EAuthorizationStatus.AUTH
       ? render(rendererProps)
-      : <Redirect to={AppRoute.LOGIN}/>
+      : <Redirect to={EAppRoute.LOGIN}/>
     }/>;
 };
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
 
-import AppRoute from "@app/app-route";
+import EAppRoute from "@app/app-route";
 import history from "@app/history";
 import ButtonMore from "@components/button-more/button-more";
 import FilmFilter from "@components/film-filter/film-filter";
@@ -64,7 +64,7 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
               <Link
                 className="btn btn--play movie-card__button"
                 type="button"
-                to={AppRoute.PLAYER.replace(`:filmId`, `${promoFilmId}`)}
+                to={EAppRoute.PLAYER.replace(`:filmId`, `${promoFilmId}`)}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"/>
@@ -109,7 +109,7 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
 
         <FilmList
           list={films}
-          onCardClick={(filmId: number) => history.push(AppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
+          onCardClick={(filmId: number) => history.push(EAppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
           pack={FILM_COUNT_IN_ONE_STEP}
           step={step}
         />

@@ -2,7 +2,7 @@ import * as React from "react";
 import {Redirect} from "react-router-dom";
 import classNames from "classnames";
 
-import AppRoute from "@app/app-route";
+import EAppRoute from "@app/app-route";
 import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import {EAuthorizationStatus, EUserErrorNotificationName} from "@store/user/interface";
@@ -14,7 +14,7 @@ const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
   const {errors, authorizationStatus, onControlChange, onFormSubmit, formState} = props;
 
   if (authorizationStatus === EAuthorizationStatus.AUTH) {
-    return <Redirect to={AppRoute.ROOT}/>;
+    return <Redirect to={EAppRoute.ROOT}/>;
   }
 
   return <div className="user-page">

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReviewsComponent should render component 1`] = `
+exports[`should render component 1`] = `
 <div
   className="movie-card__reviews movie-card__row"
 >

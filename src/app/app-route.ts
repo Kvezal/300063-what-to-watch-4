@@ -1,4 +1,4 @@
-enum AppRoute {
+enum EAppRoute {
   ROOT = `/`,
   FILMS = `/films/:filmId`,
   REVIEW = `/films/:filmId/review`,
@@ -7,4 +7,4 @@ enum AppRoute {
   PLAYER = `/films/:filmId/player`,
 }
 
-export default AppRoute;
+export default EAppRoute;

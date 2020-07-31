@@ -1,6 +1,6 @@
 import {nanoid} from "nanoid";
 
-import AppRoute from "@app/app-route";
+import EAppRoute from "@app/app-route";
 import history from "@app/history";
 import {adaptUser} from "@common/adapter";
 import {IServerUser, IUser} from "@common/types";
@@ -37,7 +37,7 @@ const login = (authData) => (dispatch, getState, api) => {
         resetNotification(),
         loadFavoriteFilms()
       ]);
-      history.push(AppRoute.ROOT);
+      history.push(EAppRoute.ROOT);
     })
     .catch(() => {
       const notification = {

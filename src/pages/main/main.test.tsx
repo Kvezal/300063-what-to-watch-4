@@ -1,13 +1,10 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import {configure, shallow} from "enzyme";
-import * as Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter} from "react-router-dom";
 
 import {ALL_GENRES} from "@common/consts";
+import Main from "@pages/main/main";
 import {EAuthorizationStatus} from "@store/user/interface";
-
-import Main from "./main";
 
 
 const avatar = `avatar.jpg`;
@@ -134,78 +131,28 @@ const films = [
   },
 ];
 
-const filmFilters = [`All genres`, `Comedies`, `Crime`];
+const genres = [`Comedies`, `Crime`];
 
-configure({
-  adapter: new Adapter(),
-});
-
-describe(`MainPage`, () => {
-  test(`should match to snapshot`, () => {
-    const tree = renderer
-      .create(
-          <MemoryRouter>
-            <Main
-              promoFilm={films[0]}
-              films={films}
-              avatar={avatar}
-              onStepChange={() => null}
-              step={1}
-              genres={filmFilters}
-              activeTab={ALL_GENRES}
-              onActiveTabChange={() => null}
-              authorizationStatus={EAuthorizationStatus.AUTH}
-              onFavoriteFilmClick={() => null}
-              onStepReset={() => null}
-            />
-          </MemoryRouter>,
-          {createNodeMock: () => ({})}
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test(`card titles should be pressed`, () => {
-    const onFilmChoose = jest.fn();
-    const mainPage = shallow(
-        <Main
-          promoFilm={films[0]}
-          films={films}
-          avatar={avatar}
-          onStepChange={() => null}
-          step={1}
-          genres={filmFilters}
-          activeTab={ALL_GENRES}
-          onActiveTabChange={() => null}
-          authorizationStatus={EAuthorizationStatus.AUTH}
-          onFavoriteFilmClick={() => null}
-          onStepReset={() => null}
-        />
-    );
-    const mainTitleList = mainPage.find(`a.small-movie-card__link`);
-    mainTitleList.forEach((mainTitle) => mainTitle.simulate(`click`));
-    expect(onFilmChoose).toHaveBeenCalledTimes(mainTitleList.length);
-  });
-
-
-  test(`add favorite list button should be clicked`, () => {
-    const onFavoriteFilmClick = jest.fn();
-    const mainPage = shallow(
-        <Main
-          promoFilm={films[0]}
-          films={films}
-          avatar={avatar}
-          onStepChange={() => null}
-          step={1}
-          genres={filmFilters}
-          activeTab={ALL_GENRES}
-          onActiveTabChange={() => null}
-          authorizationStatus={EAuthorizationStatus.AUTH}
-          onFavoriteFilmClick={onFavoriteFilmClick}
-          onStepReset={() => null}
-        />
-    );
-    mainPage.find(`button.movie-card__button`).simulate(`click`);
-    expect(onFavoriteFilmClick).toHaveBeenCalledTimes(1);
-  });
+test(`should match to snapshot`, () => {
+  const tree = renderer
+    .create(
+        <MemoryRouter>
+          <Main
+            promoFilm={films[0]}
+            films={films}
+            avatar={avatar}
+            onStepChange={() => null}
+            step={1}
+            genres={genres}
+            activeTab={ALL_GENRES}
+            onActiveTabChange={() => null}
+            authorizationStatus={EAuthorizationStatus.AUTH}
+            onFavoriteFilmClick={() => null}
+            onStepReset={() => null}
+          />
+        </MemoryRouter>,
+        {createNodeMock: () => ({})}
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

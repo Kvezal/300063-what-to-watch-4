@@ -171,7 +171,7 @@ describe(`App`, () => {
         films,
         promoFilm: films[0],
         filmReviews: reviews,
-        favoriteFilms: [],
+        favoriteFilms: films.slice(0, 2),
       },
       [ENameSpace.NOTIFICATION]: {
         notifications: [],
@@ -182,11 +182,11 @@ describe(`App`, () => {
     });
   });
 
-  it(`should match to snapshot`, () => {
+  test(`should match to snapshot`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <MemoryRouter initialEntries={[`/`]}>
+            <MemoryRouter>
               <App/>
             </MemoryRouter>
           </Provider>,

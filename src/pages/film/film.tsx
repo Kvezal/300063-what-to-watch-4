@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
 
-import AppRoute from "@app/app-route";
+import EAppRoute from "@app/app-route";
 import history from "@app/history";
 import {EFilmTab} from "@common/enums";
 import {IFilm, IReview} from "@common/types";
@@ -96,7 +96,7 @@ class Film extends React.PureComponent<IFilmProps> {
                 <Link
                   className="btn btn--play movie-card__button"
                   type="button"
-                  to={AppRoute.PLAYER.replace(`:filmId`, `${id}`)}
+                  to={EAppRoute.PLAYER.replace(`:filmId`, `${id}`)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"/>
@@ -121,7 +121,7 @@ class Film extends React.PureComponent<IFilmProps> {
                       <span>My list</span>
                     </button>
                     <Link
-                      to={AppRoute.REVIEW.replace(`:filmId`, `${id}`)}
+                      to={EAppRoute.REVIEW.replace(`:filmId`, `${id}`)}
                       className="btn movie-card__button"
                     >
                       Add review
@@ -161,7 +161,7 @@ class Film extends React.PureComponent<IFilmProps> {
           <h2 className="catalog__title">More like this</h2>
           <FilmList
             list={likedFilms}
-            onCardClick={(filmId: number) => history.push(AppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
+            onCardClick={(filmId: number) => history.push(EAppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
             pack={FILM_COUNT_IN_ONE_STEP}
           />
         </section>

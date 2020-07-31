@@ -1,10 +1,10 @@
 import * as React from "react";
 
+import {getColorParams} from "@common/utils";
 import Breadcrumbs from "@components/breadcrumbs/breadcrumbs";
 import Logo from "@components/logo/logo";
 import User from "@components/user/user";
 import Rating from "@components/rating/rating";
-import {getColorParams} from "@common/utils";
 import {withRadioGroupValue} from "@hocs/index";
 import {EAuthorizationStatus} from "@store/user/interface";
 
