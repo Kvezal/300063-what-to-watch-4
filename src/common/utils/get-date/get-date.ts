@@ -13,7 +13,7 @@ const Months = [
   `December`
 ];
 
-const getDate = (timeStamp) => {
+const getDate = (timeStamp: string): string => {
   const date = new Date(timeStamp);
   const day = date.getDate();
   const month = Months[date.getMonth()];

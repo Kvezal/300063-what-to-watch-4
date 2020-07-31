@@ -1,7 +1,7 @@
 import {extend} from "@common/utils";
 
 import {EAuthorizationStatus, EUserAction, IUserState, TUserAction} from "./interface";
-import {UserInterface} from "@common/types";
+import {IUser} from "@common/types";
 import {Reducer} from "redux";
 
 
@@ -18,7 +18,7 @@ const reducer: Reducer<IUserState, TUserAction> = (state: IUserState = initialSt
       });
     case EUserAction.SET_USER:
       return extend(state, {
-        user: action.payload as UserInterface,
+        user: action.payload as IUser,
       });
     default:
       return state;

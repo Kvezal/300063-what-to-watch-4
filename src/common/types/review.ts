@@ -5,3 +5,14 @@ export interface IReview {
   author: string;
   date: string;
 }
+
+export interface IServerReview {
+  id: number;
+  user: {
+    id: number;
+    name: string;
+  };
+  rating: number;
+  comment: string;
+  date: string;
+}

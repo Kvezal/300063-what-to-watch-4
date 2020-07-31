@@ -1,11 +1,12 @@
 import {IFilm, IServerFilm} from "./film";
-import {IReview} from "./review";
-import {UserInterface, ServerUserInterface} from "./user";
+import {IReview, IServerReview} from "./review";
+import {IUser, IServerUser} from "./user";
 
 export {
   IFilm,
   IServerFilm,
   IReview,
-  UserInterface,
-  ServerUserInterface,
+  IServerReview,
+  IUser,
+  IServerUser,
 };

@@ -1,17 +1,19 @@
+import {IColor, IColorParams, IHEXColor} from "@common/utils/get-color-params/interface";
+
 const BYTE = 255;
 const HALF_BYTE = 127;
 const SHORT_HEX_SYMBOLS_COUNT = 3;
 const BASE_COLORS_COUNT = 3;
 
-const getRGBA = (hex) => {
+const getRGBA = (hex: string): IHEXColor => {
   return {
-    red: hex >> 16 & BYTE,
-    green: hex >> 8 & BYTE,
-    blue: hex & BYTE,
+    red: +hex >> 16 & BYTE,
+    green: +hex >> 8 & BYTE,
+    blue: +hex & BYTE,
   };
 };
 
-const getRGBAWithOffset = (colors, offset) => {
+const getRGBAWithOffset = (colors: IHEXColor, offset: number): IHEXColor => {
   const {red, green, blue} = colors;
   const averageColor = (red + green + blue) / BASE_COLORS_COUNT;
   const currentOffset = averageColor > HALF_BYTE ? -offset : offset;
@@ -22,7 +24,7 @@ const getRGBAWithOffset = (colors, offset) => {
   };
 };
 
-const getColorParams = (params) => {
+const getColorParams = (params: IColor): IColorParams => {
   const {hexColor, offset = 0, alpha = 1} = params;
 
   let colors = hexColor.replace(`#`, ``).split(``);

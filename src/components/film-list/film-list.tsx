@@ -10,8 +10,7 @@ const FilmCardWrapper = withVideoPlayer(FilmCard);
 
 const FilmList: React.FC<IFilmListProps> = (props: IFilmListProps) => {
   const {onCardClick, list, pack = 0, step} = props;
-
-  const displayedList = list.slice(0, pack * step || list.length - 1);
+  const displayedList = list.slice(0, pack * step || list.length);
 
   return <div className="catalog__movies-list">
     {displayedList.map((film) => <FilmCardWrapper

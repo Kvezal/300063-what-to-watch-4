@@ -2,7 +2,7 @@ export interface IWithStepHOCState {
   step: number;
 }
 
-export interface IWithStepHOCInjectProps extends IWithStepHOCState {
+export interface IWithStepHOCInjectProps {
   onStepChange: () => void;
   onStepReset: () => void;
 }

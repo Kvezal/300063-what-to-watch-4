@@ -1,9 +1,7 @@
-const TimeMeasure = {
-  SECONDS_IN_MINUTE: 60,
-  SECONDS_IN_HOUR: 3600,
-};
+import {ITimeParams, TimeMeasure} from "./interface";
 
-const getTimeParams = (allSeconds) => ({
+
+const getTimeParams = (allSeconds: number): ITimeParams => ({
   seconds: Math.floor(allSeconds % TimeMeasure.SECONDS_IN_MINUTE),
   minutes: Math.floor(allSeconds / TimeMeasure.SECONDS_IN_MINUTE % TimeMeasure.SECONDS_IN_MINUTE),
   hours: Math.floor(allSeconds / TimeMeasure.SECONDS_IN_HOUR),

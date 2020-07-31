@@ -6,7 +6,7 @@ const addNotification = (notification: INotification): INotificationAction<INoti
   payload: notification,
 });
 
-const removeNotification = (notificationId: number): INotificationAction<number> => ({
+const removeNotification = (notificationId: string): INotificationAction<string> => ({
   type: ENotificationAction.REMOVE_NOTIFICATION,
   payload: notificationId,
 });

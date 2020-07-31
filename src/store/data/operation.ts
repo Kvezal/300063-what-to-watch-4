@@ -4,6 +4,7 @@ import {UNAUTHORIZED} from "http-status-codes";
 
 import {AppRoute, history} from "@app/index";
 import {adaptFilm, adaptReview} from "@common/adapter";
+import {IFilm, IReview, IServerFilm, IServerReview} from "@common/types";
 import {ID_LENGTH} from "@store/const";
 import {getCurrentFilmId} from "@store/data/selectors";
 import {addNotification} from "@store/notification/action-creator";
@@ -17,7 +18,6 @@ import {
   EDataErrorNotificationName,
   EFavoriteFilmActionType,
 } from "./interface";
-import {IFilm, IReview, IServerFilm} from "@common/types";
 
 
 const loadFilms = () => (dispatch: Dispatch, getState, api) => {
@@ -65,7 +65,7 @@ const loadFilmReviews = (filmId) => (dispatch, getState, api) => {
   const path = EDataURLHandlerPath.FILM_COMMENT.replace(`:filmId`, filmId);
   return api
     .get(path)
-    .then((response) => response.data.map((reviews) => adaptReview(reviews)))
+    .then((response) => response.data.map((review: IServerReview) => adaptReview(review)))
     .then((reviews: IReview[]) => {
       dispatch(ActionCreator.loadFilmReviews(reviews));
     })

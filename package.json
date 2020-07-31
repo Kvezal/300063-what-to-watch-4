@@ -5,25 +5,11 @@
   "description": "Личный проект «Что посмотреть» от HTML Academy",
   "scripts": {
     "test": "npm run eslint && npm run test.jest",
-    "eslint": "npm run eslint.js && npm run eslint.ts",
-    "eslint.js": "eslint --ext .jsx --ext .js src/",
-    "eslint.ts": "eslint --config .eslintrc-ts.yml --ext .tsx --ext .ts src/",
+    "eslint": "eslint --config .eslintrc-ts.yml --ext .tsx --ext .ts src/ --fix",
     "test.jest": "jest",
     "test.jest::dev": "jest --watch",
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "@app(.*)$": "<rootDir>/src/app/$1",
-      "@components(.*)$": "<rootDir>/src/components/$1",
-      "@common(.*)$": "<rootDir>/src/common/$1",
-      "@containers(.*)$": "<rootDir>/src/containers/$1",
-      "@middlewares(.*)$": "<rootDir>/src/middlewares/$1",
-      "@pages(.*)$": "<rootDir>/src/pages/$1",
-      "@services(.*)$": "<rootDir>/src/services/$1",
-      "@store(.*)$": "<rootDir>/src/store/$1"
-    }
   },
   "husky": {
     "hooks": {
@@ -34,8 +20,10 @@
     "@babel/core": "7.10.2",
     "@babel/preset-env": "7.10.2",
     "@babel/preset-react": "7.10.1",
+    "@types/jest": "26.0.7",
     "@types/react": "16.9.43",
     "@types/react-dom": "16.9.8",
+    "@types/react-test-renderer": "16.9.2",
     "@typescript-eslint/eslint-plugin": "2.22.0",
     "@typescript-eslint/parser": "2.22.0",
     "axios-mock-adapter": "1.18.1",
@@ -50,6 +38,7 @@
     "jest": "26.0.1",
     "react-test-renderer": "16.13.1",
     "redux-mock-store": "1.5.4",
+    "ts-jest": "26.1.4",
     "ts-loader": "8.0.1",
     "typescript": "3.9.7",
     "utility-types": "3.10.0",

@@ -3,7 +3,7 @@ import {nanoid} from "nanoid";
 import AppRoute from "@app/app-route";
 import history from "@app/history";
 import {adaptUser} from "@common/adapter";
-import {ServerUserInterface, UserInterface} from "@common/types";
+import {IServerUser, IUser} from "@common/types";
 import {ID_LENGTH} from "@store/const";
 import {loadFavoriteFilms} from "@store/data/operation";
 import {addNotification, resetNotification} from "@store/notification/action-creator";
@@ -15,8 +15,8 @@ import {EAuthorizationStatus, EUserURLHandlerPath, EUserErrorNotificationName} f
 
 const checkAuth = () => (dispatch, getState, api) => {
   return api.get(EUserURLHandlerPath.LOGIN)
-    .then((response) => adaptUser(response.data as ServerUserInterface))
-    .then((user: UserInterface) => {
+    .then((response) => adaptUser(response.data as IServerUser))
+    .then((user: IUser) => {
       dispatch([
         setUser(user),
         setAuthorizationStatus(EAuthorizationStatus.AUTH)
@@ -30,7 +30,7 @@ const login = (authData) => (dispatch, getState, api) => {
     password: authData.password,
   })
     .then((response) => adaptUser(response.data))
-    .then((user: UserInterface) => {
+    .then((user: IUser) => {
       dispatch([
         setUser(user),
         setAuthorizationStatus(EAuthorizationStatus.AUTH),

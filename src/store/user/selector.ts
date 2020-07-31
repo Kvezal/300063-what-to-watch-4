@@ -1,7 +1,7 @@
 import {createSelector} from "reselect";
 
 import ENameSpace from "@store/name-space";
-import {UserInterface} from "@common/types";
+import {IUser} from "@common/types";
 import {TStoreState} from "@store/interface";
 
 
@@ -17,7 +17,7 @@ const getUser = (state: TStoreState) => {
 
 const getAvatar = createSelector(
     getUser,
-    (user: UserInterface): string => {
+    (user: IUser): string => {
       return user && user.avatar;
     }
 );

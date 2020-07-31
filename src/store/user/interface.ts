@@ -1,6 +1,6 @@
 import {AnyAction} from "redux";
 
-import {UserInterface} from "@common/types";
+import {IUser} from "@common/types";
 
 export enum EUserAction {
   SET_AUTHORIZATION_STATUS = `SET_AUTHORIZATION_STATUS`,
@@ -26,8 +26,8 @@ export interface IUserAction<T = null> extends AnyAction {
 }
 
 export interface IUserState {
-  user: UserInterface;
+  user: IUser;
   authorizationStatus: EAuthorizationStatus;
 }
 
-export type TUserAction = IUserAction<EAuthorizationStatus | UserInterface>;
+export type TUserAction = IUserAction<EAuthorizationStatus | IUser>;

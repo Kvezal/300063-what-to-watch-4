@@ -1,4 +1,4 @@
-import {UserInterface} from "@common/types";
+import {IUser} from "@common/types";
 
 import {EAuthorizationStatus, EUserAction, IUserAction} from "./interface";
 
@@ -8,7 +8,7 @@ const setAuthorizationStatus = (payload: EAuthorizationStatus): IUserAction<EAut
   payload,
 });
 
-const setUser = (payload: UserInterface): IUserAction<UserInterface> => ({
+const setUser = (payload: IUser): IUserAction<IUser> => ({
   type: EUserAction.SET_USER,
   payload
 });

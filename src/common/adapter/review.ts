@@ -1,7 +1,8 @@
+import {IReview, IServerReview} from "@common/types";
 import {getDate} from "@common/utils";
 
 
-const adaptReview = (review) => ({
+const adaptReview = (review: IServerReview): IReview => ({
   id: review.id,
   ratingScore: review.rating,
   text: review.comment,

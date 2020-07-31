@@ -13,13 +13,12 @@ const withStep = (Component) => {
       super(props);
 
       this.state = {
-        step: props.step || 1,
+        step: 1,
       };
     }
 
     render() {
       const {step} = this.state;
-      const {step: defaultStep} = this.props;
 
       return <Component
         {...this.props}
@@ -31,7 +30,7 @@ const withStep = (Component) => {
         }}
         onStepReset={() => {
           this.setState({
-            step: defaultStep,
+            step: 1,
           });
         }}
       />;
