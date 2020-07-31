@@ -1,15 +1,11 @@
 import * as React from "react";
-import {configure, shallow} from "enzyme";
-import * as Adapter from "enzyme-adapter-react-16";
+import * as renderer from "react-test-renderer";
+import {MemoryRouter} from "react-router-dom";
 
+import {ALL_GENRES} from "@common/consts";
+import Main from "@pages/main/main";
 import {EAuthorizationStatus} from "@store/user/interface";
 
-import MyList from "./my-list";
-
-
-configure({
-  adapter: new Adapter(),
-});
 
 const avatar = `avatar.jpg`;
 
@@ -136,15 +132,28 @@ const films = [
   },
 ];
 
-describe(`MyListPage`, () => {
-  test(`should create component`, () => {
-    const myListComponent = shallow(
-        <MyList
-          avatar={avatar}
-          films={films}
-          authorizationStatus={EAuthorizationStatus.AUTH}
-        />
-    );
-    expect(myListComponent.find(`.user-page`)).toHaveLength(1);
-  });
+const genres = [`Comedies`, `Crime`];
+
+test(`should match to snapshot`, () => {
+  const tree = renderer
+    .create(
+        <MemoryRouter>
+          <Main
+            promoFilm={films[0]}
+            films={films}
+            avatar={avatar}
+            onStepChange={() => null}
+            step={1}
+            genres={genres}
+            activeTab={ALL_GENRES}
+            onActiveTabChange={() => null}
+            authorizationStatus={EAuthorizationStatus.AUTH}
+            onFavoriteFilmClick={() => null}
+            onStepReset={() => null}
+          />
+        </MemoryRouter>,
+        {createNodeMock: () => ({})}
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

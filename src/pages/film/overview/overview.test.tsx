@@ -1,8 +1,13 @@
 import * as React from "react";
-import * as render from "react-test-renderer";
+import {configure, mount, shallow} from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
 
-import Overview from "@pages/film/overview/overview";
+import Overview from "./overview";
 
+
+configure({
+  adapter: new Adapter(),
+});
 
 const rating = {
   score: 8.9,
@@ -16,16 +21,88 @@ const description = `In the 1930s, the Grand Budapest Hotel is a popular Europea
 const director = `Wes Andreson`;
 const starring = [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `and other`];
 
-test(`should render component`, () => {
-  const tree = render
-    .create(
+describe(`OverviewComponent`, () => {
+  test(`should create component`, () => {
+    const overviewComponent = shallow(
         <Overview
           rating={rating}
           description={description}
           director={director}
           starring={starring}
         />
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+    );
+    const movieRating = overviewComponent.find(`.movie-rating`);
+    const movieText = overviewComponent.find(`.movie-card__text`);
+    expect(movieRating).toHaveLength(1);
+    expect(movieText).toHaveLength(1);
+  });
+
+  test(`should have rating score`, () => {
+    const filmOverviewComponent = mount(
+        <Overview
+          rating={rating}
+          description={description}
+          director={director}
+          starring={starring}
+        />
+    );
+    const movieRatingScore = filmOverviewComponent.find(`.movie-rating__score`).text();
+    expect(movieRatingScore).toBe(`${rating.score}`);
+  });
+
+  test(`should have rating assessment`, () => {
+    const filmOverviewComponent = mount(
+        <Overview
+          rating={rating}
+          description={description}
+          director={director}
+          starring={starring}
+        />
+    );
+    const movieRatingAssessment = filmOverviewComponent.find(`.movie-rating__level`).text();
+    expect(movieRatingAssessment).toBe(`${rating.assessment}`);
+  });
+
+  test(`should have rating count`, () => {
+    const filmOverviewComponent = mount(
+        <Overview
+          rating={rating}
+          description={description}
+          director={director}
+          starring={starring}
+        />
+    );
+    const movieRatingCount = filmOverviewComponent.find(`.movie-rating__count`).text();
+    expect(movieRatingCount.includes(rating.count)).toBeTruthy();
+  });
+
+  test(`should have director`, () => {
+    const filmOverviewComponent = mount(
+        <Overview
+          rating={rating}
+          description={description}
+          director={director}
+          starring={starring}
+        />
+    );
+    const movieDirector = filmOverviewComponent.find(`.movie-card__director`).text();
+    expect(movieDirector.includes(director)).toBeTruthy();
+  });
+
+  test(`should have starring`, () => {
+    const filmOverviewComponent = mount(
+        <Overview
+          rating={rating}
+          description={description}
+          director={director}
+          starring={starring}
+        />
+    );
+    const movieStarring = filmOverviewComponent.find(`.movie-card__starring`).text();
+    let starringString = starring.join(`, `);
+    if (starring.length > 4) {
+      starringString = `${starring.slice(0, 4).join(`, `)} and other`;
+    }
+    expect(movieStarring.includes(starringString)).toBeTruthy();
+  });
 });

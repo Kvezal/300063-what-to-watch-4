@@ -1,13 +1,8 @@
 import * as React from "react";
-import {configure, mount, shallow} from "enzyme";
-import * as Adapter from "enzyme-adapter-react-16";
+import * as render from "react-test-renderer";
 
-import Reviews from "./reviews";
+import Reviews from "@pages/film/reviews/reviews";
 
-
-configure({
-  adapter: new Adapter(),
-});
 
 const reviews = [
   {
@@ -54,27 +49,14 @@ const reviews = [
   },
 ];
 
-describe(`ReviewsComponent`, () => {
-
-  test(`should create component`, () => {
-    const reviewsComponent = shallow(
+test(`should render component`, () => {
+  const tree = render
+    .create(
         <Reviews
           list={reviews}
           separatorColor="#000000"
         />
-    );
-    const reviewsContainer = reviewsComponent.find(`.movie-card__reviews`);
-    expect(reviewsContainer).toHaveLength(1);
-  });
-
-  test(`should have reviews`, () => {
-    const reviewsComponent = mount(
-        <Reviews
-          list={reviews}
-          separatorColor="#000000"
-        />
-    );
-    const reviewsContainer = reviewsComponent.find(`.review`);
-    expect(reviewsContainer).toHaveLength(reviews.length);
-  });
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

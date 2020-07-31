@@ -1,19 +1,14 @@
 import * as React from "react";
-import {configure, shallow} from "enzyme";
-import * as Adapter from "enzyme-adapter-react-16";
+import * as render from "react-test-renderer";
+import {MemoryRouter} from "react-router-dom";
 
+import {EFilmTab} from "@common/enums";
+import Film from "@pages/film/film";
 import {EAuthorizationStatus} from "@store/user/interface";
 
-import MyList from "./my-list";
-
-
-configure({
-  adapter: new Adapter(),
-});
 
 const avatar = `avatar.jpg`;
-
-const films = [
+const likedFilms = [
   {
     id: 1,
     name: `name 1`,
@@ -136,15 +131,26 @@ const films = [
   },
 ];
 
-describe(`MyListPage`, () => {
-  test(`should create component`, () => {
-    const myListComponent = shallow(
-        <MyList
+const tabs = Object.values(EFilmTab);
+
+test(`should render component`, () => {
+  const tree = render.create(
+      <MemoryRouter>
+        <Film
+          likedFilms={likedFilms}
+          onActiveTabChange={() => null}
+          info={likedFilms[0]}
           avatar={avatar}
-          films={films}
+          activeTab={EFilmTab.OVERVIEW}
+          reviews={[]}
+          tabList={tabs}
           authorizationStatus={EAuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => null}
+          onReviewsLoad={() => null}
         />
-    );
-    expect(myListComponent.find(`.user-page`)).toHaveLength(1);
-  });
+      </MemoryRouter>,
+      {createNodeMock: () => ({})}
+  )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

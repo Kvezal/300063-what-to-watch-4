@@ -1,11 +1,17 @@
 import * as React from "react";
-import * as render from "react-test-renderer";
+import {configure, mount, shallow} from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter} from "react-router-dom";
 
 import {EFilmTab} from "@common/enums";
-import Film from "@pages/film/film";
 import {EAuthorizationStatus} from "@store/user/interface";
 
+import Film from "./film";
+
+
+configure({
+  adapter: new Adapter(),
+});
 
 const avatar = `avatar.jpg`;
 const likedFilms = [
@@ -133,24 +139,180 @@ const likedFilms = [
 
 const tabs = Object.values(EFilmTab);
 
-test(`should render component`, () => {
-  const tree = render.create(
-      <MemoryRouter>
+describe(`FilmPage`, () => {
+  test(`should create component`, () => {
+    const filmOverviewComponent = shallow(
         <Film
           likedFilms={likedFilms}
-          onActiveTabChange={() => null}
           info={likedFilms[0]}
           avatar={avatar}
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
           tabList={tabs}
+          onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
           onReviewsLoad={() => null}
         />
-      </MemoryRouter>,
-      {createNodeMock: () => ({})}
-  )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+    );
+    const filmOverview = filmOverviewComponent.find(`section.movie-card--full`);
+    expect(filmOverview).toHaveLength(1);
+  });
+
+  test(`should have liked films`, () => {
+    const filmOverviewComponent = mount(
+        <MemoryRouter>
+          <Film
+            likedFilms={likedFilms}
+            info={likedFilms[0]}
+            avatar={avatar}
+            activeTab={EFilmTab.OVERVIEW}
+            reviews={[]}
+            tabList={tabs}
+            onActiveTabChange={() => null}
+            authorizationStatus={EAuthorizationStatus.AUTH}
+            onFavoriteFilmClick={() => null}
+            onReviewsLoad={() => null}
+          />
+        </MemoryRouter>
+    );
+    const filmCards = filmOverviewComponent.find(`article.small-movie-card`);
+    expect(filmCards).toHaveLength(likedFilms.length);
+  });
+
+  test(`should have film name`, () => {
+    const filmOverviewComponent = shallow(
+        <Film
+          likedFilms={likedFilms}
+          info={likedFilms[0]}
+          avatar={avatar}
+          activeTab={EFilmTab.OVERVIEW}
+          reviews={[]}
+          tabList={tabs}
+          onActiveTabChange={() => null}
+          authorizationStatus={EAuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => null}
+          onReviewsLoad={() => null}
+        />
+    );
+    const filmName = filmOverviewComponent.find(`h2.movie-card__title`).text();
+    expect(filmName).toBe(likedFilms[0].name);
+  });
+
+  test(`should have genres`, () => {
+    const filmOverviewComponent = shallow(
+        <Film
+          likedFilms={likedFilms}
+          info={likedFilms[0]}
+          avatar={avatar}
+          activeTab={EFilmTab.OVERVIEW}
+          reviews={[]}
+          tabList={tabs}
+          onActiveTabChange={() => null}
+          authorizationStatus={EAuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => null}
+          onReviewsLoad={() => null}
+        />
+    );
+    const genres = filmOverviewComponent.find(`.movie-card__genre`).text();
+    expect(genres.includes(likedFilms[0].genre)).toBeTruthy();
+  });
+
+  test(`should have release date`, () => {
+    const filmOverviewComponent = shallow(
+        <Film
+          likedFilms={likedFilms}
+          info={likedFilms[0]}
+          avatar={avatar}
+          activeTab={EFilmTab.OVERVIEW}
+          reviews={[]}
+          tabList={tabs}
+          onActiveTabChange={() => null}
+          authorizationStatus={EAuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => null}
+          onReviewsLoad={() => null}
+        />
+    );
+    const releaseDate = filmOverviewComponent.find(`.movie-card__year`).text();
+    expect(releaseDate).toBe(`${likedFilms[0].releaseDate}`);
+  });
+
+  test(`should have poster`, () => {
+    const filmOverviewComponent = shallow(
+        <Film
+          likedFilms={likedFilms}
+          info={likedFilms[0]}
+          avatar={avatar}
+          activeTab={EFilmTab.OVERVIEW}
+          reviews={[]}
+          tabList={tabs}
+          onActiveTabChange={() => null}
+          authorizationStatus={EAuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => null}
+          onReviewsLoad={() => null}
+        />
+    );
+    const poster = filmOverviewComponent.find(`.movie-card__poster img`).props().src;
+    expect(poster.includes(likedFilms[0].picture.poster)).toBeTruthy();
+  });
+
+  test(`should have cover`, () => {
+    const filmOverviewComponent = shallow(
+        <Film
+          likedFilms={likedFilms}
+          info={likedFilms[0]}
+          avatar={avatar}
+          activeTab={EFilmTab.OVERVIEW}
+          reviews={[]}
+          tabList={tabs}
+          onActiveTabChange={() => null}
+          authorizationStatus={EAuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => null}
+          onReviewsLoad={() => null}
+        />
+    );
+    const cover = filmOverviewComponent.find(`.movie-card__bg img`).props().src;
+    expect(cover.includes(likedFilms[0].picture.cover)).toBeTruthy();
+  });
+
+  test(`add favorite list button should be clicked`, () => {
+    const onFavoriteFilmClick = jest.fn();
+    const mainPage = shallow(
+        <Film
+          likedFilms={likedFilms}
+          info={likedFilms[0]}
+          avatar={avatar}
+          activeTab={EFilmTab.OVERVIEW}
+          reviews={[]}
+          tabList={tabs}
+          onActiveTabChange={() => null}
+          authorizationStatus={EAuthorizationStatus.AUTH}
+          onFavoriteFilmClick={onFavoriteFilmClick}
+          onReviewsLoad={() => null}
+        />
+    );
+    mainPage.find(`button.movie-card__button`).simulate(`click`);
+    expect(onFavoriteFilmClick).toHaveBeenCalledTimes(1);
+  });
+
+  test(`should load review when component updated or mounted`, () => {
+    const onReviewsLoad = jest.fn();
+    const mainPage = shallow(
+        <Film
+          likedFilms={likedFilms}
+          info={likedFilms[0]}
+          avatar={avatar}
+          activeTab={EFilmTab.OVERVIEW}
+          reviews={[]}
+          tabList={tabs}
+          onActiveTabChange={() => null}
+          authorizationStatus={EAuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => null}
+          onReviewsLoad={onReviewsLoad}
+        />
+    );
+    expect(onReviewsLoad).toHaveBeenCalledTimes(1);
+    mainPage.instance().componentDidUpdate();
+    expect(onReviewsLoad).toHaveBeenCalledTimes(2);
+  });
 });
