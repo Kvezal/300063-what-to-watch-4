@@ -40,6 +40,7 @@ const App = () => {
       <Route exact path={EAppRoute.PLAYER} render={(props) =>
         <PlayerWrapper
           {...props}
+          canStop={true}
           muted={false}
           isPlaying={true}
           loadingParams={[`source`, `poster`]}
