@@ -2,6 +2,9 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import {Router, Route} from "react-router-dom";
+
+import history from "@app/history";
 
 import withActiveTab from "./with-active-tab";
 
@@ -34,7 +37,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-describe(`withTabActive`, () => {
+describe(`withActiveTab`, () => {
   const tabs = [
     {name: `Overview`, id: `overview`},
     {name: `Details`, id: `details`},
@@ -43,10 +46,15 @@ describe(`withTabActive`, () => {
 
   test(`should set active tab`, () => {
     const testComponent = mount(
-        <TestComponentWithHOC
-          list={tabs}
-          activeTab={tabs[1].id}
-        />
+        <Router history={history} initialEntries={[`/`]}>
+          <Route path="/" render={(props) =>
+            <TestComponentWithHOC
+              list={tabs}
+              activeTab={tabs[1].id}
+              {...props}
+            />
+          }/>
+        </Router>
     );
     const activeTabText = testComponent.find(`div.active`).text();
     expect(activeTabText).toBe(tabs[1].name);
@@ -54,14 +62,35 @@ describe(`withTabActive`, () => {
 
   test(`should change active tab`, () => {
     const testComponent = mount(
-        <TestComponentWithHOC
-          list={tabs}
-          activeTab={tabs[1].id}
-        />
+        <Router history={history} initialEntries={[`/`]}>
+          <Route path="/" render={(props) =>
+            <TestComponentWithHOC
+              list={tabs}
+              activeTab={tabs[1].id}
+              {...props}
+            />
+          }/>
+        </Router>
     );
     const activeTabs = testComponent.find(`div.test`);
     activeTabs.at(2).simulate(`click`);
-    const activeTabText = testComponent.find(`div.active`).text();
-    expect(activeTabText).toBe(tabs[2].name);
+    expect(testComponent.find(`div.active`).text()).toBe(tabs[2].name);
+
+    activeTabs.at(0).simulate(`click`);
+    expect(testComponent.find(`div.active`).text()).toBe(tabs[0].name);
+
+    activeTabs.at(1).simulate(`click`);
+    expect(testComponent.find(`div.active`).text()).toBe(tabs[1].name);
+  });
+
+  test(`hash should set active tab`, () => {
+    const testComponent = mount(
+        <TestComponentWithHOC
+          list={tabs}
+          activeTab={tabs[1].id}
+          location={{hash: `#${tabs[0].id}`}}
+        />
+    );
+    expect(testComponent.find(`div.active`).text()).toBe(tabs[0].name);
   });
 });

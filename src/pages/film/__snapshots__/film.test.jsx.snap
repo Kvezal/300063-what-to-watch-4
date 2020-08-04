@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FilmDescriptionPage should render component 1`] = `
+exports[`FilmPage should render component 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -104,7 +104,7 @@ Array [
           >
             <a
               className="btn btn--play movie-card__button"
-              href="/player/1"
+              href="/films/1/player"
               onClick={[Function]}
               type="button"
             >

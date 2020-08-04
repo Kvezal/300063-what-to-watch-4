@@ -2,32 +2,29 @@ import {connect} from "react-redux";
 
 import {withLoading} from "@common/hocs";
 import Main from "@pages/main/main";
-import {chooseGenre} from "@store/data/action-creator";
 import {getFilteredFilmsByGenre, getPromoFilm} from "@store/data/selectors";
-import {FavoriteFilmStatus} from "@store/data/const";
 import {changeFavoriteFilmStatus} from "@store/data/operation";
-import {getAuthorizedFlag, getAvatar} from "@store/user/selector";
+import {getAuthorizationStatus, getAvatar} from "@store/user/selector";
+import {FavoriteFilmActionType} from "@store/data/const";
 
 
-const MainWrapper = withLoading(Main, [`promoFilm`, `films`]);
+const MainWrapper = withLoading(Main);
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
   avatar: getAvatar(state),
-  films: getFilteredFilmsByGenre(state),
+  films: getFilteredFilmsByGenre(state, props),
   promoFilm: getPromoFilm(state),
-  isAuthorized: getAuthorizedFlag(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilmsWithGenreChoose: (genre) => {
-    dispatch(chooseGenre(genre));
-  },
-
   onFavoriteFilmClick: (film) => {
-    const favoriteStatus = film.isFavorite ? FavoriteFilmStatus.ADD : FavoriteFilmStatus.DELETE;
-    dispatch(changeFavoriteFilmStatus(film.id, favoriteStatus));
-  }
+    const favoriteFilmActionType = film.isFavorite
+      ? FavoriteFilmActionType.DELETE
+      : FavoriteFilmActionType.ADD;
+    dispatch(changeFavoriteFilmStatus(film.id, favoriteFilmActionType));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainWrapper);

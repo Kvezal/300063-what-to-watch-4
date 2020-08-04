@@ -1,34 +1,18 @@
-import {EGenre} from "@common/enums";
 import {extend} from "@common/utils";
 
-import {ActionType} from "./const";
+import {ActionType, CommentStatus} from "./const";
 
 
 const initialState = {
   films: null,
-  genre: EGenre.ALL,
   promoFilm: null,
   filmReviews: null,
   favoriteFilms: null,
-};
-
-const updateItemFilm = (list, film) => {
-  return list.reduce((result, item) => {
-    if (item.id === film.id) {
-      result.push(film);
-    } else {
-      result.push(item);
-    }
-    return result;
-  }, []);
+  commentStatus: CommentStatus.NONE,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHOOSE_GENRE:
-      return extend(state, {
-        genre: action.payload,
-      });
     case ActionType.LOAD_FILMS:
       return extend(state, {
         films: action.payload,
@@ -45,10 +29,26 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         favoriteFilms: action.payload,
       });
+    case ActionType.CHANGE_COMMENT_STATUS:
+      return extend(state, {
+        commentStatus: action.payload,
+      });
+    case ActionType.ADD_FAVORITE_FILM:
+      return extend(state, {
+        favoriteFilms: state.favoriteFilms.some((film) => film.id === action.payload.id)
+          ? state.favoriteFilms.map((film) => film.id === action.payload.id ? action.payload : film)
+          : state.favoriteFilms.concat(action.payload),
+      });
+    case ActionType.REMOVE_FAVORITE_FILM:
+      return extend(state, {
+        favoriteFilms: state.favoriteFilms.filter((film) => film.id !== action.payload.id),
+      });
     case ActionType.UPDATE_FILM:
       return extend(state, {
-        favoriteFilms: updateItemFilm(state.favoriteFilms, action.payload),
-        films: updateItemFilm(state.films, action.payload),
+        films: state.films.map((film) => film.id === action.payload.id ? action.payload : film),
+      });
+    case ActionType.UPDATE_PROMO_FILM:
+      return extend(state, {
         promoFilm: state.promoFilm.id === action.payload.id ? action.payload : state.promoFilm,
       });
     default:

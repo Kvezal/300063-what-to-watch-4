@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 
 const Rating = (props) => {
-  const {starCount, value, onChange} = props;
+  const {starCount, value, name, onChange, required} = props;
 
   return <div className="rating">
     <div className="rating__stars">
@@ -14,10 +14,11 @@ const Rating = (props) => {
             className="rating__input"
             id={`star-${inputValue}`}
             type="radio"
-            name="rating"
+            name={name}
             value={inputValue}
             onChange={() => onChange(inputValue)}
             checked={value === inputValue}
+            required={required}
           />
           <label className="rating__label" htmlFor={`star-${inputValue}`}/>
         </Fragment>;
@@ -34,6 +35,8 @@ Rating.propTypes = {
   starCount: PropTypes.number.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  required: PropTypes.bool,
+  name: PropTypes.string.isRequired,
 };
 
 export default Rating;

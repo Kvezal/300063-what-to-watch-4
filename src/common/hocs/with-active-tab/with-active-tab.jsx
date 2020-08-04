@@ -1,39 +1,24 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
+
+import history from "@app/history";
 
 
 const withActiveTab = (Component) => {
-  class WithActiveTab extends PureComponent {
-    constructor(props) {
-      super(props);
-
-      this.state = {
-        activeTab: props.activeTab,
-      };
-    }
-
-    render() {
-      const {onActiveTabChange} = this.props;
-      const {activeTab} = this.state;
-
-      return <Component
-        {...this.props}
-        activeTab={activeTab}
-        onActiveTabChange={(tab) => {
-          this.setState({activeTab: tab});
-          onActiveTabChange(tab);
-        }}
-      />;
-    }
-  }
-
-  WithActiveTab.defaultProps = {
-    onActiveTabChange: () => {},
+  const WithActiveTab = (props) => {
+    const {location, activeTab} = props;
+    return <Component
+      {...props}
+      activeTab={decodeURIComponent(location.hash.replace(`#`, ``)) || activeTab}
+      onActiveTabChange={(tab) => history.push(`#${tab}`)}
+    />;
   };
 
   WithActiveTab.propTypes = {
     activeTab: PropTypes.string.isRequired,
-    onActiveTabChange: PropTypes.func.isRequired,
+    location: PropTypes.shape({
+      hash: PropTypes.string,
+    }).isRequired,
   };
 
   return WithActiveTab;

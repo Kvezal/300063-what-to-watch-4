@@ -5,6 +5,7 @@ import Adapter from "enzyme-adapter-react-16";
 
 import AddReview from "./add-review";
 import {MemoryRouter} from "react-router-dom";
+import {AuthorizationStatus} from "@store/user/const";
 
 
 const film = {
@@ -48,9 +49,16 @@ describe(`AddReviewPage`, () => {
         <MemoryRouter>
           <AddReview
             avatar="test-avatar"
-            isAuthorized={true}
+            authorizationStatus={AuthorizationStatus.AUTH}
             film={film}
             onSubmitForm={() => {}}
+            formDisabled={true}
+            formState={{
+              rating: `0`,
+              comment: ``,
+            }}
+            onControlChange={() => {}}
+            onDisabledChange={() => {}}
           />
         </MemoryRouter>
     )
@@ -62,73 +70,139 @@ describe(`AddReviewPage`, () => {
     const addReviewComponent = shallow(
         <AddReview
           avatar="test-avatar"
-          isAuthorized={true}
+          authorizationStatus={AuthorizationStatus.AUTH}
           film={film}
           onSubmitForm={() => {}}
+          formDisabled={false}
+          formState={{
+            rating: `0`,
+            comment: ``,
+          }}
+          onControlChange={() => {}}
+          onDisabledChange={() => {}}
         />
     );
     const addReview = addReviewComponent.find(`.add-review`);
     expect(addReview).toHaveLength(1);
   });
 
-  test(`should disabled button`, () => {
+  test(`should call onDisabledChange`, () => {
+    const onDisabledChange = jest.fn();
     const addReviewComponent = shallow(
-      <AddReview
-        avatar="test-avatar"
-        isAuthorized={true}
-        film={film}
-        onSubmitForm={() => {}}
-      />
+        <AddReview
+          avatar="test-avatar"
+          authorizationStatus={AuthorizationStatus.AUTH}
+          film={film}
+          onSubmitForm={() => {}}
+          formDisabled={false}
+          formState={{
+            rating: `0`,
+            comment: ``,
+          }}
+          onControlChange={() => {}}
+          onDisabledChange={onDisabledChange}
+        />
     );
-    const buttonRef = addReviewComponent.instance()._buttonRef = {
-      current: {
-        disabled: false,
+
+    addReviewComponent.find(`form`).simulate(`change`, {
+      currentTarget: {
+        checkValidity: () => {},
       }
-    };
-    addReviewComponent.instance()._ratingRef.current = {
-      value: `1`,
-    };
-    addReviewComponent.instance()._commentRef.current = {
-      value: new Array(49).fill(0).join(``),
-    };
-    addReviewComponent.find(`.add-review__textarea`).simulate(`change`);
-    expect(buttonRef.current.disabled).toBeTruthy();
+    });
+    expect(onDisabledChange).toBeCalledTimes(1);
+  });
 
-    addReviewComponent.instance()._commentRef.current = {
-      value: new Array(50).fill(0).join(``),
-    };
-    addReviewComponent.find(`.add-review__textarea`).simulate(`change`);
-    expect(buttonRef.current.disabled).toBeFalsy();
+  test(`should call onControlChange`, () => {
+    const onControlChange = jest.fn();
+    const test = `test`;
+    const addReviewComponent = shallow(
+        <AddReview
+          avatar="test-avatar"
+          authorizationStatus={AuthorizationStatus.AUTH}
+          film={film}
+          onSubmitForm={() => {}}
+          formDisabled={false}
+          formState={{
+            rating: `0`,
+            comment: ``,
+          }}
+          onControlChange={onControlChange}
+          onDisabledChange={() => {}}
+        />
+    );
 
-    addReviewComponent.instance()._commentRef.current = {
-      value: new Array(400).fill(0).join(``),
-    };
-    addReviewComponent.find(`.add-review__textarea`).simulate(`change`);
-    expect(buttonRef.current.disabled).toBeFalsy();
-
-    addReviewComponent.instance()._commentRef.current = {
-      value: new Array(401).fill(0).join(``),
-    };
-    addReviewComponent.find(`.add-review__textarea`).simulate(`change`);
-    expect(buttonRef.current.disabled).toBeTruthy();
+    addReviewComponent.find(`.add-review__textarea`).simulate(`change`, {
+      target: {
+        value: test,
+      }
+    });
+    expect(onControlChange).toBeCalledTimes(1);
+    expect(onControlChange).toHaveBeenCalledWith(`comment`, test);
   });
 
   test(`should submit form with correct params`, () => {
     const onSubmitForm = jest.fn();
-    const rating = 5;
+    const rating = `5`;
     const comment = new Array(100).fill(1).join(``);
     const addReviewComponent = shallow(
-      <AddReview
-        avatar="test-avatar"
-        isAuthorized={true}
-        film={film}
-        onSubmitForm={onSubmitForm}
-      />
+        <AddReview
+          avatar="test-avatar"
+          authorizationStatus={AuthorizationStatus.AUTH}
+          film={film}
+          formDisabled={false}
+          formState={{
+            rating,
+            comment,
+          }}
+          onControlChange={() => {}}
+          onDisabledChange={() => {}}
+          onSubmitForm={onSubmitForm}
+        />
     );
-    addReviewComponent.instance()._ratingRef.current = {value: rating};
-    addReviewComponent.instance()._commentRef.current = {value: comment};
     addReviewComponent.find(`form`).simulate(`submit`, {preventDefault: () => {}});
     expect(onSubmitForm).toBeCalledTimes(1);
     expect(onSubmitForm.mock.calls[0][0]).toEqual({rating, comment});
+  });
+
+  test(`submit button should be disabled`, () => {
+    const onSubmitForm = jest.fn();
+    const addReviewComponent = shallow(
+        <AddReview
+          avatar="test-avatar"
+          authorizationStatus={AuthorizationStatus.AUTH}
+          film={film}
+          formDisabled={true}
+          formState={{
+            rating: `0`,
+            comment: ``,
+          }}
+          onControlChange={() => {}}
+          onDisabledChange={() => {}}
+          onSubmitForm={onSubmitForm}
+        />
+    );
+    const submitButton = addReviewComponent.find(`button[type="submit"]`).props().disabled;
+    expect(submitButton).toBeTruthy();
+  });
+
+  test(`submit button shouldn't be disabled`, () => {
+    const onSubmitForm = jest.fn();
+    const addReviewComponent = shallow(
+        <AddReview
+          avatar="test-avatar"
+          authorizationStatus={AuthorizationStatus.AUTH}
+          film={film}
+          formDisabled={false}
+          formState={{
+            rating: `0`,
+            comment: ``,
+          }}
+          onControlChange={() => {}}
+          onDisabledChange={() => {}}
+          onSubmitForm={onSubmitForm}
+        />
+    );
+    const submitButton = addReviewComponent.find(`button[type="submit"]`).props().disabled;
+    expect(submitButton).toBeFalsy();
   });
 });

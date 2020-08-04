@@ -4,6 +4,8 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter} from "react-router-dom";
 
+import {AuthorizationStatus} from "@store/user/const";
+
 import Main from "./main";
 
 
@@ -148,19 +150,20 @@ describe(`MainPage`, () => {
           <MemoryRouter>
             <Main
               promoFilm={films[0]}
+              favoriteFilms={[]}
               genre=""
               onFilterClick={() => {}}
               films={films}
               avatar={avatar}
               onFilmChoose={() => {}}
-              onFilmsWithGenreChoose={() => {}}
               onStepChange={() => {}}
               step={1}
               tabList={filmFilters}
               activeTab={filmFilters[0].id}
               onActiveTabChange={() => {}}
-              isAuthorized={true}
+              authorizationStatus={AuthorizationStatus.AUTH}
               onFavoriteFilmClick={() => {}}
+              onStepReset={() => {}}
             />
           </MemoryRouter>,
           {createNodeMock: () => ({})}
@@ -172,22 +175,23 @@ describe(`MainPage`, () => {
   test(`card titles should be pressed`, () => {
     const onFilmChoose = jest.fn();
     const mainPage = shallow(
-      <Main
-        promoFilm={films[0]}
-        genre=""
-        onFilterClick={() => {}}
-        films={films}
-        avatar={avatar}
-        onFilmChoose={onFilmChoose}
-        onFilmsWithGenreChoose={() => {}}
-        onStepChange={() => {}}
-        step={1}
-        tabList={filmFilters}
-        activeTab={filmFilters[0].id}
-        onActiveTabChange={() => {}}
-        isAuthorized={true}
-        onFavoriteFilmClick={() => {}}
-      />
+        <Main
+          promoFilm={films[0]}
+          favoriteFilms={[]}
+          genre=""
+          onFilterClick={() => {}}
+          films={films}
+          avatar={avatar}
+          onFilmChoose={onFilmChoose}
+          onStepChange={() => {}}
+          step={1}
+          tabList={filmFilters}
+          activeTab={filmFilters[0].id}
+          onActiveTabChange={() => {}}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => {}}
+          onStepReset={() => {}}
+        />
     );
     const mainTitleList = mainPage.find(`a.small-movie-card__link`);
     mainTitleList.forEach((mainTitle) => mainTitle.simulate(`click`));
@@ -198,22 +202,23 @@ describe(`MainPage`, () => {
   test(`add favorite list button should be clicked`, () => {
     const onFavoriteFilmClick = jest.fn();
     const mainPage = shallow(
-      <Main
-        promoFilm={films[0]}
-        genre=""
-        onFilterClick={() => {}}
-        films={films}
-        avatar={avatar}
-        onFilmChoose={() => {}}
-        onFilmsWithGenreChoose={() => {}}
-        onStepChange={() => {}}
-        step={1}
-        tabList={filmFilters}
-        activeTab={filmFilters[0].id}
-        onActiveTabChange={() => {}}
-        isAuthorized={true}
-        onFavoriteFilmClick={onFavoriteFilmClick}
-      />
+        <Main
+          promoFilm={films[0]}
+          favoriteFilms={[]}
+          genre=""
+          onFilterClick={() => {}}
+          films={films}
+          avatar={avatar}
+          onFilmChoose={() => {}}
+          onStepChange={() => {}}
+          step={1}
+          tabList={filmFilters}
+          activeTab={filmFilters[0].id}
+          onActiveTabChange={() => {}}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          onFavoriteFilmClick={onFavoriteFilmClick}
+          onStepReset={() => {}}
+        />
     );
     mainPage.find(`button.movie-card__button`).simulate(`click`);
     expect(onFavoriteFilmClick).toHaveBeenCalledTimes(1);

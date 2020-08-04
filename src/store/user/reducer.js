@@ -1,10 +1,10 @@
 import {extend} from "@common/utils";
 
-import {ActionType, AuthorizationStatus} from "./const";
+import {ActionType} from "./const";
 
 
 const initialState = {
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authorizationStatus: null,
 };
 
 const reducer = (state = initialState, action) => {

@@ -16,8 +16,14 @@ const removeNotificationsByName = (payload) => ({
   payload,
 });
 
+const resetNotification = () => ({
+  type: ActionType.RESET_NOTIFICATIONS,
+  payload: null,
+});
+
 export {
   addNotification,
   removeNotification,
   removeNotificationsByName,
+  resetNotification,
 };

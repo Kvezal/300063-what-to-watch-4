@@ -1,11 +1,6 @@
 import {ActionType} from "./const";
 
 
-const chooseGenre = (payload) => ({
-  type: ActionType.CHOOSE_GENRE,
-  payload,
-});
-
 const loadFilms = (payload) => ({
   type: ActionType.LOAD_FILMS,
   payload,
@@ -26,16 +21,39 @@ const loadFilmReviews = (payload) => ({
   payload,
 });
 
+const changeCommentStatus = (payload) => ({
+  type: ActionType.CHANGE_COMMENT_STATUS,
+  payload,
+});
+
+const addFavoriteFilm = (payload) => ({
+  type: ActionType.ADD_FAVORITE_FILM,
+  payload,
+});
+
+const removeFavoriteFilm = (payload) => ({
+  type: ActionType.REMOVE_FAVORITE_FILM,
+  payload,
+});
+
+const updatePromoFilm = (payload) => ({
+  type: ActionType.UPDATE_PROMO_FILM,
+  payload,
+});
+
 const updateFilm = (payload) => ({
   type: ActionType.UPDATE_FILM,
   payload,
 });
 
 export {
-  chooseGenre,
   loadFilms,
   loadFavoriteFilms,
   loadPromoFilm,
   loadFilmReviews,
+  changeCommentStatus,
+  addFavoriteFilm,
+  removeFavoriteFilm,
+  updatePromoFilm,
   updateFilm,
 };

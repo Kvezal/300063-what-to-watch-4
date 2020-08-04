@@ -4,19 +4,23 @@ import {Link} from "react-router-dom";
 
 import AppRoute from "@app/app-route";
 import history from "@app/history";
+import {withLoading} from "@common/hocs";
+import {EFilmOverviewTab} from "@common/enums";
+import {filmType, reviewType} from "@common/types";
+import {getColorParams} from "@common/utils";
 import FilmList from "@components/film-list/film-list";
 import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import Tabs from "@components/tabs/tabs";
 import User from "@components/user/user";
-import {EFilmOverviewTab} from "@common/enums";
-import {filmType, reviewType} from "@common/types";
-import {getColorParams} from "@common/utils";
+import {AuthorizationStatus} from "@store/user/const";
 
 import Details from "./details/details";
 import Overview from "./overview/overview";
 import Reviews from "./reviews/reviews";
 
+
+const ReviewsWrap = withLoading(Reviews);
 
 const getTab = (activeTab, info, reviews) => {
   const {rating, description, director, starring, genre, runTime, releaseDate, picture} = info;
@@ -34,7 +38,11 @@ const getTab = (activeTab, info, reviews) => {
         hexColor: picture.backgroundColor,
         offset: 20,
       });
-      return <Reviews list={reviews} separatorColor={colors.RGBAWithOffset}/>;
+      return <ReviewsWrap
+        list={reviews}
+        separatorColor={colors.RGBAWithOffset}
+        loadingParams={[`list`]}
+      />;
     case EFilmOverviewTab.OVERVIEW:
     default:
       return <Overview
@@ -46,9 +54,19 @@ const getTab = (activeTab, info, reviews) => {
   }
 };
 
-class FilmDescription extends PureComponent {
+class Film extends PureComponent {
   render() {
-    const {likedFilms, info, avatar, activeTab, tabList, reviews, onActiveTabChange, isAuthorized, onFavoriteFilmClick} = this.props;
+    const {
+      likedFilms,
+      info,
+      avatar,
+      activeTab,
+      tabList,
+      reviews,
+      onActiveTabChange,
+      authorizationStatus,
+      onFavoriteFilmClick,
+    } = this.props;
     const {id, name, genre, releaseDate, picture, isFavorite} = info;
 
     return <Fragment>
@@ -61,7 +79,7 @@ class FilmDescription extends PureComponent {
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header movie-card__head">
             <Logo/>
-            <User avatar={avatar || ``} isAuthorized={isAuthorized}/>
+            <User avatar={avatar || ``} isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}/>
           </header>
 
           <div className="movie-card__wrap">
@@ -83,7 +101,7 @@ class FilmDescription extends PureComponent {
                   </svg>
                   <span>Play</span>
                 </Link>
-                {isAuthorized && (
+                {authorizationStatus === AuthorizationStatus.AUTH && (
                   <Fragment>
                     <button
                       className="btn btn--list movie-card__button"
@@ -162,7 +180,7 @@ class FilmDescription extends PureComponent {
   }
 }
 
-FilmDescription.propTypes = {
+Film.propTypes = {
   info: PropTypes.shape(filmType),
   likedFilms: PropTypes.arrayOf(
       PropTypes.shape(filmType)
@@ -179,9 +197,9 @@ FilmDescription.propTypes = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape(reviewType)
   ),
-  isAuthorized: PropTypes.bool.isRequired,
-  onFavoriteFilmClick: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   onReviewsLoad: PropTypes.func.isRequired,
+  onFavoriteFilmClick: PropTypes.func.isRequired,
 };
 
-export default FilmDescription;
+export default Film;

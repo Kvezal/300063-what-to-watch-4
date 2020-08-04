@@ -11,13 +11,26 @@ import FilmList from "@components/film-list/film-list";
 import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import User from "@components/user/user";
+import {AuthorizationStatus} from "@store/user/const";
 
 
 const FILM_COUNT_IN_ONE_STEP = 8;
 
 const Main = (props) => {
-  const {promoFilm, films, avatar, onStepChange, step, tabList, activeTab, onActiveTabChange, onFilmsWithGenreChoose, isAuthorized, onFavoriteFilmClick} = props;
-  const {id: promoFilmId, genre, releaseDate, name, picture} = promoFilm;
+  const {
+    authorizationStatus,
+    tabList,
+    activeTab,
+    step,
+    promoFilm,
+    films,
+    avatar,
+    onActiveTabChange,
+    onStepChange,
+    onStepReset,
+    onFavoriteFilmClick,
+  } = props;
+  const {id: promoFilmId, genre, releaseDate, name, picture, isFavorite} = promoFilm;
 
   return <Fragment>
     <section className="movie-card">
@@ -28,7 +41,7 @@ const Main = (props) => {
       <h1 className="visually-hidden">WTW</h1>
       <header className="page-header movie-card__head">
         <Logo/>
-        <User avatar={avatar} isAuthorized={isAuthorized}/>
+        <User avatar={avatar} isAuthorized={authorizationStatus === AuthorizationStatus.AUTH}/>
       </header>
 
       <div className="movie-card__wrap">
@@ -55,15 +68,20 @@ const Main = (props) => {
                 </svg>
                 <span>Play</span>
               </Link>
-              {isAuthorized && (
+              {authorizationStatus === AuthorizationStatus.AUTH && (
                 <button
                   className="btn btn--list movie-card__button"
                   type="button"
                   onClick={() => onFavoriteFilmClick(promoFilm)}
                 >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"/>
-                  </svg>
+                  {isFavorite
+                    ? <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"/>
+                    </svg>
+                    : <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"/>
+                    </svg>
+                  }
                   <span>My list</span>
                 </button>
               )}
@@ -81,7 +99,7 @@ const Main = (props) => {
           list={tabList}
           onItemClick={(id) => {
             onActiveTabChange(id);
-            onFilmsWithGenreChoose(id);
+            onStepReset();
           }}
           activeItem={activeTab}
         />
@@ -107,13 +125,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promoFilm: PropTypes.shape(filmType).isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape(filmType)
-  ).isRequired,
-  avatar: PropTypes.string,
-  onStepChange: PropTypes.func.isRequired,
-  step: PropTypes.number.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   tabList: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
@@ -121,9 +133,15 @@ Main.propTypes = {
       })
   ).isRequired,
   activeTab: PropTypes.string.isRequired,
+  step: PropTypes.number.isRequired,
+  promoFilm: PropTypes.shape(filmType).isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape(filmType)
+  ).isRequired,
+  avatar: PropTypes.string,
   onActiveTabChange: PropTypes.func.isRequired,
-  onFilmsWithGenreChoose: PropTypes.func.isRequired,
-  isAuthorized: PropTypes.bool.isRequired,
+  onStepChange: PropTypes.func.isRequired,
+  onStepReset: PropTypes.func.isRequired,
   onFavoriteFilmClick: PropTypes.func.isRequired,
 };
 

@@ -70,10 +70,10 @@ describe(`ReviewsComponent`, () => {
 
   test(`should create component`, () => {
     const reviewsComponent = shallow(
-      <Reviews
-        list={reviews}
-        separatorColor="#000000"
-      />
+        <Reviews
+          list={reviews}
+          separatorColor="#000000"
+        />
     );
     const reviewsContainer = reviewsComponent.find(`.movie-card__reviews`);
     expect(reviewsContainer).toHaveLength(1);
@@ -81,10 +81,10 @@ describe(`ReviewsComponent`, () => {
 
   test(`should have reviews`, () => {
     const reviewsComponent = mount(
-      <Reviews
-        list={reviews}
-        separatorColor="#000000"
-      />
+        <Reviews
+          list={reviews}
+          separatorColor="#000000"
+        />
     );
     const reviewsContainer = reviewsComponent.find(`.review`);
     expect(reviewsContainer).toHaveLength(reviews.length);

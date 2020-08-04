@@ -5,7 +5,7 @@ import Player from "@pages/player/player";
 import {getCurrentFilmPicturePreview, getCurrentFilmVideoSource} from "@store/data/selectors";
 
 
-const PlayerWrapper = withLoading(withVideoPlayer(Player), [`source`, `poster`]);
+const PlayerWrapper = withLoading(withVideoPlayer(Player));
 
 const mapStateToProps = (state, props) => ({
   source: getCurrentFilmVideoSource(state, props),

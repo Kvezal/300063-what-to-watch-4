@@ -57,10 +57,10 @@ describe(`NotificationListComponent`, () => {
 
   test(`should create component`, () => {
     const notificationListComponent = shallow(
-      <NotificationList
-        list={notifications}
-        onCloseNotification={() => {}}
-      />
+        <NotificationList
+          list={notifications}
+          onCloseNotification={() => {}}
+        />
     );
     const notificationList = notificationListComponent.find(`ul.notification-list`);
     expect(notificationList).toHaveLength(1);
@@ -68,10 +68,10 @@ describe(`NotificationListComponent`, () => {
 
   test(`should have notifications`, () => {
     const notificationListComponent = shallow(
-      <NotificationList
-        list={notifications}
-        onCloseNotification={() => {}}
-      />
+        <NotificationList
+          list={notifications}
+          onCloseNotification={() => {}}
+        />
     );
     const notificationItems = notificationListComponent.find(`.notification-list__item`);
     expect(notificationItems).toHaveLength(notifications.length);
@@ -80,11 +80,11 @@ describe(`NotificationListComponent`, () => {
   test(`should limit notification count`, () => {
     const maxItems = 3;
     const notificationListComponent = shallow(
-      <NotificationList
-        list={notifications}
-        onCloseNotification={() => {}}
-        maxItems={maxItems}
-      />
+        <NotificationList
+          list={notifications}
+          onCloseNotification={() => {}}
+          maxItems={maxItems}
+        />
     );
     const notificationItems = notificationListComponent.find(`.notification-list__item`);
     expect(notificationItems).toHaveLength(maxItems);

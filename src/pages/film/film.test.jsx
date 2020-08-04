@@ -5,8 +5,9 @@ import Adapter from "enzyme-adapter-react-16";
 import {MemoryRouter} from "react-router-dom";
 
 import {EFilmOverviewTab} from "@common/enums";
+import {AuthorizationStatus} from "@store/user/const";
 
-import FilmDescription from "./film-description";
+import Film from "./film";
 
 
 const avatar = `avatar.jpg`;
@@ -143,13 +144,14 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-describe(`FilmDescriptionPage`, () => {
+describe(`FilmPage`, () => {
   test(`should render component`, () => {
     const tree = render
       .create(
           <MemoryRouter>
-            <FilmDescription
+            <Film
               likedFilms={likedFilms}
+              favoriteFilms={[]}
               onActiveTabChange={() => {}}
               info={likedFilms[0]}
               avatar={avatar}
@@ -158,7 +160,7 @@ describe(`FilmDescriptionPage`, () => {
               activeTab={`overview`}
               reviews={[]}
               tabList={tabList}
-              isAuthorized={true}
+              authorizationStatus={AuthorizationStatus.AUTH}
               onFavoriteFilmClick={() => {}}
               onReviewsLoad={() => {}}
             />
@@ -171,30 +173,9 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should create component`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
-        likedFilms={likedFilms}
-        info={likedFilms[0]}
-        avatar={avatar}
-        onFilmChoose={() => {}}
-        renderTabs={() => {}}
-        activeTab={`overview`}
-        reviews={[]}
-        tabList={tabList}
-        onActiveTabChange={() => {}}
-        isAuthorized={true}
-        onFavoriteFilmClick={() => {}}
-        onReviewsLoad={() => {}}
-      />
-    );
-    const filmOverview = filmOverviewComponent.find(`section.movie-card--full`);
-    expect(filmOverview).toHaveLength(1);
-  });
-
-  test(`should have liked films`, () => {
-    const filmOverviewComponent = mount(
-      <MemoryRouter>
-        <FilmDescription
+        <Film
           likedFilms={likedFilms}
+          favoriteFilms={[]}
           info={likedFilms[0]}
           avatar={avatar}
           onFilmChoose={() => {}}
@@ -203,11 +184,34 @@ describe(`FilmDescriptionPage`, () => {
           reviews={[]}
           tabList={tabList}
           onActiveTabChange={() => {}}
-          isAuthorized={true}
+          authorizationStatus={AuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => {}}
           onReviewsLoad={() => {}}
         />
-      </MemoryRouter>
+    );
+    const filmOverview = filmOverviewComponent.find(`section.movie-card--full`);
+    expect(filmOverview).toHaveLength(1);
+  });
+
+  test(`should have liked films`, () => {
+    const filmOverviewComponent = mount(
+        <MemoryRouter>
+          <Film
+            likedFilms={likedFilms}
+            favoriteFilms={[]}
+            info={likedFilms[0]}
+            avatar={avatar}
+            onFilmChoose={() => {}}
+            renderTabs={() => {}}
+            activeTab={`overview`}
+            reviews={[]}
+            tabList={tabList}
+            onActiveTabChange={() => {}}
+            authorizationStatus={AuthorizationStatus.AUTH}
+            onFavoriteFilmClick={() => {}}
+            onReviewsLoad={() => {}}
+          />
+        </MemoryRouter>
     );
     const filmCards = filmOverviewComponent.find(`article.small-movie-card`);
     expect(filmCards).toHaveLength(likedFilms.length);
@@ -215,20 +219,21 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should have film name`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
-        likedFilms={likedFilms}
-        info={likedFilms[0]}
-        avatar={avatar}
-        onFilmChoose={() => {}}
-        renderTabs={() => {}}
-        activeTab={`overview`}
-        reviews={[]}
-        tabList={tabList}
-        onActiveTabChange={() => {}}
-        isAuthorized={true}
-        onFavoriteFilmClick={() => {}}
-        onReviewsLoad={() => {}}
-      />
+        <Film
+          likedFilms={likedFilms}
+          favoriteFilms={[]}
+          info={likedFilms[0]}
+          avatar={avatar}
+          onFilmChoose={() => {}}
+          renderTabs={() => {}}
+          activeTab={`overview`}
+          reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => {}}
+          onReviewsLoad={() => {}}
+        />
     );
     const filmName = filmOverviewComponent.find(`h2.movie-card__title`).text();
     expect(filmName).toBe(likedFilms[0].name);
@@ -236,20 +241,21 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should have genres`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
-        likedFilms={likedFilms}
-        info={likedFilms[0]}
-        avatar={avatar}
-        onFilmChoose={() => {}}
-        renderTabs={() => {}}
-        activeTab={`overview`}
-        reviews={[]}
-        tabList={tabList}
-        onActiveTabChange={() => {}}
-        isAuthorized={true}
-        onFavoriteFilmClick={() => {}}
-        onReviewsLoad={() => {}}
-      />
+        <Film
+          likedFilms={likedFilms}
+          favoriteFilms={[]}
+          info={likedFilms[0]}
+          avatar={avatar}
+          onFilmChoose={() => {}}
+          renderTabs={() => {}}
+          activeTab={`overview`}
+          reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => {}}
+          onReviewsLoad={() => {}}
+        />
     );
     const genres = filmOverviewComponent.find(`.movie-card__genre`).text();
     expect(genres.includes(likedFilms[0].genre)).toBeTruthy();
@@ -257,20 +263,21 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should have release date`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
-        likedFilms={likedFilms}
-        info={likedFilms[0]}
-        avatar={avatar}
-        onFilmChoose={() => {}}
-        renderTabs={() => {}}
-        activeTab={`overview`}
-        reviews={[]}
-        tabList={tabList}
-        onActiveTabChange={() => {}}
-        isAuthorized={true}
-        onFavoriteFilmClick={() => {}}
-        onReviewsLoad={() => {}}
-      />
+        <Film
+          likedFilms={likedFilms}
+          favoriteFilms={[]}
+          info={likedFilms[0]}
+          avatar={avatar}
+          onFilmChoose={() => {}}
+          renderTabs={() => {}}
+          activeTab={`overview`}
+          reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => {}}
+          onReviewsLoad={() => {}}
+        />
     );
     const releaseDate = filmOverviewComponent.find(`.movie-card__year`).text();
     expect(releaseDate).toBe(`${likedFilms[0].releaseDate}`);
@@ -278,20 +285,21 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should have poster`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
-        likedFilms={likedFilms}
-        info={likedFilms[0]}
-        avatar={avatar}
-        onFilmChoose={() => {}}
-        renderTabs={() => {}}
-        activeTab={`overview`}
-        reviews={[]}
-        tabList={tabList}
-        onActiveTabChange={() => {}}
-        isAuthorized={true}
-        onFavoriteFilmClick={() => {}}
-        onReviewsLoad={() => {}}
-      />
+        <Film
+          likedFilms={likedFilms}
+          favoriteFilms={[]}
+          info={likedFilms[0]}
+          avatar={avatar}
+          onFilmChoose={() => {}}
+          renderTabs={() => {}}
+          activeTab={`overview`}
+          reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => {}}
+          onReviewsLoad={() => {}}
+        />
     );
     const poster = filmOverviewComponent.find(`.movie-card__poster img`).props().src;
     expect(poster.includes(likedFilms[0].picture.poster)).toBeTruthy();
@@ -299,20 +307,21 @@ describe(`FilmDescriptionPage`, () => {
 
   test(`should have cover`, () => {
     const filmOverviewComponent = shallow(
-      <FilmDescription
-        likedFilms={likedFilms}
-        info={likedFilms[0]}
-        avatar={avatar}
-        onFilmChoose={() => {}}
-        renderTabs={() => {}}
-        activeTab={`overview`}
-        reviews={[]}
-        tabList={tabList}
-        onActiveTabChange={() => {}}
-        isAuthorized={true}
-        onFavoriteFilmClick={() => {}}
-        onReviewsLoad={() => {}}
-      />
+        <Film
+          likedFilms={likedFilms}
+          favoriteFilms={[]}
+          info={likedFilms[0]}
+          avatar={avatar}
+          onFilmChoose={() => {}}
+          renderTabs={() => {}}
+          activeTab={`overview`}
+          reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => {}}
+          onReviewsLoad={() => {}}
+        />
     );
     const cover = filmOverviewComponent.find(`.movie-card__bg img`).props().src;
     expect(cover.includes(likedFilms[0].picture.cover)).toBeTruthy();
@@ -321,20 +330,21 @@ describe(`FilmDescriptionPage`, () => {
   test(`add favorite list button should be clicked`, () => {
     const onFavoriteFilmClick = jest.fn();
     const mainPage = shallow(
-      <FilmDescription
-        likedFilms={likedFilms}
-        info={likedFilms[0]}
-        avatar={avatar}
-        onFilmChoose={() => {}}
-        renderTabs={() => {}}
-        activeTab={`overview`}
-        reviews={[]}
-        tabList={tabList}
-        onActiveTabChange={() => {}}
-        isAuthorized={true}
-        onFavoriteFilmClick={onFavoriteFilmClick}
-        onReviewsLoad={() => {}}
-      />
+        <Film
+          likedFilms={likedFilms}
+          favoriteFilms={[]}
+          info={likedFilms[0]}
+          avatar={avatar}
+          onFilmChoose={() => {}}
+          renderTabs={() => {}}
+          activeTab={`overview`}
+          reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          onFavoriteFilmClick={onFavoriteFilmClick}
+          onReviewsLoad={() => {}}
+        />
     );
     mainPage.find(`button.movie-card__button`).simulate(`click`);
     expect(onFavoriteFilmClick).toHaveBeenCalledTimes(1);
@@ -343,20 +353,21 @@ describe(`FilmDescriptionPage`, () => {
   test(`should be called when component updated`, () => {
     const onReviewsLoad = jest.fn();
     const mainPage = shallow(
-      <FilmDescription
-        likedFilms={likedFilms}
-        info={likedFilms[0]}
-        avatar={avatar}
-        onFilmChoose={() => {}}
-        renderTabs={() => {}}
-        activeTab={`overview`}
-        reviews={[]}
-        tabList={tabList}
-        onActiveTabChange={() => {}}
-        isAuthorized={true}
-        onFavoriteFilmClick={() => {}}
-        onReviewsLoad={onReviewsLoad}
-      />
+        <Film
+          likedFilms={likedFilms}
+          favoriteFilms={[]}
+          info={likedFilms[0]}
+          avatar={avatar}
+          onFilmChoose={() => {}}
+          renderTabs={() => {}}
+          activeTab={`overview`}
+          reviews={[]}
+          tabList={tabList}
+          onActiveTabChange={() => {}}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          onFavoriteFilmClick={() => {}}
+          onReviewsLoad={onReviewsLoad}
+        />
     );
     expect(onReviewsLoad).toHaveBeenCalledTimes(1);
     mainPage.instance().componentDidUpdate();

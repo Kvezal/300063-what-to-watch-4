@@ -119,6 +119,7 @@ exports[`AddReviewPage should render component 1`] = `
     <form
       action="#"
       className="add-review__form"
+      onChange={[Function]}
       onSubmit={[Function]}
     >
       <div
@@ -133,6 +134,7 @@ exports[`AddReviewPage should render component 1`] = `
             id="star-1"
             name="rating"
             onChange={[Function]}
+            required={true}
             type="radio"
             value="1"
           />
@@ -146,6 +148,7 @@ exports[`AddReviewPage should render component 1`] = `
             id="star-2"
             name="rating"
             onChange={[Function]}
+            required={true}
             type="radio"
             value="2"
           />
@@ -159,6 +162,7 @@ exports[`AddReviewPage should render component 1`] = `
             id="star-3"
             name="rating"
             onChange={[Function]}
+            required={true}
             type="radio"
             value="3"
           />
@@ -172,6 +176,7 @@ exports[`AddReviewPage should render component 1`] = `
             id="star-4"
             name="rating"
             onChange={[Function]}
+            required={true}
             type="radio"
             value="4"
           />
@@ -185,6 +190,7 @@ exports[`AddReviewPage should render component 1`] = `
             id="star-5"
             name="rating"
             onChange={[Function]}
+            required={true}
             type="radio"
             value="5"
           />
@@ -204,10 +210,14 @@ exports[`AddReviewPage should render component 1`] = `
       >
         <textarea
           className="add-review__textarea"
+          defaultValue=""
           id="review-text"
+          maxLength="400"
+          minLength="50"
           name="review-text"
           onChange={[Function]}
           placeholder="Review text"
+          required={true}
         />
         <div
           className="add-review__submit"

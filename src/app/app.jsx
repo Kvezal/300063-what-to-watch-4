@@ -3,17 +3,21 @@ import {Switch, Route, Router} from "react-router-dom";
 
 import AppRoute from "@app/app-route";
 import history from "@app/history";
-import AddReview from "@containers/add-review";
-import FilmDescription from "@containers/film-description";
-import Main from "@containers/main";
-import Player from "@containers/player";
-import SignIn from "@containers/sign-in";
 import {EFilmOverviewTab, EGenre} from "@common/enums";
 import {withActiveTab, withNotifications, withStep} from "@common/hocs";
+import AddReview from "@containers/add-review";
+import Film from "@containers/film";
+import Main from "@containers/main";
+import Player from "@containers/player";
+import PrivateRoute from "@containers/private-route";
+import SignIn from "@containers/sign-in";
+import MyList from "@containers/my-list";
 
 
+const AddReviewWrapper = withNotifications(AddReview);
+const FilmWrapper = withNotifications(withActiveTab(Film));
 const MainWrapper = withNotifications(withActiveTab(withStep(Main)));
-const FilmDescriptionWrapper = withNotifications(withActiveTab(FilmDescription));
+const MyListWrapper = withNotifications(MyList);
 const PlayerWrapper = withNotifications(Player);
 
 const App = () => {
@@ -38,28 +42,57 @@ const App = () => {
 
   return <Router history={history}>
     <Switch>
-      <Route exact path={AppRoute.ROOT} render={() => {
+      <Route exact path={AppRoute.ROOT} render={(props) => {
         return <MainWrapper
           tabList={filmFilters}
           activeTab={EGenre.ALL}
+          loadingParams={[`promoFilm`, `films`, `authorizationStatus`]}
+          {...props}
         />;
       }}/>
       <Route exact path={AppRoute.PLAYER} render={(props) =>
         <PlayerWrapper
           muted={false}
           isPlaying={true}
+          loadingParams={[`source`, `poster`]}
           {...props}
         />
       }/>
-      <Route exact path={AppRoute.LOGIN} render={() => <SignIn/>}/>
-      <Route exact path={AppRoute.REVIEW} render={(props) => <AddReview {...props}/>}/>
+      <Route exact path={AppRoute.LOGIN} render={() =>
+        <SignIn
+          initialFormState={{
+            email: ``,
+            password: ``,
+          }}
+          initialFormDisabled={true}
+          loadingParams={[`authorizationStatus`]}
+        />
+      }/>
+      <PrivateRoute exact path={AppRoute.REVIEW} render={(props) =>
+        <AddReviewWrapper
+          initialFormState={{
+            rating: `0`,
+            comment: ``,
+          }}
+          initialFormDisabled={true}
+          loadingParams={[`film`]}
+          {...props}
+        />}
+      />
       <Route exact path={AppRoute.FILMS} render={(props) =>
-        <FilmDescriptionWrapper
-          baseTab="overview"
+        <FilmWrapper
           tabList={filmDescriptionTabList}
           activeTab={EFilmOverviewTab.OVERVIEW}
+          loadingParams={[`info`, `likedFilms`]}
           {...props}
-        />}/>
+        />}
+      />
+      <PrivateRoute exact path={AppRoute.MY_LIST} render={(props) =>
+        <MyListWrapper
+          loadingParams={[`films`, `authorizationStatus`]}
+          {...props}
+        />}
+      />
     </Switch>
   </Router>;
 };

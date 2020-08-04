@@ -1,15 +1,17 @@
 import {nanoid} from "nanoid";
+import {UNAUTHORIZED} from "http-status-codes";
 
 import {AppRoute, history} from "@app";
 import {adaptFilm, adaptReview} from "@common/adapter";
 import {ID_LENGTH} from "@store/const";
-import {FavoriteFilmStatus} from "@store/data/const";
+import {CommentStatus, FavoriteFilmActionType} from "@store/data/const";
 import {getCurrentFilmId} from "@store/data/selectors";
 import {addNotification} from "@store/notification/action-creator";
 import {NotificationType, HTTPMethod} from "@store/notification/const";
 
 import * as ActionCreator from "./action-creator";
 import {DataErrorNotificationName, URLHandlerPath} from "./const";
+import {changeCommentStatus} from "./action-creator";
 
 
 const loadFilms = () => (dispatch, getState, api) => {
@@ -38,7 +40,10 @@ const loadPromoFilm = () => (dispatch, getState, api) => {
     .then((film) => {
       dispatch(ActionCreator.loadPromoFilm(film));
     })
-    .catch(() => {
+    .catch((error) => {
+      if (error.response.status === UNAUTHORIZED) {
+        return;
+      }
       dispatch(addNotification({
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
@@ -58,7 +63,10 @@ const loadFilmReviews = (filmId) => (dispatch, getState, api) => {
     .then((reviews) => {
       dispatch(ActionCreator.loadFilmReviews(reviews));
     })
-    .catch(() => {
+    .catch((error) => {
+      if (error.response.status === UNAUTHORIZED) {
+        return;
+      }
       dispatch(addNotification({
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
@@ -75,7 +83,10 @@ const loadFavoriteFilms = () => (dispatch, getState, api) => {
     .get(URLHandlerPath.FAVORITE_FILM_LIST)
     .then((response) => response.data.map((films) => adaptFilm(films)))
     .then((reviews) => dispatch(ActionCreator.loadFavoriteFilms(reviews)))
-    .catch(() => {
+    .catch((error) => {
+      if (error.response.status === UNAUTHORIZED) {
+        return;
+      }
       dispatch(addNotification({
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
@@ -94,15 +105,22 @@ const postReview = (commentData, props) => (dispatch, getState, api) => {
     .then(() => {
       history.push(AppRoute.FILMS.replace(`:filmId`, filmId));
     })
-    .catch(() => {
-      dispatch(addNotification({
+    .catch((error) => {
+      if (error.response.status === UNAUTHORIZED) {
+        return;
+      }
+      const notification = {
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
         name: DataErrorNotificationName.FILM_COMMENT,
         method: HTTPMethod.POST,
         title: `Post film comment error`,
-        text: `Try to reload page`,
-      }));
+        text: `Try to send comment again`,
+      };
+      dispatch([
+        changeCommentStatus(CommentStatus.ERROR),
+        addNotification(notification)
+      ]);
     });
 };
 
@@ -110,14 +128,24 @@ const changeFavoriteFilmStatus = (filmId, status) => (dispatch, getState, api) =
   const path = URLHandlerPath.FAVORITE_FILM.replace(`:filmId`, filmId).replace(`:status`, status);
   return api.post(path)
     .then((response) => adaptFilm(response.data))
-    .then((film) => dispatch(ActionCreator.updateFilm(film)))
-    .catch(() => {
+    .then((film) => {
+      const favoriteFilmAction = film.isFavorite ? ActionCreator.addFavoriteFilm : ActionCreator.removeFavoriteFilm;
+      dispatch([
+        favoriteFilmAction(film),
+        ActionCreator.updateFilm(film),
+        ActionCreator.updatePromoFilm(film)
+      ]);
+    })
+    .catch((error) => {
+      if (error.response.status === UNAUTHORIZED) {
+        return;
+      }
       dispatch(addNotification({
         id: nanoid(ID_LENGTH),
         type: NotificationType.ERROR,
         name: DataErrorNotificationName.FAVORITE_FILM_STATUS,
         method: HTTPMethod.POST,
-        title: status === FavoriteFilmStatus.ADD ? `Error adding film to favorite list` : `Error deleting film from favorite list`,
+        title: status === FavoriteFilmActionType.ADD ? `Error adding film to favorite list` : `Error deleting film from favorite list`,
         text: `Try to add film to favorite list again`,
       }));
     });

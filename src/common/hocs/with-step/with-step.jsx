@@ -7,7 +7,6 @@ const withStep = (Component) => {
     constructor(props) {
       super(props);
 
-      this._handleStepChange = this._handleStepChange.bind(this);
       this.state = {
         step: props.step,
       };
@@ -15,19 +14,22 @@ const withStep = (Component) => {
 
     render() {
       const {step} = this.state;
+      const {step: defaultStep} = this.props;
 
       return <Component
         {...this.props}
         step={step}
-        onStepChange={this._handleStepChange}
+        onStepChange={() => {
+          this.setState({
+            step: step + 1,
+          });
+        }}
+        onStepReset={() => {
+          this.setState({
+            step: defaultStep,
+          });
+        }}
       />;
-    }
-
-    _handleStepChange() {
-      const {step} = this.state;
-      this.setState({
-        step: step + 1
-      });
     }
   }
 

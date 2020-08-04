@@ -1,6 +1,5 @@
 import {createSelector} from "reselect";
 
-import {AuthorizationStatus} from "@store/user/const";
 import NameSpace from "@store/name-space";
 
 
@@ -14,11 +13,6 @@ const getUser = (state) => {
   return state[NAME_SPACE].user;
 };
 
-const getAuthorizedFlag = createSelector(
-    getAuthorizationStatus,
-    (authorizationStatus) => authorizationStatus === AuthorizationStatus.AUTH
-);
-
 const getAvatar = createSelector(
     getUser,
     (user) => {
@@ -29,6 +23,5 @@ const getAvatar = createSelector(
 export {
   getAuthorizationStatus,
   getUser,
-  getAuthorizedFlag,
   getAvatar,
 };

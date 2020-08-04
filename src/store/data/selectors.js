@@ -18,8 +18,8 @@ const getCurrentFilmId = (state, props) => {
   return Number(props.match.params.filmId);
 };
 
-const getCurrentGenre = (state) => {
-  return state[NAME_SPACE].genre;
+const getHash = (state, props) => {
+  return decodeURIComponent(props.location.hash);
 };
 
 const getReviews = (state) => {
@@ -29,6 +29,15 @@ const getReviews = (state) => {
 const getFavoriteFilms = (state) => {
   return state[NAME_SPACE].favoriteFilms;
 };
+
+const getCommentStatus = (state) => {
+  return state[NAME_SPACE].commentStatus;
+};
+
+const getCurrentGenre = createSelector(
+    getHash,
+    (hash) => (hash.replace(`#`, ``) || EGenre.ALL)
+);
 
 const getCurrentFilm = createSelector(
     getFilms,
@@ -55,7 +64,7 @@ const getFilteredFilmsByGenre = createSelector(
     getFilms,
     getCurrentGenre,
     (films, genre) => {
-      if (genre === EGenre.ALL) {
+      if (!films || genre === EGenre.ALL) {
         return films;
       }
       return films.filter((film) => film.genre === genre);
@@ -72,13 +81,13 @@ const getCurrentFilmPicturePreview = createSelector(
     (film) => film && film.picture.preview
 );
 
-
 export {
   getFilms,
   getPromoFilm,
   getReviews,
   getCurrentFilmId,
   getFavoriteFilms,
+  getCommentStatus,
   getLikedFilms,
   getCurrentFilm,
   getFilteredFilmsByGenre,

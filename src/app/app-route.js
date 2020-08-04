@@ -4,7 +4,7 @@ const AppRoute = {
   REVIEW: `/films/:filmId/review`,
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
-  PLAYER: `/player/:filmId`,
+  PLAYER: `/films/:filmId/player`,
 };
 
 export default AppRoute;

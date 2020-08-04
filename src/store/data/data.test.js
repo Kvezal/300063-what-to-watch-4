@@ -2,10 +2,10 @@ import MockAdapter from "axios-mock-adapter";
 
 import {adaptFilm, adaptReview} from "@common/adapter";
 import {extend} from "@common/utils";
-import {EGenre} from "@common/enums";
 import createAPI from "@services/api";
+import {FavoriteFilmActionType} from "@store/data/const";
 
-import {ActionType} from "./const";
+import {ActionType, CommentStatus} from "./const";
 import * as ActionCreator from "./action-creator";
 import reducer from "./reducer";
 import * as Operation from "./operation";
@@ -14,13 +14,15 @@ import * as Operation from "./operation";
 const api = createAPI(() => {});
 
 const initialState = {
-  genre: EGenre.ALL,
   films: null,
   promoFilm: null,
   filmReviews: null,
   favoriteFilms: null,
+  commentStatus: CommentStatus.NONE,
 };
 
+// imitation of server data before adaptation
+/* eslint-disable camelcase */
 const filmFromServer = {
   id: 3,
   name: `name 3`,
@@ -38,8 +40,9 @@ const filmFromServer = {
   run_time: 229,
   genre: `Crime`,
   released: 1984,
-  is_favorite: false
+  is_favorite: true
 };
+/* eslint-enable camelcase */
 
 const filmReviewFromServer = {
   id: 1,
@@ -206,6 +209,37 @@ const films = [
   },
 ];
 
+const film = {
+  id: 5,
+  name: `name 5`,
+  genre: `Comedy`,
+  runTime: `3h 49m`,
+  releaseDate: 1984,
+  description: `description 5`,
+  director: `director 5`,
+  rating: {
+    score: 9.9,
+    count: 276395,
+    assessment: `Very good`,
+  },
+  source: {
+    video: `video5`,
+    previewVideo: `previewVideo5`,
+  },
+  picture: {
+    poster: `poster5`,
+    preview: `preview5`,
+    cover: `cover5`,
+    backgroundColor: `color5`,
+  },
+  starring: [
+    `Robert De Niro`,
+    `James Woods`,
+    `Elizabeth McGovern`
+  ],
+  isFavorite: true,
+};
+
 const reviews = [
   {
     text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
@@ -254,15 +288,6 @@ describe(`DataReducer`, () => {
       });
   });
 
-  test(`choose genre action should return correct object`, () => {
-    const genre = `test`;
-    expect(ActionCreator.chooseGenre(genre))
-      .toEqual({
-        type: ActionType.CHOOSE_GENRE,
-        payload: genre,
-      });
-  });
-
   test(`load promo film action should return correct object`, () => {
     expect(ActionCreator.loadPromoFilm(promoFilm))
       .toEqual({
@@ -287,11 +312,47 @@ describe(`DataReducer`, () => {
       });
   });
 
+  test(`add favorite film action should return correct object`, () => {
+    expect(ActionCreator.addFavoriteFilm(film))
+      .toEqual({
+        type: ActionType.ADD_FAVORITE_FILM,
+        payload: film,
+      });
+  });
+
+  test(`remove favorite film action should return correct object`, () => {
+    expect(ActionCreator.removeFavoriteFilm(film))
+      .toEqual({
+        type: ActionType.REMOVE_FAVORITE_FILM,
+        payload: film,
+      });
+  });
+
+  test.each([
+    CommentStatus.ERROR,
+    CommentStatus.POSTING,
+    CommentStatus.NONE
+  ])(`change comment status action should return correct object for %p`, (status) => {
+    expect(ActionCreator.changeCommentStatus(status))
+      .toEqual({
+        type: ActionType.CHANGE_COMMENT_STATUS,
+        payload: status,
+      });
+  });
+
+  test(`update promo film action should return correct object`, () => {
+    expect(ActionCreator.updatePromoFilm(film))
+      .toEqual({
+        type: ActionType.UPDATE_PROMO_FILM,
+        payload: film,
+      });
+  });
+
   test(`update film action should return correct object`, () => {
-    expect(ActionCreator.updateFilm(films))
+    expect(ActionCreator.updateFilm(film))
       .toEqual({
         type: ActionType.UPDATE_FILM,
-        payload: films,
+        payload: film,
       });
   });
 
@@ -314,18 +375,6 @@ describe(`DataReducer`, () => {
       }));
   });
 
-  test(`should set genre`, () => {
-    const genre = EGenre.DRAMA;
-    const chooseGenreAction = {
-      type: ActionType.CHOOSE_GENRE,
-      payload: genre,
-    };
-    expect(reducer(initialState, chooseGenreAction))
-      .toEqual(extend(initialState, {
-        genre,
-      }));
-  });
-
   test(`should set filmReviews`, () => {
     const loadFilmReviewsAction = {
       type: ActionType.LOAD_FILM_REVIEWS,
@@ -345,75 +394,59 @@ describe(`DataReducer`, () => {
     expect(reducer(initialState, loadFavoriteFilmsAction))
       .toEqual(extend(initialState, {
         favoriteFilms: films,
-      }))
+      }));
   });
 
-  test(`should update film in promoFilm, films and favoriteFilms`, () => {
-    const film = {
-      id: 2,
-      name: `name 2`,
-      genre: `Drama`,
-      runTime: `3h 49m`,
-      releaseDate: 1984,
-      description: `description 2`,
-      director: `director 2`,
-      rating: {
-        score: 9.9,
-        count: 276395,
-        assessment: `Very good`,
-      },
-      source: {
-        video: `video2`,
-        previewVideo: `previewVideo2`,
-      },
-      picture: {
-        poster: `poster2`,
-        preview: `preview2`,
-        cover: `cover2`,
-        backgroundColor: `color2`,
-      },
-      starring: [
-        `Robert De Niro`,
-        `James Woods`,
-        `Elizabeth McGovern`
-      ],
-      isFavorite: false,
-    };
+  test(`should add a film to favoriteFilms`, () => {
     const state = extend(initialState, {
-      favoriteFilms: [film],
-      films: [film],
-      promoFilm: film,
+      favoriteFilms: []
     });
-    const updatedFilm = {
-      id: 2,
-      name: `name 2`,
-      genre: `Drama`,
-      runTime: `3h 49m`,
-      releaseDate: 1984,
-      description: `description 2`,
-      director: `director 2`,
-      rating: {
-        score: 9.9,
-        count: 276395,
-        assessment: `Very good`,
-      },
-      source: {
-        video: `video2`,
-        previewVideo: `previewVideo2`,
-      },
-      picture: {
-        poster: `poster2`,
-        preview: `preview2`,
-        cover: `cover2`,
-        backgroundColor: `color2`,
-      },
-      starring: [
-        `Robert De Niro`,
-        `James Woods`,
-        `Elizabeth McGovern`
-      ],
-      isFavorite: true,
+    const addFavoriteFilmAction = {
+      type: ActionType.ADD_FAVORITE_FILM,
+      payload: film,
     };
+    expect(reducer(state, addFavoriteFilmAction))
+      .toEqual(extend(initialState, {
+        favoriteFilms: [film],
+      }));
+  });
+
+  test(`should remove a film from favoriteFilms`, () => {
+    const state = extend(initialState, {
+      favoriteFilms: [film]
+    });
+    const removeFavoriteFilmAction = {
+      type: ActionType.REMOVE_FAVORITE_FILM,
+      payload: film,
+    };
+    expect(reducer(state, removeFavoriteFilmAction))
+      .toEqual(extend(initialState, {
+        favoriteFilms: [],
+      }));
+  });
+
+  test.each([
+    CommentStatus.ERROR,
+    CommentStatus.POSTING,
+    CommentStatus.NONE
+  ])(`should set commentStatus %p`, (status) => {
+    const changeCommentPostingStatusAction = {
+      type: ActionType.CHANGE_COMMENT_STATUS,
+      payload: status,
+    };
+    expect(reducer(initialState, changeCommentPostingStatusAction))
+      .toEqual(extend(initialState, {
+        commentStatus: status,
+      }));
+  });
+
+  test(`should update a film into films`, () => {
+    const state = extend(initialState, {
+      films: [film]
+    });
+    const updatedFilm = extend(film, {
+      description: `updated`,
+    });
     const updateFilmAction = {
       type: ActionType.UPDATE_FILM,
       payload: updatedFilm,
@@ -421,9 +454,60 @@ describe(`DataReducer`, () => {
     expect(reducer(state, updateFilmAction))
       .toEqual(extend(initialState, {
         films: [updatedFilm],
-        favoriteFilms: [updatedFilm],
+      }));
+  });
+
+  test(`shouldn't update a film into films`, () => {
+    const state = extend(initialState, {
+      films: [film]
+    });
+    const updatedFilm = extend(film, {
+      id: 10,
+      description: `updated`,
+    });
+    const updateFilmAction = {
+      type: ActionType.UPDATE_FILM,
+      payload: updatedFilm,
+    };
+    expect(reducer(state, updateFilmAction))
+      .toEqual(extend(initialState, {
+        films: [film],
+      }));
+  });
+
+  test(`should update promoFilm`, () => {
+    const state = extend(initialState, {
+      promoFilm: film
+    });
+    const updatedFilm = extend(film, {
+      description: `updated`,
+    });
+    const updateFilmAction = {
+      type: ActionType.UPDATE_PROMO_FILM,
+      payload: updatedFilm,
+    };
+    expect(reducer(state, updateFilmAction))
+      .toEqual(extend(initialState, {
         promoFilm: updatedFilm,
-      }))
+      }));
+  });
+
+  test(`shouldn't update promoFilm`, () => {
+    const state = extend(initialState, {
+      promoFilm: film
+    });
+    const updatedFilm = extend(film, {
+      id: 10,
+      description: `updated`,
+    });
+    const updateFilmAction = {
+      type: ActionType.UPDATE_PROMO_FILM,
+      payload: updatedFilm,
+    };
+    expect(reducer(state, updateFilmAction))
+      .toEqual(extend(initialState, {
+        promoFilm: film,
+      }));
   });
 
   test(`should make a correct API call to /films`, () => {
@@ -502,18 +586,28 @@ describe(`DataReducer`, () => {
   test(`should make a correct API call to /favorite/:filmId/:status`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const favoriteFilmStatusChanger = Operation.changeFavoriteFilmStatus(3, 1);
+    const favoriteFilmStatusChanger = Operation.changeFavoriteFilmStatus(3, FavoriteFilmActionType.ADD);
 
-    apiMock.onPost(`/favorite/3/1`)
+    apiMock.onPost(`/favorite/3/${FavoriteFilmActionType.ADD}`)
       .reply(200, filmFromServer);
+
+    const adaptedFilm = adaptFilm(filmFromServer);
 
     favoriteFilmStatusChanger(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenCalledWith({
-          type: ActionType.UPDATE_FILM,
-          payload: adaptFilm(filmFromServer),
-        });
+        expect(dispatch).toHaveBeenCalledWith([
+          {
+            type: ActionType.ADD_FAVORITE_FILM,
+            payload: adaptedFilm,
+          }, {
+            type: ActionType.UPDATE_FILM,
+            payload: adaptedFilm,
+          }, {
+            type: ActionType.UPDATE_PROMO_FILM,
+            payload: adaptedFilm,
+          }
+        ]);
       });
   });
 });
