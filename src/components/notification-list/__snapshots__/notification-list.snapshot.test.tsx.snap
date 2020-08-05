@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render component 1`] = `
+<ul
+  className="notification-list"
+>
+  <li
+    className="notification-list__item notification-list__item--error"
+  >
+    <button
+      className="notification-list__button"
+      onClick={[Function]}
+    >
+      Close notification
+    </button>
+    <h3
+      className="notification-list__title"
+    >
+      title 1
+    </h3>
+    <p
+      className="notification-list__text"
+    >
+      title 1
+    </p>
+  </li>
+  <li
+    className="notification-list__item notification-list__item--error"
+  >
+    <button
+      className="notification-list__button"
+      onClick={[Function]}
+    >
+      Close notification
+    </button>
+    <h3
+      className="notification-list__title"
+    >
+      title 2
+    </h3>
+    <p
+      className="notification-list__text"
+    >
+      title 2
+    </p>
+  </li>
+  <li
+    className="notification-list__item notification-list__item--error"
+  >
+    <button
+      className="notification-list__button"
+      onClick={[Function]}
+    >
+      Close notification
+    </button>
+    <h3
+      className="notification-list__title"
+    >
+      title 3
+    </h3>
+    <p
+      className="notification-list__text"
+    >
+      title 3
+    </p>
+  </li>
+  <li
+    className="notification-list__item notification-list__item--error"
+  >
+    <button
+      className="notification-list__button"
+      onClick={[Function]}
+    >
+      Close notification
+    </button>
+    <h3
+      className="notification-list__title"
+    >
+      title 4
+    </h3>
+    <p
+      className="notification-list__text"
+    >
+      title 4
+    </p>
+  </li>
+  <li
+    className="notification-list__item notification-list__item--error"
+  >
+    <button
+      className="notification-list__button"
+      onClick={[Function]}
+    >
+      Close notification
+    </button>
+    <h3
+      className="notification-list__title"
+    >
+      title 5
+    </h3>
+    <p
+      className="notification-list__text"
+    >
+      title 5
+    </p>
+  </li>
+</ul>
+`;

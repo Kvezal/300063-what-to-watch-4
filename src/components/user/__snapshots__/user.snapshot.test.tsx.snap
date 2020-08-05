@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render component 1`] = `
+<div
+  className="user-block"
+>
+  <a
+    href="/mylist"
+    onClick={[Function]}
+  >
+    <div
+      className="user-block__avatar"
+    >
+      <img
+        alt="User avatar"
+        height="63"
+        src="test-avatar"
+        width="63"
+      />
+    </div>
+  </a>
+</div>
+`;

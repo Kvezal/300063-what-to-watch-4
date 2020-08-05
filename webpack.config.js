@@ -5,7 +5,7 @@ const path = require(`path`);
 const publicDir = path.join(__dirname, `public`);
 
 module.exports = {
-  entry: `./src/index.jsx`,
+  entry: `./src/index.tsx`,
   output: {
     filename: `bundle.js`,
     path: publicDir,
@@ -26,6 +26,10 @@ module.exports = {
         use: {
           loader: `babel-loader`,
         }
+      },
+      {
+        test: /\.(tsx|ts)?$/,
+        loader: `ts-loader`,
       }
     ],
   },
@@ -35,11 +39,12 @@ module.exports = {
       '@components': path.resolve(__dirname, `src/components/`),
       '@common': path.resolve(__dirname, `src/common/`),
       '@containers': path.resolve(__dirname, `src/containers/`),
+      '@hocs': path.resolve(__dirname, `src/hocs/`),
       '@middlewares': path.resolve(__dirname, `src/middlewares/`),
       '@pages': path.resolve(__dirname, `src/pages/`),
       '@services': path.resolve(__dirname, `src/services/`),
       '@store': path.resolve(__dirname, `src/store/`),
     },
-    extensions: [`.js`, `.jsx`],
+    extensions: [`.ts`, `.tsx`, `.js`, `.json`],
   },
 };
