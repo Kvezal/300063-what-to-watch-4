@@ -49,29 +49,6 @@ describe(`withActiveTab`, () => {
     expect(activeTabText).toBe(tabs[1]);
   });
 
-  test(`should change active tab`, () => {
-    const testComponent = mount(
-        <Router history={history} initialEntries={[`/`]}>
-          <Route path="/" render={(props) =>
-            <TestComponentWithHOC
-              list={tabs}
-              activeTab={tabs[1]}
-              {...props}
-            />
-          }/>
-        </Router>
-    );
-    const activeTabs = testComponent.find(`div.test`);
-    activeTabs.at(2).simulate(`click`);
-    expect(testComponent.find(`div.active`).text()).toBe(tabs[2]);
-
-    activeTabs.at(0).simulate(`click`);
-    expect(testComponent.find(`div.active`).text()).toBe(tabs[0]);
-
-    activeTabs.at(1).simulate(`click`);
-    expect(testComponent.find(`div.active`).text()).toBe(tabs[1]);
-  });
-
   test(`hash should set active tab`, () => {
     const testComponent = mount(
         <TestComponentWithHOC

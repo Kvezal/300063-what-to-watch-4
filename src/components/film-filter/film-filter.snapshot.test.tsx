@@ -12,6 +12,7 @@ test(`should render component`, () => {
         <FilmFilter
           tabs={filterList}
           onItemClick={() => null}
+          baseURI={`/`}
           activeItem={filterList[0]}
         />
     )

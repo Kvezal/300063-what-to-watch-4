@@ -299,9 +299,9 @@ describe(`MainPage`, () => {
           avatar={avatar}
           onStepChange={() => null}
           step={1}
+          baseURI={`/`}
           genres={genres}
           activeTab={ALL_GENRES}
-          onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
           onStepReset={() => null}
@@ -322,9 +322,9 @@ describe(`MainPage`, () => {
           avatar={avatar}
           onStepChange={() => null}
           step={1}
+          baseURI={`/`}
           genres={genres}
           activeTab={ALL_GENRES}
-          onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={onFavoriteFilmClick}
           onStepReset={() => null}
@@ -343,9 +343,9 @@ describe(`MainPage`, () => {
             avatar={avatar}
             onStepChange={() => null}
             step={1}
+            baseURI={`/`}
             genres={genres}
             activeTab={ALL_GENRES}
-            onActiveTabChange={() => null}
             authorizationStatus={EAuthorizationStatus.AUTH}
             onFavoriteFilmClick={() => null}
             onStepReset={() => null}
@@ -365,9 +365,9 @@ describe(`MainPage`, () => {
             avatar={avatar}
             onStepChange={() => null}
             step={2}
+            baseURI={`/`}
             genres={genres}
             activeTab={ALL_GENRES}
-            onActiveTabChange={() => null}
             authorizationStatus={EAuthorizationStatus.AUTH}
             onFavoriteFilmClick={() => null}
             onStepReset={() => null}

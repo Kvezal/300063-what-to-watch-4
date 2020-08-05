@@ -149,6 +149,7 @@ describe(`FilmPage`, () => {
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
           tabs={tabs}
+          baseURI={`/`}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -169,6 +170,7 @@ describe(`FilmPage`, () => {
             activeTab={EFilmTab.OVERVIEW}
             reviews={[]}
             tabs={tabs}
+            baseURI={`/`}
             onActiveTabChange={() => null}
             authorizationStatus={EAuthorizationStatus.AUTH}
             onFavoriteFilmClick={() => null}
@@ -189,6 +191,7 @@ describe(`FilmPage`, () => {
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
           tabs={tabs}
+          baseURI={`/`}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -208,6 +211,7 @@ describe(`FilmPage`, () => {
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
           tabs={tabs}
+          baseURI={`/`}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -227,6 +231,7 @@ describe(`FilmPage`, () => {
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
           tabs={tabs}
+          baseURI={`/`}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -246,6 +251,7 @@ describe(`FilmPage`, () => {
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
           tabs={tabs}
+          baseURI={`/`}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -265,6 +271,7 @@ describe(`FilmPage`, () => {
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
           tabs={tabs}
+          baseURI={`/`}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
@@ -285,6 +292,7 @@ describe(`FilmPage`, () => {
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
           tabs={tabs}
+          baseURI={`/`}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={onFavoriteFilmClick}
@@ -305,6 +313,7 @@ describe(`FilmPage`, () => {
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
           tabs={tabs}
+          baseURI={`/`}
           onActiveTabChange={() => null}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}

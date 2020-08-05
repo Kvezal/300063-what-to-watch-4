@@ -9,7 +9,7 @@ export interface IMainProps {
   promoFilm: IFilm;
   films: IFilm[];
   avatar: string;
-  onActiveTabChange: (tab: string) => void;
+  baseURI: string;
   onStepChange: () => void;
   onStepReset: () => void;
   onFavoriteFilmClick: (film: IFilm) => void;

@@ -5,7 +5,7 @@ import {ITabsProps} from "@components/tabs/interface";
 
 
 const Tabs: React.FC<ITabsProps> = (props: ITabsProps) => {
-  const {tabs, activeTab, onActiveTabChange} = props;
+  const {tabs, activeTab, baseURI} = props;
 
   return <nav className="movie-nav movie-card__nav">
     <ul className="movie-nav__list">
@@ -16,8 +16,8 @@ const Tabs: React.FC<ITabsProps> = (props: ITabsProps) => {
         });
         return <li key={tab} className={className}>
           <a
+            href={`${baseURI}#${tab}`}
             className="movie-nav__link"
-            onClick={() => onActiveTabChange(tab)}
           >
             {tab}
           </a>

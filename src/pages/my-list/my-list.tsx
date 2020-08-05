@@ -28,7 +28,7 @@ const MyList: React.FC<IMyListProps> = (props: IMyListProps) => {
 
       <FilmList
         films={films}
-        onCardClick={(filmId: number) => history.push(EAppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
+        onCardClick={(filmId: number) => history.push(EAppRoute.FILM.replace(`:filmId`, `${filmId}`))}
       />
     </section>
 

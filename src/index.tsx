@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 
-import {App, EAppRoute, history} from "@app/index";
+import {App} from "@app/index";
 import {createAPIMiddleware, multipleMiddleware} from "@middlewares/index";
 import {createAPI} from "@services/index";
 import reducer from "@store/reducer";
@@ -12,9 +12,7 @@ import {checkAuth} from "@store/user/operation";
 import {loadFavoriteFilms, loadFilms, loadPromoFilm} from "@store/data/operation";
 
 
-const api = createAPI(() => {
-  history.push(EAppRoute.LOGIN);
-});
+const api = createAPI();
 
 const store = createStore(
     reducer,

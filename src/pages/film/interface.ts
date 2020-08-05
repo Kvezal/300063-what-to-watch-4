@@ -8,6 +8,7 @@ export interface IFilmProps {
   avatar: string;
   tabs: EFilmTab[];
   activeTab: EFilmTab;
+  baseURI: string;
   onActiveTabChange: (id: string) => void;
   reviews: IReview[];
   authorizationStatus: string;

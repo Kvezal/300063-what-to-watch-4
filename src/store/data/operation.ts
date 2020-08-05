@@ -109,7 +109,7 @@ const postReview = (commentData, props) => (dispatch, getState, api) => {
   const path = EDataURLHandlerPath.FILM_COMMENT.replace(`:filmId`, `${filmId}`);
   return api.post(path, commentData)
     .then(() => {
-      history.push(EAppRoute.FILMS.replace(`:filmId`, `${filmId}`));
+      history.push(EAppRoute.FILM.replace(`:filmId`, `${filmId}`));
     })
     .catch((error) => {
       if (error.response.status === UNAUTHORIZED) {

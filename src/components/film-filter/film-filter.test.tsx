@@ -18,6 +18,7 @@ describe(`FilmFilterComponent`, () => {
           tabs={filterList}
           onItemClick={() => null}
           activeItem=""
+          baseURI={`/`}
         />
     );
     const filmFilter = FilmFilterComponent.find(`ul.catalog__genres-list`);
@@ -30,6 +31,7 @@ describe(`FilmFilterComponent`, () => {
           tabs={filterList}
           onItemClick={() => null}
           activeItem=""
+          baseURI={`/`}
         />
     );
     const filterItems = FilmFilterComponent.find(`li.catalog__genres-item`);
@@ -43,27 +45,12 @@ describe(`FilmFilterComponent`, () => {
           tabs={filterList}
           onItemClick={onItemClick}
           activeItem=""
+          baseURI={`/`}
         />
     );
     const filterItems = FilmFilterComponent.find(`li.catalog__genres-item`);
     filterItems.forEach((item) => item.simulate(`click`));
     expect(onItemClick).toBeCalledTimes(filterItems.length);
-  });
-
-  test(`filter item should return tab after click`, () => {
-    const onItemClick = jest.fn();
-    const FilmFilterComponent = shallow(
-        <FilmFilter
-          tabs={filterList}
-          onItemClick={onItemClick}
-          activeItem=""
-        />
-    );
-    const filterItems = FilmFilterComponent.find(`li.catalog__genres-item`);
-    filterList.forEach((filter, index) => {
-      filterItems.at(index).simulate(`click`);
-      expect(onItemClick).toBeCalledWith(filter);
-    });
   });
 
   test(`should have one active item`, () => {
@@ -72,9 +59,25 @@ describe(`FilmFilterComponent`, () => {
           tabs={filterList}
           onItemClick={() => null}
           activeItem={filterList[0]}
+          baseURI={`/`}
         />
     );
     const filmFilter = FilmFilterComponent.find(`li.catalog__genres-item.catalog__genres-item--active`);
     expect(filmFilter).toHaveLength(1);
+  });
+
+  test(`links should include baseURI`, () => {
+    const baseURI = `/test`;
+    const FilmFilterComponent = shallow(
+        <FilmFilter
+          tabs={filterList}
+          onItemClick={() => null}
+          activeItem={filterList[0]}
+          baseURI={baseURI}
+        />
+    );
+    FilmFilterComponent.find(`li.catalog__genres-item a`).forEach((link) => {
+      expect(link.props().href.includes(baseURI)).toBeTruthy();
+    });
   });
 });

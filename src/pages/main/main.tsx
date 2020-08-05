@@ -26,10 +26,10 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
     promoFilm,
     films,
     avatar,
-    onActiveTabChange,
     onStepChange,
     onStepReset,
     onFavoriteFilmClick,
+    baseURI,
   } = props;
   const {id: promoFilmId, genre, releaseDate, name, picture, isFavorite} = promoFilm;
 
@@ -100,16 +100,14 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
 
         <FilmFilter
           tabs={filmFilters}
-          onItemClick={(id: string) => {
-            onActiveTabChange(id);
-            onStepReset();
-          }}
+          baseURI={baseURI}
+          onItemClick={onStepReset}
           activeItem={activeTab}
         />
 
         <FilmList
           films={films}
-          onCardClick={(filmId: number) => history.push(EAppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
+          onCardClick={(filmId: number) => history.push(EAppRoute.FILM.replace(`:filmId`, `${filmId}`))}
           pack={FILM_COUNT_IN_ONE_STEP}
           step={step}
         />

@@ -1,5 +1,6 @@
 export interface IFilmFilterProps {
   tabs: string[];
-  onItemClick: (itemId: string) => void;
+  onItemClick: () => void;
+  baseURI: string;
   activeItem: string;
 }

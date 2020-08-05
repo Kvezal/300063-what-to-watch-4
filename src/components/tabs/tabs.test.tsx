@@ -17,7 +17,7 @@ describe(`TabsComponent`, () => {
         <Tabs
           tabs={tabs}
           activeTab="Overview"
-          onActiveTabChange={() => null}
+          baseURI={`/`}
         />
     );
     const tabsContainer = tabsComponent.find(`nav.movie-nav`);
@@ -29,7 +29,7 @@ describe(`TabsComponent`, () => {
         <Tabs
           tabs={tabs}
           activeTab="Overview"
-          onActiveTabChange={() => null}
+          baseURI={`/`}
         />
     );
     const tabItems = tabsComponent.find(`a.movie-nav__link`);
@@ -41,7 +41,7 @@ describe(`TabsComponent`, () => {
         <Tabs
           tabs={tabs}
           activeTab="Overview"
-          onActiveTabChange={() => null}
+          baseURI={`/`}
         />
     );
     const tabItems = tabsComponent.find(`a.movie-nav__link`);
@@ -57,39 +57,24 @@ describe(`TabsComponent`, () => {
         <Tabs
           tabs={tabs}
           activeTab={tabs[activeTabIndex]}
-          onActiveTabChange={() => null}
+          baseURI={`/`}
         />
     );
     const activeTabText = tabsComponent.find(`.movie-nav__item--active .movie-nav__link`).text();
     expect(activeTabText).toBe(tabs[activeTabIndex]);
   });
 
-  test(`tab should be pressed`, () => {
-    const onActiveTabChange = jest.fn();
-    const tabsComponent = shallow(
+  test(`links should include baseURI`, () => {
+    const baseURI = `/test`;
+    const FilmFilterComponent = shallow(
         <Tabs
           tabs={tabs}
           activeTab="Overview"
-          onActiveTabChange={onActiveTabChange}
+          baseURI={baseURI}
         />
     );
-    const tabItems = tabsComponent.find(`a.movie-nav__link`);
-    tabItems.forEach((tab) => tab.simulate(`click`));
-    expect(onActiveTabChange).toHaveBeenCalledTimes(tabs.length);
-  });
-
-  test(`onActiveTabChange should have param`, () => {
-    const clickedTabIndex = 2;
-    const onActiveTabChange = jest.fn();
-    const tabsComponent = shallow(
-        <Tabs
-          tabs={tabs}
-          activeTab="Overview"
-          onActiveTabChange={onActiveTabChange}
-        />
-    );
-    const tabItems = tabsComponent.find(`a.movie-nav__link`);
-    tabItems.at(clickedTabIndex).simulate(`click`);
-    expect(onActiveTabChange).toBeCalledWith(tabs[clickedTabIndex]);
+    FilmFilterComponent.find(`a.movie-nav__link`).forEach((link) => {
+      expect(link.props().href.includes(baseURI)).toBeTruthy();
+    });
   });
 });

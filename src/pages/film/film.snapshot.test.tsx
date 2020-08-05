@@ -144,6 +144,7 @@ test(`should render component`, () => {
           activeTab={EFilmTab.OVERVIEW}
           reviews={[]}
           tabs={tabs}
+          baseURI={`/`}
           authorizationStatus={EAuthorizationStatus.AUTH}
           onFavoriteFilmClick={() => null}
           onReviewsLoad={() => null}

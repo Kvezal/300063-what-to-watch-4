@@ -1,6 +1,6 @@
 enum EAppRoute {
   ROOT = `/`,
-  FILMS = `/films/:filmId`,
+  FILM = `/films/:filmId`,
   REVIEW = `/films/:filmId/review`,
   LOGIN = `/login`,
   MY_LIST = `/mylist`,

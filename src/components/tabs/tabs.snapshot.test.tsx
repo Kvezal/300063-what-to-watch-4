@@ -12,7 +12,7 @@ test(`should render component`, () => {
         <Tabs
           tabs={tabs}
           activeTab="Overview"
-          onActiveTabChange={() => null}
+          baseURI={`/`}
         />
     )
     .toJSON();

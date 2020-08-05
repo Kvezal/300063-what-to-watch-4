@@ -68,7 +68,7 @@ const App = () => {
           loadingParams={[`film`]}
         />}
       />
-      <Route exact path={EAppRoute.FILMS} render={(props) =>
+      <Route exact path={EAppRoute.FILM} render={(props) =>
         <FilmWrapper
           {...props}
           tabs={filmDescriptionTabs}

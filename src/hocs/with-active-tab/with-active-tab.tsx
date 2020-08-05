@@ -1,8 +1,6 @@
 import * as React from "react";
 import {Subtract} from "utility-types";
 
-import history from "@app/history";
-
 import {IWithActiveTabHOCInjectProps} from "./interface";
 
 
@@ -15,7 +13,7 @@ const withActiveTab = (Component) => {
     return <Component
       {...props}
       activeTab={decodeURIComponent(location.hash.replace(`#`, ``)) || activeTab}
-      onActiveTabChange={(tab) => history.push(`#${tab}`)}
+      baseURI={location.pathname}
     />;
   };
 

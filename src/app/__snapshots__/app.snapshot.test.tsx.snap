@@ -168,6 +168,7 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            href="/#All genres"
           >
             All genres
           </a>
@@ -178,6 +179,7 @@ Array [
         >
           <a
             className="catalog__genres-link"
+            href="/#Crime"
           >
             Crime
           </a>

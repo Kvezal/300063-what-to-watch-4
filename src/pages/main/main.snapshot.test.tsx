@@ -146,7 +146,7 @@ test(`should match to snapshot`, () => {
             step={1}
             genres={genres}
             activeTab={ALL_GENRES}
-            onActiveTabChange={() => null}
+            baseURI={`/`}
             authorizationStatus={EAuthorizationStatus.AUTH}
             onFavoriteFilmClick={() => null}
             onStepReset={() => null}

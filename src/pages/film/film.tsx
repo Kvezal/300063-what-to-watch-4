@@ -77,7 +77,7 @@ class Film extends React.PureComponent<IFilmProps> {
       activeTab,
       tabs,
       reviews,
-      onActiveTabChange,
+      baseURI,
       authorizationStatus,
       onFavoriteFilmClick,
     } = this.props;
@@ -160,7 +160,7 @@ class Film extends React.PureComponent<IFilmProps> {
               <Tabs
                 tabs={tabs}
                 activeTab={activeTab}
-                onActiveTabChange={onActiveTabChange}
+                baseURI={baseURI}
               />
               {getTab(activeTab, info, reviews)}
             </div>
@@ -173,7 +173,7 @@ class Film extends React.PureComponent<IFilmProps> {
           <h2 className="catalog__title">More like this</h2>
           <FilmList
             films={likedFilms}
-            onCardClick={(filmId: number) => history.push(EAppRoute.FILMS.replace(`:filmId`, `${filmId}`))}
+            onCardClick={(filmId: number) => history.push(EAppRoute.FILM.replace(`:filmId`, `${filmId}`))}
             pack={FILM_COUNT_IN_ONE_STEP}
           />
         </section>
