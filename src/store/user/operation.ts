@@ -4,7 +4,7 @@ import EAppRoute from "@app/app-route";
 import history from "@app/history";
 import {adaptUser} from "@common/adapter";
 import {IServerUser, IUser} from "@common/types";
-import {ID_LENGTH} from "@store/const";
+import {ID_LENGTH} from "@common/consts";
 import {loadFavoriteFilms} from "@store/data/operation";
 import {addNotification, resetNotification} from "@store/notification/action-creator";
 import {EHTTPMethod, ENotificationType} from "@store/notification/interface";

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 import EAppRoute from "@app/app-route";
 import history from "@app/history";
-import {EFilmTab} from "@common/enums";
+import {EFilmPack, EFilmTab} from "@common/enums";
 import {IFilm, IReview} from "@common/types";
 import {getColorParams} from "@common/utils";
 import FilmList from "@components/film-list/film-list";
@@ -21,8 +21,6 @@ import {IFilmProps} from "./interface";
 
 
 const ReviewsWrap = withLoading(Reviews);
-
-const FILM_COUNT_IN_ONE_STEP = 4;
 
 const getTab = (activeTab: EFilmTab, info: IFilm, reviews: IReview[]) => {
   const {rating, description, director, starring, genre, runTime, releaseDate, picture} = info;
@@ -174,7 +172,7 @@ class Film extends React.PureComponent<IFilmProps> {
           <FilmList
             films={likedFilms}
             onCardClick={(filmId: number) => history.push(EAppRoute.FILM.replace(`:filmId`, `${filmId}`))}
-            pack={FILM_COUNT_IN_ONE_STEP}
+            pack={EFilmPack.SMALL}
           />
         </section>
         <Footer/>

@@ -12,10 +12,9 @@ import User from "@components/user/user";
 import {EAuthorizationStatus} from "@store/user/interface";
 
 import {IMainProps} from "./interface";
-import {ALL_GENRES} from "@common/consts";
+import {ALL_GENRES, MAX_GENRE_COUNT} from "@common/consts";
+import {EFilmPack} from "@common/enums";
 
-
-const FILM_COUNT_IN_ONE_STEP = 8;
 
 const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
   const {
@@ -33,7 +32,7 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
   } = props;
   const {id: promoFilmId, genre, releaseDate, name, picture, isFavorite} = promoFilm;
 
-  const filmFilters = [ALL_GENRES].concat(genres.slice(0, 9));
+  const filmFilters = [ALL_GENRES].concat(genres.slice(0, MAX_GENRE_COUNT));
 
   return <React.Fragment>
     <section className="movie-card">
@@ -108,12 +107,12 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
         <FilmList
           films={films}
           onCardClick={(filmId: number) => history.push(EAppRoute.FILM.replace(`:filmId`, `${filmId}`))}
-          pack={FILM_COUNT_IN_ONE_STEP}
+          pack={EFilmPack.BIG}
           step={step}
         />
 
         <ButtonMore
-          hide={films.length <= FILM_COUNT_IN_ONE_STEP * step}
+          hide={films.length <= EFilmPack.BIG * step}
           onButtonClick={onStepChange}
         >
           Show more

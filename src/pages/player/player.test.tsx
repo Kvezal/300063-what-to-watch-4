@@ -17,6 +17,7 @@ describe(`PlayerPage`, () => {
           isPlaying={false}
           time={0}
           duration={0}
+          filmName="Transpotting"
           onPlayingChange={() => null}
           onFullScreenOpen={() => null}
         />,
@@ -33,6 +34,7 @@ describe(`PlayerPage`, () => {
           isPlaying={false}
           time={0}
           duration={0}
+          filmName="Transpotting"
           onPlayingChange={() => null}
           onFullScreenOpen={() => null}
         />
@@ -48,6 +50,7 @@ describe(`PlayerPage`, () => {
           isPlaying={true}
           time={0}
           duration={0}
+          filmName="Transpotting"
           onPlayingChange={() => null}
           onFullScreenOpen={() => null}
         />
@@ -64,6 +67,7 @@ describe(`PlayerPage`, () => {
           isPlaying={true}
           time={0}
           duration={0}
+          filmName="Transpotting"
           onPlayingChange={onPlayerButtonClick}
           onFullScreenOpen={() => null}
         />
@@ -79,6 +83,7 @@ describe(`PlayerPage`, () => {
           isPlaying={true}
           time={10}
           duration={3700}
+          filmName="Transpotting"
           onPlayingChange={() => null}
           onFullScreenOpen={() => null}
         />
@@ -95,6 +100,7 @@ describe(`PlayerPage`, () => {
           isPlaying={true}
           time={0}
           duration={0}
+          filmName="Transpotting"
           onPlayingChange={() => null}
           onFullScreenOpen={onFullScreenOpenClick}
         />

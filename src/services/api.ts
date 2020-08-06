@@ -1,6 +1,6 @@
 import axios, {AxiosInstance} from "axios";
 
-import {API_URL, SERVER_TIMEOUT} from "@services/const";
+import {API_URL, SERVER_TIMEOUT} from "@common/consts";
 
 
 const createAPI = (): AxiosInstance => {

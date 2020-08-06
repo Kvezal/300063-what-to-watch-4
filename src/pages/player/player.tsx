@@ -2,15 +2,14 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 
 import EAppRoute from "@app/app-route";
+import {PERCENTS_IN_ONE} from "@common/consts";
 import {getTime} from "@common/utils";
 
 import {IPlayerProps} from "./interface";
 
 
-const PERCENTS_IN_ONE = 100;
-
 const Player: React.FC<IPlayerProps> = (props: IPlayerProps) => {
-  const {renderPlayer, onFullScreenOpen, isPlaying, onPlayingChange, duration, time} = props;
+  const {renderPlayer, onFullScreenOpen, isPlaying, onPlayingChange, duration, time, filmName} = props;
   const progress = time / duration * PERCENTS_IN_ONE;
 
   return <div className="player">
@@ -44,7 +43,7 @@ const Player: React.FC<IPlayerProps> = (props: IPlayerProps) => {
           </svg>
           <span>Play</span>
         </button>
-        <div className="player__name">Transpotting</div>
+        <div className="player__name">{filmName}</div>
 
         <button type="button" className="player__full-screen" onClick={onFullScreenOpen}>
           <svg viewBox="0 0 27 27" width="27" height="27">

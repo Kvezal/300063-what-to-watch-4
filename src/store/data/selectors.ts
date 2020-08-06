@@ -53,6 +53,13 @@ const getCurrentFilm = createSelector(
     }
 );
 
+const getCurrentFilmName = createSelector(
+    getCurrentFilm,
+    (film: IFilm) => {
+      return film && film.name;
+    }
+);
+
 const getLikedFilms = createSelector(
     getFilms,
     getCurrentFilm,
@@ -114,5 +121,6 @@ export {
   getFilteredFilmsByGenre,
   getCurrentFilmVideoSource,
   getCurrentFilmPicturePreview,
+  getCurrentFilmName,
   getFilmGenres,
 };

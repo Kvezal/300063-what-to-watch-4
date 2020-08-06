@@ -1,6 +1,12 @@
-import getDate from "./get-date";
+import {getDate, getTime, getTimeParams} from "./get-date";
+import {ETimeMeasure, ETimePattern, ITimeParams} from "./interface";
 
 
 export {
-  getDate
+  getDate,
+  getTime,
+  getTimeParams,
+  ETimeMeasure,
+  ETimePattern,
+  ITimeParams,
 };

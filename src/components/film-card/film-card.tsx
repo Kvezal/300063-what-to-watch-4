@@ -1,9 +1,8 @@
 import * as React from "react";
 
+import {VIDEO_PLAYING_DELAY} from "@common/consts";
 import {IFilmCardProps} from "@components/film-card/interface";
 
-
-const VIDEO_PLAYING_DELAY = 1000;
 
 class FilmCard extends React.PureComponent<IFilmCardProps> {
   private _timer = 0;

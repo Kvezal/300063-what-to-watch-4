@@ -4,8 +4,8 @@ import {UNAUTHORIZED} from "http-status-codes";
 
 import {EAppRoute, history} from "@app/index";
 import {adaptFilm, adaptReview} from "@common/adapter";
+import {ID_LENGTH} from "@common/consts";
 import {IFilm, IReview, IServerFilm, IServerReview} from "@common/types";
-import {ID_LENGTH} from "@store/const";
 import {getCurrentFilmId} from "@store/data/selectors";
 import {addNotification} from "@store/notification/action-creator";
 import {ENotificationType, EHTTPMethod} from "@store/notification/interface";
