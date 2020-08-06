@@ -1,13 +1,21 @@
+enum EAssessment {
+  AWESOME = `Awesome`,
+  BAD = `Bad`,
+  NORMAL = `Normal`,
+  GOOD = `Good`,
+  VERY_GOOD = `Very good`,
+}
+
 const getAssessment = (rating: number): string => {
-  let assessment = `Awesome`;
+  let assessment = EAssessment.AWESOME;
   if (rating < 3) {
-    assessment = `Bad`;
+    assessment = EAssessment.BAD;
   } else if (rating < 5) {
-    assessment = `Normal`;
+    assessment = EAssessment.NORMAL;
   } else if (rating < 8) {
-    assessment = `Good`;
+    assessment = EAssessment.GOOD;
   } else if (rating < 10) {
-    assessment = `Very good`;
+    assessment = EAssessment.VERY_GOOD;
   }
   return assessment;
 };

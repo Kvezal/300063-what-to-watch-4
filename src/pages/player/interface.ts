@@ -8,4 +8,5 @@ export interface IPlayerProps {
   time: number;
   duration: number;
   onFullScreenOpen: () => void;
+  filmName: string;
 }

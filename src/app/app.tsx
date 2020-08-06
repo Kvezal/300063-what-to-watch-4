@@ -22,8 +22,6 @@ const MainWrapper = withNotifications(withStep(Main));
 const MyListWrapper = withNotifications(MyList);
 const PlayerWrapper = withNotifications(Player);
 
-const COUNT_FILMS_IN_ONE_STEP = 8;
-
 const App = () => {
   const filmDescriptionTabs = Object.values(EFilmTab);
 
@@ -33,7 +31,6 @@ const App = () => {
         return <MainWrapper
           {...props}
           activeTab={ALL_GENRES}
-          pack={COUNT_FILMS_IN_ONE_STEP}
           loadingParams={[`promoFilm`, `films`, `authorizationStatus`]}
         />;
       }}/>
@@ -43,7 +40,7 @@ const App = () => {
           canStop={true}
           muted={false}
           isPlaying={true}
-          loadingParams={[`source`, `poster`]}
+          loadingParams={[`source`, `poster`, `filmName`]}
         />
       }/>
       <Route exact path={EAppRoute.LOGIN} render={() =>

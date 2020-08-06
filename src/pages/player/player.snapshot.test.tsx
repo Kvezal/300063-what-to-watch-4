@@ -13,6 +13,7 @@ test(`should render component`, () => {
           isPlaying={false}
           time={0}
           duration={0}
+          filmName="Transpotting"
           onPlayingChange={() => null}
           onFullScreenOpen={() => null}
         />
