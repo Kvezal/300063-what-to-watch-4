@@ -1,7 +1,8 @@
+import {IUser} from "@common/types";
+
 import {setAuthorizationStatus} from "./action-creator";
 import {EUserAction, EAuthorizationStatus, ISetAuthorizationStatus, ISetUser} from "./interface";
 import reducer from "./reducer";
-import {IUser} from "@common/types";
 
 
 describe(`UserReducer`, () => {

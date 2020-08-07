@@ -1,5 +1,6 @@
 import {IUser} from "@common/types";
 
+
 export interface IUserAuthorizationParams {
   email: string;
   password: string;
