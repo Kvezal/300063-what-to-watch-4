@@ -7,8 +7,6 @@ export enum EDataAction {
   LOAD_FILM_REVIEWS = `LOAD_FILM_REVIEWS`,
   LOAD_FAVORITE_FILMS = `LOAD_FAVORITE_FILMS`,
   CHANGE_COMMENT_STATUS = `CHANGE_COMMENT_STATUS`,
-  ADD_FAVORITE_FILM = `ADD_FAVORITE_FILM`,
-  REMOVE_FAVORITE_FILM = `REMOVE_FAVORITE_FILM`,
   UPDATE_PROMO_FILM = `UPDATE_PROMO_FILM`,
   UPDATE_FILM = `UPDATE_FILM`,
 }
@@ -65,16 +63,6 @@ export interface IChangeCommentStatusAction {
   payload: ECommentStatus;
 }
 
-export interface IAddFavoriteFilmAction {
-  type: EDataAction.ADD_FAVORITE_FILM;
-  payload: IFilm;
-}
-
-export interface IRemoveFavoriteFilmAction {
-  type: EDataAction.REMOVE_FAVORITE_FILM;
-  payload: IFilm;
-}
-
 export interface IUpdatePromoFilmAction {
   type: EDataAction.UPDATE_PROMO_FILM;
   payload: IFilm;
@@ -98,7 +86,5 @@ export type TDataAction = ILoadFilmsAction
   | ILoadPromoFilmAction
   | ILoadFilmReviewsAction
   | IChangeCommentStatusAction
-  | IAddFavoriteFilmAction
-  | IRemoveFavoriteFilmAction
   | IUpdatePromoFilmAction
   | IUpdateFilmAction;

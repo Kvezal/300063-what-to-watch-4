@@ -12,12 +12,6 @@ const initialState: IDataState = {
   commentStatus: ECommentStatus.NONE,
 };
 
-const getFavoriteFilms = (filmList: IFilm[], film: IFilm) => {
-  return filmList.some((item: IFilm) => item.id === (film as IFilm).id)
-    ? filmList.map((item: IFilm) => item.id === (film as IFilm).id ? film : item)
-    : filmList.concat(film as IFilm);
-};
-
 const reducer = (state: IDataState = initialState, action: TDataAction): IDataState => {
   switch (action.type) {
     case EDataAction.LOAD_FILMS:
@@ -39,14 +33,6 @@ const reducer = (state: IDataState = initialState, action: TDataAction): IDataSt
     case EDataAction.CHANGE_COMMENT_STATUS:
       return extend(state, {
         commentStatus: action.payload,
-      });
-    case EDataAction.ADD_FAVORITE_FILM:
-      return extend(state, {
-        favoriteFilms: getFavoriteFilms(state.favoriteFilms, action.payload),
-      });
-    case EDataAction.REMOVE_FAVORITE_FILM:
-      return extend(state, {
-        favoriteFilms: state.favoriteFilms.filter((film) => film.id !== action.payload.id),
       });
     case EDataAction.UPDATE_FILM:
       return extend(state, {

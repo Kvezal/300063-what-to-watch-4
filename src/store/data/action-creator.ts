@@ -3,12 +3,10 @@ import {IFilm, IReview} from "@common/types";
 import {
   EDataAction,
   ECommentStatus,
-  IAddFavoriteFilmAction,
   ILoadPromoFilmAction,
   ILoadFavoriteFilmsAction,
   ILoadFilmReviewsAction,
   IChangeCommentStatusAction,
-  IRemoveFavoriteFilmAction,
   IUpdatePromoFilmAction,
   IUpdateFilmAction,
   ILoadFilmsAction,
@@ -40,16 +38,6 @@ const changeCommentStatus = (payload: ECommentStatus): IChangeCommentStatusActio
   payload,
 });
 
-const addFavoriteFilm = (payload: IFilm): IAddFavoriteFilmAction => ({
-  type: EDataAction.ADD_FAVORITE_FILM,
-  payload,
-});
-
-const removeFavoriteFilm = (payload: IFilm): IRemoveFavoriteFilmAction => ({
-  type: EDataAction.REMOVE_FAVORITE_FILM,
-  payload,
-});
-
 const updatePromoFilm = (payload: IFilm): IUpdatePromoFilmAction => ({
   type: EDataAction.UPDATE_PROMO_FILM,
   payload,
@@ -66,8 +54,6 @@ export {
   loadPromoFilm,
   loadFilmReviews,
   changeCommentStatus,
-  addFavoriteFilm,
-  removeFavoriteFilm,
   updatePromoFilm,
   updateFilm,
 };

@@ -13,7 +13,7 @@ import {addNotification} from "@store/notification/action-creator";
 import {EHTTPMethod, ENotificationType} from "@store/notification/interface";
 
 import * as ActionCreator from "./action-creator";
-import {changeCommentStatus} from "./action-creator";
+import {changeCommentStatus, updateFilm, updatePromoFilm} from "./action-creator";
 import {
   ECommentStatus,
   EDataErrorNotificationName,
@@ -134,6 +134,7 @@ const postReview = (commentData, props) => (
   return api
     .post<IServerReview>(path, commentData)
     .then((): void => {
+      dispatch(changeCommentStatus(ECommentStatus.NONE));
       history.push(EAppRoute.FILM.replace(`:filmId`, `${filmId}`));
     })
     .catch((error) => {
@@ -159,18 +160,17 @@ const changeFavoriteFilmStatus = (filmId: number, status: EFavoriteFilmActionTyp
     dispatch: IDispatch<TStoreState, AxiosInstance, TStoreAction>,
     getState: () => TStoreState,
     api: AxiosInstance
-): Promise<void> => {
+): Promise<IFilm | void> => {
   const path = EDataURLHandlerPath.FAVORITE_FILM.replace(`:filmId`, `${filmId}`).replace(`:status`, `${status}`);
   return api
     .post<IServerFilm>(path)
     .then((response: AxiosResponse<IServerFilm>): IFilm => adaptFilm(response.data))
-    .then((film: IFilm) => {
-      const favoriteFilmAction = film.isFavorite ? ActionCreator.addFavoriteFilm : ActionCreator.removeFavoriteFilm;
+    .then((film) => {
       dispatch([
-        favoriteFilmAction(film),
-        ActionCreator.updateFilm(film),
-        ActionCreator.updatePromoFilm(film)
+        updateFilm(film),
+        updatePromoFilm(film),
       ]);
+      return film;
     })
     .catch((error) => {
       if (error.response.status === UNAUTHORIZED) {

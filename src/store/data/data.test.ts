@@ -9,12 +9,10 @@ import {
   ECommentStatus,
   EDataAction,
   EFavoriteFilmActionType,
-  IAddFavoriteFilmAction,
   IChangeCommentStatusAction,
   ILoadFavoriteFilmsAction,
   ILoadFilmReviewsAction,
   ILoadFilmsAction,
-  IRemoveFavoriteFilmAction,
   IUpdateFilmAction,
   IUpdatePromoFilmAction,
 } from "./interface";
@@ -331,22 +329,6 @@ describe(`DataReducer`, () => {
       });
   });
 
-  test(`add favorite film action should return correct object`, () => {
-    expect(ActionCreator.addFavoriteFilm(film))
-      .toEqual({
-        type: EDataAction.ADD_FAVORITE_FILM,
-        payload: film,
-      });
-  });
-
-  test(`remove favorite film action should return correct object`, () => {
-    expect(ActionCreator.removeFavoriteFilm(film))
-      .toEqual({
-        type: EDataAction.REMOVE_FAVORITE_FILM,
-        payload: film,
-      });
-  });
-
   test(`update promo film action should return correct object`, () => {
     expect(ActionCreator.updatePromoFilm(film))
       .toEqual({
@@ -393,34 +375,6 @@ describe(`DataReducer`, () => {
     expect(reducer(initialState, loadFavoriteFilmsAction))
       .toEqual(extend(initialState, {
         favoriteFilms: films,
-      }));
-  });
-
-  test(`should add a film to favoriteFilms`, () => {
-    const state = extend(initialState, {
-      favoriteFilms: []
-    });
-    const addFavoriteFilmAction: IAddFavoriteFilmAction = {
-      type: EDataAction.ADD_FAVORITE_FILM,
-      payload: film,
-    };
-    expect(reducer(state, addFavoriteFilmAction))
-      .toEqual(extend(initialState, {
-        favoriteFilms: [film],
-      }));
-  });
-
-  test(`should remove a film from favoriteFilms`, () => {
-    const state = extend(initialState, {
-      favoriteFilms: [film]
-    });
-    const removeFavoriteFilmAction: IRemoveFavoriteFilmAction = {
-      type: EDataAction.REMOVE_FAVORITE_FILM,
-      payload: film,
-    };
-    expect(reducer(state, removeFavoriteFilmAction))
-      .toEqual(extend(initialState, {
-        favoriteFilms: [],
       }));
   });
 
@@ -582,7 +536,7 @@ describe(`DataReducer`, () => {
       });
   });
 
-  test(`should make a correct API call to /favorite/:filmId/:status`, () => {
+  test.only(`should make a correct API call to /favorite/:filmId/:status`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const favoriteFilmStatusChanger = Operation.changeFavoriteFilmStatus(3, EFavoriteFilmActionType.ADD);
@@ -597,9 +551,6 @@ describe(`DataReducer`, () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenCalledWith([
           {
-            type: EDataAction.ADD_FAVORITE_FILM,
-            payload: adaptedFilm,
-          }, {
             type: EDataAction.UPDATE_FILM,
             payload: adaptedFilm,
           }, {
