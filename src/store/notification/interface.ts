@@ -1,6 +1,3 @@
-import {AnyAction} from "redux";
-
-
 export enum ENotificationAction {
   ADD_NOTIFICATION = `ADD_NOTIFICATION`,
   REMOVE_NOTIFICATION = `REMOVE_NOTIFICATION`,
@@ -18,11 +15,6 @@ export enum EHTTPMethod {
   POST = `post`,
 }
 
-export interface INotificationAction<T = null> extends AnyAction {
-  type: ENotificationAction;
-  payload: T;
-}
-
 export interface INotification {
   id: string;
   type: ENotificationType;
@@ -36,4 +28,26 @@ export interface INotificationState {
   notifications: INotification[];
 }
 
-export type TNotificationAction = INotificationAction<INotification | string | number>;
+export interface IAddNotification {
+  type: ENotificationAction.ADD_NOTIFICATION;
+  payload: INotification;
+}
+
+export interface IRemoveNotification {
+  type: ENotificationAction.REMOVE_NOTIFICATION;
+  payload: string;
+}
+
+export interface IRemoveNotificationsByName {
+  type: ENotificationAction.REMOVE_NOTIFICATIONS_BY_NAME;
+  payload: string;
+}
+
+export interface IResetNotification {
+  type: ENotificationAction.RESET_NOTIFICATIONS;
+}
+
+export type TNotificationAction = IAddNotification
+  | IRemoveNotification
+  | IRemoveNotificationsByName
+  | IResetNotification;

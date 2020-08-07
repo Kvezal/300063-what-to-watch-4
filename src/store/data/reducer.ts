@@ -1,8 +1,7 @@
-import {IFilm, IReview} from "@common/types";
+import {IFilm} from "@common/types";
 import {extend} from "@common/utils";
 
 import {ECommentStatus, EDataAction, IDataState, TDataAction} from "./interface";
-import {Reducer} from "redux";
 
 
 const initialState: IDataState = {
@@ -19,43 +18,43 @@ const getFavoriteFilms = (filmList: IFilm[], film: IFilm) => {
     : filmList.concat(film as IFilm);
 };
 
-const reducer: Reducer<IDataState, TDataAction> = (state: IDataState = initialState, action: TDataAction) => {
+const reducer = (state: IDataState = initialState, action: TDataAction): IDataState => {
   switch (action.type) {
     case EDataAction.LOAD_FILMS:
       return extend(state, {
-        films: action.payload as IFilm[],
+        films: action.payload,
       });
     case EDataAction.LOAD_PROMO_FILM:
       return extend(state, {
-        promoFilm: action.payload as IFilm,
+        promoFilm: action.payload,
       });
     case EDataAction.LOAD_FILM_REVIEWS:
       return extend(state, {
-        filmReviews: action.payload as IReview[],
+        filmReviews: action.payload,
       });
     case EDataAction.LOAD_FAVORITE_FILMS:
       return extend(state, {
-        favoriteFilms: action.payload as IFilm[],
+        favoriteFilms: action.payload,
       });
     case EDataAction.CHANGE_COMMENT_STATUS:
       return extend(state, {
-        commentStatus: action.payload as ECommentStatus,
+        commentStatus: action.payload,
       });
     case EDataAction.ADD_FAVORITE_FILM:
       return extend(state, {
-        favoriteFilms: getFavoriteFilms(state.favoriteFilms, action.payload as IFilm),
+        favoriteFilms: getFavoriteFilms(state.favoriteFilms, action.payload),
       });
     case EDataAction.REMOVE_FAVORITE_FILM:
       return extend(state, {
-        favoriteFilms: state.favoriteFilms.filter((film) => film.id !== (action.payload as IFilm).id),
+        favoriteFilms: state.favoriteFilms.filter((film) => film.id !== action.payload.id),
       });
     case EDataAction.UPDATE_FILM:
       return extend(state, {
-        films: state.films.map((film: IFilm) => film.id === (action.payload as IFilm).id ? (action.payload as IFilm) : film),
+        films: state.films.map((film: IFilm) => film.id === action.payload.id ? action.payload : film),
       });
     case EDataAction.UPDATE_PROMO_FILM:
       return extend(state, {
-        promoFilm: state.promoFilm.id === (action.payload as IFilm).id ? (action.payload as IFilm) : state.promoFilm,
+        promoFilm: state.promoFilm.id === action.payload.id ? action.payload : state.promoFilm,
       });
     default:
       return state;

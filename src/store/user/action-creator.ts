@@ -1,14 +1,14 @@
 import {IUser} from "@common/types";
 
-import {EAuthorizationStatus, EUserAction, IUserAction} from "./interface";
+import {EAuthorizationStatus, EUserAction, ISetAuthorizationStatus, ISetUser} from "./interface";
 
 
-const setAuthorizationStatus = (payload: EAuthorizationStatus): IUserAction<EAuthorizationStatus> => ({
+const setAuthorizationStatus = (payload: EAuthorizationStatus): ISetAuthorizationStatus => ({
   type: EUserAction.SET_AUTHORIZATION_STATUS,
   payload,
 });
 
-const setUser = (payload: IUser): IUserAction<IUser> => ({
+const setUser = (payload: IUser): ISetUser => ({
   type: EUserAction.SET_USER,
   payload
 });

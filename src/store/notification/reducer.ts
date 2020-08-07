@@ -1,14 +1,13 @@
 import {extend} from "@common/utils";
 
 import {ENotificationAction, INotification, INotificationState, TNotificationAction} from "./interface";
-import {Reducer} from "redux";
 
 
 const initialState: INotificationState = {
   notifications: [],
 };
 
-const reducer: Reducer<INotificationState, TNotificationAction> = (state: INotificationState = initialState, action: TNotificationAction) => {
+const reducer = (state: INotificationState = initialState, action: TNotificationAction): INotificationState => {
   switch (action.type) {
     case ENotificationAction.ADD_NOTIFICATION:
       const notifications = state.notifications.slice();
@@ -19,7 +18,7 @@ const reducer: Reducer<INotificationState, TNotificationAction> = (state: INotif
     case ENotificationAction.REMOVE_NOTIFICATION:
       return extend(state, {
         notifications: state.notifications.slice()
-          .filter((notification) => notification.id !== action.payload),
+          .filter((notification: INotification) => notification.id !== action.payload),
       });
     case ENotificationAction.REMOVE_NOTIFICATIONS_BY_NAME:
       return extend(state, {

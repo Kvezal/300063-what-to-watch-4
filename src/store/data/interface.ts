@@ -1,4 +1,3 @@
-import {AnyAction} from "redux";
 import {IFilm, IReview} from "@common/types";
 
 
@@ -41,9 +40,49 @@ export enum EDataErrorNotificationName {
   FAVORITE_FILM_STATUS = `DATA:CHANGE_FAVORITE_FILM_STATUS`,
 }
 
-export interface IDataAction<T = null> extends AnyAction {
-  type: EDataAction;
-  payload: T;
+export interface ILoadFilmsAction {
+  type: EDataAction.LOAD_FILMS;
+  payload: IFilm[];
+}
+
+export interface ILoadFavoriteFilmsAction {
+  type: EDataAction.LOAD_FAVORITE_FILMS;
+  payload: IFilm[];
+}
+
+export interface ILoadPromoFilmAction {
+  type: EDataAction.LOAD_PROMO_FILM;
+  payload: IFilm;
+}
+
+export interface ILoadFilmReviewsAction {
+  type: EDataAction.LOAD_FILM_REVIEWS;
+  payload: IReview[];
+}
+
+export interface IChangeCommentStatusAction {
+  type: EDataAction.CHANGE_COMMENT_STATUS;
+  payload: ECommentStatus;
+}
+
+export interface IAddFavoriteFilmAction {
+  type: EDataAction.ADD_FAVORITE_FILM;
+  payload: IFilm;
+}
+
+export interface IRemoveFavoriteFilmAction {
+  type: EDataAction.REMOVE_FAVORITE_FILM;
+  payload: IFilm;
+}
+
+export interface IUpdatePromoFilmAction {
+  type: EDataAction.UPDATE_PROMO_FILM;
+  payload: IFilm;
+}
+
+export interface IUpdateFilmAction {
+  type: EDataAction.UPDATE_FILM;
+  payload: IFilm;
 }
 
 export interface IDataState {
@@ -54,4 +93,12 @@ export interface IDataState {
   commentStatus: ECommentStatus;
 }
 
-export type TDataAction = IDataAction<IFilm[] | IFilm | IReview[] | ECommentStatus>;
+export type TDataAction = ILoadFilmsAction
+  | ILoadFavoriteFilmsAction
+  | ILoadPromoFilmAction
+  | ILoadFilmReviewsAction
+  | IChangeCommentStatusAction
+  | IAddFavoriteFilmAction
+  | IRemoveFavoriteFilmAction
+  | IUpdatePromoFilmAction
+  | IUpdateFilmAction;

@@ -7,10 +7,15 @@ import {IServerUser, IUser} from "@common/types";
 import {ID_LENGTH} from "@common/consts";
 import {loadFavoriteFilms} from "@store/data/operation";
 import {addNotification, resetNotification} from "@store/notification/action-creator";
-import {EHTTPMethod, ENotificationType} from "@store/notification/interface";
+import {EHTTPMethod, ENotificationType, INotification} from "@store/notification/interface";
 
 import {setAuthorizationStatus, setUser} from "./action-creator";
-import {EAuthorizationStatus, EUserURLHandlerPath, EUserErrorNotificationName} from "./interface";
+import {
+  EAuthorizationStatus,
+  EUserURLHandlerPath,
+  EUserErrorNotificationName,
+  IUserAuthorizationParams
+} from "./interface";
 
 
 const checkAuth = () => (dispatch, getState, api) => {
@@ -24,7 +29,7 @@ const checkAuth = () => (dispatch, getState, api) => {
     });
 };
 
-const login = (authData) => (dispatch, getState, api) => {
+const login = (authData: IUserAuthorizationParams) => (dispatch, getState, api) => {
   return api.post(EUserURLHandlerPath.LOGIN, {
     email: authData.email,
     password: authData.password,
@@ -40,7 +45,7 @@ const login = (authData) => (dispatch, getState, api) => {
       history.push(EAppRoute.ROOT);
     })
     .catch(() => {
-      const notification = {
+      const notification: INotification = {
         id: nanoid(ID_LENGTH),
         type: ENotificationType.HIDDEN,
         name: EUserErrorNotificationName.EMAIL,
