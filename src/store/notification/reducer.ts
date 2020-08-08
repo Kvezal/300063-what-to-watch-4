@@ -10,20 +10,16 @@ const initialState: INotificationState = {
 const reducer = (state: INotificationState = initialState, action: TNotificationAction): INotificationState => {
   switch (action.type) {
     case ENotificationAction.ADD_NOTIFICATION:
-      const notifications = state.notifications.slice();
-      notifications.push(action.payload as INotification);
       return extend(state, {
-        notifications,
+        notifications: state.notifications.concat(action.payload),
       });
     case ENotificationAction.REMOVE_NOTIFICATION:
       return extend(state, {
-        notifications: state.notifications.slice()
-          .filter((notification: INotification) => notification.id !== action.payload),
+        notifications: state.notifications.filter((notification: INotification) => notification.id !== action.payload),
       });
     case ENotificationAction.REMOVE_NOTIFICATIONS_BY_NAME:
       return extend(state, {
-        notifications: state.notifications.slice()
-          .filter((notification) => notification.name !== action.payload),
+        notifications: state.notifications.filter((notification) => notification.name !== action.payload),
       });
     case ENotificationAction.RESET_NOTIFICATIONS:
       return extend(state, {

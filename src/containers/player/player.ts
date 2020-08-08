@@ -1,8 +1,7 @@
 import {connect} from "react-redux";
 
 import {withLoading, withVideoPlayer} from "@hocs/index";
-import {IPlayerProps} from "@pages/player/interface";
-import Player from "@pages/player/player";
+import {Player, IPlayerProps} from "@pages/player";
 import {getCurrentFilmName, getCurrentFilmPicturePreview, getCurrentFilmVideoSource} from "@store/data/selectors";
 import {TStoreState} from "@store/interface";
 

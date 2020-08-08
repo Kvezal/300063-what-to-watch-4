@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 
 import {withLoading} from "@hocs/index";
-import MyList from "@pages/my-list/my-list";
+import {MyList} from "@pages/my-list";
 import {getFavoriteFilms} from "@store/data/selectors";
 import {getAuthorizationStatus, getAvatar} from "@store/user/selector";
 import {TStoreState} from "@store/interface";

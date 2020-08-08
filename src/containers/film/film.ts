@@ -2,6 +2,7 @@ import {AxiosInstance} from "axios";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
+import {EAppRoute, history} from "@app/index";
 import {IFilm} from "@common/types";
 import {getUpdatedFavoriteFilms} from "@common/utils";
 import {withLoading} from "@hocs/index";
@@ -12,6 +13,7 @@ import {getCurrentFilm, getFavoriteFilms, getLikedFilms, getReviews} from "@stor
 import {changeFavoriteFilmStatus, loadFilmReviews} from "@store/data/operation";
 import {EFavoriteFilmActionType} from "@store/data/interface";
 import {getAuthorizationStatus, getAvatar} from "@store/user/selector";
+import {EAuthorizationStatus} from "@store/user/interface";
 import {TStoreAction, TStoreState} from "@store/interface";
 
 import {IFilmMapDispatchToProps, IFilmMapStateToProps, IFilmMergeProps, IFilmDispatchProps} from "./interface";
@@ -44,6 +46,9 @@ const mergeProps = (
   return Object.assign<{}, IFilmMapStateToProps, IFilmProps, IFilmDispatchProps>({}, stateProps, ownProps, {
     onReviewsLoad: dispatchProps.onReviewsLoad,
     onFavoriteFilmClick: (currentFilm: IFilm) => {
+      if (stateProps.authorizationStatus === EAuthorizationStatus.NO_AUTH) {
+        return history.push(EAppRoute.LOGIN);
+      }
       const favoriteFilmActionType = currentFilm.isFavorite
         ? EFavoriteFilmActionType.DELETE
         : EFavoriteFilmActionType.ADD;

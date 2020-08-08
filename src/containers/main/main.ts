@@ -2,25 +2,21 @@ import {AxiosInstance} from "axios";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
+import {EAppRoute, history} from "@app/index";
 import {IFilm} from "@common/types";
 import {getUpdatedFavoriteFilms} from "@common/utils";
 import {withActiveTab, withLoading} from "@hocs/index";
-import Main from "@pages/main/main";
+import {IDispatch} from "@middlewares/interface";
+import {Main, IMainProps} from "@pages/main";
 import {EFavoriteFilmActionType} from "@store/data/interface";
 import {getFavoriteFilms, getFilmGenres, getFilteredFilmsByGenre, getPromoFilm} from "@store/data/selectors";
 import {changeFavoriteFilmStatus} from "@store/data/operation";
 import {getAuthorizationStatus, getAvatar} from "@store/user/selector";
 import {loadFavoriteFilms} from "@store/data/action-creator";
 import {TStoreAction, TStoreState} from "@store/interface";
-import {IDispatch} from "@middlewares/interface";
-import {IMainProps} from "@pages/main/interface";
+import {EAuthorizationStatus} from "@store/user/interface";
 
-import {
-  IMainDispatchProps,
-  IMainMapDispatchToProps,
-  IMainMapStateToProps,
-  IMainMergeProps
-} from "./interface";
+import {IMainDispatchProps, IMainMapDispatchToProps, IMainMapStateToProps, IMainMergeProps} from "./interface";
 
 
 const MainWrapper = withLoading(withActiveTab(Main));
@@ -45,6 +41,9 @@ const mergeProps = (stateProps: IMainMapStateToProps, dispatchProps: IMainMapDis
   return Object.assign<{}, IMainMapStateToProps, IMainProps, IMainDispatchProps>({}, stateProps, ownProps, {
     loadFavoriteFilms: dispatchProps.loadFavoriteFilms,
     onFavoriteFilmClick: (currentFilm: IFilm) => {
+      if (stateProps.authorizationStatus === EAuthorizationStatus.NO_AUTH) {
+        return history.push(EAppRoute.LOGIN);
+      }
       const favoriteFilmActionType = currentFilm.isFavorite
         ? EFavoriteFilmActionType.DELETE
         : EFavoriteFilmActionType.ADD;

@@ -3,8 +3,7 @@ import {connect} from "react-redux";
 
 import {withFormState, withLoading} from "@hocs/index";
 import {IDispatch} from "@middlewares/interface";
-import AddReview from "@pages/add-review/add-review";
-import {IAddReviewProps} from "@pages/add-review/interface";
+import {AddReview, IAddReviewProps} from "@pages/add-review";
 import {changeCommentStatus} from "@store/data/action-creator";
 import {ECommentStatus, IReviewCommentParams} from "@store/data/interface";
 import {postReview} from "@store/data/operation";

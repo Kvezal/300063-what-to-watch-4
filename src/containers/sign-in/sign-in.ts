@@ -2,15 +2,14 @@ import {AxiosInstance} from "axios";
 import {connect} from "react-redux";
 
 import {withFormState, withLoading} from "@hocs/index";
-import SignIn from "@pages/sign-in/sign-in";
-import {ISignInProps} from "@pages/sign-in/interface";
+import {SignIn, ISignInProps} from "@pages/sign-in";
+import {IDispatch} from "@middlewares/interface";
 import {removeNotificationsByName} from "@store/notification/action-creator";
 import {getNotificationsByName} from "@store/notification/selectors";
 import {EUserErrorNotificationName, IUserAuthorizationParams} from "@store/user/interface";
 import {login} from "@store/user/operation";
 import {getAuthorizationStatus} from "@store/user/selector";
 import {TStoreAction, TStoreState} from "@store/interface";
-import {IDispatch} from "@middlewares/interface";
 
 import {ISignInMapDispatchToProp, ISignInMapStateToProps} from "./interface";
 
