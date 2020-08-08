@@ -536,7 +536,7 @@ describe(`DataReducer`, () => {
       });
   });
 
-  test.only(`should make a correct API call to /favorite/:filmId/:status`, () => {
+  test(`should make a correct API call to /favorite/:filmId/:status`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const favoriteFilmStatusChanger = Operation.changeFavoriteFilmStatus(3, EFavoriteFilmActionType.ADD);
