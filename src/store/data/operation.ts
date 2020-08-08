@@ -19,6 +19,7 @@ import {
   EDataErrorNotificationName,
   EDataURLHandlerPath,
   EFavoriteFilmActionType,
+  IReviewCommentParams,
 } from "./interface";
 
 
@@ -124,7 +125,7 @@ const loadFavoriteFilms = () => (
     });
 };
 
-const postReview = (commentData, props) => (
+const postReview = (commentData: IReviewCommentParams, props) => (
     dispatch: IDispatch<TStoreState, AxiosInstance, TStoreAction>,
     getState: () => TStoreState,
     api: AxiosInstance

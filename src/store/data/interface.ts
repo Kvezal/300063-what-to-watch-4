@@ -1,5 +1,9 @@
 import {IFilm, IReview} from "@common/types";
 
+export interface IReviewCommentParams {
+  rating: string;
+  comment: string;
+}
 
 export enum EDataAction {
   LOAD_FILMS = `LOAD_FILMS`,

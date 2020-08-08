@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import NotificationList from "@containers/notification-list";
+import NotificationList from "@containers/notification-list/notification-list";
 
 
 const withNotifications = (Component) => {

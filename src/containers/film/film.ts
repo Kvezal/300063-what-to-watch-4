@@ -1,20 +1,25 @@
+import {AxiosInstance} from "axios";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
 import {IFilm} from "@common/types";
 import {getUpdatedFavoriteFilms} from "@common/utils";
 import {withLoading} from "@hocs/index";
-import Film from "@pages/film/film";
+import {IDispatch} from "@middlewares/interface";
+import {Film, IFilmProps} from "@pages/film";
+import {loadFavoriteFilms} from "@store/data/action-creator";
 import {getCurrentFilm, getFavoriteFilms, getLikedFilms, getReviews} from "@store/data/selectors";
-import {getAuthorizationStatus, getAvatar} from "@store/user/selector";
 import {changeFavoriteFilmStatus, loadFilmReviews} from "@store/data/operation";
 import {EFavoriteFilmActionType} from "@store/data/interface";
-import {loadFavoriteFilms} from "@store/data/action-creator";
+import {getAuthorizationStatus, getAvatar} from "@store/user/selector";
+import {TStoreAction, TStoreState} from "@store/interface";
+
+import {IFilmMapDispatchToProps, IFilmMapStateToProps, IFilmMergeProps, IFilmDispatchProps} from "./interface";
 
 
 const FilmWrapper = withLoading(Film);
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state: TStoreState, props: IFilmProps): IFilmMapStateToProps => ({
   avatar: getAvatar(state),
   likedFilms: getLikedFilms(state, props),
   reviews: getReviews(state),
@@ -23,22 +28,26 @@ const mapStateToProps = (state, props) => ({
   favoriteFilms: getFavoriteFilms(state),
 });
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: IDispatch<TStoreAction, AxiosInstance, TStoreAction>): IFilmMapDispatchToProps => {
   return bindActionCreators({
+    loadFavoriteFilms,
     onFavoriteFilmClick: changeFavoriteFilmStatus,
     onReviewsLoad: loadFilmReviews,
-    loadFavoriteFilms,
   }, dispatch);
 };
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  return Object.assign({}, stateProps, ownProps, {
+const mergeProps = (
+    stateProps: IFilmMapStateToProps,
+    dispatchProps: IFilmMapDispatchToProps,
+    ownProps: IFilmProps
+): IFilmMergeProps => {
+  return Object.assign<{}, IFilmMapStateToProps, IFilmProps, IFilmDispatchProps>({}, stateProps, ownProps, {
     onReviewsLoad: dispatchProps.onReviewsLoad,
-    onFavoriteFilmClick: (currentFilm) => {
+    onFavoriteFilmClick: (currentFilm: IFilm) => {
       const favoriteFilmActionType = currentFilm.isFavorite
         ? EFavoriteFilmActionType.DELETE
         : EFavoriteFilmActionType.ADD;
-      dispatchProps.onFavoriteFilmClick(currentFilm.id, favoriteFilmActionType)
+      return dispatchProps.onFavoriteFilmClick(currentFilm.id, favoriteFilmActionType)
         .then((film: IFilm) => {
           const favoriteFilms = getUpdatedFavoriteFilms(stateProps.favoriteFilms, film);
           dispatchProps.loadFavoriteFilms(favoriteFilms);
@@ -47,4 +56,4 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   });
 };
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(FilmWrapper);
+export default connect<IFilmMapStateToProps, IFilmMapDispatchToProps, IFilmMergeProps>(mapStateToProps, mapDispatchToProps, mergeProps)(FilmWrapper);
