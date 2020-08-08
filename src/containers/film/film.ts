@@ -28,7 +28,7 @@ const mapStateToProps = (state: TStoreState, props: IFilmProps): IFilmMapStateTo
   favoriteFilms: getFavoriteFilms(state),
 });
 
-const mapDispatchToProps = (dispatch: IDispatch<TStoreAction, AxiosInstance, TStoreAction>): IFilmMapDispatchToProps => {
+const mapDispatchToProps = (dispatch: IDispatch<TStoreState, AxiosInstance, TStoreAction>): IFilmMapDispatchToProps => {
   return bindActionCreators({
     loadFavoriteFilms,
     onFavoriteFilmClick: changeFavoriteFilmStatus,

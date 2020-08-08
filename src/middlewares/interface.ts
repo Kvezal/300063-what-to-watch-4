@@ -1,4 +1,7 @@
+import {AxiosInstance} from "axios";
 import {Action, ActionCreatorsMapObject, AnyAction, Dispatch, Middleware} from "redux";
+
+import {TStoreAction, TStoreState} from "@store/interface";
 
 
 export interface IDispatch<TStore, TExtra, TBasicAction extends Action> {
@@ -15,15 +18,11 @@ export type IMiddleware<TStore = {}, TBasicAction extends Action = AnyAction, TE
 
 // eslint-disable-next-line
 declare module 'redux' {
-  /**
-   * Overload for bindActionCreators redux function, returns expects responses
-   * from thunk actions
-   */
-  function bindActionCreators<M extends ActionCreatorsMapObject<any>>(
+  function bindActionCreators<M extends ActionCreatorsMapObject>(
     actionCreators: M,
     dispatch: Dispatch
   ): {
-    [N in keyof M]: ReturnType<M[N]> extends IAction<any, any, any, any>
+    [N in keyof M]: ReturnType<M[N]> extends IAction<{}, TStoreState, AxiosInstance, TStoreAction>
       ? (...args: Parameters<M[N]>) => ReturnType<ReturnType<M[N]>>
       : M[N]
   };
