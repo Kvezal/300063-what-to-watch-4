@@ -1,48 +1,49 @@
 import {IFilm, IReview} from "@common/types";
-import {IDataAction, EDataAction, ECommentStatus} from "./interface";
+
+import {
+  EDataAction,
+  ECommentStatus,
+  ILoadPromoFilmAction,
+  ILoadFavoriteFilmsAction,
+  ILoadFilmReviewsAction,
+  IChangeCommentStatusAction,
+  IUpdatePromoFilmAction,
+  IUpdateFilmAction,
+  ILoadFilmsAction,
+} from "./interface";
 
 
-const loadFilms = (payload: IFilm[]): IDataAction<IFilm[]> => ({
+const loadFilms = (payload: IFilm[]): ILoadFilmsAction => ({
   type: EDataAction.LOAD_FILMS,
   payload,
 });
 
-const loadFavoriteFilms = (payload: IFilm[]): IDataAction<IFilm[]> => ({
+const loadFavoriteFilms = (payload: IFilm[]): ILoadFavoriteFilmsAction => ({
   type: EDataAction.LOAD_FAVORITE_FILMS,
   payload,
 });
 
-const loadPromoFilm = (payload: IFilm): IDataAction<IFilm> => ({
+const loadPromoFilm = (payload: IFilm): ILoadPromoFilmAction => ({
   type: EDataAction.LOAD_PROMO_FILM,
   payload,
 });
 
-const loadFilmReviews = (payload: IReview[]): IDataAction<IReview[]> => ({
+const loadFilmReviews = (payload: IReview[]): ILoadFilmReviewsAction => ({
   type: EDataAction.LOAD_FILM_REVIEWS,
   payload,
 });
 
-const changeCommentStatus = (payload: ECommentStatus): IDataAction<ECommentStatus> => ({
+const changeCommentStatus = (payload: ECommentStatus): IChangeCommentStatusAction => ({
   type: EDataAction.CHANGE_COMMENT_STATUS,
   payload,
 });
 
-const addFavoriteFilm = (payload: IFilm): IDataAction<IFilm> => ({
-  type: EDataAction.ADD_FAVORITE_FILM,
-  payload,
-});
-
-const removeFavoriteFilm = (payload: IFilm): IDataAction<IFilm> => ({
-  type: EDataAction.REMOVE_FAVORITE_FILM,
-  payload,
-});
-
-const updatePromoFilm = (payload: IFilm): IDataAction<IFilm> => ({
+const updatePromoFilm = (payload: IFilm): IUpdatePromoFilmAction => ({
   type: EDataAction.UPDATE_PROMO_FILM,
   payload,
 });
 
-const updateFilm = (payload: IFilm): IDataAction<IFilm> => ({
+const updateFilm = (payload: IFilm): IUpdateFilmAction => ({
   type: EDataAction.UPDATE_FILM,
   payload,
 });
@@ -53,8 +54,6 @@ export {
   loadPromoFilm,
   loadFilmReviews,
   changeCommentStatus,
-  addFavoriteFilm,
-  removeFavoriteFilm,
   updatePromoFilm,
   updateFilm,
 };

@@ -1,7 +1,8 @@
-import {setAuthorizationStatus} from "./action-creator";
-import {EUserAction, EAuthorizationStatus} from "./interface";
-import reducer from "./reducer";
 import {IUser} from "@common/types";
+
+import {setAuthorizationStatus} from "./action-creator";
+import {EUserAction, EAuthorizationStatus, ISetAuthorizationStatus, ISetUser} from "./interface";
+import reducer from "./reducer";
 
 
 describe(`UserReducer`, () => {
@@ -13,14 +14,16 @@ describe(`UserReducer`, () => {
   });
 
   test(`should change authorizationStatus`, () => {
+    const setAuthorizationStatusAction: ISetAuthorizationStatus = {
+      type: EUserAction.SET_AUTHORIZATION_STATUS,
+      payload: EAuthorizationStatus.AUTH,
+    };
+
     expect(
         reducer({
           user: null,
           authorizationStatus: EAuthorizationStatus.NO_AUTH,
-        }, {
-          type: EUserAction.SET_AUTHORIZATION_STATUS,
-          payload: EAuthorizationStatus.AUTH,
-        })
+        }, setAuthorizationStatusAction)
     ).toEqual({
       user: null,
       authorizationStatus: EAuthorizationStatus.AUTH,
@@ -30,23 +33,22 @@ describe(`UserReducer`, () => {
         reducer({
           user: null,
           authorizationStatus: EAuthorizationStatus.AUTH,
-        }, {
-          type: EUserAction.SET_AUTHORIZATION_STATUS,
-          payload: EAuthorizationStatus.AUTH,
-        })
+        }, setAuthorizationStatusAction)
     ).toEqual({
       user: null,
       authorizationStatus: EAuthorizationStatus.AUTH,
     });
 
+    const setNotAuthorizationStatusAction: ISetAuthorizationStatus = {
+      type: EUserAction.SET_AUTHORIZATION_STATUS,
+      payload: EAuthorizationStatus.NO_AUTH,
+    };
+
     expect(
         reducer({
           user: null,
           authorizationStatus: EAuthorizationStatus.AUTH,
-        }, {
-          type: EUserAction.SET_AUTHORIZATION_STATUS,
-          payload: EAuthorizationStatus.NO_AUTH,
-        })
+        }, setNotAuthorizationStatusAction)
     ).toEqual({
       user: null,
       authorizationStatus: EAuthorizationStatus.NO_AUTH,
@@ -56,10 +58,7 @@ describe(`UserReducer`, () => {
         reducer({
           user: null,
           authorizationStatus: EAuthorizationStatus.NO_AUTH,
-        }, {
-          type: EUserAction.SET_AUTHORIZATION_STATUS,
-          payload: EAuthorizationStatus.NO_AUTH,
-        })
+        }, setNotAuthorizationStatusAction)
     ).toEqual({
       user: null,
       authorizationStatus: EAuthorizationStatus.NO_AUTH,
@@ -73,14 +72,15 @@ describe(`UserReducer`, () => {
       name: `Oliver.conner`,
       avatar: `img/1.png`
     };
+    const setUserAction: ISetUser = {
+      type: EUserAction.SET_USER,
+      payload: user,
+    };
     expect(
         reducer({
           user: null,
           authorizationStatus: EAuthorizationStatus.AUTH,
-        }, {
-          type: EUserAction.SET_USER,
-          payload: user,
-        })
+        }, setUserAction)
     ).toEqual({
       user,
       authorizationStatus: EAuthorizationStatus.AUTH,

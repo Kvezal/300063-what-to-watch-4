@@ -1,15 +1,11 @@
 import {INotification} from "@store/notification/interface";
+import {IUserAuthorizationParams} from "@store/user/interface";
 
-
-export interface ISignInFormState {
-  email: string;
-  password: string;
-}
 
 export interface ISignInProps {
-  onFormSubmit: (formState: ISignInFormState) => void;
+  onFormSubmit: (formState: IUserAuthorizationParams) => void;
   errors: INotification[];
-  formState: ISignInFormState;
+  formState: IUserAuthorizationParams;
   authorizationStatus: string;
   onControlChange: (fieldName: string, value: string) => void;
 }

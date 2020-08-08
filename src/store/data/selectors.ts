@@ -40,7 +40,7 @@ const getCommentStatus = (state: TStoreState): ECommentStatus => {
 
 const getCurrentGenre = createSelector(
     getHash,
-    (hash: string) => {
+    (hash: string): string => {
       return hash.replace(`#`, ``) || ALL_GENRES;
     }
 );
@@ -48,14 +48,14 @@ const getCurrentGenre = createSelector(
 const getCurrentFilm = createSelector(
     getFilms,
     getCurrentFilmId,
-    (films: IFilm[], filmId: number) => {
-      return films && films.find((film) => film.id === filmId);
+    (films: IFilm[], filmId: number): IFilm => {
+      return films && films.find((film: IFilm) => film.id === filmId);
     }
 );
 
 const getCurrentFilmName = createSelector(
     getCurrentFilm,
-    (film: IFilm) => {
+    (film: IFilm): string => {
       return film && film.name;
     }
 );
@@ -63,7 +63,7 @@ const getCurrentFilmName = createSelector(
 const getLikedFilms = createSelector(
     getFilms,
     getCurrentFilm,
-    (films: IFilm[], currentFilm: IFilm) => {
+    (films: IFilm[], currentFilm: IFilm): IFilm[] => {
       if (!currentFilm) {
         return [];
       }
@@ -76,7 +76,7 @@ const getLikedFilms = createSelector(
 const getFilteredFilmsByGenre = createSelector(
     getFilms,
     getCurrentGenre,
-    (films: IFilm[], genre: string) => {
+    (films: IFilm[], genre: string): IFilm[] => {
       if (!films || genre === ALL_GENRES) {
         return films;
       }
@@ -86,17 +86,17 @@ const getFilteredFilmsByGenre = createSelector(
 
 const getCurrentFilmVideoSource = createSelector(
     getCurrentFilm,
-    (film: IFilm) => film && film.source.video
+    (film: IFilm): string => film && film.source.video
 );
 
 const getCurrentFilmPicturePreview = createSelector(
     getCurrentFilm,
-    (film: IFilm) => film && film.picture.preview
+    (film: IFilm): string => film && film.picture.preview
 );
 
 const getFilmGenres = createSelector(
     getFilms,
-    (films: IFilm[]) => {
+    (films: IFilm[]): string[] => {
       if (!films || films.length === 0) {
         return [];
       }

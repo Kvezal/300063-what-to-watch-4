@@ -1,14 +1,24 @@
 import MockAdapter from "axios-mock-adapter";
 
 import {adaptFilm, adaptReview} from "@common/adapter";
+import {IReview} from "@common/types";
 import {extend} from "@common/utils";
 import createAPI from "@services/api";
 
-import {ECommentStatus, EDataAction, EFavoriteFilmActionType} from "./interface";
+import {
+  ECommentStatus,
+  EDataAction,
+  EFavoriteFilmActionType,
+  IChangeCommentStatusAction,
+  ILoadFavoriteFilmsAction,
+  ILoadFilmReviewsAction,
+  ILoadFilmsAction,
+  IUpdateFilmAction,
+  IUpdatePromoFilmAction,
+} from "./interface";
 import * as ActionCreator from "./action-creator";
 import reducer from "./reducer";
 import * as Operation from "./operation";
-import {IReview} from "@common/types";
 
 
 const api = createAPI();
@@ -319,22 +329,6 @@ describe(`DataReducer`, () => {
       });
   });
 
-  test(`add favorite film action should return correct object`, () => {
-    expect(ActionCreator.addFavoriteFilm(film))
-      .toEqual({
-        type: EDataAction.ADD_FAVORITE_FILM,
-        payload: film,
-      });
-  });
-
-  test(`remove favorite film action should return correct object`, () => {
-    expect(ActionCreator.removeFavoriteFilm(film))
-      .toEqual({
-        type: EDataAction.REMOVE_FAVORITE_FILM,
-        payload: film,
-      });
-  });
-
   test(`update promo film action should return correct object`, () => {
     expect(ActionCreator.updatePromoFilm(film))
       .toEqual({
@@ -352,7 +346,7 @@ describe(`DataReducer`, () => {
   });
 
   test(`should set films`, () => {
-    const loadFilmsAction = {
+    const loadFilmsAction: ILoadFilmsAction = {
       type: EDataAction.LOAD_FILMS,
       payload: films,
     };
@@ -363,7 +357,7 @@ describe(`DataReducer`, () => {
   });
 
   test(`should set filmReviews`, () => {
-    const loadFilmReviewsAction = {
+    const loadFilmReviewsAction: ILoadFilmReviewsAction = {
       type: EDataAction.LOAD_FILM_REVIEWS,
       payload: reviews,
     };
@@ -374,7 +368,7 @@ describe(`DataReducer`, () => {
   });
 
   test(`should set favoriteFilms`, () => {
-    const loadFavoriteFilmsAction = {
+    const loadFavoriteFilmsAction: ILoadFavoriteFilmsAction = {
       type: EDataAction.LOAD_FAVORITE_FILMS,
       payload: films,
     };
@@ -384,40 +378,12 @@ describe(`DataReducer`, () => {
       }));
   });
 
-  test(`should add a film to favoriteFilms`, () => {
-    const state = extend(initialState, {
-      favoriteFilms: []
-    });
-    const addFavoriteFilmAction = {
-      type: EDataAction.ADD_FAVORITE_FILM,
-      payload: film,
-    };
-    expect(reducer(state, addFavoriteFilmAction))
-      .toEqual(extend(initialState, {
-        favoriteFilms: [film],
-      }));
-  });
-
-  test(`should remove a film from favoriteFilms`, () => {
-    const state = extend(initialState, {
-      favoriteFilms: [film]
-    });
-    const removeFavoriteFilmAction = {
-      type: EDataAction.REMOVE_FAVORITE_FILM,
-      payload: film,
-    };
-    expect(reducer(state, removeFavoriteFilmAction))
-      .toEqual(extend(initialState, {
-        favoriteFilms: [],
-      }));
-  });
-
   test.each([
     ECommentStatus.ERROR,
     ECommentStatus.POSTING,
     ECommentStatus.NONE
   ])(`should set commentStatus %p`, (status) => {
-    const changeCommentPostingStatusAction = {
+    const changeCommentPostingStatusAction: IChangeCommentStatusAction = {
       type: EDataAction.CHANGE_COMMENT_STATUS,
       payload: status,
     };
@@ -434,7 +400,7 @@ describe(`DataReducer`, () => {
     const updatedFilm = extend(film, {
       description: `updated`,
     });
-    const updateFilmAction = {
+    const updateFilmAction: IUpdateFilmAction = {
       type: EDataAction.UPDATE_FILM,
       payload: updatedFilm,
     };
@@ -452,7 +418,7 @@ describe(`DataReducer`, () => {
       id: 10,
       description: `updated`,
     });
-    const updateFilmAction = {
+    const updateFilmAction: IUpdateFilmAction = {
       type: EDataAction.UPDATE_FILM,
       payload: updatedFilm,
     };
@@ -469,11 +435,11 @@ describe(`DataReducer`, () => {
     const updatedFilm = extend(film, {
       description: `updated`,
     });
-    const updateFilmAction = {
+    const updatePromoFilmAction: IUpdatePromoFilmAction = {
       type: EDataAction.UPDATE_PROMO_FILM,
       payload: updatedFilm,
     };
-    expect(reducer(state, updateFilmAction))
+    expect(reducer(state, updatePromoFilmAction))
       .toEqual(extend(initialState, {
         promoFilm: updatedFilm,
       }));
@@ -487,11 +453,11 @@ describe(`DataReducer`, () => {
       id: 10,
       description: `updated`,
     });
-    const updateFilmAction = {
+    const updatePromoFilmAction: IUpdatePromoFilmAction = {
       type: EDataAction.UPDATE_PROMO_FILM,
       payload: updatedFilm,
     };
-    expect(reducer(state, updateFilmAction))
+    expect(reducer(state, updatePromoFilmAction))
       .toEqual(extend(initialState, {
         promoFilm: film,
       }));
@@ -585,9 +551,6 @@ describe(`DataReducer`, () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenCalledWith([
           {
-            type: EDataAction.ADD_FAVORITE_FILM,
-            payload: adaptedFilm,
-          }, {
             type: EDataAction.UPDATE_FILM,
             payload: adaptedFilm,
           }, {

@@ -1,8 +1,6 @@
 import {extend} from "@common/utils";
 
-import {EAuthorizationStatus, EUserAction, IUserState, TUserAction} from "./interface";
-import {IUser} from "@common/types";
-import {Reducer} from "redux";
+import {EUserAction, IUserState, TUserAction} from "./interface";
 
 
 const initialState: IUserState = {
@@ -10,15 +8,15 @@ const initialState: IUserState = {
   authorizationStatus: null,
 };
 
-const reducer: Reducer<IUserState, TUserAction> = (state: IUserState = initialState, action: TUserAction) => {
+const reducer = (state: IUserState = initialState, action: TUserAction): IUserState => {
   switch (action.type) {
     case EUserAction.SET_AUTHORIZATION_STATUS:
       return extend(state, {
-        authorizationStatus: action.payload as EAuthorizationStatus,
+        authorizationStatus: action.payload,
       });
     case EUserAction.SET_USER:
       return extend(state, {
-        user: action.payload as IUser,
+        user: action.payload,
       });
     default:
       return state;

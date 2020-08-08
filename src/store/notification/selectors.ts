@@ -25,8 +25,8 @@ const getNotificationsByName = createSelector(
 
 const getDisplayedNotifications = createSelector(
     getNotifications,
-    (notifications) => notifications.filter(
-        (notification) => notification.type !== ENotificationType.HIDDEN
+    (notifications: INotification[]): INotification[] => notifications.filter(
+        (notification: INotification) => notification.type !== ENotificationType.HIDDEN
     )
 );
 

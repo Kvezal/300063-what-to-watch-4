@@ -70,23 +70,21 @@ const Main: React.FunctionComponent<IMainProps> = (props: IMainProps) => {
                 </svg>
                 <span>Play</span>
               </Link>
-              {authorizationStatus === EAuthorizationStatus.AUTH && (
-                <button
-                  className="btn btn--list movie-card__button"
-                  type="button"
-                  onClick={() => onFavoriteFilmClick(promoFilm)}
-                >
-                  {isFavorite
-                    ? <svg viewBox="0 0 18 14" width="18" height="14">
-                      <use xlinkHref="#in-list"/>
-                    </svg>
-                    : <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"/>
-                    </svg>
-                  }
-                  <span>My list</span>
-                </button>
-              )}
+              <button
+                className="btn btn--list movie-card__button"
+                type="button"
+                onClick={() => onFavoriteFilmClick(promoFilm)}
+              >
+                {isFavorite
+                  ? <svg viewBox="0 0 18 14" width="18" height="14">
+                    <use xlinkHref="#in-list"/>
+                  </svg>
+                  : <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"/>
+                  </svg>
+                }
+                <span>My list</span>
+              </button>
             </div>
           </div>
         </div>

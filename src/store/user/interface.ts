@@ -1,6 +1,10 @@
-import {AnyAction} from "redux";
-
 import {IUser} from "@common/types";
+
+
+export interface IUserAuthorizationParams {
+  email: string;
+  password: string;
+}
 
 export enum EUserAction {
   SET_AUTHORIZATION_STATUS = `SET_AUTHORIZATION_STATUS`,
@@ -20,14 +24,19 @@ export enum EUserURLHandlerPath {
   LOGIN = `/login`,
 }
 
-export interface IUserAction<T = null> extends AnyAction {
-  type: EUserAction;
-  payload: T;
-}
-
 export interface IUserState {
   user: IUser;
   authorizationStatus: EAuthorizationStatus;
 }
 
-export type TUserAction = IUserAction<EAuthorizationStatus | IUser>;
+export interface ISetAuthorizationStatus {
+  type: EUserAction.SET_AUTHORIZATION_STATUS;
+  payload: EAuthorizationStatus;
+}
+
+export interface ISetUser {
+  type: EUserAction.SET_USER;
+  payload: IUser;
+}
+
+export type TUserAction = ISetAuthorizationStatus | ISetUser;

@@ -1,6 +1,12 @@
 import {extend} from "@common/utils";
 import {removeNotificationsByName} from "@store/notification/action-creator";
-import {EHTTPMethod, ENotificationType} from "@store/notification/interface";
+import {
+  EHTTPMethod,
+  ENotificationType,
+  IAddNotification,
+  IRemoveNotification,
+  IRemoveNotificationsByName, IResetNotification
+} from "@store/notification/interface";
 
 import {ENotificationAction} from "./interface";
 import {addNotification, removeNotification, resetNotification} from "./action-creator";
@@ -50,7 +56,6 @@ describe(`NotificationReducer`, () => {
     expect(resetNotification())
       .toEqual({
         type: ENotificationAction.RESET_NOTIFICATIONS,
-        payload: null,
       });
   });
 
@@ -63,11 +68,11 @@ describe(`NotificationReducer`, () => {
       title: `title 1`,
       text: `text 1`,
     };
-    const addErrorNotificationAction = {
+    const addNotificationAction: IAddNotification = {
       type: ENotificationAction.ADD_NOTIFICATION,
       payload: notification,
     };
-    expect(reducer(initialState, addErrorNotificationAction))
+    expect(reducer(initialState, addNotificationAction))
       .toEqual(extend(initialState, {
         notifications: [notification],
       }));
@@ -87,7 +92,7 @@ describe(`NotificationReducer`, () => {
         }
       ],
     });
-    const removeNotificationAction = {
+    const removeNotificationAction: IRemoveNotification = {
       type: ENotificationAction.REMOVE_NOTIFICATION,
       payload: notificationId,
     };
@@ -125,7 +130,7 @@ describe(`NotificationReducer`, () => {
         }
       ],
     });
-    const removeNotificationAction = {
+    const removeNotificationAction: IRemoveNotificationsByName = {
       type: ENotificationAction.REMOVE_NOTIFICATIONS_BY_NAME,
       payload: notificationName,
     };
@@ -163,9 +168,8 @@ describe(`NotificationReducer`, () => {
         }
       ],
     });
-    const resetNotificationsAction = {
+    const resetNotificationsAction: IResetNotification = {
       type: ENotificationAction.RESET_NOTIFICATIONS,
-      payload: null,
     };
     expect(reducer(state, resetNotificationsAction))
       .toEqual(extend(state, {

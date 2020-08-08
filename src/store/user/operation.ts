@@ -7,30 +7,51 @@ import {IServerUser, IUser} from "@common/types";
 import {ID_LENGTH} from "@common/consts";
 import {loadFavoriteFilms} from "@store/data/operation";
 import {addNotification, resetNotification} from "@store/notification/action-creator";
-import {EHTTPMethod, ENotificationType} from "@store/notification/interface";
+import {EHTTPMethod, ENotificationType, INotification} from "@store/notification/interface";
 
 import {setAuthorizationStatus, setUser} from "./action-creator";
-import {EAuthorizationStatus, EUserURLHandlerPath, EUserErrorNotificationName} from "./interface";
+import {
+  EAuthorizationStatus,
+  EUserURLHandlerPath,
+  EUserErrorNotificationName,
+  IUserAuthorizationParams
+} from "./interface";
+import {IDispatch} from "@middlewares/interface";
+import {TStoreAction, TStoreState} from "@store/interface";
+import {AxiosInstance, AxiosResponse} from "axios";
 
 
-const checkAuth = () => (dispatch, getState, api) => {
-  return api.get(EUserURLHandlerPath.LOGIN)
-    .then((response) => adaptUser(response.data as IServerUser))
+const checkAuth = () => (
+    dispatch: IDispatch<TStoreState, AxiosInstance, TStoreAction>,
+    getState: () => TStoreState,
+    api: AxiosInstance
+): Promise<void> => {
+  return api
+    .get<IServerUser>(EUserURLHandlerPath.LOGIN)
+    .then((response: AxiosResponse<IServerUser>): IUser => adaptUser(response.data))
     .then((user: IUser) => {
       dispatch([
         setUser(user),
-        setAuthorizationStatus(EAuthorizationStatus.AUTH)
+        setAuthorizationStatus(EAuthorizationStatus.AUTH),
       ]);
+    })
+    .catch(() => {
+      dispatch(setAuthorizationStatus(EAuthorizationStatus.NO_AUTH));
     });
 };
 
-const login = (authData) => (dispatch, getState, api) => {
-  return api.post(EUserURLHandlerPath.LOGIN, {
-    email: authData.email,
-    password: authData.password,
-  })
-    .then((response) => adaptUser(response.data))
-    .then((user: IUser) => {
+const login = (authData: IUserAuthorizationParams) => (
+    dispatch: IDispatch<TStoreState, AxiosInstance, TStoreAction>,
+    getState: () => TStoreState,
+    api: AxiosInstance
+): Promise<void> => {
+  return api
+    .post<IServerUser>(EUserURLHandlerPath.LOGIN, {
+      email: authData.email,
+      password: authData.password,
+    })
+    .then((response: AxiosResponse<IServerUser>): IUser => adaptUser(response.data))
+    .then((user: IUser): void => {
       dispatch([
         setUser(user),
         setAuthorizationStatus(EAuthorizationStatus.AUTH),
@@ -40,7 +61,7 @@ const login = (authData) => (dispatch, getState, api) => {
       history.push(EAppRoute.ROOT);
     })
     .catch(() => {
-      const notification = {
+      const notification: INotification = {
         id: nanoid(ID_LENGTH),
         type: ENotificationType.HIDDEN,
         name: EUserErrorNotificationName.EMAIL,

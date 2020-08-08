@@ -6,8 +6,10 @@ import EAppRoute from "@app/app-route";
 import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 import {EAuthorizationStatus, EUserErrorNotificationName} from "@store/user/interface";
+import {INotification} from "@store/notification/interface";
 
 import {ISignInProps} from "./interface";
+import {ChangeEvent, FormEvent} from "react";
 
 
 const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
@@ -33,7 +35,7 @@ const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
       <form
         action="#"
         className="sign-in__form"
-        onSubmit={(event) => {
+        onSubmit={(event: FormEvent<HTMLFormElement>) => {
           event.preventDefault();
           onFormSubmit(formState);
         }}
@@ -41,7 +43,7 @@ const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
         <div className="sign-in__fields">
           <div className={classNames({
             "sign-in__field": true,
-            "sign-in__field--error": errors.some((error) => error.name === EUserErrorNotificationName.EMAIL)
+            "sign-in__field--error": errors.some((error: INotification) => error.name === EUserErrorNotificationName.EMAIL)
           })}>
             <input
               className="sign-in__input"
@@ -67,7 +69,7 @@ const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
               placeholder="Password"
               name="user-password"
               id="user-password"
-              onChange={(event) => onControlChange(`password`, event.target.value)}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => onControlChange(`password`, event.target.value)}
               value={formState.password}
             />
             <label

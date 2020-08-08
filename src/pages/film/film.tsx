@@ -113,31 +113,27 @@ class Film extends React.PureComponent<IFilmProps> {
                   </svg>
                   <span>Play</span>
                 </Link>
-                {authorizationStatus === EAuthorizationStatus.AUTH && (
-                  <React.Fragment>
-                    <button
-                      className="btn btn--list movie-card__button"
-                      type="button"
-                      onClick={() => onFavoriteFilmClick(info)}
-                    >
-                      {isFavorite
-                        ? <svg viewBox="0 0 18 14" width="18" height="14">
-                          <use xlinkHref="#in-list"/>
-                        </svg>
-                        : <svg viewBox="0 0 19 20" width="19" height="20">
-                          <use xlinkHref="#add"/>
-                        </svg>
-                      }
-                      <span>My list</span>
-                    </button>
-                    <Link
-                      to={EAppRoute.REVIEW.replace(`:filmId`, `${id}`)}
-                      className="btn movie-card__button"
-                    >
-                      Add review
-                    </Link>
-                  </React.Fragment>
-                )}
+                <button
+                  className="btn btn--list movie-card__button"
+                  type="button"
+                  onClick={() => onFavoriteFilmClick(info)}
+                >
+                  {isFavorite
+                    ? <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"/>
+                    </svg>
+                    : <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"/>
+                    </svg>
+                  }
+                  <span>My list</span>
+                </button>
+                <Link
+                  to={EAppRoute.REVIEW.replace(`:filmId`, `${id}`)}
+                  className="btn movie-card__button"
+                >
+                  Add review
+                </Link>
               </div>
             </div>
           </div>
